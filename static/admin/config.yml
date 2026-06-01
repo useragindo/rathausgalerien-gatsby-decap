@@ -3,7 +3,7 @@ backend:
   branch: main
 
 # Enables local editing with the Decap local backend proxy.
-# Start it with: npx decap-server
+# Start it with: npm run cms:proxy
 local_backend: true
 
 site_url: /
@@ -24,88 +24,876 @@ editor:
   preview: false
 
 collections:
+  - name: settings
+    label: Website Settings
+    files:
+      - name: site
+        label: Website Settings
+        file: content/settings/site.yml
+        fields:
+          - {
+              label: Site Title,
+              name: siteTitle,
+              widget: string,
+              required: false,
+            }
+          - {
+              label: Site Description,
+              name: siteDescription,
+              widget: text,
+              required: false,
+            }
+          - { label: Site URL, name: siteUrl, widget: string, required: false }
+          - label: Default Open Graph Image
+            name: defaultOgImage
+            widget: object
+            collapsed: false
+            required: false
+            fields:
+              - { label: Image, name: image, widget: image, required: false }
+              - {
+                  label: Alternative Text,
+                  name: alt,
+                  widget: string,
+                  required: false,
+                }
+          - label: Default Language
+            name: defaultLanguage
+            widget: select
+            options:
+              - { label: Deutsch, value: de }
+              - { label: English, value: en }
+            default: de
+          - label: Available Languages
+            name: availableLanguages
+            widget: list
+            collapsed: false
+            fields:
+              - label: Language Code
+                name: code
+                widget: select
+                options:
+                  - { label: Deutsch, value: de }
+                  - { label: English, value: en }
+              - { label: Label, name: label, widget: string, required: false }
+          - {
+              label: Contact Email,
+              name: contactEmail,
+              widget: string,
+              required: false,
+            }
+          - { label: Phone, name: phone, widget: string, required: false }
+          - label: Address
+            name: address
+            widget: object
+            collapsed: false
+            required: false
+            fields:
+              - { label: Street, name: street, widget: string, required: false }
+              - {
+                  label: Postal Code,
+                  name: postalCode,
+                  widget: string,
+                  required: false,
+                }
+              - { label: City, name: city, widget: string, required: false }
+              - {
+                  label: Country,
+                  name: country,
+                  widget: string,
+                  required: false,
+                }
+          - label: Social Links
+            name: socialLinks
+            widget: list
+            required: false
+            fields:
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: URL, name: url, widget: string, required: false }
+              - { label: Icon, name: icon, widget: string, required: false }
+              - {
+                  label: Screenreader Label,
+                  name: ariaLabel,
+                  widget: string,
+                  required: false,
+                }
+
+  - name: navigation
+    label: Navigation
+    files:
+      - name: main
+        label: Navigation
+        file: content/navigation/main.yml
+        fields:
+          - label: Main Navigation
+            name: mainNavigation
+            widget: list
+            required: false
+            fields:
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: URL, name: url, widget: string, required: false }
+              - {
+                  label: Language,
+                  name: language,
+                  widget: select,
+                  options: [de, en],
+                  default: de,
+                }
+              - {
+                  label: Open in new tab,
+                  name: openInNewTab,
+                  widget: boolean,
+                  default: false,
+                  required: false,
+                }
+              - {
+                  label: Screenreader Label,
+                  name: ariaLabel,
+                  widget: string,
+                  required: false,
+                }
+          - label: Footer Navigation
+            name: footerNavigation
+            widget: list
+            required: false
+            fields:
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: URL, name: url, widget: string, required: false }
+              - {
+                  label: Language,
+                  name: language,
+                  widget: select,
+                  options: [de, en],
+                  default: de,
+                }
+              - {
+                  label: Open in new tab,
+                  name: openInNewTab,
+                  widget: boolean,
+                  default: false,
+                  required: false,
+                }
+              - {
+                  label: Screenreader Label,
+                  name: ariaLabel,
+                  widget: string,
+                  required: false,
+                }
+          - label: Utility Navigation
+            name: utilityNavigation
+            widget: list
+            required: false
+            fields:
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: URL, name: url, widget: string, required: false }
+              - {
+                  label: Language,
+                  name: language,
+                  widget: select,
+                  options: [de, en],
+                  default: de,
+                }
+              - {
+                  label: Open in new tab,
+                  name: openInNewTab,
+                  widget: boolean,
+                  default: false,
+                  required: false,
+                }
+              - {
+                  label: Screenreader Label,
+                  name: ariaLabel,
+                  widget: string,
+                  required: false,
+                }
+          - label: Social Links
+            name: socialLinks
+            widget: list
+            required: false
+            fields:
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: URL, name: url, widget: string, required: false }
+              - { label: Icon, name: icon, widget: string, required: false }
+              - {
+                  label: Screenreader Label,
+                  name: ariaLabel,
+                  widget: string,
+                  required: false,
+                }
+
   - name: pages
-    label: Seiten
-    label_singular: Seite
+    label: Pages
+    label_singular: Page
     folder: content/pages
     create: true
     slug: "{{slug}}"
     extension: mdx
     format: frontmatter
     summary: "{{title}}"
+    sortable_fields: [title, slug]
     fields:
-      - { label: Titel, name: title, widget: string }
-      - { label: SEO-Titel, name: seoTitle, widget: string, required: false }
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string }
       - {
-          label: Beschreibung,
-          name: description,
+          label: Language,
+          name: language,
+          widget: select,
+          options: [de, en],
+          default: de,
+        }
+      - label: Translations
+        name: translations
+        widget: list
+        required: false
+        fields:
+          - {
+              label: Language,
+              name: language,
+              widget: select,
+              options: [de, en],
+            }
+          - { label: Slug, name: slug, widget: string, required: false }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - {
+          label: SEO Description,
+          name: seoDescription,
           widget: text,
           required: false,
         }
       - {
-          label: Veröffentlicht,
-          name: published,
-          widget: boolean,
-          default: true,
+          label: Canonical URL,
+          name: canonicalUrl,
+          widget: string,
+          required: false,
         }
-      - { label: Inhalt, name: body, widget: markdown }
+      - label: Open Graph
+        name: openGraph
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Title, name: title, widget: string, required: false }
+          - {
+              label: Description,
+              name: description,
+              widget: text,
+              required: false,
+            }
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Image Alt Text,
+              name: imageAlt,
+              widget: string,
+              required: false,
+            }
+      - {
+          label: Structured Data,
+          name: structuredData,
+          widget: code,
+          default_language: json,
+          required: false,
+        }
+      - label: Hero
+        name: hero
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Heading, name: heading, widget: string, required: false }
+          - { label: Text, name: text, widget: text, required: false }
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Image Alt Text,
+              name: imageAlt,
+              widget: string,
+              required: false,
+            }
+          - {
+              label: Screenreader Label,
+              name: ariaLabel,
+              widget: string,
+              required: false,
+            }
+      - label: Content Blocks
+        name: contentBlocks
+        widget: list
+        required: false
+        types:
+          - label: Text Block
+            name: textBlock
+            widget: object
+            fields:
+              - {
+                  label: Heading,
+                  name: heading,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Content,
+                  name: content,
+                  widget: markdown,
+                  required: false,
+                }
+          - label: Image Block
+            name: imageBlock
+            widget: object
+            fields:
+              - { label: Image, name: image, widget: image, required: false }
+              - {
+                  label: Alternative Text,
+                  name: alt,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Caption,
+                  name: caption,
+                  widget: string,
+                  required: false,
+                }
+          - label: Call To Action
+            name: callToAction
+            widget: object
+            fields:
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: URL, name: url, widget: string, required: false }
+              - {
+                  label: Screenreader Label,
+                  name: ariaLabel,
+                  widget: string,
+                  required: false,
+                }
+      - { label: Published, name: published, widget: boolean, default: false }
+
+  - name: shops
+    label: Shops
+    label_singular: Shop
+    folder: content/shops
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    summary: "{{title}}"
+    sortable_fields: [title, category, order]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string }
+      - {
+          label: Language,
+          name: language,
+          widget: select,
+          options: [de, en],
+          default: de,
+        }
+      - { label: Category, name: category, widget: string, required: false }
+      - {
+          label: Short Description,
+          name: shortDescription,
+          widget: text,
+          required: false,
+        }
+      - {
+          label: Description,
+          name: description,
+          widget: markdown,
+          required: false,
+        }
+      - label: Hero Image
+        name: heroImage
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Alternative Text,
+              name: alt,
+              widget: string,
+              required: false,
+            }
+      - label: Gallery
+        name: gallery
+        widget: list
+        required: false
+        fields:
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Alternative Text,
+              name: alt,
+              widget: string,
+              required: false,
+            }
+          - { label: Caption, name: caption, widget: string, required: false }
+      - label: Opening Hours
+        name: openingHours
+        widget: list
+        required: false
+        fields:
+          - { label: Day, name: day, widget: string, required: false }
+          - { label: Opens, name: opens, widget: string, required: false }
+          - { label: Closes, name: closes, widget: string, required: false }
+          - { label: Note, name: note, widget: string, required: false }
+      - label: Contact
+        name: contact
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Email, name: email, widget: string, required: false }
+          - { label: Phone, name: phone, widget: string, required: false }
+          - { label: Website, name: website, widget: string, required: false }
+      - label: Location
+        name: location
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Floor, name: floor, widget: string, required: false }
+          - { label: Unit, name: unit, widget: string, required: false }
+          - {
+              label: Directions Text,
+              name: directionsText,
+              widget: text,
+              required: false,
+            }
+      - {
+          label: Order,
+          name: order,
+          widget: number,
+          required: false,
+          value_type: int,
+        }
+      - {
+          label: Featured,
+          name: featured,
+          widget: boolean,
+          default: false,
+          required: false,
+        }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - {
+          label: SEO Description,
+          name: seoDescription,
+          widget: text,
+          required: false,
+        }
+      - {
+          label: Canonical URL,
+          name: canonicalUrl,
+          widget: string,
+          required: false,
+        }
+      - label: Open Graph
+        name: openGraph
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Title, name: title, widget: string, required: false }
+          - {
+              label: Description,
+              name: description,
+              widget: text,
+              required: false,
+            }
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Image Alt Text,
+              name: imageAlt,
+              widget: string,
+              required: false,
+            }
+      - {
+          label: Structured Data,
+          name: structuredData,
+          widget: code,
+          default_language: json,
+          required: false,
+        }
+
+  - name: gastronomy
+    label: Gastronomy
+    label_singular: Gastronomy Entry
+    folder: content/gastronomy
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    summary: "{{title}}"
+    sortable_fields: [title, category, order]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string }
+      - {
+          label: Language,
+          name: language,
+          widget: select,
+          options: [de, en],
+          default: de,
+        }
+      - { label: Category, name: category, widget: string, required: false }
+      - {
+          label: Short Description,
+          name: shortDescription,
+          widget: text,
+          required: false,
+        }
+      - {
+          label: Description,
+          name: description,
+          widget: markdown,
+          required: false,
+        }
+      - label: Hero Image
+        name: heroImage
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Alternative Text,
+              name: alt,
+              widget: string,
+              required: false,
+            }
+      - label: Gallery
+        name: gallery
+        widget: list
+        required: false
+        fields:
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Alternative Text,
+              name: alt,
+              widget: string,
+              required: false,
+            }
+          - { label: Caption, name: caption, widget: string, required: false }
+      - label: Opening Hours
+        name: openingHours
+        widget: list
+        required: false
+        fields:
+          - { label: Day, name: day, widget: string, required: false }
+          - { label: Opens, name: opens, widget: string, required: false }
+          - { label: Closes, name: closes, widget: string, required: false }
+          - { label: Note, name: note, widget: string, required: false }
+      - label: Kitchen Hours
+        name: kitchenHours
+        widget: list
+        required: false
+        fields:
+          - { label: Day, name: day, widget: string, required: false }
+          - { label: Opens, name: opens, widget: string, required: false }
+          - { label: Closes, name: closes, widget: string, required: false }
+          - { label: Note, name: note, widget: string, required: false }
+      - label: Contact
+        name: contact
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Email, name: email, widget: string, required: false }
+          - { label: Phone, name: phone, widget: string, required: false }
+          - { label: Website, name: website, widget: string, required: false }
+      - {
+          label: Order,
+          name: order,
+          widget: number,
+          required: false,
+          value_type: int,
+        }
+      - {
+          label: Featured,
+          name: featured,
+          widget: boolean,
+          default: false,
+          required: false,
+        }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - {
+          label: SEO Description,
+          name: seoDescription,
+          widget: text,
+          required: false,
+        }
+      - {
+          label: Canonical URL,
+          name: canonicalUrl,
+          widget: string,
+          required: false,
+        }
+      - label: Open Graph
+        name: openGraph
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Title, name: title, widget: string, required: false }
+          - {
+              label: Description,
+              name: description,
+              widget: text,
+              required: false,
+            }
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Image Alt Text,
+              name: imageAlt,
+              widget: string,
+              required: false,
+            }
+      - {
+          label: Structured Data,
+          name: structuredData,
+          widget: code,
+          default_language: json,
+          required: false,
+        }
 
   - name: news
     label: News
-    label_singular: News-Beitrag
+    label_singular: News Entry
     folder: content/news
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: mdx
     format: frontmatter
-    summary: "{{title}} — {{date}}"
-    sortable_fields: [date, title]
-    view_filters:
-      - label: Veröffentlicht
-        field: published
-        pattern: true
-      - label: Entwürfe
-        field: published
-        pattern: false
+    summary: "{{title}} — {{publishDate}}"
+    sortable_fields: [publishDate, title, category]
     fields:
-      - { label: Titel, name: title, widget: string }
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string }
       - {
-          label: Datum,
-          name: date,
+          label: Language,
+          name: language,
+          widget: select,
+          options: [de, en],
+          default: de,
+        }
+      - {
+          label: Publish Date,
+          name: publishDate,
           widget: datetime,
+          required: false,
           date_format: DD.MM.YYYY,
           time_format: HH:mm,
           format: YYYY-MM-DDTHH:mm:ss.SSSZ,
         }
-      - { label: Teaser, name: excerpt, widget: text, required: false }
-      - { label: Beitragsbild, name: image, widget: image, required: false }
-      - {
-          label: Veröffentlicht,
-          name: published,
-          widget: boolean,
-          default: true,
-        }
-      - { label: Inhalt, name: body, widget: markdown }
-
-  - name: settings
-    label: Einstellungen
-    files:
-      - name: site
-        label: Website
-        file: content/settings/site.yml
+      - { label: Category, name: category, widget: string, required: false }
+      - { label: Excerpt, name: excerpt, widget: text, required: false }
+      - label: Hero Image
+        name: heroImage
+        widget: object
+        required: false
+        collapsed: true
         fields:
-          - { label: Website-Titel, name: title, widget: string }
-          - { label: Website-URL, name: siteUrl, widget: string }
+          - { label: Image, name: image, widget: image, required: false }
           - {
-              label: Beschreibung,
+              label: Alternative Text,
+              name: alt,
+              widget: string,
+              required: false,
+            }
+      - label: Gallery
+        name: gallery
+        widget: list
+        required: false
+        fields:
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Alternative Text,
+              name: alt,
+              widget: string,
+              required: false,
+            }
+          - { label: Caption, name: caption, widget: string, required: false }
+      - { label: Author, name: author, widget: string, required: false }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - {
+          label: SEO Description,
+          name: seoDescription,
+          widget: text,
+          required: false,
+        }
+      - {
+          label: Canonical URL,
+          name: canonicalUrl,
+          widget: string,
+          required: false,
+        }
+      - label: Open Graph
+        name: openGraph
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Title, name: title, widget: string, required: false }
+          - {
+              label: Description,
               name: description,
               widget: text,
               required: false,
             }
-          - label: Kontakt
-            name: contact
-            widget: object
-            collapsed: false
-            fields:
-              - { label: E-Mail, name: email, widget: string, required: false }
-              - { label: Telefon, name: phone, widget: string, required: false }
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Image Alt Text,
+              name: imageAlt,
+              widget: string,
+              required: false,
+            }
+      - {
+          label: Structured Data,
+          name: structuredData,
+          widget: code,
+          default_language: json,
+          required: false,
+        }
+      - { label: Body, name: body, widget: markdown, required: false }
+
+  - name: services
+    label: Services
+    label_singular: Service
+    folder: content/services
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    summary: "{{title}}"
+    sortable_fields: [order, title]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string }
+      - {
+          label: Language,
+          name: language,
+          widget: select,
+          options: [de, en],
+          default: de,
+        }
+      - { label: Icon, name: icon, widget: string, required: false }
+      - {
+          label: Short Description,
+          name: shortDescription,
+          widget: text,
+          required: false,
+        }
+      - { label: Body, name: body, widget: markdown, required: false }
+      - {
+          label: Order,
+          name: order,
+          widget: number,
+          required: false,
+          value_type: int,
+        }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - {
+          label: SEO Description,
+          name: seoDescription,
+          widget: text,
+          required: false,
+        }
+      - {
+          label: Canonical URL,
+          name: canonicalUrl,
+          widget: string,
+          required: false,
+        }
+      - label: Open Graph
+        name: openGraph
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Title, name: title, widget: string, required: false }
+          - {
+              label: Description,
+              name: description,
+              widget: text,
+              required: false,
+            }
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Image Alt Text,
+              name: imageAlt,
+              widget: string,
+              required: false,
+            }
+      - {
+          label: Structured Data,
+          name: structuredData,
+          widget: code,
+          default_language: json,
+          required: false,
+        }
+
+  - name: faqs
+    label: FAQs
+    label_singular: FAQ
+    folder: content/faqs
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    summary: "{{question}}"
+    sortable_fields: [order, category, question]
+    fields:
+      - { label: Question, name: question, widget: string }
+      - { label: Answer, name: answer, widget: markdown, required: false }
+      - {
+          label: Language,
+          name: language,
+          widget: select,
+          options: [de, en],
+          default: de,
+        }
+      - { label: Category, name: category, widget: string, required: false }
+      - {
+          label: Order,
+          name: order,
+          widget: number,
+          required: false,
+          value_type: int,
+        }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - {
+          label: SEO Description,
+          name: seoDescription,
+          widget: text,
+          required: false,
+        }
+      - {
+          label: Canonical URL,
+          name: canonicalUrl,
+          widget: string,
+          required: false,
+        }
+      - label: Open Graph
+        name: openGraph
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Title, name: title, widget: string, required: false }
+          - {
+              label: Description,
+              name: description,
+              widget: text,
+              required: false,
+            }
+          - { label: Image, name: image, widget: image, required: false }
+          - {
+              label: Image Alt Text,
+              name: imageAlt,
+              widget: string,
+              required: false,
+            }
+      - {
+          label: Structured Data,
+          name: structuredData,
+          widget: code,
+          default_language: json,
+          required: false,
+        }
