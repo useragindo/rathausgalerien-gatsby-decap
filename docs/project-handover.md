@@ -211,19 +211,19 @@ These explain the content model, CMS setup, block architecture, SEO expectations
 
 ### 12. Local Decap CMS App
 
-Decap CMS is installed locally through the npm package `decap-cms-app` and loaded by the Gatsby admin page:
+Decap CMS is installed locally through `decap-cms-app` and integrated with Gatsby through:
 
 ```txt
-src/pages/admin.tsx
+gatsby-plugin-decap-cms
 ```
 
-The admin page no longer loads Decap CMS from `unpkg`.
+The plugin generates the `/admin/` app during Gatsby build. There is no custom `src/pages/admin.tsx` loader and no CDN dependency.
 
 Updated files:
 
 - `package.json`
 - `package-lock.json`
-- `src/pages/admin.tsx`
+- `gatsby-config.ts`
 
 The CMS configuration remains in:
 
