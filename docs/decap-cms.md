@@ -34,6 +34,8 @@ gatsby-plugin-decap-cms
 
 The plugin generates the `/admin/` app during Gatsby build. Do not create a custom `src/pages/admin.tsx` loader and do not load Decap CMS from `unpkg` or another CDN unless this project decision changes explicitly.
 
+Invite, recovery, and confirmation links from Netlify Identity may open the site root with a hash such as `#invite_token=...`. The root site initializes `netlify-identity-widget` in `gatsby-browser.ts`, opens the Identity modal for those tokens, and redirects authenticated users to `/admin/`.
+
 The CMS configuration remains in:
 
 ```txt
