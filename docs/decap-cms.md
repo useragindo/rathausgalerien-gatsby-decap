@@ -24,6 +24,20 @@ Open the CMS at:
 /admin/
 ```
 
+## Local CMS App
+
+Decap CMS is installed as the local npm package `decap-cms-app` and loaded by the Gatsby admin page at `src/pages/admin.tsx`.
+
+Do not load Decap CMS from `unpkg` or another CDN unless this project decision changes explicitly. Keeping the CMS app as an npm dependency makes builds more predictable and avoids runtime dependency on third-party CDNs.
+
+The CMS configuration remains in:
+
+```txt
+static/admin/config.yml
+```
+
+Do not copy files manually from `node_modules` into `static/admin/` unless there is a documented deployment reason.
+
 ## Media Uploads
 
 Uploaded files are stored in:

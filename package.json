@@ -18,6 +18,9 @@
 	},
 	"dependencies": {
 		"@mdx-js/react": "^3.1.1",
+		"ajv": "^8.20.0",
+		"ajv-keywords": "^5.1.0",
+		"decap-cms-app": "^3.13.0",
 		"gatsby": "^5.14.6",
 		"gatsby-plugin-image": "^3.16.0",
 		"gatsby-plugin-mdx": "^5.16.0",

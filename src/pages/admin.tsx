@@ -1,31 +1,46 @@
-import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
+import * as React from "react";
+import type { HeadFC, PageProps } from "gatsby";
+
+let isCmsInitialized = false;
 
 const AdminPage: React.FC<PageProps> = () => {
-  React.useEffect(() => {
-    const existingScript = document.getElementById("decap-cms-script")
+	const [loadError, setLoadError] = React.useState<string | null>(null);
 
-    if (existingScript) {
-      return
-    }
+	React.useEffect(() => {
+		if (isCmsInitialized) {
+			return;
+		}
 
-    const script = document.createElement("script")
-    script.id = "decap-cms-script"
-    script.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"
-    script.async = true
+		void import("decap-cms-app")
+			.then(({ default: CMS }) => {
+				CMS.init();
+				isCmsInitialized = true;
+			})
+			.catch((error: unknown) => {
+				const message =
+					error instanceof Error ? error.message : "Unbekannter Fehler";
+				setLoadError(message);
+			});
+	}, []);
 
-    document.body.appendChild(script)
-  }, [])
+	if (loadError) {
+		return (
+			<main>
+				<h1>Decap CMS konnte nicht geladen werden</h1>
+				<p>{loadError}</p>
+			</main>
+		);
+	}
 
-  return <main>Decap CMS wird geladen…</main>
-}
+	return null;
+};
 
-export default AdminPage
+export default AdminPage;
 
 export const Head: HeadFC = () => (
-  <>
-    <html lang="de" />
-    <title>Rathausgalerien CMS</title>
-    <meta name="robots" content="noindex" />
-  </>
-)
+	<>
+		<html lang="de" />
+		<title>Rathausgalerien CMS</title>
+		<meta name="robots" content="noindex" />
+	</>
+);

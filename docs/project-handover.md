@@ -209,7 +209,29 @@ Created documentation files:
 
 These explain the content model, CMS setup, block architecture, SEO expectations, accessibility expectations, and change-management rules.
 
-### 12. Validation Completed
+### 12. Local Decap CMS App
+
+Decap CMS is installed locally through the npm package `decap-cms-app` and loaded by the Gatsby admin page:
+
+```txt
+src/pages/admin.tsx
+```
+
+The admin page no longer loads Decap CMS from `unpkg`.
+
+Updated files:
+
+- `package.json`
+- `package-lock.json`
+- `src/pages/admin.tsx`
+
+The CMS configuration remains in:
+
+```txt
+static/admin/config.yml
+```
+
+### 13. Validation Completed
 
 The following checks were run successfully:
 
