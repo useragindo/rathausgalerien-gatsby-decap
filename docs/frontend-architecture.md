@@ -45,6 +45,8 @@ src/layouts/site-layout.tsx
 src/components/header/header.tsx
 src/components/footer/footer.tsx
 src/components/seo/seo.tsx
+src/components/content-blocks/content-block-renderer.tsx
+src/templates/page-template.tsx
 ```
 
 ### `src/lib/cms/types.ts`
@@ -109,10 +111,15 @@ Templates should be responsible for:
 - dispatching content blocks
 - providing SEO metadata
 
-Recommended future files:
+Implemented foundation file:
 
 ```txt
 src/templates/page-template.tsx
+```
+
+Recommended future files:
+
+```txt
 src/templates/shop-template.tsx
 src/templates/gastronomy-template.tsx
 src/templates/news-template.tsx
@@ -122,13 +129,13 @@ src/templates/news-template.tsx
 
 Content block rendering should use a dispatcher component that switches on the block type.
 
-Recommended future file:
+Implemented foundation file:
 
 ```txt
 src/components/content-blocks/content-block-renderer.tsx
 ```
 
-Each block component should map to one CMS block type from `PageContentBlock`.
+The current dispatcher renders semantic, unstyled fallback markup for every CMS block type. Future visual block components can be extracted from this file once final implementation begins.
 
 Recommended future block files:
 

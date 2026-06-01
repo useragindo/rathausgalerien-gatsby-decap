@@ -601,27 +601,30 @@ src/components/header/header.tsx
 src/components/header/index.ts
 src/components/footer/footer.tsx
 src/components/footer/index.ts
+src/components/content-blocks/content-block-renderer.tsx
+src/components/content-blocks/index.ts
+src/templates/page-template.tsx
 docs/frontend-architecture.md
 ```
 
-This means the next developer can use typed CMS models, SEO/navigation normalization helpers, and unstyled semantic layout shells before implementing templates or visual components.
+This means the next developer can use typed CMS models, SEO/navigation normalization helpers, unstyled semantic layout shells, a page-template foundation, and a content-block dispatcher before implementing final visual components.
 
 ## Recommended Immediate Next Task
 
 The next developer should start with:
 
 ```txt
-Create the page template foundation and content block dispatcher.
+Create Gatsby dynamic page creation and wire real CMS content into the page template.
 ```
 
 Recommended first files:
 
 ```txt
-src/templates/page-template.tsx
-src/components/content-blocks/content-block-renderer.tsx
+gatsby-node.ts
+src/lib/cms/pages.ts
 ```
 
-Do this before implementing detailed visual block components.
+Do this before implementing detailed visual block components or final page designs.
 
 ## Suggested Commit Messages
 
