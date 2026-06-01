@@ -584,23 +584,38 @@ Recommended later:
 
 Do not add a validation library before the frontend data flow is clear.
 
+## Recently Completed Technical Foundation
+
+The following immediate foundation tasks have been completed:
+
+```txt
+src/lib/cms/types.ts
+src/lib/cms/index.ts
+src/lib/seo.ts
+src/lib/navigation.ts
+docs/frontend-architecture.md
+```
+
+This means the next developer can use typed CMS models plus SEO and navigation normalization helpers before implementing templates or visual components.
+
 ## Recommended Immediate Next Task
 
 The next developer should start with:
 
 ```txt
-Create TypeScript CMS types and SEO/navigation normalization utilities.
+Create base layout, SEO component, and header/footer component shells using the existing typed utilities.
 ```
 
 Recommended first files:
 
 ```txt
-src/lib/cms/types.ts
-src/lib/seo.ts
-src/lib/navigation.ts
+src/layouts/site-layout.tsx
+src/components/seo/seo.tsx
+src/components/header/header.tsx
+src/components/footer/footer.tsx
 ```
 
-Do this before implementing templates or visual components.
+Do this before implementing detailed page templates or visual design.
 
 ## Suggested Commit Messages
 
