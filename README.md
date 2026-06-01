@@ -1,49 +1,58 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+# Rathausgalerien Gatsby + Decap CMS
 
-## 🚀 Quick start
+Gatsby-Projekt mit Decap CMS Admin-Bereich unter `/admin/`.
 
-1.  **Create a Gatsby site.**
+## Entwicklung starten
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+```shell
+npm run develop
+```
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
+Website: <http://localhost:8000>
 
-2.  **Start developing.**
+CMS: <http://localhost:8000/admin/>
 
-    Navigate into your new site’s directory and start it up.
+## Decap CMS lokal testen
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+Für lokale CMS-Änderungen läuft Decap über den offiziellen lokalen Backend-Proxy. Starte dafür zwei Terminals:
 
-3.  **Open the code and start customizing!**
+```shell
+npm run develop
+```
 
-    Your site is now running at http://localhost:8000!
+```shell
+npm run cms:proxy
+```
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+Danach öffnest du <http://localhost:8000/admin/>. Durch `local_backend: true` nutzt Decap lokal den Proxy und schreibt Änderungen direkt in die Dateien im Repository.
 
-4.  **Learn more**
+## Produktive Anmeldung
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+Die produktive Konfiguration ist auf Decaps `git-gateway` vorbereitet:
 
-## 🚀 Quick start (Netlify)
+```yaml
+backend:
+  name: git-gateway
+  branch: main
+```
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+Damit echte Logins funktionieren, muss beim Hosting Git Gateway/Identity eingerichtet sein, z. B. auf Netlify:
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+1. Site mit dem Git-Repository verbinden.
+2. Netlify Identity aktivieren.
+3. Git Gateway aktivieren.
+4. Benutzer einladen oder Registrierung konfigurieren.
+5. Deployment öffnen und `/admin/` aufrufen.
+
+Ohne Git-Gateway/Identity funktioniert produktiv kein Login, weil Decap Schreibrechte auf das Repository authentifizieren muss.
+
+## CMS-Struktur
+
+- Admin UI: `static/admin/index.html`
+- CMS-Konfiguration: `static/admin/config.yml`
+- Seiten: `content/pages/*.mdx`
+- News: `content/news/*.mdx`
+- Website-Einstellungen: `content/settings/site.yml`
+- Uploads: `static/uploads/`
+
+Decap CMS wird bewusst per CDN-Script eingebunden und **nicht** als `decap-cms-app` npm-Paket installiert.

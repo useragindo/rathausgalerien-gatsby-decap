@@ -1,0 +1,111 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Enables local editing with the Decap local backend proxy.
+# Start it with: npx decap-server
+local_backend: true
+
+site_url: /
+display_url: /
+logo_url: /icon.png
+locale: de
+
+media_folder: static/uploads
+public_folder: /uploads
+publish_mode: editorial_workflow
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+editor:
+  preview: false
+
+collections:
+  - name: pages
+    label: Seiten
+    label_singular: Seite
+    folder: content/pages
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    summary: "{{title}}"
+    fields:
+      - { label: Titel, name: title, widget: string }
+      - { label: SEO-Titel, name: seoTitle, widget: string, required: false }
+      - {
+          label: Beschreibung,
+          name: description,
+          widget: text,
+          required: false,
+        }
+      - {
+          label: Veröffentlicht,
+          name: published,
+          widget: boolean,
+          default: true,
+        }
+      - { label: Inhalt, name: body, widget: markdown }
+
+  - name: news
+    label: News
+    label_singular: News-Beitrag
+    folder: content/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: mdx
+    format: frontmatter
+    summary: "{{title}} — {{date}}"
+    sortable_fields: [date, title]
+    view_filters:
+      - label: Veröffentlicht
+        field: published
+        pattern: true
+      - label: Entwürfe
+        field: published
+        pattern: false
+    fields:
+      - { label: Titel, name: title, widget: string }
+      - {
+          label: Datum,
+          name: date,
+          widget: datetime,
+          date_format: DD.MM.YYYY,
+          time_format: HH:mm,
+          format: YYYY-MM-DDTHH:mm:ss.SSSZ,
+        }
+      - { label: Teaser, name: excerpt, widget: text, required: false }
+      - { label: Beitragsbild, name: image, widget: image, required: false }
+      - {
+          label: Veröffentlicht,
+          name: published,
+          widget: boolean,
+          default: true,
+        }
+      - { label: Inhalt, name: body, widget: markdown }
+
+  - name: settings
+    label: Einstellungen
+    files:
+      - name: site
+        label: Website
+        file: content/settings/site.yml
+        fields:
+          - { label: Website-Titel, name: title, widget: string }
+          - { label: Website-URL, name: siteUrl, widget: string }
+          - {
+              label: Beschreibung,
+              name: description,
+              widget: text,
+              required: false,
+            }
+          - label: Kontakt
+            name: contact
+            widget: object
+            collapsed: false
+            fields:
+              - { label: E-Mail, name: email, widget: string, required: false }
+              - { label: Telefon, name: phone, widget: string, required: false }
