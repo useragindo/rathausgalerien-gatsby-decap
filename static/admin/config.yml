@@ -103,6 +103,99 @@ collections:
                   widget: string,
                   required: false,
                 }
+          - label: Center Statistics
+            name: centerStats
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - {
+                  label: Shop Count,
+                  name: shopCount,
+                  widget: number,
+                  value_type: int,
+                  required: false,
+                }
+              - {
+                  label: Gastronomy Count,
+                  name: gastronomyCount,
+                  widget: number,
+                  value_type: int,
+                  required: false,
+                }
+          - label: Opening Hours
+            name: openingHours
+            widget: list
+            required: false
+            fields:
+              - { label: Day, name: day, widget: string, required: false }
+              - { label: Opens, name: opens, widget: string, required: false }
+              - { label: Closes, name: closes, widget: string, required: false }
+              - { label: Note, name: note, widget: string, required: false }
+          - label: Parking
+            name: parking
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - {
+                  label: Spaces,
+                  name: spaces,
+                  widget: number,
+                  value_type: int,
+                  required: false,
+                }
+              - {
+                  label: EV Charging Spaces,
+                  name: evChargingSpaces,
+                  widget: number,
+                  value_type: int,
+                  required: false,
+                }
+              - {
+                  label: Short Description,
+                  name: shortDescription,
+                  widget: text,
+                  required: false,
+                }
+          - label: Location
+            name: location
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - label: Map Image
+                name: mapImage
+                widget: object
+                collapsed: true
+                required: false
+                fields:
+                  - {
+                      label: Image,
+                      name: image,
+                      widget: image,
+                      required: false,
+                    }
+                  - {
+                      label: Alternative Text,
+                      name: alt,
+                      widget: string,
+                      required: false,
+                    }
+              - {
+                  label: Latitude,
+                  name: latitude,
+                  widget: number,
+                  value_type: float,
+                  required: false,
+                }
+              - {
+                  label: Longitude,
+                  name: longitude,
+                  widget: number,
+                  value_type: float,
+                  required: false,
+                }
           - label: Social Links
             name: socialLinks
             widget: list
@@ -127,6 +220,33 @@ collections:
         fields:
           - label: Main Navigation
             name: mainNavigation
+            widget: list
+            required: false
+            fields:
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: URL, name: url, widget: string, required: false }
+              - {
+                  label: Language,
+                  name: language,
+                  widget: select,
+                  options: [de, en],
+                  default: de,
+                }
+              - {
+                  label: Open in new tab,
+                  name: openInNewTab,
+                  widget: boolean,
+                  default: false,
+                  required: false,
+                }
+              - {
+                  label: Screenreader Label,
+                  name: ariaLabel,
+                  widget: string,
+                  required: false,
+                }
+          - label: Mobile Navigation
+            name: mobileNavigation
             widget: list
             required: false
             fields:
@@ -179,6 +299,33 @@ collections:
                   widget: string,
                   required: false,
                 }
+          - label: Footer Legal Navigation
+            name: footerLegalNavigation
+            widget: list
+            required: false
+            fields:
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: URL, name: url, widget: string, required: false }
+              - {
+                  label: Language,
+                  name: language,
+                  widget: select,
+                  options: [de, en],
+                  default: de,
+                }
+              - {
+                  label: Open in new tab,
+                  name: openInNewTab,
+                  widget: boolean,
+                  default: false,
+                  required: false,
+                }
+              - {
+                  label: Screenreader Label,
+                  name: ariaLabel,
+                  widget: string,
+                  required: false,
+                }
           - label: Utility Navigation
             name: utilityNavigation
             widget: list
@@ -186,6 +333,34 @@ collections:
             fields:
               - { label: Label, name: label, widget: string, required: false }
               - { label: URL, name: url, widget: string, required: false }
+              - {
+                  label: Language,
+                  name: language,
+                  widget: select,
+                  options: [de, en],
+                  default: de,
+                }
+              - {
+                  label: Open in new tab,
+                  name: openInNewTab,
+                  widget: boolean,
+                  default: false,
+                  required: false,
+                }
+              - {
+                  label: Screenreader Label,
+                  name: ariaLabel,
+                  widget: string,
+                  required: false,
+                }
+          - label: Header Icon Navigation
+            name: headerIconNavigation
+            widget: list
+            required: false
+            fields:
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: URL, name: url, widget: string, required: false }
+              - { label: Icon, name: icon, widget: string, required: false }
               - {
                   label: Language,
                   name: language,
@@ -318,11 +493,24 @@ collections:
         name: contentBlocks
         widget: list
         required: false
+        summary: "{{fields.blockTitle}}"
         types:
-          - label: Text Block
-            name: textBlock
+          - label: Hero Shopping Block
+            name: heroShoppingBlock
             widget: object
             fields:
+              - {
+                  label: Internal Block Title,
+                  name: blockTitle,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Eyebrow,
+                  name: eyebrow,
+                  widget: string,
+                  required: false,
+                }
               - {
                   label: Heading,
                   name: heading,
@@ -330,40 +518,526 @@ collections:
                   required: false,
                 }
               - {
-                  label: Content,
-                  name: content,
-                  widget: markdown,
+                  label: Subheading,
+                  name: subheading,
+                  widget: text,
                   required: false,
                 }
-          - label: Image Block
-            name: imageBlock
+              - label: Primary Image
+                name: primaryImage
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - {
+                      label: Image,
+                      name: image,
+                      widget: image,
+                      required: false,
+                    }
+                  - {
+                      label: Alternative Text,
+                      name: alt,
+                      widget: string,
+                      required: false,
+                    }
+              - label: Icon
+                name: icon
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - {
+                      label: Icon Name,
+                      name: name,
+                      widget: string,
+                      required: false,
+                    }
+                  - {
+                      label: Screenreader Label,
+                      name: ariaLabel,
+                      widget: string,
+                      required: false,
+                    }
+              - label: Statistics
+                name: stats
+                widget: list
+                required: false
+                fields:
+                  - {
+                      label: Value,
+                      name: value,
+                      widget: string,
+                      required: false,
+                    }
+                  - {
+                      label: Label,
+                      name: label,
+                      widget: string,
+                      required: false,
+                    }
+              - {
+                  label: Section Label for Screenreaders,
+                  name: ariaLabel,
+                  widget: string,
+                  required: false,
+                }
+
+          - label: Section Intro Block
+            name: sectionIntroBlock
             widget: object
             fields:
-              - { label: Image, name: image, widget: image, required: false }
               - {
-                  label: Alternative Text,
-                  name: alt,
+                  label: Internal Block Title,
+                  name: blockTitle,
                   widget: string,
                   required: false,
                 }
               - {
-                  label: Caption,
-                  name: caption,
+                  label: Heading,
+                  name: heading,
                   widget: string,
                   required: false,
                 }
-          - label: Call To Action
-            name: callToAction
+              - { label: Text, name: text, widget: text, required: false }
+              - {
+                  label: Anchor ID,
+                  name: anchorId,
+                  widget: string,
+                  required: false,
+                }
+
+          - label: Teaser Grid Block
+            name: teaserGridBlock
             widget: object
             fields:
-              - { label: Label, name: label, widget: string, required: false }
+              - {
+                  label: Internal Block Title,
+                  name: blockTitle,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Heading,
+                  name: heading,
+                  widget: string,
+                  required: false,
+                }
+              - { label: Text, name: text, widget: text, required: false }
+              - label: Teasers
+                name: teasers
+                widget: list
+                required: false
+                fields:
+                  - {
+                      label: Title,
+                      name: title,
+                      widget: string,
+                      required: false,
+                    }
+                  - { label: Text, name: text, widget: text, required: false }
+                  - { label: URL, name: url, widget: string, required: false }
+                  - {
+                      label: Style Variant,
+                      name: variant,
+                      widget: string,
+                      required: false,
+                    }
+                  - label: Image
+                    name: image
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - {
+                          label: Image,
+                          name: image,
+                          widget: image,
+                          required: false,
+                        }
+                      - {
+                          label: Alternative Text,
+                          name: alt,
+                          widget: string,
+                          required: false,
+                        }
+                  - label: Icon
+                    name: icon
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - {
+                          label: Icon Name,
+                          name: name,
+                          widget: string,
+                          required: false,
+                        }
+                      - {
+                          label: Screenreader Label,
+                          name: ariaLabel,
+                          widget: string,
+                          required: false,
+                        }
+                  - {
+                      label: Screenreader Label,
+                      name: ariaLabel,
+                      widget: string,
+                      required: false,
+                    }
+
+          - label: Gastronomy Highlight Block
+            name: gastronomyHighlightBlock
+            widget: object
+            fields:
+              - {
+                  label: Internal Block Title,
+                  name: blockTitle,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Heading,
+                  name: heading,
+                  widget: string,
+                  required: false,
+                }
+              - { label: Text, name: text, widget: text, required: false }
+              - label: Highlight Tile
+                name: highlightTile
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - {
+                      label: Title,
+                      name: title,
+                      widget: string,
+                      required: false,
+                    }
+                  - { label: Text, name: text, widget: text, required: false }
+                  - {
+                      label: Icon Name,
+                      name: icon,
+                      widget: string,
+                      required: false,
+                    }
+                  - { label: URL, name: url, widget: string, required: false }
+                  - {
+                      label: Screenreader Label,
+                      name: ariaLabel,
+                      widget: string,
+                      required: false,
+                    }
+              - label: Image
+                name: image
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - {
+                      label: Image,
+                      name: image,
+                      widget: image,
+                      required: false,
+                    }
+                  - {
+                      label: Alternative Text,
+                      name: alt,
+                      widget: string,
+                      required: false,
+                    }
+
+          - label: News Teaser Block
+            name: newsTeaserBlock
+            widget: object
+            fields:
+              - {
+                  label: Internal Block Title,
+                  name: blockTitle,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Heading,
+                  name: heading,
+                  widget: string,
+                  required: false,
+                }
+              - label: Teasers
+                name: teasers
+                widget: list
+                required: false
+                fields:
+                  - {
+                      label: Title,
+                      name: title,
+                      widget: string,
+                      required: false,
+                    }
+                  - { label: Text, name: text, widget: text, required: false }
+                  - { label: URL, name: url, widget: string, required: false }
+                  - label: Image
+                    name: image
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - {
+                          label: Image,
+                          name: image,
+                          widget: image,
+                          required: false,
+                        }
+                      - {
+                          label: Alternative Text,
+                          name: alt,
+                          widget: string,
+                          required: false,
+                        }
+                  - {
+                      label: Screenreader Label,
+                      name: ariaLabel,
+                      widget: string,
+                      required: false,
+                    }
+
+          - label: Parking Block
+            name: parkingBlock
+            widget: object
+            fields:
+              - {
+                  label: Internal Block Title,
+                  name: blockTitle,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Heading,
+                  name: heading,
+                  widget: string,
+                  required: false,
+                }
+              - { label: Text, name: text, widget: text, required: false }
+              - label: Parking Tile
+                name: parkingTile
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - {
+                      label: Title,
+                      name: title,
+                      widget: string,
+                      required: false,
+                    }
+                  - {
+                      label: Spaces Label,
+                      name: spacesLabel,
+                      widget: string,
+                      required: false,
+                    }
+                  - {
+                      label: EV Charging Label,
+                      name: evChargingLabel,
+                      widget: string,
+                      required: false,
+                    }
+                  - {
+                      label: Icon Name,
+                      name: icon,
+                      widget: string,
+                      required: false,
+                    }
+                  - { label: URL, name: url, widget: string, required: false }
+                  - {
+                      label: Screenreader Label,
+                      name: ariaLabel,
+                      widget: string,
+                      required: false,
+                    }
+              - label: Image
+                name: image
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - {
+                      label: Image,
+                      name: image,
+                      widget: image,
+                      required: false,
+                    }
+                  - {
+                      label: Alternative Text,
+                      name: alt,
+                      widget: string,
+                      required: false,
+                    }
+
+          - label: Social Teaser Block
+            name: socialTeaserBlock
+            widget: object
+            fields:
+              - {
+                  label: Internal Block Title,
+                  name: blockTitle,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Heading,
+                  name: heading,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Platform,
+                  name: platform,
+                  widget: string,
+                  required: false,
+                }
               - { label: URL, name: url, widget: string, required: false }
+              - label: Image
+                name: image
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - {
+                      label: Image,
+                      name: image,
+                      widget: image,
+                      required: false,
+                    }
+                  - {
+                      label: Alternative Text,
+                      name: alt,
+                      widget: string,
+                      required: false,
+                    }
               - {
                   label: Screenreader Label,
                   name: ariaLabel,
                   widget: string,
                   required: false,
                 }
+
+          - label: Gift Ideas Slider Block
+            name: giftIdeasSliderBlock
+            widget: object
+            fields:
+              - {
+                  label: Internal Block Title,
+                  name: blockTitle,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Heading,
+                  name: heading,
+                  widget: string,
+                  required: false,
+                }
+              - { label: Text, name: text, widget: text, required: false }
+              - label: Intro Tile
+                name: introTile
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - {
+                      label: Title,
+                      name: title,
+                      widget: string,
+                      required: false,
+                    }
+                  - { label: Text, name: text, widget: text, required: false }
+                  - {
+                      label: Icon Name,
+                      name: icon,
+                      widget: string,
+                      required: false,
+                    }
+              - label: Slides
+                name: slides
+                widget: list
+                required: false
+                fields:
+                  - {
+                      label: Title,
+                      name: title,
+                      widget: string,
+                      required: false,
+                    }
+                  - { label: Text, name: text, widget: text, required: false }
+                  - { label: URL, name: url, widget: string, required: false }
+                  - label: Image
+                    name: image
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - {
+                          label: Image,
+                          name: image,
+                          widget: image,
+                          required: false,
+                        }
+                      - {
+                          label: Alternative Text,
+                          name: alt,
+                          widget: string,
+                          required: false,
+                        }
+                  - {
+                      label: Screenreader Label,
+                      name: ariaLabel,
+                      widget: string,
+                      required: false,
+                    }
+
+          - label: Link List Block
+            name: linkListBlock
+            widget: object
+            fields:
+              - {
+                  label: Internal Block Title,
+                  name: blockTitle,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Heading,
+                  name: heading,
+                  widget: string,
+                  required: false,
+                }
+              - label: Links
+                name: links
+                widget: list
+                required: false
+                fields:
+                  - {
+                      label: Label,
+                      name: label,
+                      widget: string,
+                      required: false,
+                    }
+                  - { label: URL, name: url, widget: string, required: false }
+                  - {
+                      label: Open in new tab,
+                      name: openInNewTab,
+                      widget: boolean,
+                      default: false,
+                      required: false,
+                    }
+                  - {
+                      label: Screenreader Label,
+                      name: ariaLabel,
+                      widget: string,
+                      required: false,
+                    }
       - { label: Published, name: published, widget: boolean, default: false }
 
   - name: shops

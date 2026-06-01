@@ -17,4 +17,18 @@ address:
   postalCode: ""
   city: ""
   country: ""
+centerStats:
+  shopCount:
+  gastronomyCount:
+openingHours: []
+parking:
+  spaces:
+  evChargingSpaces:
+  shortDescription: ""
+location:
+  mapImage:
+    image: ""
+    alt: ""
+  latitude:
+  longitude:
 socialLinks: []
