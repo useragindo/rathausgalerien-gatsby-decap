@@ -41,6 +41,10 @@ src/lib/cms/types.ts
 src/lib/cms/index.ts
 src/lib/seo.ts
 src/lib/navigation.ts
+src/layouts/site-layout.tsx
+src/components/header/header.tsx
+src/components/footer/footer.tsx
+src/components/seo/seo.tsx
 ```
 
 ### `src/lib/cms/types.ts`
@@ -162,12 +166,14 @@ The SEO component should render:
 
 Header and footer components should use `getNavigationForLanguage` from `src/lib/navigation.ts`.
 
-Recommended future files:
+Implemented shell files:
 
 ```txt
 src/components/header/header.tsx
 src/components/footer/footer.tsx
 ```
+
+These are intentionally unstyled and only provide semantic structure and typed props.
 
 ## Styling
 

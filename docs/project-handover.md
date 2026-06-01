@@ -593,29 +593,35 @@ src/lib/cms/types.ts
 src/lib/cms/index.ts
 src/lib/seo.ts
 src/lib/navigation.ts
+src/layouts/site-layout.tsx
+src/layouts/index.ts
+src/components/seo/seo.tsx
+src/components/seo/index.ts
+src/components/header/header.tsx
+src/components/header/index.ts
+src/components/footer/footer.tsx
+src/components/footer/index.ts
 docs/frontend-architecture.md
 ```
 
-This means the next developer can use typed CMS models plus SEO and navigation normalization helpers before implementing templates or visual components.
+This means the next developer can use typed CMS models, SEO/navigation normalization helpers, and unstyled semantic layout shells before implementing templates or visual components.
 
 ## Recommended Immediate Next Task
 
 The next developer should start with:
 
 ```txt
-Create base layout, SEO component, and header/footer component shells using the existing typed utilities.
+Create the page template foundation and content block dispatcher.
 ```
 
 Recommended first files:
 
 ```txt
-src/layouts/site-layout.tsx
-src/components/seo/seo.tsx
-src/components/header/header.tsx
-src/components/footer/footer.tsx
+src/templates/page-template.tsx
+src/components/content-blocks/content-block-renderer.tsx
 ```
 
-Do this before implementing detailed page templates or visual design.
+Do this before implementing detailed visual block components.
 
 ## Suggested Commit Messages
 
