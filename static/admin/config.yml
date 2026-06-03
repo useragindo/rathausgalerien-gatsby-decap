@@ -8,11 +8,11 @@ local_backend: true
 
 site_url: /
 display_url: /
-logo_url: /icon.png
+logo_url: /media/_rathausgalerien.svg
 locale: de
 
-media_folder: static/uploads
-public_folder: /uploads
+media_folder: static/media
+public_folder: /media
 publish_mode: editorial_workflow
 
 slug:
@@ -23,1551 +23,1393 @@ slug:
 editor:
   preview: false
 
-collections:
-  - name: settings
-    label: Website Settings
-    files:
-      - name: site
-        label: Website Settings
-        file: content/settings/site.yml
-        fields:
-          - {
-              label: Site Title,
-              name: siteTitle,
-              widget: string,
-              required: false,
-            }
-          - {
-              label: Site Description,
-              name: siteDescription,
-              widget: text,
-              required: false,
-            }
-          - { label: Site URL, name: siteUrl, widget: string, required: false }
-          - label: Default Open Graph Image
-            name: defaultOgImage
-            widget: object
-            collapsed: false
-            required: false
-            fields:
-              - { label: Image, name: image, widget: image, required: false }
-              - {
-                  label: Alternative Text,
-                  name: alt,
-                  widget: string,
-                  required: false,
-                }
-          - label: Default Language
-            name: defaultLanguage
-            widget: select
-            options:
-              - { label: Deutsch, value: de }
-              - { label: English, value: en }
-            default: de
-          - label: Available Languages
-            name: availableLanguages
-            widget: list
-            collapsed: false
-            fields:
-              - label: Language Code
-                name: code
-                widget: select
-                options:
-                  - { label: Deutsch, value: de }
-                  - { label: English, value: en }
-              - { label: Label, name: label, widget: string, required: false }
-          - {
-              label: Contact Email,
-              name: contactEmail,
-              widget: string,
-              required: false,
-            }
-          - { label: Phone, name: phone, widget: string, required: false }
-          - label: Address
-            name: address
-            widget: object
-            collapsed: false
-            required: false
-            fields:
-              - { label: Street, name: street, widget: string, required: false }
-              - {
-                  label: Postal Code,
-                  name: postalCode,
-                  widget: string,
-                  required: false,
-                }
-              - { label: City, name: city, widget: string, required: false }
-              - {
-                  label: Country,
-                  name: country,
-                  widget: string,
-                  required: false,
-                }
-          - label: Center Statistics
-            name: centerStats
-            widget: object
-            collapsed: true
-            required: false
-            fields:
-              - {
-                  label: Shop Count,
-                  name: shopCount,
-                  widget: number,
-                  value_type: int,
-                  required: false,
-                }
-              - {
-                  label: Gastronomy Count,
-                  name: gastronomyCount,
-                  widget: number,
-                  value_type: int,
-                  required: false,
-                }
-          - label: Opening Hours
-            name: openingHours
-            widget: list
-            required: false
-            fields:
-              - { label: Day, name: day, widget: string, required: false }
-              - { label: Opens, name: opens, widget: string, required: false }
-              - { label: Closes, name: closes, widget: string, required: false }
-              - { label: Note, name: note, widget: string, required: false }
-          - label: Parking
-            name: parking
-            widget: object
-            collapsed: true
-            required: false
-            fields:
-              - {
-                  label: Spaces,
-                  name: spaces,
-                  widget: number,
-                  value_type: int,
-                  required: false,
-                }
-              - {
-                  label: EV Charging Spaces,
-                  name: evChargingSpaces,
-                  widget: number,
-                  value_type: int,
-                  required: false,
-                }
-              - {
-                  label: Short Description,
-                  name: shortDescription,
-                  widget: text,
-                  required: false,
-                }
-          - label: Location
-            name: location
-            widget: object
-            collapsed: true
-            required: false
-            fields:
-              - label: Map Image
-                name: mapImage
-                widget: object
-                collapsed: true
-                required: false
-                fields:
-                  - {
-                      label: Image,
-                      name: image,
-                      widget: image,
-                      required: false,
-                    }
-                  - {
-                      label: Alternative Text,
-                      name: alt,
-                      widget: string,
-                      required: false,
-                    }
-              - {
-                  label: Latitude,
-                  name: latitude,
-                  widget: number,
-                  value_type: float,
-                  required: false,
-                }
-              - {
-                  label: Longitude,
-                  name: longitude,
-                  widget: number,
-                  value_type: float,
-                  required: false,
-                }
-          - label: Social Links
-            name: socialLinks
-            widget: list
-            required: false
-            fields:
-              - { label: Label, name: label, widget: string, required: false }
-              - { label: URL, name: url, widget: string, required: false }
-              - { label: Icon, name: icon, widget: string, required: false }
-              - {
-                  label: Screenreader Label,
-                  name: ariaLabel,
-                  widget: string,
-                  required: false,
-                }
+collections: 
 
-  - name: navigation
-    label: Navigation
-    files:
-      - name: main
-        label: Navigation
-        file: content/navigation/main.yml
+  - name: "pages-de"
+    label: "Pages (de)"
+    delete: false
+    editor: 
+      preview: false
+    files: 
+  
+      - file: "content/de/pages/index.md"
+        name: "index-de"
+        label: "Index"
         fields:
-          - label: Main Navigation
-            name: mainNavigation
-            widget: list
-            required: false
-            fields:
-              - { label: Label, name: label, widget: string, required: false }
-              - { label: URL, name: url, widget: string, required: false }
-              - {
-                  label: Language,
-                  name: language,
-                  widget: select,
-                  options: [de, en],
-                  default: de,
-                }
-              - {
-                  label: Open in new tab,
-                  name: openInNewTab,
-                  widget: boolean,
-                  default: false,
-                  required: false,
-                }
-              - {
-                  label: Screenreader Label,
-                  name: ariaLabel,
-                  widget: string,
-                  required: false,
-                }
-          - label: Mobile Navigation
-            name: mobileNavigation
-            widget: list
-            required: false
-            fields:
-              - { label: Label, name: label, widget: string, required: false }
-              - { label: URL, name: url, widget: string, required: false }
-              - {
-                  label: Language,
-                  name: language,
-                  widget: select,
-                  options: [de, en],
-                  default: de,
-                }
-              - {
-                  label: Open in new tab,
-                  name: openInNewTab,
-                  widget: boolean,
-                  default: false,
-                  required: false,
-                }
-              - {
-                  label: Screenreader Label,
-                  name: ariaLabel,
-                  widget: string,
-                  required: false,
-                }
-          - label: Footer Navigation
-            name: footerNavigation
-            widget: list
-            required: false
-            fields:
-              - { label: Label, name: label, widget: string, required: false }
-              - { label: URL, name: url, widget: string, required: false }
-              - {
-                  label: Language,
-                  name: language,
-                  widget: select,
-                  options: [de, en],
-                  default: de,
-                }
-              - {
-                  label: Open in new tab,
-                  name: openInNewTab,
-                  widget: boolean,
-                  default: false,
-                  required: false,
-                }
-              - {
-                  label: Screenreader Label,
-                  name: ariaLabel,
-                  widget: string,
-                  required: false,
-                }
-          - label: Footer Legal Navigation
-            name: footerLegalNavigation
-            widget: list
-            required: false
-            fields:
-              - { label: Label, name: label, widget: string, required: false }
-              - { label: URL, name: url, widget: string, required: false }
-              - {
-                  label: Language,
-                  name: language,
-                  widget: select,
-                  options: [de, en],
-                  default: de,
-                }
-              - {
-                  label: Open in new tab,
-                  name: openInNewTab,
-                  widget: boolean,
-                  default: false,
-                  required: false,
-                }
-              - {
-                  label: Screenreader Label,
-                  name: ariaLabel,
-                  widget: string,
-                  required: false,
-                }
-          - label: Utility Navigation
-            name: utilityNavigation
-            widget: list
-            required: false
-            fields:
-              - { label: Label, name: label, widget: string, required: false }
-              - { label: URL, name: url, widget: string, required: false }
-              - {
-                  label: Language,
-                  name: language,
-                  widget: select,
-                  options: [de, en],
-                  default: de,
-                }
-              - {
-                  label: Open in new tab,
-                  name: openInNewTab,
-                  widget: boolean,
-                  default: false,
-                  required: false,
-                }
-              - {
-                  label: Screenreader Label,
-                  name: ariaLabel,
-                  widget: string,
-                  required: false,
-                }
-          - label: Header Icon Navigation
-            name: headerIconNavigation
-            widget: list
-            required: false
-            fields:
-              - { label: Label, name: label, widget: string, required: false }
-              - { label: URL, name: url, widget: string, required: false }
-              - { label: Icon, name: icon, widget: string, required: false }
-              - {
-                  label: Language,
-                  name: language,
-                  widget: select,
-                  options: [de, en],
-                  default: de,
-                }
-              - {
-                  label: Open in new tab,
-                  name: openInNewTab,
-                  widget: boolean,
-                  default: false,
-                  required: false,
-                }
-              - {
-                  label: Screenreader Label,
-                  name: ariaLabel,
-                  widget: string,
-                  required: false,
-                }
-          - label: Social Links
-            name: socialLinks
-            widget: list
-            required: false
-            fields:
-              - { label: Label, name: label, widget: string, required: false }
-              - { label: URL, name: url, widget: string, required: false }
-              - { label: Icon, name: icon, widget: string, required: false }
-              - {
-                  label: Screenreader Label,
-                  name: ariaLabel,
-                  widget: string,
-                  required: false,
-                }
-
-  - name: pages
-    label: Pages
-    label_singular: Page
-    folder: content/pages
-    create: true
-    slug: "{{slug}}"
-    extension: mdx
-    format: frontmatter
-    summary: "{{title}}"
-    sortable_fields: [title, slug]
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Slug, name: slug, widget: string }
-      - {
-          label: Language,
-          name: language,
-          widget: select,
-          options: [de, en],
-          default: de,
-        }
-      - label: Translations
-        name: translations
-        widget: list
-        required: false
-        fields:
-          - {
-              label: Language,
-              name: language,
-              widget: select,
-              options: [de, en],
-            }
-          - { label: Slug, name: slug, widget: string, required: false }
-      - { label: SEO Title, name: seoTitle, widget: string, required: false }
-      - {
-          label: SEO Description,
-          name: seoDescription,
-          widget: text,
-          required: false,
-        }
-      - {
-          label: Canonical URL,
-          name: canonicalUrl,
-          widget: string,
-          required: false,
-        }
-      - label: Open Graph
-        name: openGraph
-        widget: object
-        required: false
-        collapsed: true
-        fields:
-          - { label: Title, name: title, widget: string, required: false }
-          - {
-              label: Description,
-              name: description,
-              widget: text,
-              required: false,
-            }
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Image Alt Text,
-              name: imageAlt,
-              widget: string,
-              required: false,
-            }
-      - {
-          label: Structured Data,
-          name: structuredData,
-          widget: code,
-          default_language: json,
-          required: false,
-        }
-      - label: Hero
-        name: hero
-        widget: object
-        required: false
-        collapsed: true
-        fields:
-          - { label: Heading, name: heading, widget: string, required: false }
-          - { label: Text, name: text, widget: text, required: false }
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Image Alt Text,
-              name: imageAlt,
-              widget: string,
-              required: false,
-            }
-          - {
-              label: Screenreader Label,
-              name: ariaLabel,
-              widget: string,
-              required: false,
-            }
-      - label: Content Blocks
-        name: contentBlocks
-        widget: list
-        required: false
-        summary: "{{fields.blockTitle}}"
-        types:
-          - label: Hero Shopping Block
-            name: heroShoppingBlock
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Key", name: "key", widget: "hidden", default: "index" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 1 }
+      
+          - label: "SEO"
+            name: "seo"
             widget: object
             fields:
-              - {
-                  label: Internal Block Title,
-                  name: blockTitle,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Eyebrow,
-                  name: eyebrow,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Heading,
-                  name: heading,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Subheading,
-                  name: subheading,
-                  widget: text,
-                  required: false,
-                }
-              - label: Primary Image
-                name: primaryImage
-                widget: object
-                required: false
-                collapsed: true
-                fields:
-                  - {
-                      label: Image,
-                      name: image,
-                      widget: image,
-                      required: false,
-                    }
-                  - {
-                      label: Alternative Text,
-                      name: alt,
-                      widget: string,
-                      required: false,
-                    }
-              - label: Icon
-                name: icon
-                widget: object
-                required: false
-                collapsed: true
-                fields:
-                  - {
-                      label: Icon Name,
-                      name: name,
-                      widget: string,
-                      required: false,
-                    }
-                  - {
-                      label: Screenreader Label,
-                      name: ariaLabel,
-                      widget: string,
-                      required: false,
-                    }
-              - label: Statistics
-                name: stats
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+      
+          - label: "Blocks"
+            name: "blocks"
+            widget: list
+            fields:
+              - { label: "Header", name: "header", widget: string }
+              - label: "Text"
+                name: "text"
+                widget: "markdown"
+                buttons:
+                  - bold
+                  - italic
+                  - quote
+                  - link
+                  - heading-two
+                  - bulleted-list
+                  - numbered-list
+              - label: "Images"
+                name: "images"
                 widget: list
-                required: false
                 fields:
-                  - {
-                      label: Value,
-                      name: value,
-                      widget: string,
-                      required: false,
-                    }
-                  - {
-                      label: Label,
-                      name: label,
-                      widget: string,
-                      required: false,
-                    }
-              - {
-                  label: Section Label for Screenreaders,
-                  name: ariaLabel,
-                  widget: string,
-                  required: false,
-                }
-
-          - label: Section Intro Block
-            name: sectionIntroBlock
-            widget: object
-            fields:
-              - {
-                  label: Internal Block Title,
-                  name: blockTitle,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Heading,
-                  name: heading,
-                  widget: string,
-                  required: false,
-                }
-              - { label: Text, name: text, widget: text, required: false }
-              - {
-                  label: Anchor ID,
-                  name: anchorId,
-                  widget: string,
-                  required: false,
-                }
-
-          - label: Teaser Grid Block
-            name: teaserGridBlock
-            widget: object
-            fields:
-              - {
-                  label: Internal Block Title,
-                  name: blockTitle,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Heading,
-                  name: heading,
-                  widget: string,
-                  required: false,
-                }
-              - { label: Text, name: text, widget: text, required: false }
-              - label: Teasers
-                name: teasers
-                widget: list
-                required: false
-                fields:
-                  - {
-                      label: Title,
-                      name: title,
-                      widget: string,
-                      required: false,
-                    }
-                  - { label: Text, name: text, widget: text, required: false }
-                  - { label: URL, name: url, widget: string, required: false }
-                  - {
-                      label: Style Variant,
-                      name: variant,
-                      widget: string,
-                      required: false,
-                    }
-                  - label: Image
-                    name: image
-                    widget: object
+                  - label: "Image"
+                    name: "image"
+                    widget: "image"
+                  - label: "Text"
+                    name: "text"
+                    widget: "string"
                     required: false
-                    collapsed: true
-                    fields:
-                      - {
-                          label: Image,
-                          name: image,
-                          widget: image,
-                          required: false,
-                        }
-                      - {
-                          label: Alternative Text,
-                          name: alt,
-                          widget: string,
-                          required: false,
-                        }
-                  - label: Icon
-                    name: icon
-                    widget: object
+              - label: "Date"
+                name: "date"
+                default: ""
+                widget: datetime
+                required: false
+              - label: "Icons"
+                name: "icons"
+                widget: "list"
+                required: false
+                fields:
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "image"
+                    pattern: ["(?:.+)svg$", "Must be a SVG file"]
+                  - label: "Text"
+                    name: "text"
+                    widget: "string"
                     required: false
-                    collapsed: true
-                    fields:
-                      - {
-                          label: Icon Name,
-                          name: name,
-                          widget: string,
-                          required: false,
-                        }
-                      - {
-                          label: Screenreader Label,
-                          name: ariaLabel,
-                          widget: string,
-                          required: false,
-                        }
-                  - {
-                      label: Screenreader Label,
-                      name: ariaLabel,
-                      widget: string,
-                      required: false,
-                    }
-
-          - label: Gastronomy Highlight Block
-            name: gastronomyHighlightBlock
-            widget: object
-            fields:
-              - {
-                  label: Internal Block Title,
-                  name: blockTitle,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Heading,
-                  name: heading,
-                  widget: string,
-                  required: false,
-                }
-              - { label: Text, name: text, widget: text, required: false }
-              - label: Highlight Tile
-                name: highlightTile
-                widget: object
-                required: false
-                collapsed: true
-                fields:
-                  - {
-                      label: Title,
-                      name: title,
-                      widget: string,
-                      required: false,
-                    }
-                  - { label: Text, name: text, widget: text, required: false }
-                  - {
-                      label: Icon Name,
-                      name: icon,
-                      widget: string,
-                      required: false,
-                    }
-                  - { label: URL, name: url, widget: string, required: false }
-                  - {
-                      label: Screenreader Label,
-                      name: ariaLabel,
-                      widget: string,
-                      required: false,
-                    }
-              - label: Image
-                name: image
-                widget: object
-                required: false
-                collapsed: true
-                fields:
-                  - {
-                      label: Image,
-                      name: image,
-                      widget: image,
-                      required: false,
-                    }
-                  - {
-                      label: Alternative Text,
-                      name: alt,
-                      widget: string,
-                      required: false,
-                    }
-
-          - label: News Teaser Block
-            name: newsTeaserBlock
-            widget: object
-            fields:
-              - {
-                  label: Internal Block Title,
-                  name: blockTitle,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Heading,
-                  name: heading,
-                  widget: string,
-                  required: false,
-                }
-              - label: Teasers
-                name: teasers
-                widget: list
-                required: false
-                fields:
-                  - {
-                      label: Title,
-                      name: title,
-                      widget: string,
-                      required: false,
-                    }
-                  - { label: Text, name: text, widget: text, required: false }
-                  - { label: URL, name: url, widget: string, required: false }
-                  - label: Image
-                    name: image
-                    widget: object
+                  - label: "Link"
+                    name: "link"
                     required: false
-                    collapsed: true
-                    fields:
-                      - {
-                          label: Image,
-                          name: image,
-                          widget: image,
-                          required: false,
-                        }
-                      - {
-                          label: Alternative Text,
-                          name: alt,
-                          widget: string,
-                          required: false,
-                        }
-                  - {
-                      label: Screenreader Label,
-                      name: ariaLabel,
-                      widget: string,
-                      required: false,
-                    }
-
-          - label: Parking Block
-            name: parkingBlock
+                    widget: "string"
+                    pattern: ["^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$", "Must start with slash or http(s)://"]
+                    hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
+  
+      - file: "content/de/pages/phone/index.md"
+        name: "phone-de"
+        label: "Phone"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Key", name: "key", widget: "hidden", default: "phone" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 2 }
+      
+          - label: "SEO"
+            name: "seo"
             widget: object
             fields:
-              - {
-                  label: Internal Block Title,
-                  name: blockTitle,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Heading,
-                  name: heading,
-                  widget: string,
-                  required: false,
-                }
-              - { label: Text, name: text, widget: text, required: false }
-              - label: Parking Tile
-                name: parkingTile
-                widget: object
-                required: false
-                collapsed: true
-                fields:
-                  - {
-                      label: Title,
-                      name: title,
-                      widget: string,
-                      required: false,
-                    }
-                  - {
-                      label: Spaces Label,
-                      name: spacesLabel,
-                      widget: string,
-                      required: false,
-                    }
-                  - {
-                      label: EV Charging Label,
-                      name: evChargingLabel,
-                      widget: string,
-                      required: false,
-                    }
-                  - {
-                      label: Icon Name,
-                      name: icon,
-                      widget: string,
-                      required: false,
-                    }
-                  - { label: URL, name: url, widget: string, required: false }
-                  - {
-                      label: Screenreader Label,
-                      name: ariaLabel,
-                      widget: string,
-                      required: false,
-                    }
-              - label: Image
-                name: image
-                widget: object
-                required: false
-                collapsed: true
-                fields:
-                  - {
-                      label: Image,
-                      name: image,
-                      widget: image,
-                      required: false,
-                    }
-                  - {
-                      label: Alternative Text,
-                      name: alt,
-                      widget: string,
-                      required: false,
-                    }
-
-          - label: Social Teaser Block
-            name: socialTeaserBlock
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar."
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/de/pages/locations/index.md"
+        name: "locations-de"
+        label: "Locations"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Key", name: "key", widget: "hidden", default: "locations" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 3 }
+      
+          - label: "SEO"
+            name: "seo"
             widget: object
             fields:
-              - {
-                  label: Internal Block Title,
-                  name: blockTitle,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Heading,
-                  name: heading,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Platform,
-                  name: platform,
-                  widget: string,
-                  required: false,
-                }
-              - { label: URL, name: url, widget: string, required: false }
-              - label: Image
-                name: image
-                widget: object
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+      
+          - label: "Photos"
+            name: "photos"
+            widget: "list"
+            fields:
+              - label: "Image"
+                name: "image"
+                widget: "image"
+              - label: "View ID"
+                name: "viewId"
+                widget: "string"
+                hint: "The ID of the image on the 'Location' site's view."
+                pattern: ["^foto-(?:[a-z0-9-])+$", "Must be something like f.e. 'foto-1'."]
+              - label: "Label"
+                name: "label"
+                widget: "string"
                 required: false
-                collapsed: true
-                fields:
-                  - {
-                      label: Image,
-                      name: image,
-                      widget: image,
-                      required: false,
-                    }
-                  - {
-                      label: Alternative Text,
-                      name: alt,
-                      widget: string,
-                      required: false,
-                    }
-              - {
-                  label: Screenreader Label,
-                  name: ariaLabel,
-                  widget: string,
-                  required: false,
-                }
-
-          - label: Gift Ideas Slider Block
-            name: giftIdeasSliderBlock
+      
+          - label: "Traffic information"
+            name: "traffic_information"
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/de/pages/brands/index.md"
+        name: "brands-de"
+        label: "Brands"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Key", name: "key", widget: "hidden", default: "brands" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 4 }
+      
+          - label: "SEO"
+            name: "seo"
             widget: object
             fields:
-              - {
-                  label: Internal Block Title,
-                  name: blockTitle,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Heading,
-                  name: heading,
-                  widget: string,
-                  required: false,
-                }
-              - { label: Text, name: text, widget: text, required: false }
-              - label: Intro Tile
-                name: introTile
-                widget: object
-                required: false
-                collapsed: true
-                fields:
-                  - {
-                      label: Title,
-                      name: title,
-                      widget: string,
-                      required: false,
-                    }
-                  - { label: Text, name: text, widget: text, required: false }
-                  - {
-                      label: Icon Name,
-                      name: icon,
-                      widget: string,
-                      required: false,
-                    }
-              - label: Slides
-                name: slides
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Teaser"
+            name: "teaser"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/de/pages/culinary/index.md"
+        name: "culinary-de"
+        label: "Culinary"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Key", name: "key", widget: "hidden", default: "culinary" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 5 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Teaser"
+            name: "teaser"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/de/pages/service/index.md"
+        name: "service-de"
+        label: "Service"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Key", name: "key", widget: "hidden", default: "service" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 6 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/de/pages/hours/index.md"
+        name: "hours-de"
+        label: "Hours"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Key", name: "key", widget: "hidden", default: "hours" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 7 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/de/pages/imprint/index.md"
+        name: "imprint-de"
+        label: "Imprint"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Key", name: "key", widget: "hidden", default: "imprint" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "misc" }
+          - { label: "Order", name: "order", widget: "hidden", default: 1 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/de/pages/jobs/index.md"
+        name: "jobs-de"
+        label: "Jobs"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Key", name: "key", widget: "hidden", default: "jobs" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "misc" }
+          - { label: "Order", name: "order", widget: "hidden", default: 3 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+      
+          - label: "Message"
+            name: "message"
+            widget: "string"
+            hint: "Shown if no current job offerings"
+  
+      - file: "content/de/pages/privacy/index.md"
+        name: "privacy-de"
+        label: "Privacy"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Key", name: "key", widget: "hidden", default: "privacy" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "misc" }
+          - { label: "Order", name: "order", widget: "hidden", default: 2 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+
+  - name: "pages-en"
+    label: "Pages (en)"
+    delete: false
+    editor: 
+      preview: false
+    files: 
+  
+      - file: "content/en/pages/index.md"
+        name: "index-en"
+        label: "Index"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Key", name: "key", widget: "hidden", default: "index" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 1 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+      
+          - label: "Blocks"
+            name: "blocks"
+            widget: list
+            fields:
+              - { label: "Header", name: "header", widget: string }
+              - label: "Text"
+                name: "text"
+                widget: "markdown"
+                buttons:
+                  - bold
+                  - italic
+                  - quote
+                  - link
+                  - heading-two
+                  - bulleted-list
+                  - numbered-list
+              - label: "Images"
+                name: "images"
                 widget: list
-                required: false
                 fields:
-                  - {
-                      label: Title,
-                      name: title,
-                      widget: string,
-                      required: false,
-                    }
-                  - { label: Text, name: text, widget: text, required: false }
-                  - { label: URL, name: url, widget: string, required: false }
-                  - label: Image
-                    name: image
-                    widget: object
+                  - label: "Image"
+                    name: "image"
+                    widget: "image"
+                  - label: "Text"
+                    name: "text"
+                    widget: "string"
                     required: false
-                    collapsed: true
-                    fields:
-                      - {
-                          label: Image,
-                          name: image,
-                          widget: image,
-                          required: false,
-                        }
-                      - {
-                          label: Alternative Text,
-                          name: alt,
-                          widget: string,
-                          required: false,
-                        }
-                  - {
-                      label: Screenreader Label,
-                      name: ariaLabel,
-                      widget: string,
-                      required: false,
-                    }
-
-          - label: Link List Block
-            name: linkListBlock
-            widget: object
-            fields:
-              - {
-                  label: Internal Block Title,
-                  name: blockTitle,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: Heading,
-                  name: heading,
-                  widget: string,
-                  required: false,
-                }
-              - label: Links
-                name: links
-                widget: list
+              - label: "Date"
+                name: "date"
+                default: ""
+                widget: datetime
+                date_format: "DD.MM.YYYY"
+                time_format: "HH:mm"
+                required: false
+              - label: "Icons"
+                name: "icons"
+                widget: "list"
                 required: false
                 fields:
-                  - {
-                      label: Label,
-                      name: label,
-                      widget: string,
-                      required: false,
-                    }
-                  - { label: URL, name: url, widget: string, required: false }
-                  - {
-                      label: Open in new tab,
-                      name: openInNewTab,
-                      widget: boolean,
-                      default: false,
-                      required: false,
-                    }
-                  - {
-                      label: Screenreader Label,
-                      name: ariaLabel,
-                      widget: string,
-                      required: false,
-                    }
-      - { label: Published, name: published, widget: boolean, default: false }
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "image"
+                    pattern: ["(?:.+)svg$", "Must be a SVG file"]
+                  - label: "Text"
+                    name: "text"
+                    widget: "string"
+                    required: false
+                  - label: "Link"
+                    name: "link"
+                    required: false
+                    widget: "string"
+                    pattern: ["^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$", "Must start with slash or http(s)://"]
+                    hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
+  
+      - file: "content/en/pages/phone/index.md"
+        name: "phone-en"
+        label: "Phone"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Key", name: "key", widget: "hidden", default: "phone" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 2 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar."
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/en/pages/locations/index.md"
+        name: "locations-en"
+        label: "Locations"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Key", name: "key", widget: "hidden", default: "locations" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 3 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+      
+          - label: "Photos"
+            name: "photos"
+            widget: "list"
+            fields:
+              - label: "Image"
+                name: "image"
+                widget: "image"
+              - label: "View ID"
+                name: "viewId"
+                widget: "string"
+                hint: "The ID of the image on the 'Location' site's view."
+                pattern: ["^foto-(?:[a-z0-9-])$", "Must be something like f.e. 'foto-1'."]
+              - label: "Label"
+                name: "label"
+                widget: "string"
+                required: false
+      
+          - label: "Traffic information"
+            name: "traffic_information"
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/en/pages/brands/index.md"
+        name: "brands-en"
+        label: "Brands"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Key", name: "key", widget: "hidden", default: "brands" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 4 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Teaser"
+            name: "teaser"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/en/pages/culinary/index.md"
+        name: "culinary-en"
+        label: "Culinary"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Key", name: "key", widget: "hidden", default: "culinary" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 5 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Teaser"
+            name: "teaser"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/en/pages/service/index.md"
+        name: "service-en"
+        label: "Service"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Key", name: "key", widget: "hidden", default: "service" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 6 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/en/pages/hours/index.md"
+        name: "hours-en"
+        label: "Hours"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Key", name: "key", widget: "hidden", default: "hours" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "main" }
+          - { label: "Order", name: "order", widget: "hidden", default: 7 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/en/pages/imprint/index.md"
+        name: "imprint-en"
+        label: "Imprint"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Key", name: "key", widget: "hidden", default: "imprint" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "misc" }
+          - { label: "Order", name: "order", widget: "hidden", default: 1 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+  
+      - file: "content/en/pages/jobs/index.md"
+        name: "jobs-en"
+        label: "Jobs"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Key", name: "key", widget: "hidden", default: "jobs" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "misc" }
+          - { label: "Order", name: "order", widget: "hidden", default: 3 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+      
+          - label: "Message"
+            name: "message"
+            widget: "string"
+            hint: "Shown if no current job offerings"
+  
+      - file: "content/en/pages/privacy/index.md"
+        name: "privacy-en"
+        label: "Privacy"
+        fields:
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Key", name: "key", widget: "hidden", default: "privacy" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: "misc" }
+          - { label: "Order", name: "order", widget: "hidden", default: 2 }
+      
+          - label: "SEO"
+            name: "seo"
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "URL"
+                name: "url"
+                widget: "string"
+                hint: "Will show up in browser address bar"
+                pattern: ["^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+      
+          - label: "Content"
+            name: "body"
+            required: false
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
 
-  - name: shops
-    label: Shops
-    label_singular: Shop
-    folder: content/shops
-    create: true
-    slug: "{{slug}}"
-    extension: mdx
-    format: frontmatter
-    summary: "{{title}}"
-    sortable_fields: [title, category, order]
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Slug, name: slug, widget: string }
-      - {
-          label: Language,
-          name: language,
-          widget: select,
-          options: [de, en],
-          default: de,
-        }
-      - { label: Category, name: category, widget: string, required: false }
-      - {
-          label: Short Description,
-          name: shortDescription,
-          widget: text,
-          required: false,
-        }
-      - {
-          label: Description,
-          name: description,
-          widget: markdown,
-          required: false,
-        }
-      - label: Hero Image
-        name: heroImage
-        widget: object
-        required: false
-        collapsed: true
+  - name: "blocks-de"
+    label: "Blocks (de)"
+    delete: false
+    editor: 
+      preview: false
+    files: 
+  
+      - file: "content/de/blocks/general/index.md"
+        name: "general-de"
+        label: "General"
         fields:
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Alternative Text,
-              name: alt,
-              widget: string,
-              required: false,
-            }
-      - label: Gallery
-        name: gallery
-        widget: list
-        required: false
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Name", name: "name", widget: "hidden", default: "general" }
+          - { label: "Type", name: "type", widget: "hidden", default: "block" }
+      
+          - { label: Company Name, name: company_name, widget: string }
+  
+      - file: "content/de/blocks/header/index.md"
+        name: "header-de"
+        label: "Header"
         fields:
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Alternative Text,
-              name: alt,
-              widget: string,
-              required: false,
-            }
-          - { label: Caption, name: caption, widget: string, required: false }
-      - label: Opening Hours
-        name: openingHours
-        widget: list
-        required: false
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Name", name: "name", widget: "hidden", default: "header" }
+          - { label: "Type", name: "type", widget: "hidden", default: "block" }
+      
+          - label: "Address Lines"
+            name: "address_lines"
+            widget: "list"
+            field: { label: "Line", name: "line", widget: "string" }
+  
+      - file: "content/de/blocks/footer/index.md"
+        name: "footer-de"
+        label: "Footer"
         fields:
-          - { label: Day, name: day, widget: string, required: false }
-          - { label: Opens, name: opens, widget: string, required: false }
-          - { label: Closes, name: closes, widget: string, required: false }
-          - { label: Note, name: note, widget: string, required: false }
-      - label: Contact
-        name: contact
-        widget: object
-        required: false
-        collapsed: true
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Name", name: "name", widget: "hidden", default: "footer" }
+          - { label: "Type", name: "type", widget: "hidden", default: "block" }
+      
+          - label: "Social Media"
+            name: "social_media"
+            widget: "list"
+            required: false
+            fields:
+              - label: "Icon"
+                name: "icon"
+                widget: "image"
+                pattern: ["(?:.+)svg$", "Must be a SVG file"]
+              - label: "Link"
+                name: "link"
+                widget: "string"
+                pattern: ["^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$", "Must start with slash or http(s)://"]
+                hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
+      
+          - { label: "Copyright", name: "copyright", widget: "string" }
+  
+      - file: "content/de/blocks/location/index.md"
+        name: "location-de"
+        label: "Location"
         fields:
-          - { label: Email, name: email, widget: string, required: false }
-          - { label: Phone, name: phone, widget: string, required: false }
-          - { label: Website, name: website, widget: string, required: false }
-      - label: Location
-        name: location
-        widget: object
-        required: false
-        collapsed: true
-        fields:
-          - { label: Floor, name: floor, widget: string, required: false }
-          - { label: Unit, name: unit, widget: string, required: false }
-          - {
-              label: Directions Text,
-              name: directionsText,
-              widget: text,
-              required: false,
-            }
-      - {
-          label: Order,
-          name: order,
-          widget: number,
-          required: false,
-          value_type: int,
-        }
-      - {
-          label: Featured,
-          name: featured,
-          widget: boolean,
-          default: false,
-          required: false,
-        }
-      - { label: SEO Title, name: seoTitle, widget: string, required: false }
-      - {
-          label: SEO Description,
-          name: seoDescription,
-          widget: text,
-          required: false,
-        }
-      - {
-          label: Canonical URL,
-          name: canonicalUrl,
-          widget: string,
-          required: false,
-        }
-      - label: Open Graph
-        name: openGraph
-        widget: object
-        required: false
-        collapsed: true
-        fields:
-          - { label: Title, name: title, widget: string, required: false }
-          - {
-              label: Description,
-              name: description,
-              widget: text,
-              required: false,
-            }
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Image Alt Text,
-              name: imageAlt,
-              widget: string,
-              required: false,
-            }
-      - {
-          label: Structured Data,
-          name: structuredData,
-          widget: code,
-          default_language: json,
-          required: false,
-        }
+          - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+          - { label: "Name", name: "name", widget: "hidden", default: "location" }
+          - { label: "Type", name: "type", widget: "hidden", default: "block" }
+      
+          - { label: Label Hours, name: label_hours, widget: string }
 
-  - name: gastronomy
-    label: Gastronomy
-    label_singular: Gastronomy Entry
-    folder: content/gastronomy
-    create: true
-    slug: "{{slug}}"
-    extension: mdx
-    format: frontmatter
-    summary: "{{title}}"
-    sortable_fields: [title, category, order]
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Slug, name: slug, widget: string }
-      - {
-          label: Language,
-          name: language,
-          widget: select,
-          options: [de, en],
-          default: de,
-        }
-      - { label: Category, name: category, widget: string, required: false }
-      - {
-          label: Short Description,
-          name: shortDescription,
-          widget: text,
-          required: false,
-        }
-      - {
-          label: Description,
-          name: description,
-          widget: markdown,
-          required: false,
-        }
-      - label: Hero Image
-        name: heroImage
-        widget: object
-        required: false
-        collapsed: true
+  - name: "blocks-en"
+    label: "Blocks (en)"
+    delete: false
+    editor: 
+      preview: false
+    files: 
+  
+      - file: "content/en/blocks/general/index.md"
+        name: "general-en"
+        label: "General"
         fields:
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Alternative Text,
-              name: alt,
-              widget: string,
-              required: false,
-            }
-      - label: Gallery
-        name: gallery
-        widget: list
-        required: false
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Name", name: "name", widget: "hidden", default: "general" }
+          - { label: "Type", name: "type", widget: "hidden", default: "block" }
+      
+          - { label: Company Name, name: company_name, widget: string }
+  
+      - file: "content/en/blocks/header/index.md"
+        name: "header-en"
+        label: "Header"
         fields:
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Alternative Text,
-              name: alt,
-              widget: string,
-              required: false,
-            }
-          - { label: Caption, name: caption, widget: string, required: false }
-      - label: Opening Hours
-        name: openingHours
-        widget: list
-        required: false
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Name", name: "name", widget: "hidden", default: "header" }
+          - { label: "Type", name: "type", widget: "hidden", default: "block" }
+      
+          - label: "Address Lines"
+            name: "address_lines"
+            widget: "list"
+            field: { label: "Line", name: "line", widget: "string" }
+  
+      - file: "content/en/blocks/footer/index.md"
+        name: "footer-en"
+        label: "Footer"
         fields:
-          - { label: Day, name: day, widget: string, required: false }
-          - { label: Opens, name: opens, widget: string, required: false }
-          - { label: Closes, name: closes, widget: string, required: false }
-          - { label: Note, name: note, widget: string, required: false }
-      - label: Kitchen Hours
-        name: kitchenHours
-        widget: list
-        required: false
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Name", name: "name", widget: "hidden", default: "footer" }
+          - { label: "Type", name: "type", widget: "hidden", default: "block" }
+      
+          - label: "Social Media"
+            name: "social_media"
+            widget: "list"
+            required: false
+            fields:
+              - label: "Icon"
+                name: "icon"
+                widget: "image"
+                pattern: ["(?:.+)svg$", "Must be a SVG file"]
+              - label: "Link"
+                name: "link"
+                widget: "string"
+                pattern: ["^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$", "Must start with slash or http(s)://"]
+                hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
+      
+          - { label: "Copyright", name: "copyright", widget: "string" }
+  
+      - file: "content/en/blocks/location/index.md"
+        name: "location-en"
+        label: "Location"
         fields:
-          - { label: Day, name: day, widget: string, required: false }
-          - { label: Opens, name: opens, widget: string, required: false }
-          - { label: Closes, name: closes, widget: string, required: false }
-          - { label: Note, name: note, widget: string, required: false }
-      - label: Contact
-        name: contact
-        widget: object
-        required: false
-        collapsed: true
-        fields:
-          - { label: Email, name: email, widget: string, required: false }
-          - { label: Phone, name: phone, widget: string, required: false }
-          - { label: Website, name: website, widget: string, required: false }
-      - {
-          label: Order,
-          name: order,
-          widget: number,
-          required: false,
-          value_type: int,
-        }
-      - {
-          label: Featured,
-          name: featured,
-          widget: boolean,
-          default: false,
-          required: false,
-        }
-      - { label: SEO Title, name: seoTitle, widget: string, required: false }
-      - {
-          label: SEO Description,
-          name: seoDescription,
-          widget: text,
-          required: false,
-        }
-      - {
-          label: Canonical URL,
-          name: canonicalUrl,
-          widget: string,
-          required: false,
-        }
-      - label: Open Graph
-        name: openGraph
-        widget: object
-        required: false
-        collapsed: true
-        fields:
-          - { label: Title, name: title, widget: string, required: false }
-          - {
-              label: Description,
-              name: description,
-              widget: text,
-              required: false,
-            }
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Image Alt Text,
-              name: imageAlt,
-              widget: string,
-              required: false,
-            }
-      - {
-          label: Structured Data,
-          name: structuredData,
-          widget: code,
-          default_language: json,
-          required: false,
-        }
+          - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+          - { label: "Name", name: "name", widget: "hidden", default: "location" }
+          - { label: "Type", name: "type", widget: "hidden", default: "block" }
+      
+          - { label: Label Hours, name: label_hours, widget: string }
 
-  - name: news
-    label: News
-    label_singular: News Entry
-    folder: content/news
+  - name: "categories-de"
+    label: "Categories (de)"
+    folder: "content/de/categories"
+    identifier_field: name
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    extension: mdx
-    format: frontmatter
-    summary: "{{title}} — {{publishDate}}"
-    sortable_fields: [publishDate, title, category]
+    editor: 
+      preview: false 
     fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Slug, name: slug, widget: string }
-      - {
-          label: Language,
-          name: language,
-          widget: select,
-          options: [de, en],
-          default: de,
-        }
-      - {
-          label: Publish Date,
-          name: publishDate,
-          widget: datetime,
-          required: false,
-          date_format: DD.MM.YYYY,
-          time_format: HH:mm,
-          format: YYYY-MM-DDTHH:mm:ss.SSSZ,
-        }
-      - { label: Category, name: category, widget: string, required: false }
-      - { label: Excerpt, name: excerpt, widget: text, required: false }
-      - label: Hero Image
-        name: heroImage
-        widget: object
-        required: false
-        collapsed: true
-        fields:
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Alternative Text,
-              name: alt,
-              widget: string,
-              required: false,
-            }
-      - label: Gallery
-        name: gallery
-        widget: list
-        required: false
-        fields:
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Alternative Text,
-              name: alt,
-              widget: string,
-              required: false,
-            }
-          - { label: Caption, name: caption, widget: string, required: false }
-      - { label: Author, name: author, widget: string, required: false }
-      - { label: SEO Title, name: seoTitle, widget: string, required: false }
-      - {
-          label: SEO Description,
-          name: seoDescription,
-          widget: text,
-          required: false,
-        }
-      - {
-          label: Canonical URL,
-          name: canonicalUrl,
-          widget: string,
-          required: false,
-        }
-      - label: Open Graph
-        name: openGraph
-        widget: object
-        required: false
-        collapsed: true
-        fields:
-          - { label: Title, name: title, widget: string, required: false }
-          - {
-              label: Description,
-              name: description,
-              widget: text,
-              required: false,
-            }
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Image Alt Text,
-              name: imageAlt,
-              widget: string,
-              required: false,
-            }
-      - {
-          label: Structured Data,
-          name: structuredData,
-          widget: code,
-          default_language: json,
-          required: false,
-        }
-      - { label: Body, name: body, widget: markdown, required: false }
+      - { label: "Key", name: "key", widget: "hidden", default: "category" }
+      - { label: "Type", name: "type", widget: "hidden", default: "category" }
+      - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+      - { label: "UUID", name: "uuid", widget: "uuid" }
+  
+      - { label: "Name", name: "name", widget: "string" }
 
-  - name: services
-    label: Services
-    label_singular: Service
-    folder: content/services
+  - name: "categories-en"
+    label: "Categories (en)"
+    folder: "content/en/categories"
+    identifier_field: name
     create: true
-    slug: "{{slug}}"
-    extension: mdx
-    format: frontmatter
-    summary: "{{title}}"
-    sortable_fields: [order, title]
+    editor: 
+      preview: false 
     fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Slug, name: slug, widget: string }
-      - {
-          label: Language,
-          name: language,
-          widget: select,
-          options: [de, en],
-          default: de,
-        }
-      - { label: Icon, name: icon, widget: string, required: false }
-      - {
-          label: Short Description,
-          name: shortDescription,
-          widget: text,
-          required: false,
-        }
-      - { label: Body, name: body, widget: markdown, required: false }
-      - {
-          label: Order,
-          name: order,
-          widget: number,
-          required: false,
-          value_type: int,
-        }
-      - { label: SEO Title, name: seoTitle, widget: string, required: false }
-      - {
-          label: SEO Description,
-          name: seoDescription,
-          widget: text,
-          required: false,
-        }
-      - {
-          label: Canonical URL,
-          name: canonicalUrl,
-          widget: string,
-          required: false,
-        }
-      - label: Open Graph
-        name: openGraph
-        widget: object
-        required: false
-        collapsed: true
-        fields:
-          - { label: Title, name: title, widget: string, required: false }
-          - {
-              label: Description,
-              name: description,
-              widget: text,
-              required: false,
-            }
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Image Alt Text,
-              name: imageAlt,
-              widget: string,
-              required: false,
-            }
-      - {
-          label: Structured Data,
-          name: structuredData,
-          widget: code,
-          default_language: json,
-          required: false,
-        }
+      - { label: "Key", name: "key", widget: "hidden", default: "category" }
+      - { label: "Type", name: "type", widget: "hidden", default: "category" }
+      - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+      - { label: "UUID", name: "uuid", widget: "uuid" }
+  
+      - { label: "Name", name: "name", widget: "string" }
 
-  - name: faqs
-    label: FAQs
-    label_singular: FAQ
-    folder: content/faqs
+  - name: "locations-de"
+    label: "Locations (de)"
+    folder: "content/de/locations"
+    identifier_field: name
     create: true
-    slug: "{{slug}}"
-    extension: mdx
-    format: frontmatter
-    summary: "{{question}}"
-    sortable_fields: [order, category, question]
+    editor: 
+      preview: false 
     fields:
-      - { label: Question, name: question, widget: string }
-      - { label: Answer, name: answer, widget: markdown, required: false }
-      - {
-          label: Language,
-          name: language,
-          widget: select,
-          options: [de, en],
-          default: de,
-        }
-      - { label: Category, name: category, widget: string, required: false }
-      - {
-          label: Order,
-          name: order,
-          widget: number,
-          required: false,
-          value_type: int,
-        }
-      - { label: SEO Title, name: seoTitle, widget: string, required: false }
-      - {
-          label: SEO Description,
-          name: seoDescription,
-          widget: text,
-          required: false,
-        }
-      - {
-          label: Canonical URL,
-          name: canonicalUrl,
-          widget: string,
-          required: false,
-        }
-      - label: Open Graph
-        name: openGraph
+      - { label: "Key", name: "key", widget: "hidden", default: "location" }
+      - { label: "Type", name: "type", widget: "hidden", default: "location" }
+      - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+      - { label: "UUID", name: "uuid", widget: "uuid" }
+  
+      - label: "SEO"
+        name: "seo"
         widget: object
-        required: false
-        collapsed: true
         fields:
-          - { label: Title, name: title, widget: string, required: false }
-          - {
-              label: Description,
-              name: description,
-              widget: text,
-              required: false,
-            }
-          - { label: Image, name: image, widget: image, required: false }
-          - {
-              label: Image Alt Text,
-              name: imageAlt,
-              widget: string,
-              required: false,
-            }
-      - {
-          label: Structured Data,
-          name: structuredData,
-          widget: code,
-          default_language: json,
-          required: false,
-        }
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: false
+            hint: "Will use name by default"
+          - label: "Description"
+            name: "description"
+            widget: "string"
+          - label: "URL"
+            name: "url"
+            widget: "string"
+            required: false
+            hint: "Will use name by default"
+            pattern: ["^$|^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+  
+      - { label: "Name", name: "name", widget: "string" }
+  
+      - label: "Group"
+        name: "group"
+        widget: "select"
+        options:
+          - { label: "Brand", value: "brand" }
+          - { label: "Culinary", value: "culinary" }
+  
+      - label: "Categories"
+        name: "categories"
+        widget: "relation"
+        collection: "categories-de"
+        valueField: "uuid"
+        displayFields:
+          - "name"
+        searchFields:
+          - "name"
+        multiple: true
+  
+      - { label: "Logo", name: "logo", widget: "image" }
+  
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+      
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
+  
+      - label: "Hours"
+        name: "hours"
+        widget: "list"
+        fields:
+          - label: "Date"
+            name: "date"
+            widget: "string"
+          - label: "Time"
+            name: "time"
+            widget: "string"
+  
+      - { label: "Address", name: "address", widget: "markdown" }
+  
+      - label: "Contact"
+        name: "contact"
+        widget: object
+        fields:
+          - label: "Phone"
+            name: "phone"
+            widget: "string"
+          - label: "Email"
+            name: "email"
+            widget: "string"
+            hint: "Will use summary by default"
+            pattern: ["[^@]+@[^.]+\\..+", "Must be an email address"] # \\ = heredoc, \ = yaml
+          - label: "Website"
+            name: "url"
+            widget: "string"
+            required: false
+            pattern: ["^$|(?:https?:\/\/)[a-z0-9-_.\/]+", "Must be an URL like https://www.google.com"]
+  
+      - label: "View ID"
+        name: "viewId"
+        widget: "string"
+        required: false
+        hint: "The ID of the shop on the 'Location' site's view."
+        pattern: ["shop-(?:[a-z0-9-])", "Must be something like f.e. 'shop-1'."]
+
+  - name: "locations-en"
+    label: "Locations (en)"
+    folder: "content/en/locations"
+    identifier_field: name
+    create: true
+    editor: 
+      preview: false 
+    fields:
+      - { label: "Key", name: "key", widget: "hidden", default: "location" }
+      - { label: "Type", name: "type", widget: "hidden", default: "location" }
+      - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+      - { label: "UUID", name: "uuid", widget: "uuid" }
+  
+      - label: "SEO"
+        name: "seo"
+        widget: object
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: false
+            hint: "Will use name by default"
+          - label: "Description"
+            name: "description"
+            widget: "string"
+          - label: "URL"
+            name: "url"
+            widget: "string"
+            required: false
+            hint: "Will use name by default"
+            pattern: ["^$|^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+  
+      - { label: "Name", name: "name", widget: "string" }
+  
+      - label: "Group"
+        name: "group"
+        widget: "select"
+        options:
+          - { label: "Brand", value: "brand" }
+          - { label: "Culinary", value: "culinary" }
+  
+      - label: "Categories"
+        name: "categories"
+        widget: "relation"
+        collection: "categories-en"
+        valueField: "uuid"
+        displayFields:
+          - "name"
+        searchFields:
+          - "name"
+        multiple: true
+  
+      - { label: "Logo", name: "logo", widget: "image" }
+  
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+      
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
+  
+      - label: "Hours"
+        name: "hours"
+        widget: "list"
+        fields:
+          - label: "Date"
+            name: "date"
+            widget: "string"
+          - label: "Time"
+            name: "time"
+            widget: "string"
+  
+      - { label: "Address", name: "address", widget: "markdown" }
+  
+      - label: "Contact"
+        name: "contact"
+        widget: object
+        fields:
+          - label: "Phone"
+            name: "phone"
+            widget: "string"
+          - label: "Email"
+            name: "email"
+            widget: "string"
+            hint: "Will use summary by default"
+            pattern: ["[^@]+@[^.]+\\..+", "Must be an email address"] # \\ = heredoc, \ = yaml
+          - label: "Website"
+            name: "url"
+            widget: "string"
+            required: false
+            pattern: ["^$|(?:https?:\/\/)[a-z0-9-_.\/]+", "Must be an URL like https://www.google.com"]
+  
+      - label: "View ID"
+        name: "viewId"
+        widget: "string"
+        required: false
+        hint: "The ID of the shop on the 'Location' site's view."
+        pattern: ["shop-(?:[a-z0-9-])", "Must be something like f.e. 'shop-1'."]
+
+  - name: "jobs-de"
+    label: "Jobs (de)"
+    folder: "content/de/jobs"
+    identifier_field: uuid
+    summary: "{{location}} - {{position}} - {{specification}}"
+    slug: "{{location}}-{{position}}-{{year}}-{{month}}-{{day}}"
+    create: true
+    editor: 
+      preview: false 
+    fields:
+      - { label: "Key", name: "key", widget: "hidden", default: "job" }
+      - { label: "Type", name: "type", widget: "hidden", default: "job" }
+      - { label: "Language", name: "locale", widget: "hidden", default: "de" }
+      - { label: "UUID", name: "uuid", widget: "uuid" }
+  
+      - label: "SEO"
+        name: "seo"
+        widget: object
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: false
+            hint: "Will use location and position by default"
+          - label: "Description"
+            name: "description"
+            widget: "string"
+            required: false
+            hint: "Will use specification by default"
+          - label: "URL"
+            name: "url"
+            widget: "string"
+            required: false
+            hint: "Will use location and position by default"
+            pattern: ["^$|^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+  
+      - { label: "Location", name: "location", widget: "string" }
+  
+      - { label: "Position", name: "position", widget: "string" }
+  
+      - { label: "Specification", name: "specification", widget: "string" }
+  
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+      
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
+
+  - name: "jobs-en"
+    label: "Jobs (en)"
+    folder: "content/en/jobs"
+    identifier_field: uuid
+    summary: "{{location}} - {{position}} - {{specification}}"
+    slug: "{{location}}-{{position}}-{{year}}-{{month}}-{{day}}"
+    create: true
+    editor: 
+      preview: false 
+    fields:
+      - { label: "Key", name: "key", widget: "hidden", default: "job" }
+      - { label: "Type", name: "type", widget: "hidden", default: "job" }
+      - { label: "Language", name: "locale", widget: "hidden", default: "en" }
+      - { label: "UUID", name: "uuid", widget: "uuid" }
+  
+      - label: "SEO"
+        name: "seo"
+        widget: object
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: false
+            hint: "Will use location and position by default"
+          - label: "Description"
+            name: "description"
+            widget: "string"
+            required: false
+            hint: "Will use specification by default"
+          - label: "URL"
+            name: "url"
+            widget: "string"
+            required: false
+            hint: "Will use location and position by default"
+            pattern: ["^$|^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+  
+      - { label: "Location", name: "location", widget: "string" }
+  
+      - { label: "Position", name: "position", widget: "string" }
+  
+      - { label: "Specification", name: "specification", widget: "string" }
+  
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+      
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
