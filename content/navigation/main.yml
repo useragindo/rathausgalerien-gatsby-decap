@@ -1,4 +1,11 @@
-mainNavigation: []
+mainNavigation:
+  - language: de
+    openInNewTab: false
+    label: Kontakt
+    ariaLabel: navigation
+  - language: de
+    openInNewTab: false
+    label: Shops
 mobileNavigation: []
 footerNavigation: []
 footerLegalNavigation: []
