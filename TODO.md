@@ -35,17 +35,24 @@
   - brand link
   - responsive layout
 
-### Milestone 3 — Homepage/content block design foundation started
+### Milestone 3 — Homepage/content block design foundation in progress
 
 - Added page-level classes for generated content pages and homepage-specific styling hooks.
+- Added a mobile-first homepage intro with entrance image fallback, shopping bag motif, dynamic shop count, and homepage description.
 - Added reusable imported content block markup for:
   - feature blocks
   - compact image/text blocks
   - gallery blocks
   - social blocks
   - icon/action rows
+- Added content block index classes for homepage-specific design refinements.
 - Added mobile-first Sass for content blocks and homepage sections.
-- Applied image ratios for square grids and `5:4` compact media blocks.
+- Added first-pass mobile reference styling for the homepage:
+  - dotted section separators
+  - uppercase letter-spaced headings
+  - pastel card backgrounds
+  - alternating desktop feature/compact layouts
+- Applied image ratios for square grids, `5:4`, and `4:5` homepage media blocks.
 - Improved legacy Markdown link cleanup by removing empty imported links and normalizing `static/media` links.
 
 ## Current validation status
@@ -82,18 +89,15 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 
 ### Milestone 3 — Homepage and content block design
 
-1. Continue homepage mobile-first refinement against `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/0001.png`–`0012.png`, then scale up to desktop.
-2. Improve homepage layout to match the 2026 references in `temp`.
-3. Extend reusable frontend components for imported content blocks:
+1. Visually QA the homepage in-browser against `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/0001.png` and the desktop PDFs, then tune spacing/sizing where needed.
+2. Improve homepage content hierarchy to better match the 2026 references in `temp`, especially the first magazine/fashion tile rhythm.
+3. Extend reusable frontend components for imported content blocks where CSS-only styling is not enough:
    - hero sections
    - image/text feature blocks
    - card grids
    - teaser tiles
    - link/action cards
-4. Finish design ratio coverage from the PDFs/PNGs:
-   - `1:1`
-   - `5:4`
-   - `4:5`
+4. Refine listing/detail layouts that still use plain generated lists before moving into Milestone 4.
 5. Refine the header/menu against both references:
    - mobile logo scale and spacing
    - burger line length/position

@@ -253,6 +253,7 @@ const ImportedBlock: React.FC<{
 		"content-block",
 		"content-block--imported",
 		`content-block--${variant}`,
+		`content-block--index-${index + 1}`,
 		images.length ? "content-block--has-images" : "",
 	]
 		.filter(Boolean)

@@ -80,6 +80,55 @@ const LocationList: React.FC<{
 	);
 };
 
+const getHomepageIntroImage = (page: NormalizedPage): string | undefined => {
+	const images = page.blocks.flatMap((block) => block.images ?? []);
+	const entranceImage = images.find((image) =>
+		image.image?.includes("eingang"),
+	);
+
+	return entranceImage?.image ?? images[0]?.image ?? undefined;
+};
+
+const ShoppingBagIcon: React.FC = () => (
+	<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+		<path d="M28 36h40l6 42H22l6-42Z" />
+		<path d="M36 36v-8c0-8 5.5-14 12-14s12 6 12 14v8" />
+		<circle cx="38" cy="50" r="2.5" />
+		<circle cx="58" cy="50" r="2.5" />
+	</svg>
+);
+
+const HomepageIntro: React.FC<{
+	page: NormalizedPage;
+	locations: NormalizedLocation[];
+}> = ({ page, locations }) => {
+	const image = getHomepageIntroImage(page);
+	const shopCount = locations.filter(
+		(location) =>
+			location.language === page.language && location.group === "brand",
+	).length;
+	const countLabel = shopCount > 0 ? `${shopCount} Shops` : "Shops";
+
+	return (
+		<section className="home-intro" aria-labelledby="home-intro-title">
+			{image ? (
+				<div className="home-intro__media">
+					<img src={image} alt="RathausGalerien Innsbruck" loading="eager" />
+				</div>
+			) : null}
+			<div className="home-intro__card">
+				<ShoppingBagIcon />
+				<h1 id="home-intro-title">{page.title}</h1>
+				<p>{countLabel}</p>
+				<p>Mitten in Innsbruck</p>
+			</div>
+			{page.description ? (
+				<p className="home-intro__description">{page.description}</p>
+			) : null}
+		</section>
+	);
+};
+
 const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 	jobs,
 	language,
@@ -110,6 +159,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 	const footerNavigation = toNavigationItems(navigation, page.language, "misc");
 
 	const pageClassName = `page page--${page.key}`;
+	const isHomepage = page.key === "index";
 
 	return (
 		<SiteLayout
@@ -117,13 +167,16 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			footerNavigation={footerNavigation}
 			siteTitle="RathausGalerien"
 		>
+			{isHomepage ? <HomepageIntro page={page} locations={locations} /> : null}
 			<article className={pageClassName}>
-				<header className="page-hero">
-					<h1 className="page-hero__title">{page.title}</h1>
-					{page.description ? (
-						<p className="page-hero__description">{page.description}</p>
-					) : null}
-				</header>
+				{!isHomepage ? (
+					<header className="page-hero">
+						<h1 className="page-hero__title">{page.title}</h1>
+						{page.description ? (
+							<p className="page-hero__description">{page.description}</p>
+						) : null}
+					</header>
+				) : null}
 				<ContentBlockRenderer blocks={page.blocks} />
 				<div className="page-body">
 					<MarkdownContent content={page.body} />
