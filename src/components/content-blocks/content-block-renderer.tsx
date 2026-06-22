@@ -255,6 +255,8 @@ const ImportedBlock: React.FC<{
 		`content-block--${variant}`,
 		`content-block--index-${index + 1}`,
 		images.length ? "content-block--has-images" : "",
+		images.length ? `content-block--media-count-${images.length}` : "",
+		icons.length ? "content-block--has-icons" : "",
 	]
 		.filter(Boolean)
 		.join(" ");
