@@ -49,23 +49,47 @@ Known non-blocking warnings:
 - Dart Sass legacy JS API deprecation from Gatsby/Sass tooling.
 - `gatsby-plugin-decap-cms` dynamic dependency warning.
 
+## Design references
+
+Desktop/concept references:
+
+- `temp/H001_148_01_Entwicklung_LO8_Desktop_RGB.pdf`
+- `temp/H001_148_01_Entwicklung_LO8_Konzept_RGB.pdf`
+- `temp/H001_148_01_Entwicklung_LO8_Konzept_RGB/`
+- `temp/smallpdf-convert-20260622-072605/`
+
+Mobile references:
+
+- `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB.pdf`
+- `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/`
+
+Note: the mobile reference folder currently exists, but no extracted images were detected there yet. If needed, extract the mobile PDF into PNG/JPG frames before detailed mobile QA.
+
 ## Next steps
 
 ### Milestone 3 — Homepage and content block design
 
-1. Improve homepage layout to match the 2026 references in `temp`.
-2. Create reusable frontend components for imported content blocks:
+1. Extract/check mobile layout images from `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB.pdf` if the folder remains empty.
+2. Implement homepage mobile-first against the mobile reference first, then scale up to desktop.
+3. Improve homepage layout to match the 2026 references in `temp`.
+4. Create reusable frontend components for imported content blocks:
    - hero sections
    - image/text feature blocks
    - card grids
    - teaser tiles
    - link/action cards
-3. Apply design ratios from the PDFs/PNGs:
+5. Apply design ratios from the PDFs/PNGs:
    - `1:1`
    - `5:4`
    - `4:5`
-4. Improve Markdown/link rendering where imported legacy content still contains raw Markdown syntax.
-5. Start with `/`, then reuse the same block system for standard pages.
+6. Refine the header/menu against both references:
+   - mobile logo scale and spacing
+   - burger line length/position
+   - shortcut icon spacing
+   - full-screen menu behavior
+   - language switch placement
+7. Improve Markdown/link rendering where imported legacy content still contains raw Markdown syntax.
+8. Start with `/`, then reuse the same block system for standard pages.
 
 ### Milestone 4 — Shops, gastronomy, and jobs
 
@@ -76,7 +100,7 @@ Known non-blocking warnings:
 
 ### Milestone 5 — Polish and production readiness
 
-1. Responsive QA against design references.
+1. Responsive QA against desktop and mobile design references.
 2. Accessibility pass:
    - keyboard navigation
    - focus states
