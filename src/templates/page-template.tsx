@@ -109,19 +109,25 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 	const mainNavigation = toNavigationItems(navigation, page.language, "main");
 	const footerNavigation = toNavigationItems(navigation, page.language, "misc");
 
+	const pageClassName = `page page--${page.key}`;
+
 	return (
 		<SiteLayout
 			mainNavigation={mainNavigation}
 			footerNavigation={footerNavigation}
 			siteTitle="RathausGalerien"
 		>
-			<article>
-				<header>
-					<h1>{page.title}</h1>
-					{page.description ? <p>{page.description}</p> : null}
+			<article className={pageClassName}>
+				<header className="page-hero">
+					<h1 className="page-hero__title">{page.title}</h1>
+					{page.description ? (
+						<p className="page-hero__description">{page.description}</p>
+					) : null}
 				</header>
 				<ContentBlockRenderer blocks={page.blocks} />
-				<MarkdownContent content={page.body} />
+				<div className="page-body">
+					<MarkdownContent content={page.body} />
+				</div>
 			</article>
 
 			{page.key === "brands" ? (

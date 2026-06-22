@@ -5,9 +5,12 @@ const trim = (value?: string | null): string | undefined => {
 	return trimmed ? trimmed : undefined;
 };
 
+const normalizeInlineText = (value: string): string =>
+	value.replace(/\r/g, "").replace(/static\/media\//g, "/media/");
+
 const renderInline = (text: string): React.ReactNode[] => {
 	const nodes: React.ReactNode[] = [];
-	const linkPattern = /\[([^\]]+)]\(([^)]+)\)/g;
+	const linkPattern = /\[([^\]]*)]\(([^)]+)\)/g;
 	let lastIndex = 0;
 	let match: RegExpExecArray | null;
 
@@ -17,10 +20,13 @@ const renderInline = (text: string): React.ReactNode[] => {
 		}
 
 		const [, label, url] = match;
-		if (label && url) {
+		const normalizedLabel = label.trim();
+		const normalizedUrl = normalizeInlineText(url.trim());
+
+		if (normalizedLabel && normalizedUrl) {
 			nodes.push(
-				<a key={`${url}-${match.index}`} href={url}>
-					{label}
+				<a key={`${normalizedUrl}-${match.index}`} href={normalizedUrl}>
+					{normalizedLabel}
 				</a>,
 			);
 		}
@@ -36,7 +42,7 @@ const renderInline = (text: string): React.ReactNode[] => {
 };
 
 const renderParagraph = (paragraph: string, index: number): React.ReactNode => {
-	const cleaned = paragraph.replace(/\\\n/g, "\n").trim();
+	const cleaned = normalizeInlineText(paragraph).replace(/\\\n/g, "\n").trim();
 
 	if (cleaned.startsWith("### ")) {
 		return <h3 key={index}>{renderInline(cleaned.slice(4))}</h3>;
@@ -68,7 +74,9 @@ const renderParagraph = (paragraph: string, index: number): React.ReactNode => {
 	return <p key={index}>{renderInline(cleaned)}</p>;
 };
 
-export const MarkdownContent: React.FC<{ content?: string | null }> = ({ content }) => {
+export const MarkdownContent: React.FC<{ content?: string | null }> = ({
+	content,
+}) => {
 	const value = trim(content);
 
 	if (!value) {

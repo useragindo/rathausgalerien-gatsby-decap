@@ -35,6 +35,19 @@
   - brand link
   - responsive layout
 
+### Milestone 3 — Homepage/content block design foundation started
+
+- Added page-level classes for generated content pages and homepage-specific styling hooks.
+- Added reusable imported content block markup for:
+  - feature blocks
+  - compact image/text blocks
+  - gallery blocks
+  - social blocks
+  - icon/action rows
+- Added mobile-first Sass for content blocks and homepage sections.
+- Applied image ratios for square grids and `5:4` compact media blocks.
+- Improved legacy Markdown link cleanup by removing empty imported links and normalizing `static/media` links.
+
 ## Current validation status
 
 - `npm run typecheck` passes.
@@ -63,33 +76,32 @@ Mobile references:
 - `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB.pdf`
 - `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/`
 
-Note: the mobile reference folder currently exists, but no extracted images were detected there yet. If needed, extract the mobile PDF into PNG/JPG frames before detailed mobile QA.
+Note: mobile PNG references are available in the folder as `0001.png`–`0012.png`.
 
 ## Next steps
 
 ### Milestone 3 — Homepage and content block design
 
-1. Extract/check mobile layout images from `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB.pdf` if the folder remains empty.
-2. Implement homepage mobile-first against the mobile reference first, then scale up to desktop.
-3. Improve homepage layout to match the 2026 references in `temp`.
-4. Create reusable frontend components for imported content blocks:
+1. Continue homepage mobile-first refinement against `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/0001.png`–`0012.png`, then scale up to desktop.
+2. Improve homepage layout to match the 2026 references in `temp`.
+3. Extend reusable frontend components for imported content blocks:
    - hero sections
    - image/text feature blocks
    - card grids
    - teaser tiles
    - link/action cards
-5. Apply design ratios from the PDFs/PNGs:
+4. Finish design ratio coverage from the PDFs/PNGs:
    - `1:1`
    - `5:4`
    - `4:5`
-6. Refine the header/menu against both references:
+5. Refine the header/menu against both references:
    - mobile logo scale and spacing
    - burger line length/position
    - shortcut icon spacing
    - full-screen menu behavior
    - language switch placement
-7. Improve Markdown/link rendering where imported legacy content still contains raw Markdown syntax.
-8. Start with `/`, then reuse the same block system for standard pages.
+6. Continue improving Markdown/link rendering if more imported edge cases appear.
+7. Start with `/`, then reuse the same block system for standard pages.
 
 ### Milestone 4 — Shops, gastronomy, and jobs
 

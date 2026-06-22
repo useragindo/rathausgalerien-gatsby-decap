@@ -19,9 +19,33 @@ type ContentBlockRendererProps = {
 	blocks?: Array<PageContentBlock | ImportedContentBlock> | null;
 };
 
+type ImportedBlockVariant = "feature" | "compact" | "gallery" | "social";
+
 const text = (value?: string | null): string | undefined => {
 	const trimmed = value?.trim();
 	return trimmed ? trimmed : undefined;
+};
+
+const getImportedBlockVariant = (
+	block: ImportedContentBlock,
+	index: number,
+): ImportedBlockVariant => {
+	const header = text(block.header)?.toLowerCase() ?? "";
+	const imageCount = block.images?.length ?? 0;
+
+	if (index === 0 || imageCount >= 4) {
+		return "feature";
+	}
+
+	if (header.includes("follow")) {
+		return "social";
+	}
+
+	if (imageCount > 1) {
+		return "gallery";
+	}
+
+	return "compact";
 };
 
 const LinkList: React.FC<{ links?: LinkField[] | null }> = ({ links }) => {
@@ -216,45 +240,73 @@ const LinkListBlockComponent: React.FC<{ block: LinkListBlock }> = ({
 	</section>
 );
 
-const ImportedBlock: React.FC<{ block: ImportedContentBlock }> = ({
-	block,
-}) => {
+const ImportedBlock: React.FC<{
+	block: ImportedContentBlock;
+	index: number;
+}> = ({ block, index }) => {
 	const images = (block.images ?? []).filter((image) => text(image.image));
 	const icons = (block.icons ?? []).filter(
 		(icon) => text(icon.icon) || text(icon.text),
 	);
+	const variant = getImportedBlockVariant(block, index);
+	const blockClassName = [
+		"content-block",
+		"content-block--imported",
+		`content-block--${variant}`,
+		images.length ? "content-block--has-images" : "",
+	]
+		.filter(Boolean)
+		.join(" ");
 
 	return (
-		<section>
-			{text(block.date) ? <p>{text(block.date)}</p> : null}
-			{text(block.header) ? <h2>{text(block.header)}</h2> : null}
-			<MarkdownContent content={block.text} />
-			{icons.length ? (
-				<ul>
-					{icons.map((icon) => (
-						<li key={`${icon.icon}-${icon.text}-${icon.link}`}>
-							{text(icon.icon) ? (
-								<img src={text(icon.icon)} alt="" loading="lazy" />
-							) : null}
-							{text(icon.link) ? (
-								<a href={text(icon.link)}>
-									{text(icon.text) ?? text(icon.link)}
-								</a>
-							) : (
-								text(icon.text)
-							)}
-						</li>
-					))}
-				</ul>
-			) : null}
+		<section className={blockClassName}>
+			<div className="content-block__content">
+				{text(block.date) ? (
+					<p className="content-block__eyebrow">{text(block.date)}</p>
+				) : null}
+				{text(block.header) ? (
+					<h2 className="content-block__title">{text(block.header)}</h2>
+				) : null}
+				<div className="content-block__text">
+					<MarkdownContent content={block.text} />
+				</div>
+				{icons.length ? (
+					<ul className="content-block__icons" aria-label="Schnelllinks">
+						{icons.map((icon) => {
+							const iconText = text(icon.text) ?? text(icon.link);
+							const iconContent = (
+								<>
+									{text(icon.icon) ? (
+										<img src={text(icon.icon)} alt="" loading="lazy" />
+									) : null}
+									{iconText ? <span>{iconText}</span> : null}
+								</>
+							);
+
+							return (
+								<li key={`${icon.icon}-${icon.text}-${icon.link}`}>
+									{text(icon.link) ? (
+										<a href={text(icon.link)}>{iconContent}</a>
+									) : (
+										<span>{iconContent}</span>
+									)}
+								</li>
+							);
+						})}
+					</ul>
+				) : null}
+			</div>
 			{images.length ? (
-				<ul>
-					{images.map((image) => (
-						<li key={text(image.image)}>
+				<ul className="content-block__media-grid">
+					{images.map((image, imageIndex) => (
+						<li
+							className="content-block__media-item"
+							key={`${text(image.image)}-${imageIndex}`}
+						>
 							<img
 								src={text(image.image)}
 								alt={text(image.alt) ?? ""}
-								loading="lazy"
+								loading={index === 0 && imageIndex === 0 ? "eager" : "lazy"}
 							/>
 						</li>
 					))}
@@ -277,6 +329,7 @@ const renderBlock = (
 			<ImportedBlock
 				key={`${block.header ?? "imported"}-${index}`}
 				block={block}
+				index={index}
 			/>
 		);
 	}

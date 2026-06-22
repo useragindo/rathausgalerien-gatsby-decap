@@ -28,42 +28,9 @@
 	transform: translateY(0);
 }
 
-article,
 .content-section {
 	max-width: var(--container-md);
 	margin-inline: auto;
-}
-
-article > header {
-	margin-block-end: var(--space-xl);
-	text-align: center;
-}
-
-article > section,
-.site-main > section {
-	padding-block: var(--space-lg);
-	border-block-start: 1px dashed var(--color-border);
-}
-
-article img,
-.site-main section img {
-	background: var(--color-surface);
-}
-
-article ul:has(img),
-.site-main section ul:has(img) {
-	list-style: none;
-	padding: 0;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
-	gap: var(--space-sm);
-}
-
-article ul:has(img) img,
-.site-main section ul:has(img) img {
-	width: 100%;
-	aspect-ratio: 1;
-	object-fit: cover;
 }
 
 address {
