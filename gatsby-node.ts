@@ -60,6 +60,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 			context: {
 				location,
 				navigation,
+				categories,
 			},
 		});
 	}

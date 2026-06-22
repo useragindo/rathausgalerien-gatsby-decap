@@ -3,6 +3,10 @@ import type { HeadFC, PageProps } from "gatsby";
 import { ContentBlockRenderer } from "../components/content-blocks";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
+import {
+	normalizeCategoryKey,
+	resolveCategoryLabels,
+} from "../lib/content/categories";
 import { MarkdownContent } from "../lib/content/markdown";
 import type {
 	NormalizedCategory,
@@ -52,9 +56,6 @@ const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => ({
 
 const getLocationImage = (location: NormalizedLocation): string | undefined =>
 	location.frontmatter.images?.[0] ?? undefined;
-
-const normalizeCategoryKey = (value: string): string =>
-	value.trim().toLowerCase();
 
 const stripMarkdown = (value: string): string =>
 	value
@@ -118,26 +119,18 @@ const getLocationListingCards = (
 	group: "brand" | "culinary",
 ): LocationListingCard[] => {
 	const fallbackLabel = group === "culinary" ? "Genuss" : "Shop";
-	const categoryByUuid = new Map(
-		categories
-			.filter((category) => category.language === language)
-			.map((category) => [normalizeCategoryKey(category.uuid), category]),
-	);
-
 	return locations
 		.filter(
 			(location) => location.language === language && location.group === group,
 		)
 		.sort((a, b) => a.title.localeCompare(b.title))
 		.flatMap((location) => {
-			const labels = (location.frontmatter.categories ?? [])
-				.map(
-					(categoryUuid) =>
-						categoryByUuid.get(normalizeCategoryKey(categoryUuid))?.name,
-				)
-				.filter((label): label is string => Boolean(label));
-			const uniqueLabels = [...new Set(labels)];
-			const cardLabels = uniqueLabels.length ? uniqueLabels : [fallbackLabel];
+			const cardLabels = resolveCategoryLabels(
+				location.frontmatter.categories,
+				categories,
+				language,
+				fallbackLabel,
+			);
 
 			return cardLabels.map((categoryLabel) => ({
 				location,
