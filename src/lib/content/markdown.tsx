@@ -94,6 +94,14 @@ const renderInline = (text: string): React.ReactNode[] => {
 const renderParagraph = (paragraph: string, index: number): React.ReactNode => {
 	const cleaned = normalizeInlineText(paragraph).replace(/\\\n/g, "\n").trim();
 
+	if (/^(-\s*){3,}$/.test(cleaned) || /^([*_]\s*){3,}$/.test(cleaned)) {
+		return <hr key={index} />;
+	}
+
+	if (cleaned.startsWith("#### ")) {
+		return <h4 key={index}>{renderInline(cleaned.slice(5))}</h4>;
+	}
+
 	if (cleaned.startsWith("### ")) {
 		return <h3 key={index}>{renderInline(cleaned.slice(4))}</h3>;
 	}

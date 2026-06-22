@@ -98,8 +98,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 	const { frontmatter } = job;
 	const images = frontmatter.images ?? [];
 	const heroImage = images[0];
-	const aboutImage = images[1] ?? images[0];
-	const galleryImages = images.slice(2);
+	const galleryImages = images.slice(1);
 	const location = trim(frontmatter.location);
 	const position = trim(frontmatter.position) ?? job.title;
 	const specification = trim(frontmatter.specification);
@@ -161,9 +160,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 
 				{job.body ? (
 					<section
-						className={`job-detail__about${
-							aboutImage ? " job-detail__about--has-media" : ""
-						}`}
+						className="job-detail__about"
 						aria-labelledby="job-description-title"
 					>
 						<div className="job-detail__about-copy">
@@ -176,11 +173,6 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 								<MarkdownContent content={job.body} />
 							</div>
 						</div>
-						{aboutImage ? (
-							<div className="job-detail__about-media">
-								<img src={aboutImage} alt="" loading="lazy" />
-							</div>
-						) : null}
 					</section>
 				) : null}
 

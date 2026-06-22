@@ -101,7 +101,11 @@
   - kept the info tiles in the three-column reference layout at all breakpoints with tighter mobile typography
   - applied the shared text/image split only when detail media exists
   - added a designed career hero fallback for jobs without a top image
-- Improved Markdown rendering for imported content by preserving bold text and rendering empty imported links as text instead of broken anchors.
+  - enlarged location info tiles to square reference proportions with yellow/pink/blue panels
+  - replaced placeholder glyphs with SVG line icons for opening hours and contact
+  - refined culinary info tile labeling so Thai-Li-Ba presents as `Asiatisch`
+  - made job detail body text full-width without a repeated lower image
+- Improved Markdown rendering for imported content by preserving bold text, rendering empty imported links as text instead of broken anchors, and supporting imported `####` headings plus `- - -` separators.
 
 ## Current validation status
 
@@ -159,7 +163,7 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 ### Milestone 4 — Shops, gastronomy, and jobs
 
 1. Visually QA the refined shop/gastronomy/job split cards against the job reference and tune final spacing/color/image crops.
-2. Browser-compare location and job detail pages against the references, especially exact tile colors, logo scale, image crop positions, and the now persistent three-column mobile tile layout.
+2. Browser-compare location and job detail pages against the references, especially exact tile colors, logo scale, icon stroke, image crop positions, and the now persistent three-column mobile tile layout.
 3. Polish job body typography if more imported Markdown edge cases appear.
 4. Add filtering/search only after the static layouts are solid.
 

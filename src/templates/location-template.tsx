@@ -92,13 +92,13 @@ const truncateText = (value: string, maxLength = 155): string => {
 	return `${truncated || value.slice(0, maxLength).trim()} …`;
 };
 
-const getBodyExcerpt = (body?: string): string | undefined => {
+const getBodyExcerpt = (body?: string, maxLength = 155): string | undefined => {
 	const paragraph = body
 		?.split(/\n{2,}/)
 		.map(stripMarkdownText)
 		.find(Boolean);
 
-	return paragraph ? truncateText(paragraph) : undefined;
+	return paragraph ? truncateText(paragraph, maxLength) : undefined;
 };
 
 const getLocationSeoDescription = (location: NormalizedLocation): string =>
@@ -151,8 +151,69 @@ const formatUrlLabel = (url: string): string =>
 		.replace(/^www\./i, "")
 		.replace(/\/$/, "");
 
+const formatOpeningHoursLabel = (label: string): string =>
+	label.trim().replace(/\s+von$/i, "");
+
+const formatOpeningHoursTime = (time: string, label: string): string => {
+	const normalized = time
+		.trim()
+		.replace(/(\d{1,2})\.(\d{2})/g, "$1:$2")
+		.replace(/\s+/g, " ");
+
+	if (/warme küche/i.test(label) && /\bu\.\b/i.test(normalized)) {
+		return `${normalized.replace(/\s*u\.\s*/i, " Uhr & ")} Uhr`;
+	}
+
+	return /\bUhr\b/i.test(normalized) ? normalized : `${normalized} Uhr`;
+};
+
 const getLocationDetailLabel = (location: NormalizedLocation): string =>
 	location.group === "culinary" ? "Zur Speisekarte" : "Gleich finden";
+
+const getLocationInfoCategoryTitle = (
+	location: NormalizedLocation,
+	categoryLabels: string[],
+): string => {
+	if (location.group === "culinary") {
+		const searchText = `${location.title} ${location.body ?? ""}`.toLowerCase();
+
+		if (
+			/thai|asia|asiatisch|thailand|indonesien|vietnam|china/.test(searchText)
+		) {
+			return "Asiatisch";
+		}
+	}
+
+	return categoryLabels.join(" · ");
+};
+
+const ClockIcon: React.FC<{ className: string }> = ({ className }) => (
+	<svg
+		className={className}
+		viewBox="0 0 32 32"
+		aria-hidden="true"
+		focusable="false"
+	>
+		<circle cx="16" cy="16" r="11.5" />
+		<path d="M16 8.5V16h6" />
+		<path d="M16 4.5v2" />
+		<path d="M27.5 16h-2" />
+		<path d="M16 27.5v-2" />
+		<path d="M4.5 16h2" />
+	</svg>
+);
+
+const PinIcon: React.FC<{ className: string }> = ({ className }) => (
+	<svg
+		className={className}
+		viewBox="0 0 32 32"
+		aria-hidden="true"
+		focusable="false"
+	>
+		<path d="M16 28s9-8.5 9-16a9 9 0 0 0-18 0c0 7.5 9 16 9 16Z" />
+		<circle cx="16" cy="12" r="3" />
+	</svg>
+);
 
 const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 	const { location, navigation, categories } = pageContext;
@@ -178,6 +239,11 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 		websiteUrl,
 	);
 	const bodyContent = location.body ?? cleanDescription;
+	const infoTileExcerpt = getBodyExcerpt(bodyContent, 112);
+	const infoCategoryTitle = getLocationInfoCategoryTitle(
+		location,
+		categoryLabels,
+	);
 
 	return (
 		<SiteLayout
@@ -211,84 +277,108 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 					aria-label="Standort Informationen"
 				>
 					<div className="location-detail__info-card location-detail__info-card--brand">
-						{frontmatter.logo ? (
-							<img src={frontmatter.logo} alt={`${location.title} Logo`} />
-						) : (
-							<h2>{location.title}</h2>
-						)}
+						<div className="location-detail__info-mark">
+							{frontmatter.logo ? (
+								<img src={frontmatter.logo} alt={`${location.title} Logo`} />
+							) : (
+								<h2>{location.title}</h2>
+							)}
+						</div>
 						<p className="location-detail__category-title">
-							{categoryLabels.join(" · ")}
+							{infoCategoryTitle}
 						</p>
-						{bodyContent ? <p>{getBodyExcerpt(bodyContent)}</p> : null}
+						<div className="location-detail__info-copy">
+							{infoTileExcerpt ? <p>{infoTileExcerpt}</p> : null}
+						</div>
 					</div>
 
 					<div className="location-detail__info-card location-detail__info-card--hours">
-						<span className="location-detail__info-icon" aria-hidden="true">
-							◷
-						</span>
+						<div className="location-detail__info-mark">
+							<ClockIcon className="location-detail__info-icon" />
+						</div>
 						<h2>
 							Öffnungs
 							<br />
 							zeiten
 						</h2>
-						{hasOpeningHours ? (
-							<dl className="location-detail__mini-list">
-								{frontmatter.hours?.map((entry) => (
-									<div key={`${entry.date}-${entry.time}`}>
-										<dt>{entry.date}</dt>
-										<dd>{entry.time}</dd>
-									</div>
-								))}
-							</dl>
-						) : (
-							<p>Informationen im Center.</p>
-						)}
+						<div className="location-detail__info-copy">
+							{hasOpeningHours ? (
+								<dl className="location-detail__mini-list">
+									{frontmatter.hours?.map((entry) => {
+										const label = formatOpeningHoursLabel(entry.date ?? "");
+										const time = formatOpeningHoursTime(
+											entry.time ?? "",
+											label,
+										);
+										const isKitchenHours = /^warme küche/i.test(label);
+
+										return (
+											<div
+												className={
+													isKitchenHours
+														? "location-detail__mini-list-row location-detail__mini-list-row--stacked"
+														: "location-detail__mini-list-row"
+												}
+												key={`${entry.date}-${entry.time}`}
+											>
+												<dt>{label}</dt>
+												<dd>{time}</dd>
+											</div>
+										);
+									})}
+								</dl>
+							) : (
+								<p>Informationen im Center.</p>
+							)}
+						</div>
 					</div>
 
 					<div className="location-detail__info-card location-detail__info-card--contact">
-						<span className="location-detail__info-icon" aria-hidden="true">
-							⌖
-						</span>
+						<div className="location-detail__info-mark">
+							<PinIcon className="location-detail__info-icon" />
+						</div>
 						<h2>Kontakt</h2>
-						{hasContact ? (
-							<>
-								{addressLines.length ? (
-									<address>
-										{addressLines.map((line) => (
-											<React.Fragment key={line}>
-												{line}
-												<br />
-											</React.Fragment>
-										))}
-									</address>
-								) : null}
-								<ul>
-									{frontmatter.contact?.phone ? (
-										<li>
-											<a href={getPhoneHref(frontmatter.contact.phone)}>
-												{formatPhoneLabel(frontmatter.contact.phone)}
-											</a>
-										</li>
+						<div className="location-detail__info-copy">
+							{hasContact ? (
+								<>
+									{addressLines.length ? (
+										<address>
+											{addressLines.map((line) => (
+												<React.Fragment key={line}>
+													{line}
+													<br />
+												</React.Fragment>
+											))}
+										</address>
 									) : null}
-									{frontmatter.contact?.email ? (
-										<li>
-											<a href={`mailto:${frontmatter.contact.email}`}>
-												{frontmatter.contact.email}
-											</a>
-										</li>
-									) : null}
-									{websiteUrl ? (
-										<li>
-											<a href={websiteUrl} target="_blank" rel="noreferrer">
-												{formatUrlLabel(websiteUrl)}
-											</a>
-										</li>
-									) : null}
-								</ul>
-							</>
-						) : (
-							<p>Informationen im Center.</p>
-						)}
+									<ul>
+										{frontmatter.contact?.phone ? (
+											<li>
+												<a href={getPhoneHref(frontmatter.contact.phone)}>
+													{formatPhoneLabel(frontmatter.contact.phone)}
+												</a>
+											</li>
+										) : null}
+										{frontmatter.contact?.email ? (
+											<li>
+												<a href={`mailto:${frontmatter.contact.email}`}>
+													{frontmatter.contact.email}
+												</a>
+											</li>
+										) : null}
+										{websiteUrl ? (
+											<li>
+												<a href={websiteUrl} target="_blank" rel="noreferrer">
+													{formatUrlLabel(websiteUrl)}
+												</a>
+											</li>
+										) : null}
+									</ul>
+								</>
+							) : (
+								<p>Kontaktinformationen folgen.</p>
+							)}
+						</div>
 					</div>
 				</section>
 
