@@ -48,6 +48,9 @@ const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => ({
 	},
 });
 
+const getLocationImage = (location: NormalizedLocation): string | undefined =>
+	location.frontmatter.images?.[0] ?? location.frontmatter.logo ?? undefined;
+
 const LocationList: React.FC<{
 	locations: NormalizedLocation[];
 	language: string;
@@ -58,23 +61,62 @@ const LocationList: React.FC<{
 			(location) => location.language === language && location.group === group,
 		)
 		.sort((a, b) => a.title.localeCompare(b.title));
+	const title = group === "culinary" ? "Gastronomie" : "Shops";
+	const description =
+		group === "culinary"
+			? "Restaurants, Bars und Cafés mitten in den RathausGalerien."
+			: "Marken, Services und Boutiquen im Zentrum von Innsbruck.";
 
 	if (!items.length) {
 		return null;
 	}
 
 	return (
-		<section aria-labelledby={`${group}-list-title`}>
-			<h2 id={`${group}-list-title`}>
-				{group === "culinary" ? "Gastronomie" : "Shops"}
-			</h2>
-			<ul>
-				{items.map((location) => (
-					<li key={location.id}>
-						<a href={location.path}>{location.title}</a>
-						{location.description ? <p>{location.description}</p> : null}
-					</li>
-				))}
+		<section
+			className="listing-section"
+			aria-labelledby={`${group}-list-title`}
+		>
+			<header className="listing-section__header">
+				<p className="listing-section__eyebrow">Alle {title}</p>
+				<h2 id={`${group}-list-title`}>{title}</h2>
+				<p>{description}</p>
+			</header>
+			<ul className="listing-grid">
+				{items.map((location) => {
+					const image = getLocationImage(location);
+					const categories = location.frontmatter.categories ?? [];
+					const logoOnly =
+						!location.frontmatter.images?.length &&
+						Boolean(location.frontmatter.logo);
+
+					return (
+						<li
+							className={`listing-card${logoOnly ? " listing-card--logo-only" : ""}`}
+							key={location.id}
+						>
+							<a className="listing-card__link" href={location.path}>
+								{image ? (
+									<span className="listing-card__media">
+										<img src={image} alt="" loading="lazy" />
+									</span>
+								) : null}
+								<span className="listing-card__body">
+									<span className="listing-card__meta">
+										{categories[0] ??
+											(group === "culinary" ? "Genuss" : "Shop")}
+									</span>
+									<span className="listing-card__title">{location.title}</span>
+									{location.description ? (
+										<span className="listing-card__text">
+											{location.description}
+										</span>
+									) : null}
+									<span className="listing-card__cta">Mehr erfahren</span>
+								</span>
+							</a>
+						</li>
+					);
+				})}
 			</ul>
 		</section>
 	);
@@ -140,12 +182,36 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 	}
 
 	return (
-		<section aria-labelledby="job-list-title">
-			<h2 id="job-list-title">Offene Stellen</h2>
-			<ul>
+		<section className="listing-section" aria-labelledby="job-list-title">
+			<header className="listing-section__header">
+				<p className="listing-section__eyebrow">Karriere</p>
+				<h2 id="job-list-title">Offene Stellen</h2>
+				<p>Aktuelle Jobs in den RathausGalerien und bei unseren Partnern.</p>
+			</header>
+			<ul className="listing-grid listing-grid--jobs">
 				{items.map((job) => (
-					<li key={job.id}>
-						<a href={job.path}>{job.title}</a>
+					<li className="listing-card listing-card--job" key={job.id}>
+						<a className="listing-card__link" href={job.path}>
+							{job.frontmatter.images?.[0] ? (
+								<span className="listing-card__media">
+									<img src={job.frontmatter.images[0]} alt="" loading="lazy" />
+								</span>
+							) : null}
+							<span className="listing-card__body">
+								{job.frontmatter.location ? (
+									<span className="listing-card__meta">
+										{job.frontmatter.location}
+									</span>
+								) : null}
+								<span className="listing-card__title">{job.title}</span>
+								{job.frontmatter.specification ? (
+									<span className="listing-card__text">
+										{job.frontmatter.specification}
+									</span>
+								) : null}
+								<span className="listing-card__cta">Job ansehen</span>
+							</span>
+						</a>
 					</li>
 				))}
 			</ul>

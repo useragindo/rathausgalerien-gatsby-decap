@@ -1,0 +1,182 @@
+.listing-section {
+	max-width: var(--container-lg);
+	margin: var(--space-xl) auto 0;
+	padding-block: var(--space-xl);
+	border-block-start: 2px dotted color-mix(in srgb, var(--color-blue-900) 30%, transparent);
+}
+
+.listing-section__header {
+	max-width: var(--container-sm);
+	margin: 0 auto var(--space-lg);
+	text-align: center;
+}
+
+.listing-section__eyebrow {
+	margin-block-end: var(--space-xs);
+	font-size: var(--font-size-xs);
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+}
+
+.listing-section__header h2 {
+	font-size: clamp(2rem, 7vw, 5rem);
+	font-weight: 300;
+	letter-spacing: clamp(0.14em, 1vw, 0.24em);
+	line-height: var(--line-height-tight);
+	text-transform: uppercase;
+}
+
+.listing-section__header p:last-child {
+	font-size: var(--font-size-md);
+}
+
+.listing-grid {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+	gap: var(--space-sm);
+	margin: 0;
+	padding: 0;
+}
+
+.listing-card {
+	min-width: 0;
+}
+
+.listing-card__link {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	height: 100%;
+	min-height: 100%;
+	color: var(--color-blue-900);
+	background: color-mix(in srgb, var(--color-white) 60%, transparent);
+	text-decoration: none;
+	transition:
+		background var(--transition-base),
+		transform var(--transition-base);
+}
+
+.listing-card:nth-child(4n + 1) .listing-card__link {
+	background: color-mix(in srgb, var(--color-pink) 88%, var(--color-white));
+}
+
+.listing-card:nth-child(4n + 2) .listing-card__link {
+	background: color-mix(in srgb, var(--color-yellow) 88%, var(--color-white));
+}
+
+.listing-card:nth-child(4n + 3) .listing-card__link {
+	background: color-mix(in srgb, var(--color-lavender) 82%, var(--color-white));
+}
+
+.listing-card:nth-child(4n + 4) .listing-card__link {
+	background: color-mix(in srgb, var(--color-blue-300) 76%, var(--color-white));
+}
+
+.listing-card__link:hover,
+.listing-card__link:focus-visible {
+	transform: translateY(-0.18rem);
+}
+
+.listing-card__media {
+	display: block;
+	overflow: hidden;
+	background: var(--color-surface);
+}
+
+.listing-card__media img {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 5 / 4;
+	object-fit: cover;
+	transition: transform 360ms ease;
+}
+
+.listing-card--logo-only .listing-card__media {
+	padding: var(--space-lg);
+	background: var(--color-white);
+}
+
+.listing-card--logo-only .listing-card__media img {
+	object-fit: contain;
+}
+
+.listing-card__link:hover .listing-card__media img,
+.listing-card__link:focus-visible .listing-card__media img {
+	transform: scale(1.025);
+}
+
+.listing-card__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xs);
+	padding: var(--space-md);
+}
+
+.listing-card__meta {
+	font-size: var(--font-size-xs);
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+.listing-card__title {
+	font-size: clamp(1.35rem, 4vw, 2.35rem);
+	font-weight: 300;
+	letter-spacing: 0.08em;
+	line-height: var(--line-height-tight);
+	text-transform: uppercase;
+}
+
+.listing-card__text {
+	font-size: var(--font-size-sm);
+	line-height: 1.45;
+}
+
+.listing-card__cta {
+	margin-block-start: auto;
+	padding-block-start: var(--space-sm);
+	font-size: var(--font-size-xs);
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.listing-card__cta::after {
+	content: " →";
+}
+
+.listing-card--job .listing-card__media img {
+	aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 48rem) {
+	.listing-grid {
+		gap: var(--space-md);
+	}
+
+	.listing-grid--jobs {
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+	}
+}
+
+@media (min-width: 72rem) {
+	.listing-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.listing-grid--jobs {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.listing-card:nth-child(6n + 1),
+	.listing-card:nth-child(6n + 5) {
+		grid-row: span 2;
+	}
+
+	.listing-card:nth-child(6n + 1) .listing-card__media img,
+	.listing-card:nth-child(6n + 5) .listing-card__media img {
+		aspect-ratio: 4 / 5;
+	}
+}

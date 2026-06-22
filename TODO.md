@@ -63,6 +63,16 @@
   - first magazine/Fashion/Food feature media use a stronger mosaic grid from tablet upward
 - Improved legacy Markdown link cleanup by removing empty imported links and normalizing `static/media` links.
 
+### Milestone 4 — Shops, gastronomy, and jobs started
+
+- Replaced plain generated shop/gastronomy/job lists with responsive listing card markup.
+- Added first-pass listing card styling with:
+  - pastel card rhythm
+  - image/logo media areas
+  - category/meta labels
+  - CTA text
+  - responsive grid and mosaic rhythm
+
 ## Current validation status
 
 - `npm run typecheck` passes.
@@ -105,7 +115,7 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
    - card grids
    - teaser tiles
    - link/action cards
-4. Refine listing/detail layouts that still use plain generated lists before moving into Milestone 4.
+4. Continue replacing plain detail templates with designed location/job detail layouts.
 5. Refine the header/menu against both references:
    - mobile logo scale and spacing
    - burger line length/position
@@ -117,9 +127,9 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 
 ### Milestone 4 — Shops, gastronomy, and jobs
 
-1. Build designed listing pages for shops and gastronomy.
+1. Visually QA the new shop/gastronomy/job listing cards and tune image/logo handling.
 2. Build location detail pages with logo, gallery, opening hours, and contact data.
-3. Build jobs listing/detail UI.
+3. Build jobs detail UI.
 4. Add filtering/search only after the static layouts are solid.
 
 ### Milestone 5 — Polish and production readiness
