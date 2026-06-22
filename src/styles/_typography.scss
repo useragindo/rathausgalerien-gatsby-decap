@@ -1,0 +1,58 @@
+body {
+	font-family: var(--font-family-base);
+	font-size: var(--font-size-md);
+	line-height: var(--line-height-base);
+	color: var(--color-text);
+	background: var(--color-background);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-family-accent);
+	font-weight: 400;
+	line-height: var(--line-height-tight);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	margin-block: 0 var(--space-sm);
+}
+
+h1 {
+	font-size: var(--font-size-xl);
+}
+
+h2 {
+	font-size: var(--font-size-lg);
+}
+
+h3 {
+	font-size: clamp(1rem, 0.86rem + 0.68vw, 1.35rem);
+}
+
+p {
+	margin-block: 0 var(--space-md);
+}
+
+a {
+	color: inherit;
+	text-underline-offset: 0.22em;
+	text-decoration-thickness: 0.06em;
+	transition: color var(--transition-base), text-decoration-color var(--transition-base);
+}
+
+a:hover {
+	color: var(--color-pink);
+}
+
+:focus-visible {
+	outline: 0.18rem solid var(--color-focus);
+	outline-offset: 0.22rem;
+}
+
+::selection {
+	color: var(--color-blue-950);
+	background: var(--color-pink);
+}

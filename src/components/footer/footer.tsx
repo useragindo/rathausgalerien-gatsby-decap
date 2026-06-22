@@ -5,6 +5,7 @@ type FooterProps = {
 	footerNavigation?: NormalizedNavigationItem[];
 	footerLegalNavigation?: NormalizedNavigationItem[];
 	socialLinks?: NormalizedNavigationItem[];
+	homeUrl?: string;
 	siteTitle?: string;
 	copyrightLabel?: string;
 };
@@ -12,14 +13,19 @@ type FooterProps = {
 const FooterNavigation: React.FC<{
 	items: NormalizedNavigationItem[];
 	label: string;
-}> = ({ items, label }) => {
+	modifier?: string;
+}> = ({ items, label, modifier }) => {
 	if (items.length === 0) {
 		return null;
 	}
 
+	const listClassName = modifier
+		? `site-footer__nav-list site-footer__nav-list--${modifier}`
+		: "site-footer__nav-list";
+
 	return (
-		<nav aria-label={label}>
-			<ul>
+		<nav className="site-footer__nav" aria-label={label}>
+			<ul className={listClassName}>
 				{items.map((item) => (
 					<li key={`${item.url}-${item.label}`}>
 						<a
@@ -42,13 +48,41 @@ export const Footer: React.FC<FooterProps> = ({
 	footerNavigation = [],
 	footerLegalNavigation = [],
 	socialLinks = [],
+	homeUrl = "/",
 	siteTitle = "RathausGalerien",
 	copyrightLabel,
 }) => (
-	<footer>
-		<FooterNavigation items={footerNavigation} label="Footer-Navigation" />
-		<FooterNavigation items={footerLegalNavigation} label="Rechtliche Links" />
-		<FooterNavigation items={socialLinks} label="Social Media" />
-		<p>{copyrightLabel ?? `© ${new Date().getFullYear()} ${siteTitle}`}</p>
+	<footer className="site-footer">
+		<div className="site-footer__inner">
+			<a
+				className="site-footer__brand"
+				href={homeUrl}
+				aria-label={`${siteTitle} Startseite`}
+			>
+				<img
+					src="/media/_rathausgalerien.svg"
+					alt=""
+					width="210"
+					height="100"
+				/>
+				<span className="visually-hidden">{siteTitle}</span>
+			</a>
+
+			<FooterNavigation items={footerNavigation} label="Footer-Navigation" />
+			<FooterNavigation
+				items={footerLegalNavigation}
+				label="Rechtliche Links"
+				modifier="legal"
+			/>
+			<FooterNavigation
+				items={socialLinks}
+				label="Social Media"
+				modifier="social"
+			/>
+
+			<p className="site-footer__copyright">
+				{copyrightLabel ?? `© ${new Date().getFullYear()} ${siteTitle}`}
+			</p>
+		</div>
 	</footer>
 );

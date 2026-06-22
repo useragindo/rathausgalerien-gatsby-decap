@@ -1,0 +1,102 @@
+.site-footer {
+	position: relative;
+	isolation: isolate;
+	flex-shrink: 0;
+	color: var(--color-white);
+	background: var(--color-blue-950);
+	overflow: hidden;
+}
+
+.site-footer::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	inset: auto -10% -35% auto;
+	width: min(26rem, 72vw);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--color-pink) 44%, transparent);
+	filter: blur(0.3rem);
+	opacity: 0.55;
+}
+
+.site-footer__inner {
+	width: min(100%, var(--container-lg));
+	margin-inline: auto;
+	padding: var(--space-xl) var(--page-gutter) var(--space-lg);
+	display: grid;
+	gap: var(--space-lg);
+	justify-items: center;
+	text-align: center;
+}
+
+.site-footer__brand {
+	display: inline-flex;
+	width: clamp(8rem, 24vw, 13rem);
+	color: var(--color-white);
+}
+
+.site-footer__brand img {
+	width: 100%;
+	height: auto;
+}
+
+.site-footer__nav-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--space-xs) var(--space-md);
+}
+
+.site-footer__nav-list a {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2xs);
+	color: var(--color-white);
+	font-size: var(--font-size-xs);
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	line-height: 1.3;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.site-footer__nav-list a:hover,
+.site-footer__nav-list a:focus-visible {
+	color: var(--color-blue-100);
+	text-decoration: underline;
+	text-decoration-color: var(--color-pink);
+}
+
+.site-footer__nav-list--legal a,
+.site-footer__copyright {
+	font-size: var(--font-size-xs);
+	font-weight: 400;
+	letter-spacing: 0.08em;
+}
+
+.site-footer__copyright {
+	margin: 0;
+	color: color-mix(in srgb, var(--color-white) 78%, transparent);
+	text-transform: uppercase;
+}
+
+@media (min-width: 48rem) {
+	.site-footer__inner {
+		grid-template-columns: minmax(8rem, 12rem) 1fr;
+		align-items: center;
+		justify-items: start;
+		text-align: start;
+	}
+
+	.site-footer__brand {
+		grid-row: span 4;
+	}
+
+	.site-footer__nav-list {
+		justify-content: flex-start;
+	}
+}

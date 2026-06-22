@@ -1,6 +1,11 @@
 import netlifyIdentity from "netlify-identity-widget";
+import "./src/styles/global.scss";
 
-const identityTokenHashes = ["#invite_token=", "#recovery_token=", "#confirmation_token="];
+const identityTokenHashes = [
+	"#invite_token=",
+	"#recovery_token=",
+	"#confirmation_token=",
+];
 
 const hasIdentityToken = (hash: string): boolean =>
 	identityTokenHashes.some((tokenHash) => hash.startsWith(tokenHash));

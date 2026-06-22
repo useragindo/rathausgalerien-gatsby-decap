@@ -26,7 +26,10 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 	homeUrl = "/",
 	siteTitle = "RathausGalerien",
 }) => (
-	<>
+	<div className="site-shell">
+		<a className="skip-link" href="#main-content">
+			Zum Inhalt springen
+		</a>
 		<Header
 			mainNavigation={mainNavigation}
 			utilityNavigation={utilityNavigation}
@@ -34,12 +37,15 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 			homeUrl={homeUrl}
 			siteTitle={siteTitle}
 		/>
-		<main id="main-content">{children}</main>
+		<main className="site-main" id="main-content">
+			{children}
+		</main>
 		<Footer
 			footerNavigation={footerNavigation}
 			footerLegalNavigation={footerLegalNavigation}
 			socialLinks={socialLinks}
+			homeUrl={homeUrl}
 			siteTitle={siteTitle}
 		/>
-	</>
+	</div>
 );
