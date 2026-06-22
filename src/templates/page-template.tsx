@@ -3,49 +3,155 @@ import type { HeadFC, PageProps } from "gatsby";
 import { ContentBlockRenderer } from "../components/content-blocks";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
-import type { NavigationSettings, PageFrontmatter, SiteSettings } from "../lib/cms";
-import { getNavigationForLanguage } from "../lib/navigation";
-import { resolveSeo } from "../lib/seo";
+import { MarkdownContent } from "../lib/content/markdown";
+import type {
+	NormalizedJob,
+	NormalizedLocation,
+	NormalizedPage,
+	SiteNavigationItem,
+} from "../lib/content/types";
+import type { NormalizedNavigationItem } from "../lib/navigation";
+import type { ResolvedSeo } from "../lib/seo";
 
 type PageTemplateContext = {
-	frontmatter?: PageFrontmatter | null;
-	settings?: SiteSettings | null;
-	navigation?: NavigationSettings | null;
+	page: NormalizedPage;
+	navigation: SiteNavigationItem[];
+	locations: NormalizedLocation[];
+	jobs: NormalizedJob[];
 };
 
 type PageTemplateProps = PageProps<Record<string, never>, PageTemplateContext>;
 
-const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
-	const frontmatter = pageContext.frontmatter ?? {};
-	const settings = pageContext.settings ?? {};
-	const navigation = getNavigationForLanguage(
-		pageContext.navigation ?? {},
-		frontmatter.language ?? settings.defaultLanguage ?? "de",
+const toNavigationItems = (
+	items: SiteNavigationItem[],
+	language: string,
+	menu?: string,
+): NormalizedNavigationItem[] =>
+	items
+		.filter(
+			(item) => item.language === language && (!menu || item.menu === menu),
+		)
+		.map((item) => ({
+			label: item.label,
+			url: item.url,
+			language: item.language,
+			openInNewTab: false,
+		}));
+
+const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => ({
+	title: page.title,
+	description: page.description ?? "",
+	canonicalUrl: page.path,
+	openGraph: {
+		title: page.title,
+		description: page.description ?? "",
+	},
+});
+
+const LocationList: React.FC<{
+	locations: NormalizedLocation[];
+	language: string;
+	group: "brand" | "culinary";
+}> = ({ locations, language, group }) => {
+	const items = locations
+		.filter(
+			(location) => location.language === language && location.group === group,
+		)
+		.sort((a, b) => a.title.localeCompare(b.title));
+
+	if (!items.length) {
+		return null;
+	}
+
+	return (
+		<section aria-labelledby={`${group}-list-title`}>
+			<h2 id={`${group}-list-title`}>
+				{group === "culinary" ? "Gastronomie" : "Shops"}
+			</h2>
+			<ul>
+				{items.map((location) => (
+					<li key={location.id}>
+						<a href={location.path}>{location.title}</a>
+						{location.description ? <p>{location.description}</p> : null}
+					</li>
+				))}
+			</ul>
+		</section>
 	);
+};
+
+const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
+	jobs,
+	language,
+}) => {
+	const items = jobs.filter((job) => job.language === language);
+
+	if (!items.length) {
+		return null;
+	}
+
+	return (
+		<section aria-labelledby="job-list-title">
+			<h2 id="job-list-title">Offene Stellen</h2>
+			<ul>
+				{items.map((job) => (
+					<li key={job.id}>
+						<a href={job.path}>{job.title}</a>
+					</li>
+				))}
+			</ul>
+		</section>
+	);
+};
+
+const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
+	const { page, navigation, locations, jobs } = pageContext;
+	const mainNavigation = toNavigationItems(navigation, page.language, "main");
+	const footerNavigation = toNavigationItems(navigation, page.language, "misc");
 
 	return (
 		<SiteLayout
-			mainNavigation={navigation.mainNavigation}
-			utilityNavigation={navigation.utilityNavigation}
-			headerIconNavigation={navigation.headerIconNavigation}
-			footerNavigation={navigation.footerNavigation}
-			footerLegalNavigation={navigation.footerLegalNavigation}
-			socialLinks={navigation.socialLinks}
-			siteTitle={settings.siteTitle ?? undefined}
+			mainNavigation={mainNavigation}
+			footerNavigation={footerNavigation}
+			siteTitle="RathausGalerien"
 		>
-			{frontmatter.title ? <h1>{frontmatter.title}</h1> : null}
-			{frontmatter.hero?.text ? <p>{frontmatter.hero.text}</p> : null}
-			<ContentBlockRenderer blocks={frontmatter.contentBlocks} />
+			<article>
+				<header>
+					<h1>{page.title}</h1>
+					{page.description ? <p>{page.description}</p> : null}
+				</header>
+				<ContentBlockRenderer blocks={page.blocks} />
+				<MarkdownContent content={page.body} />
+			</article>
+
+			{page.key === "brands" ? (
+				<LocationList
+					locations={locations}
+					language={page.language}
+					group="brand"
+				/>
+			) : null}
+			{page.key === "culinary" ? (
+				<LocationList
+					locations={locations}
+					language={page.language}
+					group="culinary"
+				/>
+			) : null}
+			{page.key === "jobs" ? (
+				<JobList jobs={jobs} language={page.language} />
+			) : null}
 		</SiteLayout>
 	);
 };
 
 export default PageTemplate;
 
-export const Head: HeadFC<Record<string, never>, PageTemplateContext> = ({ pageContext }) => {
-	const frontmatter = pageContext.frontmatter ?? {};
-	const settings = pageContext.settings ?? {};
-	const seo = resolveSeo(frontmatter, settings);
-
-	return <Seo seo={seo} language={frontmatter.language ?? settings.defaultLanguage ?? "de"} />;
-};
+export const Head: HeadFC<Record<string, never>, PageTemplateContext> = ({
+	pageContext,
+}) => (
+	<Seo
+		seo={resolvePageSeo(pageContext.page)}
+		language={pageContext.page.language}
+	/>
+);

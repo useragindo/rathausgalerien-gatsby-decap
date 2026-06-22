@@ -19,7 +19,12 @@ const config: GatsbyConfig = {
 		},
 		"gatsby-plugin-image",
 		"gatsby-plugin-sitemap",
-		"gatsby-plugin-mdx",
+		{
+			resolve: "gatsby-plugin-mdx",
+			options: {
+				extensions: [".mdx", ".md"],
+			},
+		},
 		"gatsby-plugin-sharp",
 		"gatsby-transformer-sharp",
 		"gatsby-transformer-yaml",

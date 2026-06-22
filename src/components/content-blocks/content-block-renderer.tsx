@@ -12,9 +12,11 @@ import type {
 	SocialTeaserBlock,
 	TeaserGridBlock,
 } from "../../lib/cms";
+import { MarkdownContent } from "../../lib/content/markdown";
+import type { ImportedContentBlock } from "../../lib/content/types";
 
 type ContentBlockRendererProps = {
-	blocks?: PageContentBlock[] | null;
+	blocks?: Array<PageContentBlock | ImportedContentBlock> | null;
 };
 
 const text = (value?: string | null): string | undefined => {
@@ -23,7 +25,9 @@ const text = (value?: string | null): string | undefined => {
 };
 
 const LinkList: React.FC<{ links?: LinkField[] | null }> = ({ links }) => {
-	const validLinks = (links ?? []).filter((link) => text(link.label) && text(link.url));
+	const validLinks = (links ?? []).filter(
+		(link) => text(link.label) && text(link.url),
+	);
 
 	if (validLinks.length === 0) {
 		return null;
@@ -95,15 +99,23 @@ const TeaserGrid: React.FC<{ block: TeaserGridBlock }> = ({ block }) => (
 	</section>
 );
 
-const GastronomyHighlight: React.FC<{ block: GastronomyHighlightBlock }> = ({ block }) => (
+const GastronomyHighlight: React.FC<{ block: GastronomyHighlightBlock }> = ({
+	block,
+}) => (
 	<section>
 		{text(block.heading) ? <h2>{text(block.heading)}</h2> : null}
 		{text(block.text) ? <p>{text(block.text)}</p> : null}
 		{block.highlightTile ? (
 			<article aria-label={text(block.highlightTile.ariaLabel)}>
-				{text(block.highlightTile.title) ? <h3>{text(block.highlightTile.title)}</h3> : null}
-				{text(block.highlightTile.text) ? <p>{text(block.highlightTile.text)}</p> : null}
-				{text(block.highlightTile.url) ? <a href={text(block.highlightTile.url)}>Mehr erfahren</a> : null}
+				{text(block.highlightTile.title) ? (
+					<h3>{text(block.highlightTile.title)}</h3>
+				) : null}
+				{text(block.highlightTile.text) ? (
+					<p>{text(block.highlightTile.text)}</p>
+				) : null}
+				{text(block.highlightTile.url) ? (
+					<a href={text(block.highlightTile.url)}>Mehr erfahren</a>
+				) : null}
 			</article>
 		) : null}
 	</section>
@@ -136,10 +148,18 @@ const Parking: React.FC<{ block: ParkingBlock }> = ({ block }) => (
 		{text(block.text) ? <p>{text(block.text)}</p> : null}
 		{block.parkingTile ? (
 			<article aria-label={text(block.parkingTile.ariaLabel)}>
-				{text(block.parkingTile.title) ? <h3>{text(block.parkingTile.title)}</h3> : null}
-				{text(block.parkingTile.spacesLabel) ? <p>{text(block.parkingTile.spacesLabel)}</p> : null}
-				{text(block.parkingTile.evChargingLabel) ? <p>{text(block.parkingTile.evChargingLabel)}</p> : null}
-				{text(block.parkingTile.url) ? <a href={text(block.parkingTile.url)}>Mehr erfahren</a> : null}
+				{text(block.parkingTile.title) ? (
+					<h3>{text(block.parkingTile.title)}</h3>
+				) : null}
+				{text(block.parkingTile.spacesLabel) ? (
+					<p>{text(block.parkingTile.spacesLabel)}</p>
+				) : null}
+				{text(block.parkingTile.evChargingLabel) ? (
+					<p>{text(block.parkingTile.evChargingLabel)}</p>
+				) : null}
+				{text(block.parkingTile.url) ? (
+					<a href={text(block.parkingTile.url)}>Mehr erfahren</a>
+				) : null}
 			</article>
 		) : null}
 	</section>
@@ -153,14 +173,20 @@ const SocialTeaser: React.FC<{ block: SocialTeaserBlock }> = ({ block }) => (
 	</section>
 );
 
-const GiftIdeasSlider: React.FC<{ block: GiftIdeasSliderBlock }> = ({ block }) => (
+const GiftIdeasSlider: React.FC<{ block: GiftIdeasSliderBlock }> = ({
+	block,
+}) => (
 	<section>
 		{text(block.heading) ? <h2>{text(block.heading)}</h2> : null}
 		{text(block.text) ? <p>{text(block.text)}</p> : null}
 		{block.introTile ? (
 			<article>
-				{text(block.introTile.title) ? <h3>{text(block.introTile.title)}</h3> : null}
-				{text(block.introTile.text) ? <p>{text(block.introTile.text)}</p> : null}
+				{text(block.introTile.title) ? (
+					<h3>{text(block.introTile.title)}</h3>
+				) : null}
+				{text(block.introTile.text) ? (
+					<p>{text(block.introTile.text)}</p>
+				) : null}
 			</article>
 		) : null}
 		{block.slides?.length ? (
@@ -181,14 +207,80 @@ const GiftIdeasSlider: React.FC<{ block: GiftIdeasSliderBlock }> = ({ block }) =
 	</section>
 );
 
-const LinkListBlockComponent: React.FC<{ block: LinkListBlock }> = ({ block }) => (
+const LinkListBlockComponent: React.FC<{ block: LinkListBlock }> = ({
+	block,
+}) => (
 	<section>
 		{text(block.heading) ? <h2>{text(block.heading)}</h2> : null}
 		<LinkList links={block.links} />
 	</section>
 );
 
-const renderBlock = (block: PageContentBlock, index: number): React.ReactNode => {
+const ImportedBlock: React.FC<{ block: ImportedContentBlock }> = ({
+	block,
+}) => {
+	const images = (block.images ?? []).filter((image) => text(image.image));
+	const icons = (block.icons ?? []).filter(
+		(icon) => text(icon.icon) || text(icon.text),
+	);
+
+	return (
+		<section>
+			{text(block.date) ? <p>{text(block.date)}</p> : null}
+			{text(block.header) ? <h2>{text(block.header)}</h2> : null}
+			<MarkdownContent content={block.text} />
+			{icons.length ? (
+				<ul>
+					{icons.map((icon) => (
+						<li key={`${icon.icon}-${icon.text}-${icon.link}`}>
+							{text(icon.icon) ? (
+								<img src={text(icon.icon)} alt="" loading="lazy" />
+							) : null}
+							{text(icon.link) ? (
+								<a href={text(icon.link)}>
+									{text(icon.text) ?? text(icon.link)}
+								</a>
+							) : (
+								text(icon.text)
+							)}
+						</li>
+					))}
+				</ul>
+			) : null}
+			{images.length ? (
+				<ul>
+					{images.map((image) => (
+						<li key={text(image.image)}>
+							<img
+								src={text(image.image)}
+								alt={text(image.alt) ?? ""}
+								loading="lazy"
+							/>
+						</li>
+					))}
+				</ul>
+			) : null}
+		</section>
+	);
+};
+
+const isImportedBlock = (
+	block: PageContentBlock | ImportedContentBlock,
+): block is ImportedContentBlock => !("type" in block);
+
+const renderBlock = (
+	block: PageContentBlock | ImportedContentBlock,
+	index: number,
+): React.ReactNode => {
+	if (isImportedBlock(block)) {
+		return (
+			<ImportedBlock
+				key={`${block.header ?? "imported"}-${index}`}
+				block={block}
+			/>
+		);
+	}
+
 	const key = `${block.type}-${block.blockTitle ?? index}`;
 
 	switch (block.type) {
@@ -215,7 +307,9 @@ const renderBlock = (block: PageContentBlock, index: number): React.ReactNode =>
 	}
 };
 
-export const ContentBlockRenderer: React.FC<ContentBlockRendererProps> = ({ blocks }) => {
+export const ContentBlockRenderer: React.FC<ContentBlockRendererProps> = ({
+	blocks,
+}) => {
 	if (!blocks?.length) {
 		return null;
 	}
