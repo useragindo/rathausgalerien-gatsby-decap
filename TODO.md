@@ -80,6 +80,9 @@
   - moved location logos into the colored text panel
   - kept location/shop photos in the media panel
   - shortened listing card text and removed generic imported SEO copy where possible
+  - removed redundant visible CTA labels because the full cards are links
+  - simplified hover/focus states so cards no longer jump or zoom on hover
+  - fixed listing card hover readability by preventing global pink link hover color from affecting card text
 
 ## Current validation status
 

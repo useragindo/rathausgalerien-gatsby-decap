@@ -209,7 +209,6 @@ const LocationList: React.FC<{
 									<span className="listing-card__text">
 										{getLocationCardText(location)}
 									</span>
-									<span className="listing-card__cta">Mehr erfahren</span>
 								</span>
 							</a>
 						</li>
@@ -313,7 +312,6 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 										{job.frontmatter.specification}
 									</span>
 								) : null}
-								<span className="listing-card__cta">Job ansehen</span>
 							</span>
 						</a>
 					</li>
