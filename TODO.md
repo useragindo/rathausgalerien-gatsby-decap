@@ -148,7 +148,7 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 ### Milestone 3 — Homepage and content block design
 
 1. Visually QA the homepage in-browser against `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/0001.png` and the desktop PDFs, especially the new sticky header shrink behavior, then tune spacing/sizing where needed.
-2. Continue tuning homepage content hierarchy after visual QA, especially exact card colors, image crop positions, and vertical spacing.
+2. Continue tuning homepage content hierarchy after visual QA, especially exact card colors and any remaining image crop positions.
 3. Extend reusable frontend components for imported content blocks where CSS-only styling is not enough:
    - hero sections
    - image/text feature blocks
@@ -162,6 +162,10 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
    - language switch placement
 6. Continue improving Markdown/link rendering if more imported edge cases appear.
 7. Start with `/`, then reuse the same block system for standard pages.
+
+Recent homepage progress:
+- Homepage intro now prefers the lead hero image from the page body before falling back to block images.
+- Reduced the homepage body section spacing to bring the first content block closer to the intro.
 
 ### Milestone 4 — Shops, gastronomy, and jobs
 

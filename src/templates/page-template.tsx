@@ -218,7 +218,28 @@ const LocationList: React.FC<{
 	);
 };
 
+const getMarkdownImage = (content?: string): string | undefined => {
+	if (!content) {
+		return undefined;
+	}
+
+	const match = content.match(/!\[[^\]]*\]\(([^)]+)\)/);
+	const imagePath = match?.[1]?.trim();
+
+	if (!imagePath) {
+		return undefined;
+	}
+
+	return imagePath.split(/\s+/)[0];
+};
+
 const getHomepageIntroImage = (page: NormalizedPage): string | undefined => {
+	const bodyImage = getMarkdownImage(page.body);
+
+	if (bodyImage) {
+		return bodyImage;
+	}
+
 	const images = page.blocks.flatMap((block) => block.images ?? []);
 	const entranceImage = images.find((image) =>
 		image.image?.includes("eingang"),
