@@ -146,13 +146,15 @@
 }
 
 .page--index .content-block {
-	margin-block: var(--space-lg);
-	padding-block: var(--space-lg);
+	margin-block: var(--space-md);
+	padding-block: var(--space-sm);
 	border-block-start: 2px dotted color-mix(in srgb, var(--color-blue-900) 36%, transparent);
 }
 
 .page--index .content-block:first-child {
 	border-block-start: 0;
+	margin-block-start: 0;
+	padding-block-start: 0;
 }
 
 .page--index .content-block__content {
@@ -300,7 +302,7 @@
 	}
 
 	.page--index .content-block {
-		margin-block: var(--space-xl);
+		margin-block: var(--space-md);
 	}
 
 	.page--index .content-block--feature {

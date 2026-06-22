@@ -11,6 +11,10 @@
 	padding: var(--space-lg) var(--page-gutter) var(--space-2xl);
 }
 
+.site-main:has(.home-intro) {
+	padding-block-start: var(--space-xs);
+}
+
 .skip-link {
 	position: fixed;
 	z-index: 1000;
