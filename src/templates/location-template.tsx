@@ -294,7 +294,9 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 
 				{bodyContent ? (
 					<section
-						className="location-detail__about"
+						className={`location-detail__about${
+							aboutImage ? " location-detail__about--has-media" : ""
+						}`}
 						aria-labelledby="location-about-title"
 					>
 						<div className="location-detail__about-copy">

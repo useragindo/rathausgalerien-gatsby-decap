@@ -123,7 +123,10 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 					{heroImage ? (
 						<img src={heroImage} alt="" loading="eager" />
 					) : (
-						<div className="job-detail__hero-placeholder" />
+						<div className="job-detail__hero-placeholder">
+							<p>Karriere</p>
+							<span>{position}</span>
+						</div>
 					)}
 					<h1 className="visually-hidden">{position}</h1>
 				</header>
@@ -158,7 +161,9 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 
 				{job.body ? (
 					<section
-						className="job-detail__about"
+						className={`job-detail__about${
+							aboutImage ? " job-detail__about--has-media" : ""
+						}`}
 						aria-labelledby="job-description-title"
 					>
 						<div className="job-detail__about-copy">

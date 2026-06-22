@@ -96,6 +96,11 @@
   - job tiles for career/company, position/scope, and application info
   - styled Markdown job description panel
   - gallery support for additional job images
+- Polished shop/gastronomy/job detail pages after visual QA:
+  - reduced the visual footprint of the back link by overlaying it on the hero
+  - kept the info tiles in the three-column reference layout at all breakpoints with tighter mobile typography
+  - applied the shared text/image split only when detail media exists
+  - added a designed career hero fallback for jobs without a top image
 - Improved Markdown rendering for imported content by preserving bold text and rendering empty imported links as text instead of broken anchors.
 
 ## Current validation status
@@ -141,7 +146,7 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
    - card grids
    - teaser tiles
    - link/action cards
-4. Continue visual polishing of the designed location/job detail layouts after browser QA.
+4. Re-check the designed location/job detail pages in-browser against the latest screenshots after the detail polish pass.
 5. Refine the header/menu against both references:
    - mobile logo scale and spacing
    - burger line length/position
@@ -154,7 +159,7 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 ### Milestone 4 — Shops, gastronomy, and jobs
 
 1. Visually QA the refined shop/gastronomy/job split cards against the job reference and tune final spacing/color/image crops.
-2. Visually QA location and job detail pages against the references, especially 16:9 hero crop, info tile height, logo scale, text/image spacing, and mobile stacking.
+2. Browser-compare location and job detail pages against the references, especially exact tile colors, logo scale, image crop positions, and the now persistent three-column mobile tile layout.
 3. Polish job body typography if more imported Markdown edge cases appear.
 4. Add filtering/search only after the static layouts are solid.
 
