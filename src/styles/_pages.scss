@@ -1,0 +1,39 @@
+.page {
+	width: 100%;
+}
+
+.page-hero {
+	max-width: var(--container-md);
+	margin-inline: auto;
+	padding-block: clamp(2.5rem, 7vw, 7rem) var(--space-xl);
+	text-align: center;
+}
+
+.page-hero__title {
+	max-width: 14ch;
+	margin-inline: auto;
+	font-size: clamp(2.35rem, 7vw, 5rem);
+	font-weight: 300;
+	letter-spacing: clamp(0.14em, 1vw, 0.24em);
+}
+
+.page-hero__description {
+	max-width: 64rem;
+	margin-inline: auto;
+	font-size: clamp(1.05rem, 2vw, 1.45rem);
+	line-height: 1.45;
+}
+
+.page-body {
+	max-width: var(--container-sm);
+	margin-inline: auto;
+	padding-block: var(--space-xl) 0;
+}
+
+.page-body:empty {
+	display: none;
+}
+
+.page--index .page-body {
+	padding-block-start: var(--space-2xl);
+}
