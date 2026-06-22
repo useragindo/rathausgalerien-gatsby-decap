@@ -93,6 +93,34 @@ const getJobIndexPath = (job: NormalizedJob): string =>
 const getJobIndexLabel = (job: NormalizedJob): string =>
 	job.language === "de" ? "Alle Jobs" : "All jobs";
 
+const ClockIcon: React.FC<{ className: string }> = ({ className }) => (
+	<svg
+		className={className}
+		viewBox="0 0 32 32"
+		aria-hidden="true"
+		focusable="false"
+	>
+		<circle cx="16" cy="16" r="11.5" />
+		<path d="M16 8.5V16h6" />
+		<path d="M16 4.5v2" />
+		<path d="M27.5 16h-2" />
+		<path d="M16 27.5v-2" />
+		<path d="M4.5 16h2" />
+	</svg>
+);
+
+const ApplicationIcon: React.FC<{ className: string }> = ({ className }) => (
+	<svg
+		className={className}
+		viewBox="0 0 32 32"
+		aria-hidden="true"
+		focusable="false"
+	>
+		<path d="M16 28s9-8.5 9-16a9 9 0 0 0-18 0c0 7.5 9 16 9 16Z" />
+		<circle cx="16" cy="12" r="3" />
+	</svg>
+);
+
 const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 	const { job, navigation } = pageContext;
 	const { frontmatter } = job;
@@ -135,26 +163,36 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 					aria-label="Job Informationen"
 				>
 					<div className="job-detail__info-card job-detail__info-card--brand">
-						<p className="job-detail__info-kicker">Karriere</p>
+						<div className="job-detail__info-mark">
+							<p className="job-detail__info-kicker">Karriere</p>
+						</div>
 						<h2>{location ?? "RathausGalerien"}</h2>
-						{excerpt ? <p>{excerpt}</p> : null}
+						<div className="job-detail__info-copy">
+							{excerpt ? <p>{excerpt}</p> : null}
+						</div>
 					</div>
 
 					<div className="job-detail__info-card job-detail__info-card--position">
-						<span className="job-detail__info-icon" aria-hidden="true">
-							◷
-						</span>
+						<div className="job-detail__info-mark">
+							<ClockIcon className="job-detail__info-icon" />
+						</div>
 						<h2>{position}</h2>
-						{specification ? <p>{specification}</p> : null}
+						<div className="job-detail__info-copy">
+							{specification ? <p>{specification}</p> : null}
+						</div>
 					</div>
 
 					<div className="job-detail__info-card job-detail__info-card--application">
-						<span className="job-detail__info-icon" aria-hidden="true">
-							⌖
-						</span>
+						<div className="job-detail__info-mark">
+							<ApplicationIcon className="job-detail__info-icon" />
+						</div>
 						<h2>Bewerbung</h2>
-						<p>Alle Details zur Bewerbung finden Sie in der Jobbeschreibung.</p>
-						<a href="#job-description-title">Jetzt ansehen</a>
+						<div className="job-detail__info-copy">
+							<p>
+								Alle Details zur Bewerbung finden Sie in der Jobbeschreibung.
+							</p>
+							<a href="#job-description-title">Jetzt ansehen</a>
+						</div>
 					</div>
 				</section>
 

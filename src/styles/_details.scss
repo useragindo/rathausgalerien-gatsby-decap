@@ -111,7 +111,8 @@
 	color: var(--color-blue-900);
 }
 
-.location-detail__info-grid {
+.location-detail__info-grid,
+.job-detail__info-grid {
 	--location-info-width: min(100vw - (var(--space-sm) * 2), 62rem);
 	grid-template-rows: calc(var(--location-info-width) / 3);
 }
@@ -127,7 +128,8 @@
 	text-align: center;
 }
 
-.location-detail__info-card {
+.location-detail__info-card,
+.job-detail__info-card {
 	display: grid;
 	grid-template-rows: 33% 24% 43%;
 	justify-items: center;
@@ -152,7 +154,8 @@
 	background: var(--location-card-contact);
 }
 
-.location-detail__info-mark {
+.location-detail__info-mark,
+.job-detail__info-mark {
 	display: flex;
 	align-items: end;
 	justify-content: center;
@@ -209,7 +212,8 @@
 
 .location-detail__category-title,
 .location-detail__info-card--hours h2,
-.location-detail__info-card--contact h2 {
+.location-detail__info-card--contact h2,
+.job-detail__info-card h2 {
 	align-self: center;
 }
 
@@ -238,7 +242,8 @@
 	line-height: 1.28;
 }
 
-.location-detail__info-copy {
+.location-detail__info-copy,
+.job-detail__info-copy {
 	display: flex;
 	min-width: 0;
 	max-width: min(15rem, 86%);
@@ -259,21 +264,27 @@
 	white-space: nowrap;
 }
 
-.location-detail__info-copy p {
+.location-detail__info-copy p,
+.job-detail__info-copy p {
 	margin: 0;
 }
 
 .job-detail__info-card {
-	min-height: clamp(9.5rem, 19vw, 15rem);
 	padding: clamp(0.9rem, 2.35vw, 2rem);
 }
 
-.job-detail__info-card h2 {
-	max-width: 100%;
-	font-size: clamp(0.9rem, 1.45vw, 1.18rem);
-	letter-spacing: clamp(0.05em, 0.42vw, 0.1em);
-	line-height: 1.12;
+.job-detail__info-card h2,
+.job-detail__info-kicker {
+	max-width: 92%;
+	font-size: clamp(1.05rem, 1.8vw, 1.55rem);
+	letter-spacing: clamp(0.08em, 0.42vw, 0.13em);
+	line-height: 1.08;
 	white-space: normal;
+}
+
+.job-detail__info-kicker {
+	align-self: end;
+	margin: 0;
 }
 
 .job-detail__info-card--position h2 {
@@ -285,7 +296,13 @@
 
 .job-detail__info-card p,
 .job-detail__info-card a {
-	font-size: clamp(0.56rem, 1.08vw, 0.76rem);
+	font-size: clamp(0.62rem, 1vw, 0.86rem);
+	line-height: 1.28;
+}
+
+.job-detail__info-copy {
+	gap: clamp(0.45rem, 1.1vw, 0.9rem);
+	max-width: min(16rem, 88%);
 }
 
 .location-detail__info-card ul {
@@ -305,8 +322,8 @@
 
 .location-detail__info-icon,
 .job-detail__info-icon {
-	width: clamp(1.75rem, 3.4vw, 2.75rem);
-	height: clamp(1.75rem, 3.4vw, 2.75rem);
+	width: clamp(2rem, 3.8vw, 3rem);
+	height: clamp(2rem, 3.8vw, 3rem);
 	color: var(--color-blue-900);
 	fill: none;
 	stroke: currentColor;
@@ -609,7 +626,7 @@
 	}
 
 	.job-detail__info-card h2 {
-		font-size: clamp(0.95rem, 1.15vw, 1.18rem);
+		font-size: clamp(1.05rem, 1.45vw, 1.45rem);
 	}
 
 	.location-detail__info-card {
