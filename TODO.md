@@ -83,6 +83,20 @@
   - removed redundant visible CTA labels because the full cards are links
   - simplified hover/focus states so cards no longer jump or zoom on hover
   - fixed listing card hover readability by preventing global pink link hover color from affecting card text
+- Built first-pass location detail pages with:
+  - category-aware split hero
+  - logo/image treatment
+  - opening hours and contact panels
+  - gallery rendering
+  - generic SEO copy cleanup for page body/meta descriptions
+  - phone, address, and external URL normalization
+- Built first-pass job detail pages with:
+  - back navigation to the jobs overview
+  - split hero using job image plus pastel intro panel where available
+  - job profile sidebar for company, position, and employment scope
+  - styled Markdown job description panel
+  - gallery support for additional job images
+- Improved Markdown rendering for imported content by preserving bold text and rendering empty imported links as text instead of broken anchors.
 
 ## Current validation status
 
@@ -127,7 +141,7 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
    - card grids
    - teaser tiles
    - link/action cards
-4. Continue replacing plain detail templates with designed location/job detail layouts.
+4. Continue visual polishing of the designed location/job detail layouts after browser QA.
 5. Refine the header/menu against both references:
    - mobile logo scale and spacing
    - burger line length/position
@@ -140,8 +154,8 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 ### Milestone 4 — Shops, gastronomy, and jobs
 
 1. Visually QA the refined shop/gastronomy/job split cards against the job reference and tune final spacing/color/image crops.
-2. Build location detail pages with logo, gallery, opening hours, and contact data.
-3. Build jobs detail UI.
+2. Visually QA location and job detail pages against the references, especially hero height, logo scale, sidebar spacing, and mobile stacking.
+3. Polish job body typography if more imported Markdown edge cases appear.
 4. Add filtering/search only after the static layouts are solid.
 
 ### Milestone 5 — Polish and production readiness

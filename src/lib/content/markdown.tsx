@@ -8,6 +8,45 @@ const trim = (value?: string | null): string | undefined => {
 const normalizeInlineText = (value: string): string =>
 	value.replace(/\r/g, "").replace(/static\/media\//g, "/media/");
 
+const normalizeInlineUrl = (value: string): string | undefined => {
+	const normalized = normalizeInlineText(value.trim());
+
+	if (!normalized || normalized === "<>") {
+		return undefined;
+	}
+
+	const unwrapped = normalized.match(/^<(.+)>$/)?.[1].trim() ?? normalized;
+
+	return unwrapped ? unwrapped : undefined;
+};
+
+const renderFormattedText = (
+	text: string,
+	keyPrefix: string,
+): React.ReactNode[] => {
+	const nodes: React.ReactNode[] = [];
+	const strongPattern = /\*\*([^*]+)\*\*/g;
+	let lastIndex = 0;
+	let match: RegExpExecArray | null;
+
+	while ((match = strongPattern.exec(text))) {
+		if (match.index > lastIndex) {
+			nodes.push(text.slice(lastIndex, match.index));
+		}
+
+		nodes.push(
+			<strong key={`${keyPrefix}-strong-${match.index}`}>{match[1]}</strong>,
+		);
+		lastIndex = match.index + match[0].length;
+	}
+
+	if (lastIndex < text.length) {
+		nodes.push(text.slice(lastIndex));
+	}
+
+	return nodes;
+};
+
 const renderInline = (text: string): React.ReactNode[] => {
 	const nodes: React.ReactNode[] = [];
 	const linkPattern = /\[([^\]]*)]\(([^)]+)\)/g;
@@ -16,18 +55,27 @@ const renderInline = (text: string): React.ReactNode[] => {
 
 	while ((match = linkPattern.exec(text))) {
 		if (match.index > lastIndex) {
-			nodes.push(text.slice(lastIndex, match.index));
+			nodes.push(
+				...renderFormattedText(
+					text.slice(lastIndex, match.index),
+					`text-${match.index}`,
+				),
+			);
 		}
 
 		const [, label, url] = match;
 		const normalizedLabel = label.trim();
-		const normalizedUrl = normalizeInlineText(url.trim());
+		const normalizedUrl = normalizeInlineUrl(url);
 
 		if (normalizedLabel && normalizedUrl) {
 			nodes.push(
 				<a key={`${normalizedUrl}-${match.index}`} href={normalizedUrl}>
-					{normalizedLabel}
+					{renderFormattedText(normalizedLabel, `link-${match.index}`)}
 				</a>,
+			);
+		} else if (normalizedLabel) {
+			nodes.push(
+				...renderFormattedText(normalizedLabel, `label-${match.index}`),
 			);
 		}
 
@@ -35,7 +83,9 @@ const renderInline = (text: string): React.ReactNode[] => {
 	}
 
 	if (lastIndex < text.length) {
-		nodes.push(text.slice(lastIndex));
+		nodes.push(
+			...renderFormattedText(text.slice(lastIndex), `text-${lastIndex}`),
+		);
 	}
 
 	return nodes;
