@@ -134,6 +134,8 @@ blocks:
       sich Raum für alles, was dich beschwert - von einer Handtasche bis hin
       zur Ski-Ausrüstung.
 ---
+![Rathausgalerien von Maria-Theresien-Straße](/media/dsc_1672_bearb.jpg)
+
 # Ihr Shoppingcenter in Innsbruck
 
 Die RathausGalerien sind ein modernes Shoppingcenter in Innsbruck, welches seinen Kunden und Kundinnen eine große Auswahl an verschiedenen Einkaufsmöglichkeiten und
