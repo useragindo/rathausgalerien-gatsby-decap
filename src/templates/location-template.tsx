@@ -160,6 +160,14 @@ const formatOpeningHoursTime = (time: string, label: string): string => {
 		.replace(/(\d{1,2})\.(\d{2})/g, "$1:$2")
 		.replace(/\s+/g, " ");
 
+	if (!normalized) {
+		return "";
+	}
+
+	if (/geschlossen/i.test(normalized)) {
+		return normalized;
+	}
+
 	if (/warme küche/i.test(label) && /\bu\.\b/i.test(normalized)) {
 		return `${normalized.replace(/\s*u\.\s*/i, " Uhr & ")} Uhr`;
 	}

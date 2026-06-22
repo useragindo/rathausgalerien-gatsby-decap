@@ -129,7 +129,7 @@
 
 .location-detail__info-card {
 	display: grid;
-	grid-template-rows: clamp(3rem, 5.4vw, 4.4rem) clamp(2.7rem, 4.6vw, 3.55rem) minmax(0, 1fr);
+	grid-template-rows: 33% 24% 43%;
 	justify-items: center;
 	align-items: start;
 	height: 100%;
@@ -162,8 +162,8 @@
 
 .location-detail__info-card img {
 	width: auto;
-	max-width: min(9rem, 72%);
-	max-height: clamp(1.5rem, 4.2vw, 3rem);
+	max-width: min(14rem, 82%);
+	max-height: clamp(2.25rem, 5.4vw, 4.7rem);
 	object-fit: contain;
 }
 
@@ -173,19 +173,19 @@
 .job-detail__info-kicker {
 	min-width: 0;
 	max-width: 100%;
-	font-size: clamp(1.05rem, 2.05vw, 1.62rem);
+	font-size: clamp(1.2rem, 2.35vw, 2rem);
 	font-weight: 700;
-	letter-spacing: clamp(0.08em, 0.45vw, 0.13em);
+	letter-spacing: clamp(0.08em, 0.42vw, 0.13em);
 	line-height: 1.06;
 	overflow-wrap: normal;
 	text-transform: uppercase;
 }
 
-.location-detail__category-title,
 .location-detail__info-card--contact h2 {
 	white-space: nowrap;
 }
 
+.location-detail__category-title,
 .location-detail__info-card--hours h2 {
 	white-space: normal;
 }
@@ -213,6 +213,19 @@
 	align-self: center;
 }
 
+.location-detail__info-card .location-detail__category-title {
+	display: -webkit-box;
+	max-width: 92%;
+	overflow: hidden;
+	font-size: clamp(1.2rem, 2.35vw, 2rem);
+	font-weight: 700;
+	letter-spacing: clamp(0.08em, 0.42vw, 0.13em);
+	line-height: 1.06;
+	text-wrap: balance;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
 .location-detail__info-card p,
 .location-detail__info-card address,
 .location-detail__info-card li,
@@ -220,20 +233,30 @@
 .job-detail__info-card p,
 .job-detail__info-card a {
 	max-width: 15rem;
-	font-size: clamp(0.56rem, 0.88vw, 0.72rem);
+	font-size: clamp(0.62rem, 1vw, 0.86rem);
 	font-style: normal;
-	line-height: 1.26;
+	line-height: 1.28;
 }
 
 .location-detail__info-copy {
 	display: flex;
 	min-width: 0;
-	max-width: min(11.75rem, 82%);
+	max-width: min(15rem, 86%);
 	min-height: 0;
 	flex-direction: column;
 	align-items: center;
 	justify-content: start;
 	overflow: hidden;
+}
+
+.location-detail__info-card--contact .location-detail__info-copy {
+	max-width: min(16rem, 90%);
+}
+
+.location-detail__info-card--contact address,
+.location-detail__info-card--contact li,
+.location-detail__info-card--contact a {
+	white-space: nowrap;
 }
 
 .location-detail__info-copy p {
@@ -299,10 +322,13 @@
 }
 
 .location-detail__mini-list-row {
-	display: block;
+	display: flex;
+	justify-content: center;
+	gap: 0.22em;
 }
 
 .location-detail__mini-list-row--stacked {
+	display: block;
 	margin-block-start: clamp(0.28rem, 0.75vw, 0.55rem);
 }
 
