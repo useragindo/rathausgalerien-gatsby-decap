@@ -83,11 +83,11 @@
   - removed redundant visible CTA labels because the full cards are links
   - simplified hover/focus states so cards no longer jump or zoom on hover
   - fixed listing card hover readability by preventing global pink link hover color from affecting card text
-- Built first-pass location detail pages with:
-  - category-aware split hero
-  - logo/image treatment
-  - opening hours and contact panels
-  - gallery rendering
+- Built and refined first-pass location detail pages with:
+  - reference-style large image hero
+  - three colored info tiles for brand/category, opening hours, and contact
+  - compact text/image detail section for shops and gastronomy
+  - gallery rendering for remaining images
   - generic SEO copy cleanup for page body/meta descriptions
   - phone, address, and external URL normalization
 - Built first-pass job detail pages with:
@@ -154,7 +154,7 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 ### Milestone 4 — Shops, gastronomy, and jobs
 
 1. Visually QA the refined shop/gastronomy/job split cards against the job reference and tune final spacing/color/image crops.
-2. Visually QA location and job detail pages against the references, especially hero height, logo scale, sidebar spacing, and mobile stacking.
+2. Visually QA location and job detail pages against the references, especially hero crop, info tile height, logo scale, text/image spacing, and mobile stacking.
 3. Polish job body typography if more imported Markdown edge cases appear.
 4. Add filtering/search only after the static layouts are solid.
 

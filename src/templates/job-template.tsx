@@ -98,11 +98,12 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 	const { frontmatter } = job;
 	const images = frontmatter.images ?? [];
 	const heroImage = images[0];
-	const galleryImages = images.slice(1);
+	const aboutImage = images[1] ?? images[0];
+	const galleryImages = images.slice(2);
 	const location = trim(frontmatter.location);
 	const position = trim(frontmatter.position) ?? job.title;
 	const specification = trim(frontmatter.specification);
-	const hasProfile = Boolean(location || position || specification);
+	const excerpt = getBodyExcerpt(job.body);
 
 	return (
 		<SiteLayout
@@ -110,84 +111,77 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 			footerNavigation={toNavigationItems(navigation, job.language, "misc")}
 			siteTitle="RathausGalerien"
 		>
-			<article className="detail-page job-detail">
-				<a className="detail-back-link" href={getJobIndexPath(job)}>
+			<article className="job-detail">
+				<a
+					className="detail-back-link job-detail__back"
+					href={getJobIndexPath(job)}
+				>
 					← {getJobIndexLabel(job)}
 				</a>
 
 				<header className="job-detail__hero">
 					{heroImage ? (
-						<div className="job-detail__hero-media">
-							<img src={heroImage} alt="" loading="eager" />
-						</div>
-					) : null}
-					<div className="job-detail__intro">
-						<ul className="job-detail__meta-list" aria-label="Jobdetails">
-							<li>Karriere</li>
-							{location ? <li>{location}</li> : null}
-							{specification ? <li>{specification}</li> : null}
-						</ul>
-						<p className="job-detail__eyebrow">Offene Stelle</p>
-						<h1>{position}</h1>
-						{location ? (
-							<p className="job-detail__location">{location}</p>
-						) : null}
-						{specification ? (
-							<p className="job-detail__summary">{specification}</p>
-						) : null}
-					</div>
+						<img src={heroImage} alt="" loading="eager" />
+					) : (
+						<div className="job-detail__hero-placeholder" />
+					)}
+					<h1 className="visually-hidden">{position}</h1>
 				</header>
 
-				<div className="detail-layout job-detail__layout">
-					{job.body ? (
-						<section
-							className="detail-panel detail-panel--main"
-							aria-labelledby="job-description-title"
-						>
-							<p className="detail-panel__eyebrow">Bewerbung</p>
-							<h2 id="job-description-title">Jobbeschreibung</h2>
+				<section
+					className="job-detail__info-grid"
+					aria-label="Job Informationen"
+				>
+					<div className="job-detail__info-card job-detail__info-card--brand">
+						<p className="job-detail__info-kicker">Karriere</p>
+						<h2>{location ?? "RathausGalerien"}</h2>
+						{excerpt ? <p>{excerpt}</p> : null}
+					</div>
+
+					<div className="job-detail__info-card job-detail__info-card--position">
+						<span className="job-detail__info-icon" aria-hidden="true">
+							◷
+						</span>
+						<h2>{position}</h2>
+						{specification ? <p>{specification}</p> : null}
+					</div>
+
+					<div className="job-detail__info-card job-detail__info-card--application">
+						<span className="job-detail__info-icon" aria-hidden="true">
+							⌖
+						</span>
+						<h2>Bewerbung</h2>
+						<p>Alle Details zur Bewerbung finden Sie in der Jobbeschreibung.</p>
+						<a href="#job-description-title">Jetzt ansehen</a>
+					</div>
+				</section>
+
+				{job.body ? (
+					<section
+						className="job-detail__about"
+						aria-labelledby="job-description-title"
+					>
+						<div className="job-detail__about-copy">
+							<p className="job-detail__about-kicker">Offene Stelle</p>
+							<h2 id="job-description-title">{position}</h2>
+							{location ? (
+								<p className="job-detail__location">{location}</p>
+							) : null}
 							<div className="detail-rich-text">
 								<MarkdownContent content={job.body} />
 							</div>
-						</section>
-					) : null}
-
-					{hasProfile ? (
-						<aside className="detail-sidebar" aria-label="Job Informationen">
-							<section
-								className="detail-panel"
-								aria-labelledby="job-profile-title"
-							>
-								<p className="detail-panel__eyebrow">Kurzinfo</p>
-								<h2 id="job-profile-title">Jobprofil</h2>
-								<dl className="detail-list">
-									{location ? (
-										<div className="detail-list__row">
-											<dt>Unternehmen</dt>
-											<dd>{location}</dd>
-										</div>
-									) : null}
-									{position ? (
-										<div className="detail-list__row">
-											<dt>Position</dt>
-											<dd>{position}</dd>
-										</div>
-									) : null}
-									{specification ? (
-										<div className="detail-list__row">
-											<dt>Umfang</dt>
-											<dd>{specification}</dd>
-										</div>
-									) : null}
-								</dl>
-							</section>
-						</aside>
-					) : null}
-				</div>
+						</div>
+						{aboutImage ? (
+							<div className="job-detail__about-media">
+								<img src={aboutImage} alt="" loading="lazy" />
+							</div>
+						) : null}
+					</section>
+				) : null}
 
 				{galleryImages.length ? (
 					<section
-						className="detail-gallery"
+						className="detail-gallery job-detail__gallery"
 						aria-labelledby="job-gallery-title"
 					>
 						<p className="detail-panel__eyebrow">Galerie</p>

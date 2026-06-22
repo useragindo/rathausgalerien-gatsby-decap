@@ -151,12 +151,16 @@ const formatUrlLabel = (url: string): string =>
 		.replace(/^www\./i, "")
 		.replace(/\/$/, "");
 
+const getLocationDetailLabel = (location: NormalizedLocation): string =>
+	location.group === "culinary" ? "Zur Speisekarte" : "Gleich finden";
+
 const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 	const { location, navigation, categories } = pageContext;
 	const { frontmatter } = location;
 	const images = frontmatter.images ?? [];
 	const heroImage = images[0];
-	const galleryImages = images.slice(1);
+	const aboutImage = images[1] ?? images[0];
+	const galleryImages = images.slice(2);
 	const categoryLabels = resolveCategoryLabels(
 		frontmatter.categories,
 		categories,
@@ -185,127 +189,137 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 			)}
 			siteTitle="RathausGalerien"
 		>
-			<article
-				className={`detail-page location-detail location-detail--${location.group}`}
-			>
-				<a className="detail-back-link" href={getLocationIndexPath(location)}>
+			<article className={`location-detail location-detail--${location.group}`}>
+				<a
+					className="detail-back-link location-detail__back"
+					href={getLocationIndexPath(location)}
+				>
 					← {getLocationIndexLabel(location)}
 				</a>
 
 				<header className="location-detail__hero">
 					{heroImage ? (
-						<div className="location-detail__hero-media">
-							<img src={heroImage} alt="" loading="eager" />
-						</div>
-					) : null}
-					<div className="location-detail__intro">
-						<ul className="detail-category-list" aria-label="Kategorien">
-							{categoryLabels.map((category) => (
-								<li key={category}>{category}</li>
-							))}
-						</ul>
-						{frontmatter.logo ? (
-							<div className="location-detail__logo">
-								<img src={frontmatter.logo} alt={`${location.title} Logo`} />
-							</div>
-						) : (
-							<h1 className="location-detail__title">{location.title}</h1>
-						)}
-						{frontmatter.logo ? (
-							<h1 className="visually-hidden">{location.title}</h1>
-						) : null}
-						{cleanDescription && location.body ? (
-							<p className="location-detail__description">{cleanDescription}</p>
-						) : null}
-					</div>
+						<img src={heroImage} alt="" loading="eager" />
+					) : (
+						<div className="location-detail__hero-placeholder" />
+					)}
+					<h1 className="visually-hidden">{location.title}</h1>
 				</header>
 
-				<div className="detail-layout">
-					{bodyContent ? (
-						<section
-							className="detail-panel detail-panel--main"
-							aria-labelledby="location-about-title"
-						>
-							<p className="detail-panel__eyebrow">Über</p>
+				<section
+					className="location-detail__info-grid"
+					aria-label="Standort Informationen"
+				>
+					<div className="location-detail__info-card location-detail__info-card--brand">
+						{frontmatter.logo ? (
+							<img src={frontmatter.logo} alt={`${location.title} Logo`} />
+						) : (
+							<h2>{location.title}</h2>
+						)}
+						<p className="location-detail__category-title">
+							{categoryLabels.join(" · ")}
+						</p>
+						{bodyContent ? <p>{getBodyExcerpt(bodyContent)}</p> : null}
+					</div>
+
+					<div className="location-detail__info-card location-detail__info-card--hours">
+						<span className="location-detail__info-icon" aria-hidden="true">
+							◷
+						</span>
+						<h2>
+							Öffnungs
+							<br />
+							zeiten
+						</h2>
+						{hasOpeningHours ? (
+							<dl className="location-detail__mini-list">
+								{frontmatter.hours?.map((entry) => (
+									<div key={`${entry.date}-${entry.time}`}>
+										<dt>{entry.date}</dt>
+										<dd>{entry.time}</dd>
+									</div>
+								))}
+							</dl>
+						) : (
+							<p>Informationen im Center.</p>
+						)}
+					</div>
+
+					<div className="location-detail__info-card location-detail__info-card--contact">
+						<span className="location-detail__info-icon" aria-hidden="true">
+							⌖
+						</span>
+						<h2>Kontakt</h2>
+						{hasContact ? (
+							<>
+								{addressLines.length ? (
+									<address>
+										{addressLines.map((line) => (
+											<React.Fragment key={line}>
+												{line}
+												<br />
+											</React.Fragment>
+										))}
+									</address>
+								) : null}
+								<ul>
+									{frontmatter.contact?.phone ? (
+										<li>
+											<a href={getPhoneHref(frontmatter.contact.phone)}>
+												{formatPhoneLabel(frontmatter.contact.phone)}
+											</a>
+										</li>
+									) : null}
+									{frontmatter.contact?.email ? (
+										<li>
+											<a href={`mailto:${frontmatter.contact.email}`}>
+												{frontmatter.contact.email}
+											</a>
+										</li>
+									) : null}
+									{websiteUrl ? (
+										<li>
+											<a href={websiteUrl} target="_blank" rel="noreferrer">
+												{formatUrlLabel(websiteUrl)}
+											</a>
+										</li>
+									) : null}
+								</ul>
+							</>
+						) : (
+							<p>Informationen im Center.</p>
+						)}
+					</div>
+				</section>
+
+				{bodyContent ? (
+					<section
+						className="location-detail__about"
+						aria-labelledby="location-about-title"
+					>
+						<div className="location-detail__about-copy">
 							<h2 id="location-about-title">{location.title}</h2>
 							<div className="detail-rich-text">
 								<MarkdownContent content={bodyContent} />
 							</div>
-						</section>
-					) : null}
-
-					{hasOpeningHours || hasContact ? (
-						<aside className="detail-sidebar" aria-label="Shop Informationen">
-							{hasOpeningHours ? (
-								<section
-									className="detail-panel"
-									aria-labelledby="opening-hours-title"
-								>
-									<p className="detail-panel__eyebrow">Besuch</p>
-									<h2 id="opening-hours-title">Öffnungszeiten</h2>
-									<dl className="detail-list">
-										{frontmatter.hours?.map((entry) => (
-											<div
-												className="detail-list__row"
-												key={`${entry.date}-${entry.time}`}
-											>
-												<dt>{entry.date}</dt>
-												<dd>{entry.time}</dd>
-											</div>
-										))}
-									</dl>
-								</section>
-							) : null}
-
-							{hasContact ? (
-								<section
-									className="detail-panel"
-									aria-labelledby="contact-title"
-								>
-									<p className="detail-panel__eyebrow">Kontakt</p>
-									<h2 id="contact-title">Kontakt</h2>
-									{addressLines.length ? (
-										<address className="detail-address">
-											{addressLines.map((line) => (
-												<React.Fragment key={line}>
-													{line}
-													<br />
-												</React.Fragment>
-											))}
-										</address>
-									) : null}
-									<ul className="detail-contact-list">
-										{frontmatter.contact?.email ? (
-											<li>
-												<a href={`mailto:${frontmatter.contact.email}`}>
-													{frontmatter.contact.email}
-												</a>
-											</li>
-										) : null}
-										{frontmatter.contact?.phone ? (
-											<li>
-												<a href={getPhoneHref(frontmatter.contact.phone)}>
-													{formatPhoneLabel(frontmatter.contact.phone)}
-												</a>
-											</li>
-										) : null}
-										{websiteUrl ? (
-											<li>
-												<a href={websiteUrl} target="_blank" rel="noreferrer">
-													{formatUrlLabel(websiteUrl)}
-												</a>
-											</li>
-										) : null}
-									</ul>
-								</section>
-							) : null}
-						</aside>
-					) : null}
-				</div>
+							<a
+								className="location-detail__text-link"
+								href={getLocationIndexPath(location)}
+							>
+								{getLocationDetailLabel(location)}
+							</a>
+						</div>
+						{aboutImage ? (
+							<div className="location-detail__about-media">
+								<img src={aboutImage} alt="" loading="lazy" />
+							</div>
+						) : null}
+					</section>
+				) : null}
 
 				{galleryImages.length ? (
 					<section
-						className="detail-gallery"
+						className="detail-gallery location-detail__gallery"
 						aria-labelledby="location-gallery-title"
 					>
 						<p className="detail-panel__eyebrow">Galerie</p>
