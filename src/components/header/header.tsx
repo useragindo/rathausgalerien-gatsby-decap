@@ -172,6 +172,7 @@ export const Header: React.FC<HeaderProps> = ({
 	homeUrl = "/",
 	siteTitle = "RathausGalerien",
 }) => {
+	const [isScrolled, setIsScrolled] = React.useState(false);
 	const mobileNavigation = combineNavigation(
 		mainNavigation,
 		utilityNavigation,
@@ -183,8 +184,21 @@ export const Header: React.FC<HeaderProps> = ({
 		headerIconNavigation,
 	);
 
+	React.useEffect(() => {
+		const updateHeaderState = () => {
+			setIsScrolled(window.scrollY > 24);
+		};
+
+		updateHeaderState();
+		window.addEventListener("scroll", updateHeaderState, { passive: true });
+
+		return () => window.removeEventListener("scroll", updateHeaderState);
+	}, []);
+
 	return (
-		<header className="site-header">
+		<header
+			className={`site-header${isScrolled ? " site-header--scrolled" : ""}`}
+		>
 			<div className="site-header__inner">
 				<a
 					className="site-header__brand"

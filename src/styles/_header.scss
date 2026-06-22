@@ -1,21 +1,45 @@
 .site-header {
+	--header-height: clamp(5.75rem, 10vw, 9.25rem);
+	--header-padding-block: clamp(1.15rem, 2.4vw, 2.4rem);
+	--header-logo-width: clamp(12rem, 30vw, 25rem);
+	--header-icon-size: clamp(2.25rem, 3.3vw, 3.25rem);
+	--header-menu-width: clamp(5.75rem, 10vw, 9.5rem);
+	--header-menu-height: clamp(3.1rem, 5vw, 4.8rem);
+
 	position: sticky;
 	z-index: 100;
 	inset-block-start: 0;
 	background: rgba(216, 239, 248, 0.96);
 	backdrop-filter: blur(1rem);
-	border-block-end: 1px solid color-mix(in srgb, var(--color-blue-900) 14%, transparent);
+	transition:
+		background var(--transition-base),
+		box-shadow var(--transition-base);
+}
+
+.site-header--scrolled {
+	--header-height: clamp(3.9rem, 6vw, 5.5rem);
+	--header-padding-block: clamp(0.45rem, 1.1vw, 0.85rem);
+	--header-logo-width: clamp(9.5rem, 20vw, 16rem);
+	--header-icon-size: clamp(1.8rem, 2.4vw, 2.4rem);
+	--header-menu-width: clamp(4.5rem, 7vw, 6.25rem);
+	--header-menu-height: clamp(2.55rem, 3.4vw, 3.35rem);
+
+	background: rgba(216, 239, 248, 0.9);
+	box-shadow: 0 0.5rem 1.75rem rgba(33, 37, 84, 0.08);
 }
 
 .site-header__inner {
 	width: min(100%, var(--container-lg));
 	margin-inline: auto;
-	min-height: clamp(5.75rem, 10vw, 9.25rem);
-	padding: clamp(1.15rem, 2.4vw, 2.4rem) var(--page-gutter);
+	min-height: var(--header-height);
+	padding: var(--header-padding-block) var(--page-gutter);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: var(--space-md);
+	transition:
+		min-height var(--transition-base),
+		padding var(--transition-base);
 }
 
 .site-header__brand {
@@ -27,9 +51,10 @@
 }
 
 .site-header__logo {
-	width: clamp(12rem, 30vw, 25rem);
+	width: var(--header-logo-width);
 	height: auto;
 	filter: brightness(0) saturate(100%) invert(14%) sepia(37%) saturate(1448%) hue-rotate(210deg) brightness(90%) contrast(92%);
+	transition: width var(--transition-base);
 }
 
 .site-header__desktop-nav,
@@ -66,13 +91,14 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: clamp(2.25rem, 3.3vw, 3.25rem);
+	width: var(--header-icon-size);
 	aspect-ratio: 1;
 	color: var(--color-blue-900);
 	text-decoration: none;
 	transition:
 		color var(--transition-base),
-		transform var(--transition-base);
+		transform var(--transition-base),
+		width var(--transition-base);
 }
 
 .site-header__icon-link:hover,
@@ -127,8 +153,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: clamp(5.75rem, 10vw, 9.5rem);
-	min-height: clamp(3.1rem, 5vw, 4.8rem);
+	width: var(--header-menu-width);
+	min-height: var(--header-menu-height);
 	padding: 0;
 	border: 0;
 	color: var(--color-blue-900);
@@ -136,7 +162,9 @@
 	cursor: pointer;
 	transition:
 		color var(--transition-base),
-		transform var(--transition-base);
+		min-height var(--transition-base),
+		transform var(--transition-base),
+		width var(--transition-base);
 }
 
 .site-header__menu-summary::-webkit-details-marker {
@@ -181,8 +209,8 @@
 
 .site-header__mobile-panel {
 	position: fixed;
-	inset: clamp(5.75rem, 10vw, 9.25rem) var(--page-gutter) auto;
-	max-height: calc(100vh - clamp(7rem, 13vw, 12rem));
+	inset: calc(var(--header-height) + var(--space-xs)) var(--page-gutter) auto;
+	max-height: calc(100vh - var(--header-height) - var(--space-lg));
 	overflow: auto;
 	padding: var(--space-xl) var(--space-lg);
 	background: var(--color-blue-100);
@@ -212,15 +240,21 @@
 }
 
 @media (max-width: 39.9375rem) {
-	.site-header__logo {
-		width: clamp(10rem, 54vw, 14rem);
+	.site-header {
+		--header-height: clamp(4.75rem, 18vw, 6.25rem);
+		--header-padding-block: clamp(0.8rem, 3vw, 1.15rem);
+		--header-logo-width: clamp(10rem, 54vw, 14rem);
+		--header-menu-width: clamp(4.25rem, 18vw, 5.75rem);
+	}
+
+	.site-header--scrolled {
+		--header-height: clamp(3.5rem, 13vw, 4.35rem);
+		--header-padding-block: clamp(0.35rem, 1.8vw, 0.6rem);
+		--header-logo-width: clamp(8.5rem, 40vw, 11rem);
+		--header-menu-width: clamp(3.75rem, 14vw, 4.75rem);
 	}
 
 	.site-header__actions {
 		gap: var(--space-sm);
-	}
-
-	.site-header__menu-summary {
-		width: clamp(4.25rem, 18vw, 5.75rem);
 	}
 }

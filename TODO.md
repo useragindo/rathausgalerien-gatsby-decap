@@ -52,6 +52,10 @@
   - uppercase letter-spaced headings
   - pastel card backgrounds
   - alternating desktop feature/compact layouts
+- Removed the homepage intro card fill again so the hero stays on the blue page background.
+- Refined the sticky header after design review:
+  - removed the divider line under the header
+  - added a smaller scrolled state for logo, icons, burger, and header height
 - Applied image ratios for square grids, `5:4`, and `4:5` homepage media blocks.
 - Improved legacy Markdown link cleanup by removing empty imported links and normalizing `static/media` links.
 
@@ -89,7 +93,7 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 
 ### Milestone 3 — Homepage and content block design
 
-1. Visually QA the homepage in-browser against `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/0001.png` and the desktop PDFs, then tune spacing/sizing where needed.
+1. Visually QA the homepage in-browser against `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/0001.png` and the desktop PDFs, especially the new sticky header shrink behavior, then tune spacing/sizing where needed.
 2. Improve homepage content hierarchy to better match the 2026 references in `temp`, especially the first magazine/fashion tile rhythm.
 3. Extend reusable frontend components for imported content blocks where CSS-only styling is not enough:
    - hero sections
