@@ -100,13 +100,46 @@
 	object-fit: cover;
 }
 
+.listing-card__media--placeholder {
+	display: grid;
+	place-items: center;
+	min-height: clamp(10rem, 36vw, 18rem);
+	padding: var(--space-md);
+	background:
+		radial-gradient(circle at 28% 24%, color-mix(in srgb, var(--color-white) 42%, transparent) 0 18%, transparent 19%),
+		color-mix(in srgb, var(--listing-card-bg) 62%, var(--color-surface));
+	color: var(--color-blue-900);
+	text-align: center;
+}
+
+.listing-card__media--placeholder > span {
+	font-size: clamp(1.25rem, 5vw, 3.6rem);
+	font-weight: 300;
+	letter-spacing: 0.14em;
+	line-height: var(--line-height-tight);
+	text-transform: uppercase;
+}
+
+.listing-card--job .listing-card__media--placeholder {
+	background:
+		radial-gradient(circle at 28% 30%, color-mix(in srgb, var(--color-white) 42%, transparent) 0 24%, transparent 25%),
+		color-mix(in srgb, var(--color-blue-300) 52%, var(--color-white));
+}
+
+.listing-card--job .listing-card__media--placeholder > span {
+	width: clamp(5.5rem, 12vw, 9.5rem);
+	aspect-ratio: 1;
+	border-radius: 999rem;
+	background: color-mix(in srgb, var(--color-white) 38%, transparent);
+}
+
 .listing-card__body {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: var(--space-xs);
+	gap: clamp(0.35rem, 1vw, var(--space-xs));
 	min-height: clamp(12rem, 42vw, 18rem);
-	padding: var(--space-md);
+	padding: clamp(1rem, 3.5vw, var(--space-md));
 	color: var(--color-blue-900);
 	background: var(--listing-card-bg);
 	transition: background var(--transition-base);
@@ -126,10 +159,12 @@
 }
 
 .listing-card__title {
-	font-size: clamp(1.45rem, 4vw, 2.45rem);
+	min-width: 0;
+	font-size: clamp(1.25rem, 3.4vw, 2.45rem);
 	font-weight: 300;
-	letter-spacing: 0.12em;
+	letter-spacing: clamp(0.08em, 0.8vw, 0.12em);
 	line-height: var(--line-height-tight);
+	overflow-wrap: anywhere;
 	text-transform: uppercase;
 }
 
@@ -137,8 +172,8 @@
 	display: grid;
 	place-items: center;
 	align-self: stretch;
-	min-height: clamp(4.5rem, 9vw, 7rem);
-	margin-block: var(--space-xs);
+	min-height: clamp(3.75rem, 8vw, 7rem);
+	margin-block: clamp(0.25rem, 1vw, var(--space-xs));
 }
 
 .listing-card__logo img {
@@ -149,8 +184,41 @@
 }
 
 .listing-card__text {
-	font-size: var(--font-size-sm);
+	display: -webkit-box;
+	min-width: 0;
+	overflow: hidden;
+	font-size: clamp(0.78rem, 1.7vw, var(--font-size-sm));
 	line-height: 1.45;
+	overflow-wrap: anywhere;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+}
+
+.listing-card--job .listing-card__body {
+	justify-content: center;
+	gap: clamp(0.45rem, 1vw, var(--space-xs));
+	min-height: clamp(10.5rem, 30vw, 15.5rem);
+	padding: clamp(1rem, 2.2vw, 1.75rem);
+}
+
+.listing-card--job .listing-card__title {
+	display: -webkit-box;
+	overflow: hidden;
+	font-size: clamp(1rem, 1.45vw, 1.45rem);
+	letter-spacing: clamp(0.055em, 0.35vw, 0.085em);
+	line-height: 1.18;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 5;
+}
+
+.listing-card--job .listing-card__meta {
+	font-size: clamp(0.66rem, 0.9vw, 0.78rem);
+	letter-spacing: 0.14em;
+}
+
+.listing-card--job .listing-card__text {
+	font-size: clamp(0.74rem, 1vw, 0.86rem);
+	-webkit-line-clamp: 2;
 }
 
 @media (min-width: 44rem) {
@@ -164,6 +232,10 @@
 		height: 100%;
 	}
 
+	.listing-card__media--placeholder {
+		min-height: 100%;
+	}
+
 	.listing-card__media img {
 		aspect-ratio: 1;
 	}
@@ -171,6 +243,10 @@
 	.listing-card__body {
 		order: -1;
 		min-height: clamp(15rem, 28vw, 22rem);
+	}
+
+	.listing-card--job .listing-card__body {
+		min-height: clamp(12rem, 19vw, 16.5rem);
 	}
 
 	.listing-card:nth-child(4n + 3) .listing-card__body,
@@ -191,5 +267,17 @@
 
 	.listing-card__body {
 		padding: clamp(1.25rem, 2vw, 2rem);
+	}
+
+	.listing-card--job .listing-card__body {
+		padding: clamp(1.15rem, 1.45vw, 1.55rem);
+	}
+
+	.listing-card__text {
+		-webkit-line-clamp: 5;
+	}
+
+	.listing-card--job .listing-card__text {
+		-webkit-line-clamp: 2;
 	}
 }

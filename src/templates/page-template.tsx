@@ -174,15 +174,21 @@ const LocationList: React.FC<{
 
 					return (
 						<li
-							className={`listing-card${image ? " listing-card--has-media" : ""}`}
+							className="listing-card listing-card--has-media"
 							key={`${location.id}-${categoryKey}`}
 						>
 							<a className="listing-card__link" href={location.path}>
-								{image ? (
-									<span className="listing-card__media">
+								<span
+									className={`listing-card__media${
+										image ? "" : " listing-card__media--placeholder"
+									}`}
+								>
+									{image ? (
 										<img src={image} alt="" loading="lazy" />
-									</span>
-								) : null}
+									) : (
+										<span>{categoryLabel}</span>
+									)}
+								</span>
 								<span className="listing-card__body">
 									<span className="listing-card__meta">{categoryLabel}</span>
 									{logo ? (
@@ -282,33 +288,43 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 				<p>Aktuelle Jobs in den RathausGalerien und bei unseren Partnern.</p>
 			</header>
 			<ul className="listing-grid listing-grid--jobs">
-				{items.map((job) => (
-					<li
-						className={`listing-card listing-card--job${job.frontmatter.images?.[0] ? " listing-card--has-media" : ""}`}
-						key={job.id}
-					>
-						<a className="listing-card__link" href={job.path}>
-							{job.frontmatter.images?.[0] ? (
-								<span className="listing-card__media">
-									<img src={job.frontmatter.images[0]} alt="" loading="lazy" />
+				{items.map((job) => {
+					const image = job.frontmatter.images?.[0];
+
+					return (
+						<li
+							className="listing-card listing-card--job listing-card--has-media"
+							key={job.id}
+						>
+							<a className="listing-card__link" href={job.path}>
+								<span
+									className={`listing-card__media${
+										image ? "" : " listing-card__media--placeholder"
+									}`}
+								>
+									{image ? (
+										<img src={image} alt="" loading="lazy" />
+									) : (
+										<span aria-hidden="true" />
+									)}
 								</span>
-							) : null}
-							<span className="listing-card__body">
-								{job.frontmatter.location ? (
-									<span className="listing-card__meta">
-										{job.frontmatter.location}
-									</span>
-								) : null}
-								<span className="listing-card__title">{job.title}</span>
-								{job.frontmatter.specification ? (
-									<span className="listing-card__text">
-										{job.frontmatter.specification}
-									</span>
-								) : null}
-							</span>
-						</a>
-					</li>
-				))}
+								<span className="listing-card__body">
+									{job.frontmatter.location ? (
+										<span className="listing-card__meta">
+											{job.frontmatter.location}
+										</span>
+									) : null}
+									<span className="listing-card__title">{job.title}</span>
+									{job.frontmatter.specification ? (
+										<span className="listing-card__text">
+											{job.frontmatter.specification}
+										</span>
+									) : null}
+								</span>
+							</a>
+						</li>
+					);
+				})}
 			</ul>
 		</section>
 	);
