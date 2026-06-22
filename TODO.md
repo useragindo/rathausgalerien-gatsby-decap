@@ -62,6 +62,11 @@
   - Markdown links in content blocks render as CTA-style pills
   - first magazine/Fashion/Food feature media use a stronger mosaic grid from tablet upward
 - Improved legacy Markdown link cleanup by removing empty imported links and normalizing `static/media` links.
+- Refined the mobile header against the first mobile reference:
+  - visible quick-access icons on small screens
+  - smaller mobile logo/header proportions
+  - shorter burger/menu lines
+  - full-screen mobile menu panel below the sticky header
 
 ### Milestone 4 — Shops, gastronomy, and jobs started
 
@@ -151,11 +156,9 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
    - teaser tiles
    - link/action cards
 4. Re-check the designed location/job detail pages in-browser against the latest screenshots after the detail polish pass.
-5. Refine the header/menu against both references:
-   - mobile logo scale and spacing
-   - burger line length/position
-   - shortcut icon spacing
-   - full-screen menu behavior
+5. Continue header/menu QA against both references:
+   - verify refined mobile logo, shortcut icons, burger, and full-screen menu in-browser
+   - tune desktop header proportions if needed
    - language switch placement
 6. Continue improving Markdown/link rendering if more imported edge cases appear.
 7. Start with `/`, then reuse the same block system for standard pages.
