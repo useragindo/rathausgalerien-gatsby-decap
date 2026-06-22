@@ -84,16 +84,16 @@
   - simplified hover/focus states so cards no longer jump or zoom on hover
   - fixed listing card hover readability by preventing global pink link hover color from affecting card text
 - Built and refined first-pass location detail pages with:
-  - reference-style large image hero
+  - reference-style 16:9 image hero
   - three colored info tiles for brand/category, opening hours, and contact
   - compact text/image detail section for shops and gastronomy
   - gallery rendering for remaining images
   - generic SEO copy cleanup for page body/meta descriptions
   - phone, address, and external URL normalization
-- Built first-pass job detail pages with:
+- Built and refined first-pass job detail pages with:
   - back navigation to the jobs overview
-  - split hero using job image plus pastel intro panel where available
-  - job profile sidebar for company, position, and employment scope
+  - same reference-style 16:9 hero, colored info tiles, and compact text/image detail layout as shop/gastronomy pages
+  - job tiles for career/company, position/scope, and application info
   - styled Markdown job description panel
   - gallery support for additional job images
 - Improved Markdown rendering for imported content by preserving bold text and rendering empty imported links as text instead of broken anchors.
@@ -154,7 +154,7 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 ### Milestone 4 — Shops, gastronomy, and jobs
 
 1. Visually QA the refined shop/gastronomy/job split cards against the job reference and tune final spacing/color/image crops.
-2. Visually QA location and job detail pages against the references, especially hero crop, info tile height, logo scale, text/image spacing, and mobile stacking.
+2. Visually QA location and job detail pages against the references, especially 16:9 hero crop, info tile height, logo scale, text/image spacing, and mobile stacking.
 3. Polish job body typography if more imported Markdown edge cases appear.
 4. Add filtering/search only after the static layouts are solid.
 
