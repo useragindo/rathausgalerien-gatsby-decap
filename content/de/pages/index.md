@@ -7,7 +7,7 @@ seo:
   description: Suchen Sie ein Shoppingcenter in Innsbruck? Die RathausGalerien
     bieten ein einzigartiges Einkaufserlebnis und vielfältige Shops. Besuchen
     Sie uns vor Ort!
-  title: Shoppen in Innsbruck
+  title: Shopping
 blocks:
   - date: ""
     header: OUT NOW.
