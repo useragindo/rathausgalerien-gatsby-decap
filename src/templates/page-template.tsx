@@ -5,6 +5,7 @@ import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
 import { MarkdownContent } from "../lib/content/markdown";
 import type {
+	NormalizedCategory,
 	NormalizedJob,
 	NormalizedLocation,
 	NormalizedPage,
@@ -18,6 +19,7 @@ type PageTemplateContext = {
 	navigation: SiteNavigationItem[];
 	locations: NormalizedLocation[];
 	jobs: NormalizedJob[];
+	categories: NormalizedCategory[];
 };
 
 type PageTemplateProps = PageProps<Record<string, never>, PageTemplateContext>;
@@ -49,18 +51,109 @@ const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => ({
 });
 
 const getLocationImage = (location: NormalizedLocation): string | undefined =>
-	location.frontmatter.images?.[0] ?? location.frontmatter.logo ?? undefined;
+	location.frontmatter.images?.[0] ?? undefined;
 
-const LocationList: React.FC<{
-	locations: NormalizedLocation[];
-	language: string;
-	group: "brand" | "culinary";
-}> = ({ locations, language, group }) => {
-	const items = locations
+const normalizeCategoryKey = (value: string): string =>
+	value.trim().toLowerCase();
+
+const stripMarkdown = (value: string): string =>
+	value
+		.replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+		.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+		.replace(/^#{1,6}\s+/gm, "")
+		.replace(/[>*_`~-]/g, "")
+		.replace(/\s+/g, " ")
+		.trim();
+
+const truncateText = (value: string, maxLength = 135): string => {
+	if (value.length <= maxLength) {
+		return value;
+	}
+
+	const truncated = value
+		.slice(0, maxLength)
+		.replace(/\s+\S*$/, "")
+		.trim();
+	return `${truncated || value.slice(0, maxLength).trim()} …`;
+};
+
+const getFirstBodyParagraph = (body?: string): string | undefined => {
+	if (!body) {
+		return undefined;
+	}
+
+	return body
+		.split(/\n{2,}/)
+		.map(stripMarkdown)
+		.find((paragraph) => paragraph.length > 0);
+};
+
+const getLocationCardText = (location: NormalizedLocation): string => {
+	const bodyText = getFirstBodyParagraph(location.body);
+	const description = location.description
+		? stripMarkdown(location.description)
+		: undefined;
+	const cleanedDescription = description?.replace(
+		/^Hier finden Sie Informationen zu .+? in den RathausGalerien\.?$/i,
+		"",
+	);
+	const text =
+		bodyText ||
+		cleanedDescription ||
+		`${location.title} in den RathausGalerien.`;
+
+	return truncateText(text);
+};
+
+type LocationListingCard = {
+	location: NormalizedLocation;
+	categoryLabel: string;
+	categoryKey: string;
+};
+
+const getLocationListingCards = (
+	locations: NormalizedLocation[],
+	categories: NormalizedCategory[],
+	language: string,
+	group: "brand" | "culinary",
+): LocationListingCard[] => {
+	const fallbackLabel = group === "culinary" ? "Genuss" : "Shop";
+	const categoryByUuid = new Map(
+		categories
+			.filter((category) => category.language === language)
+			.map((category) => [normalizeCategoryKey(category.uuid), category]),
+	);
+
+	return locations
 		.filter(
 			(location) => location.language === language && location.group === group,
 		)
-		.sort((a, b) => a.title.localeCompare(b.title));
+		.sort((a, b) => a.title.localeCompare(b.title))
+		.flatMap((location) => {
+			const labels = (location.frontmatter.categories ?? [])
+				.map(
+					(categoryUuid) =>
+						categoryByUuid.get(normalizeCategoryKey(categoryUuid))?.name,
+				)
+				.filter((label): label is string => Boolean(label));
+			const uniqueLabels = [...new Set(labels)];
+			const cardLabels = uniqueLabels.length ? uniqueLabels : [fallbackLabel];
+
+			return cardLabels.map((categoryLabel) => ({
+				location,
+				categoryLabel,
+				categoryKey: normalizeCategoryKey(categoryLabel),
+			}));
+		});
+};
+
+const LocationList: React.FC<{
+	locations: NormalizedLocation[];
+	categories: NormalizedCategory[];
+	language: string;
+	group: "brand" | "culinary";
+}> = ({ locations, categories, language, group }) => {
+	const items = getLocationListingCards(locations, categories, language, group);
 	const title = group === "culinary" ? "Gastronomie" : "Shops";
 	const description =
 		group === "culinary"
@@ -73,7 +166,7 @@ const LocationList: React.FC<{
 
 	return (
 		<section
-			className="listing-section"
+			className={`listing-section listing-section--${group}`}
 			aria-labelledby={`${group}-list-title`}
 		>
 			<header className="listing-section__header">
@@ -82,17 +175,14 @@ const LocationList: React.FC<{
 				<p>{description}</p>
 			</header>
 			<ul className="listing-grid">
-				{items.map((location) => {
+				{items.map(({ location, categoryLabel, categoryKey }) => {
 					const image = getLocationImage(location);
-					const categories = location.frontmatter.categories ?? [];
-					const logoOnly =
-						!location.frontmatter.images?.length &&
-						Boolean(location.frontmatter.logo);
+					const logo = location.frontmatter.logo;
 
 					return (
 						<li
-							className={`listing-card${logoOnly ? " listing-card--logo-only" : ""}`}
-							key={location.id}
+							className={`listing-card${image ? " listing-card--has-media" : ""}`}
+							key={`${location.id}-${categoryKey}`}
 						>
 							<a className="listing-card__link" href={location.path}>
 								{image ? (
@@ -101,16 +191,24 @@ const LocationList: React.FC<{
 									</span>
 								) : null}
 								<span className="listing-card__body">
-									<span className="listing-card__meta">
-										{categories[0] ??
-											(group === "culinary" ? "Genuss" : "Shop")}
-									</span>
-									<span className="listing-card__title">{location.title}</span>
-									{location.description ? (
-										<span className="listing-card__text">
-											{location.description}
+									<span className="listing-card__meta">{categoryLabel}</span>
+									{logo ? (
+										<span className="listing-card__logo">
+											<img
+												src={logo}
+												alt={`${location.title} Logo`}
+												loading="lazy"
+											/>
+											<span className="visually-hidden">{location.title}</span>
 										</span>
-									) : null}
+									) : (
+										<span className="listing-card__title">
+											{location.title}
+										</span>
+									)}
+									<span className="listing-card__text">
+										{getLocationCardText(location)}
+									</span>
 									<span className="listing-card__cta">Mehr erfahren</span>
 								</span>
 							</a>
@@ -182,7 +280,10 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 	}
 
 	return (
-		<section className="listing-section" aria-labelledby="job-list-title">
+		<section
+			className="listing-section listing-section--jobs"
+			aria-labelledby="job-list-title"
+		>
 			<header className="listing-section__header">
 				<p className="listing-section__eyebrow">Karriere</p>
 				<h2 id="job-list-title">Offene Stellen</h2>
@@ -190,7 +291,10 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 			</header>
 			<ul className="listing-grid listing-grid--jobs">
 				{items.map((job) => (
-					<li className="listing-card listing-card--job" key={job.id}>
+					<li
+						className={`listing-card listing-card--job${job.frontmatter.images?.[0] ? " listing-card--has-media" : ""}`}
+						key={job.id}
+					>
 						<a className="listing-card__link" href={job.path}>
 							{job.frontmatter.images?.[0] ? (
 								<span className="listing-card__media">
@@ -220,7 +324,7 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 };
 
 const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
-	const { page, navigation, locations, jobs } = pageContext;
+	const { page, navigation, locations, jobs, categories } = pageContext;
 	const mainNavigation = toNavigationItems(navigation, page.language, "main");
 	const footerNavigation = toNavigationItems(navigation, page.language, "misc");
 
@@ -252,6 +356,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			{page.key === "brands" ? (
 				<LocationList
 					locations={locations}
+					categories={categories}
 					language={page.language}
 					group="brand"
 				/>
@@ -259,6 +364,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			{page.key === "culinary" ? (
 				<LocationList
 					locations={locations}
+					categories={categories}
 					language={page.language}
 					group="culinary"
 				/>

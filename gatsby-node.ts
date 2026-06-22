@@ -7,7 +7,10 @@ const pageTemplate = path.resolve("./src/templates/page-template.tsx");
 const locationTemplate = path.resolve("./src/templates/location-template.tsx");
 const jobTemplate = path.resolve("./src/templates/job-template.tsx");
 
-const makeUniquePath = (requestedPath: string, usedPaths: Map<string, number>): string => {
+const makeUniquePath = (
+	requestedPath: string,
+	usedPaths: Map<string, number>,
+): string => {
 	const count = usedPaths.get(requestedPath) ?? 0;
 	usedPaths.set(requestedPath, count + 1);
 
@@ -20,15 +23,20 @@ const makeUniquePath = (requestedPath: string, usedPaths: Map<string, number>): 
 
 export const createPages: GatsbyNode["createPages"] = async (args) => {
 	const { actions, reporter } = args;
-	const getNodesByType = (args as { getNodesByType?: (type: string) => unknown[] }).getNodesByType;
+	const getNodesByType = (
+		args as { getNodesByType?: (type: string) => unknown[] }
+	).getNodesByType;
 
 	if (!getNodesByType) {
-		reporter.panicOnBuild("Gatsby getNodesByType API is unavailable; cannot create content pages.");
+		reporter.panicOnBuild(
+			"Gatsby getNodesByType API is unavailable; cannot create content pages.",
+		);
 		return;
 	}
 
 	const mdxNodes = getNodesByType("Mdx") as ImportedMdxNode[];
-	const { pages, locations, jobs, navigation } = normalizeNodes(mdxNodes);
+	const { pages, locations, jobs, categories, navigation } =
+		normalizeNodes(mdxNodes);
 	const usedPaths = new Map<string, number>();
 
 	for (const page of pages) {
@@ -40,6 +48,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				navigation,
 				locations,
 				jobs,
+				categories,
 			},
 		});
 	}
@@ -67,6 +76,6 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 	}
 
 	reporter.info(
-		`Created ${pages.length} content pages, ${locations.length} location pages, and ${jobs.length} job pages.`,
+		`Created ${pages.length} content pages, ${locations.length} location pages, ${jobs.length} job pages, and loaded ${categories.length} categories.`,
 	);
 };

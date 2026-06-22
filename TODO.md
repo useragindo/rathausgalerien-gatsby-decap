@@ -67,11 +67,19 @@
 
 - Replaced plain generated shop/gastronomy/job lists with responsive listing card markup.
 - Added first-pass listing card styling with:
-  - pastel card rhythm
-  - image/logo media areas
+  - job-reference split-card layout for shops, gastronomy, and jobs
+  - alternating text/image order by row
+  - pastel text panels
+  - image media areas
   - category/meta labels
   - CTA text
-  - responsive grid and mosaic rhythm
+- Refined listing cards after design review:
+  - normalized imported category content and passed it to page templates
+  - resolved category UUIDs to readable category labels
+  - rendered one shop/gastronomy card per assigned category
+  - moved location logos into the colored text panel
+  - kept location/shop photos in the media panel
+  - shortened listing card text and removed generic imported SEO copy where possible
 
 ## Current validation status
 
@@ -81,6 +89,7 @@
   - 21 content pages
   - 68 location pages
   - 8 job pages
+  - 37 normalized categories
 
 Known non-blocking warnings:
 
@@ -127,7 +136,7 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 
 ### Milestone 4 — Shops, gastronomy, and jobs
 
-1. Visually QA the new shop/gastronomy/job listing cards and tune image/logo handling.
+1. Visually QA the refined shop/gastronomy/job split cards against the job reference and tune final spacing/color/image crops.
 2. Build location detail pages with logo, gallery, opening hours, and contact data.
 3. Build jobs detail UI.
 4. Add filtering/search only after the static layouts are solid.

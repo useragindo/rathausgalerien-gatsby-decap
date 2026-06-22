@@ -103,6 +103,15 @@ export type NormalizedJob = {
 	frontmatter: ImportedFrontmatter;
 };
 
+export type NormalizedCategory = {
+	id: string;
+	language: LanguageCode;
+	uuid: string;
+	name: string;
+	slug: string;
+	frontmatter: ImportedFrontmatter;
+};
+
 export type SiteNavigationItem = {
 	label: string;
 	url: string;

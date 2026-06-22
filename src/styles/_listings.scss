@@ -2,7 +2,6 @@
 	max-width: var(--container-lg);
 	margin: var(--space-xl) auto 0;
 	padding-block: var(--space-xl);
-	border-block-start: 2px dotted color-mix(in srgb, var(--color-blue-900) 30%, transparent);
 }
 
 .listing-section__header {
@@ -34,9 +33,10 @@
 .listing-grid {
 	list-style: none;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-	gap: var(--space-sm);
-	margin: 0;
+	grid-template-columns: 1fr;
+	gap: var(--space-md);
+	max-width: 78rem;
+	margin: 0 auto;
 	padding: 0;
 }
 
@@ -46,31 +46,16 @@
 
 .listing-card__link {
 	display: grid;
-	grid-template-rows: auto 1fr;
 	height: 100%;
 	min-height: 100%;
 	color: var(--color-blue-900);
-	background: color-mix(in srgb, var(--color-white) 60%, transparent);
+	background: var(--color-surface);
 	text-decoration: none;
-	transition:
-		background var(--transition-base),
-		transform var(--transition-base);
+	transition: transform var(--transition-base);
 }
 
-.listing-card:nth-child(4n + 1) .listing-card__link {
-	background: color-mix(in srgb, var(--color-pink) 88%, var(--color-white));
-}
-
-.listing-card:nth-child(4n + 2) .listing-card__link {
-	background: color-mix(in srgb, var(--color-yellow) 88%, var(--color-white));
-}
-
-.listing-card:nth-child(4n + 3) .listing-card__link {
-	background: color-mix(in srgb, var(--color-lavender) 82%, var(--color-white));
-}
-
-.listing-card:nth-child(4n + 4) .listing-card__link {
-	background: color-mix(in srgb, var(--color-blue-300) 76%, var(--color-white));
+.listing-card--has-media .listing-card__link {
+	grid-template-rows: auto 1fr;
 }
 
 .listing-card__link:hover,
@@ -92,15 +77,6 @@
 	transition: transform 360ms ease;
 }
 
-.listing-card--logo-only .listing-card__media {
-	padding: var(--space-lg);
-	background: var(--color-white);
-}
-
-.listing-card--logo-only .listing-card__media img {
-	object-fit: contain;
-}
-
 .listing-card__link:hover .listing-card__media img,
 .listing-card__link:focus-visible .listing-card__media img {
 	transform: scale(1.025);
@@ -109,8 +85,23 @@
 .listing-card__body {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	gap: var(--space-xs);
+	min-height: clamp(12rem, 42vw, 18rem);
 	padding: var(--space-md);
+	background: color-mix(in srgb, var(--color-pink) 88%, var(--color-white));
+}
+
+.listing-card:nth-child(4n + 2) .listing-card__body {
+	background: color-mix(in srgb, var(--color-yellow) 90%, var(--color-white));
+}
+
+.listing-card:nth-child(4n + 3) .listing-card__body {
+	background: color-mix(in srgb, var(--color-blue-300) 82%, var(--color-white));
+}
+
+.listing-card:nth-child(4n + 4) .listing-card__body {
+	background: color-mix(in srgb, var(--color-lavender) 84%, var(--color-white));
 }
 
 .listing-card__meta {
@@ -122,11 +113,26 @@
 }
 
 .listing-card__title {
-	font-size: clamp(1.35rem, 4vw, 2.35rem);
+	font-size: clamp(1.45rem, 4vw, 2.45rem);
 	font-weight: 300;
-	letter-spacing: 0.08em;
+	letter-spacing: 0.12em;
 	line-height: var(--line-height-tight);
 	text-transform: uppercase;
+}
+
+.listing-card__logo {
+	display: grid;
+	place-items: center;
+	align-self: stretch;
+	min-height: clamp(4.5rem, 9vw, 7rem);
+	margin-block: var(--space-xs);
+}
+
+.listing-card__logo img {
+	width: auto;
+	max-width: min(13rem, 82%);
+	max-height: clamp(3rem, 7vw, 5.25rem);
+	object-fit: contain;
 }
 
 .listing-card__text {
@@ -135,8 +141,7 @@
 }
 
 .listing-card__cta {
-	margin-block-start: auto;
-	padding-block-start: var(--space-sm);
+	margin-block-start: var(--space-sm);
 	font-size: var(--font-size-xs);
 	font-weight: 700;
 	letter-spacing: 0.14em;
@@ -147,36 +152,43 @@
 	content: " →";
 }
 
-.listing-card--job .listing-card__media img {
-	aspect-ratio: 4 / 5;
-}
-
-@media (min-width: 48rem) {
-	.listing-grid {
-		gap: var(--space-md);
+@media (min-width: 44rem) {
+	.listing-card--has-media .listing-card__link {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-rows: none;
 	}
 
-	.listing-grid--jobs {
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+	.listing-card__media,
+	.listing-card__media img {
+		height: 100%;
+	}
+
+	.listing-card__media img {
+		aspect-ratio: 1;
+	}
+
+	.listing-card__body {
+		order: -1;
+		min-height: clamp(15rem, 28vw, 22rem);
+	}
+
+	.listing-card:nth-child(4n + 3) .listing-card__body,
+	.listing-card:nth-child(4n + 4) .listing-card__body {
+		order: 0;
+	}
+
+	.listing-card:nth-child(4n + 3) .listing-card__media,
+	.listing-card:nth-child(4n + 4) .listing-card__media {
+		order: -1;
 	}
 }
 
 @media (min-width: 72rem) {
 	.listing-grid {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-	}
-
-	.listing-grid--jobs {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
-	.listing-card:nth-child(6n + 1),
-	.listing-card:nth-child(6n + 5) {
-		grid-row: span 2;
-	}
-
-	.listing-card:nth-child(6n + 1) .listing-card__media img,
-	.listing-card:nth-child(6n + 5) .listing-card__media img {
-		aspect-ratio: 4 / 5;
+	.listing-card__body {
+		padding: clamp(1.25rem, 2vw, 2rem);
 	}
 }

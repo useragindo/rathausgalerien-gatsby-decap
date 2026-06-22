@@ -2,6 +2,7 @@ import type {
 	ImportedFrontmatter,
 	ImportedMdxNode,
 	LanguageCode,
+	NormalizedCategory,
 	NormalizedJob,
 	NormalizedLocation,
 	NormalizedPage,
@@ -24,7 +25,9 @@ export const trim = (value?: string | null): string | undefined => {
 export const isLanguageCode = (value?: string | null): value is LanguageCode =>
 	value === "de" || value === "en";
 
-export const getLanguage = (frontmatter?: ImportedFrontmatter | null): LanguageCode =>
+export const getLanguage = (
+	frontmatter?: ImportedFrontmatter | null,
+): LanguageCode =>
 	isLanguageCode(frontmatter?.locale) ? frontmatter.locale : DEFAULT_LANGUAGE;
 
 export const slugify = (value: string): string =>
@@ -101,7 +104,9 @@ export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
 const getLocationBaseSlug = (group?: string | null): string =>
 	group === "culinary" ? "gastronomie" : "shops";
 
-export const normalizeLocation = (node: ImportedMdxNode): NormalizedLocation | null => {
+export const normalizeLocation = (
+	node: ImportedMdxNode,
+): NormalizedLocation | null => {
 	const frontmatter = node.frontmatter;
 
 	if (!frontmatter || frontmatter.type !== "location") {
@@ -109,7 +114,8 @@ export const normalizeLocation = (node: ImportedMdxNode): NormalizedLocation | n
 	}
 
 	const language = getLanguage(frontmatter);
-	const title = trim(frontmatter.seo?.title) ?? trim(frontmatter.name) ?? node.id;
+	const title =
+		trim(frontmatter.seo?.title) ?? trim(frontmatter.name) ?? node.id;
 	const slug = trim(frontmatter.seo?.url) ?? slugify(title);
 	const baseSlug = getLocationBaseSlug(frontmatter.group);
 
@@ -134,7 +140,10 @@ export const normalizeJob = (node: ImportedMdxNode): NormalizedJob | null => {
 	}
 
 	const language = getLanguage(frontmatter);
-	const titleParts = [trim(frontmatter.location), trim(frontmatter.position)].filter(Boolean);
+	const titleParts = [
+		trim(frontmatter.location),
+		trim(frontmatter.position),
+	].filter(Boolean);
 	const title = titleParts.join(" – ") || trim(frontmatter.position) || "Job";
 	const slug = getFileSlug(node) ?? slugify(title);
 
@@ -149,7 +158,36 @@ export const normalizeJob = (node: ImportedMdxNode): NormalizedJob | null => {
 	};
 };
 
-export const createNavigationFromPages = (pages: NormalizedPage[]): SiteNavigationItem[] =>
+export const normalizeCategory = (
+	node: ImportedMdxNode,
+): NormalizedCategory | null => {
+	const frontmatter = node.frontmatter;
+
+	if (!frontmatter || frontmatter.type !== "category") {
+		return null;
+	}
+
+	const language = getLanguage(frontmatter);
+	const uuid = trim(frontmatter.uuid);
+	const name = trim(frontmatter.name);
+
+	if (!uuid || !name) {
+		return null;
+	}
+
+	return {
+		id: node.id,
+		language,
+		uuid,
+		name,
+		slug: getFileSlug(node) ?? slugify(name),
+		frontmatter,
+	};
+};
+
+export const createNavigationFromPages = (
+	pages: NormalizedPage[],
+): SiteNavigationItem[] =>
 	pages
 		.filter((page) => trim(page.frontmatter.menu))
 		.map((page) => ({
@@ -162,16 +200,24 @@ export const createNavigationFromPages = (pages: NormalizedPage[]): SiteNavigati
 		.sort((a, b) => a.order - b.order || a.label.localeCompare(b.label));
 
 export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
-	const pages = nodes.map(normalizePage).filter((page): page is NormalizedPage => Boolean(page));
+	const pages = nodes
+		.map(normalizePage)
+		.filter((page): page is NormalizedPage => Boolean(page));
 	const locations = nodes
 		.map(normalizeLocation)
 		.filter((location): location is NormalizedLocation => Boolean(location));
-	const jobs = nodes.map(normalizeJob).filter((job): job is NormalizedJob => Boolean(job));
+	const jobs = nodes
+		.map(normalizeJob)
+		.filter((job): job is NormalizedJob => Boolean(job));
+	const categories = nodes
+		.map(normalizeCategory)
+		.filter((category): category is NormalizedCategory => Boolean(category));
 
 	return {
 		pages,
 		locations,
 		jobs,
+		categories,
 		navigation: createNavigationFromPages(pages),
 	};
 };
