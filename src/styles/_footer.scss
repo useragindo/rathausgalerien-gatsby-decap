@@ -116,4 +116,28 @@
         flex-direction: row;
         gap: 0 var(--space-md);
     }
+
+    /* style social icon appearance: small rounded square with icon centered */
+    .site-footer__nav-list--social a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 0.6rem;
+        background: color-mix(in srgb, var(--color-white) 10%, transparent);
+        color: var(--color-white);
+        text-decoration: none;
+    }
+
+    /* hide the textual label for social links on larger screens */
+    .site-footer__nav-list--social .site-footer__nav-label {
+        display: none;
+    }
+
+    .site-footer__social-icon svg {
+        display: block;
+        width: 1.1rem;
+        height: 1.1rem;
+    }
 }
