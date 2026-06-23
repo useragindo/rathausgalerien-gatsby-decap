@@ -14,7 +14,6 @@ const DEFAULT_LANGUAGE: LanguageCode = "de";
 const PAGE_PATH_OVERRIDES: Record<string, string> = {
 	brands: "shops",
 	culinary: "gastronomie",
-	locations: "ihr-besuch",
 };
 
 export const trim = (value?: string | null): string | undefined => {

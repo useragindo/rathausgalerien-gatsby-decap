@@ -33,6 +33,12 @@ export type ImportedFrontmatter = {
 	menu?: string | null;
 	seo?: ImportedSeo | null;
 	blocks?: ImportedContentBlock[] | null;
+	photos?: Array<{
+		image?: string | null;
+		label?: string | null;
+		viewId?: string | null;
+	}> | null;
+	traffic_information?: string | null;
 	teaser?: {
 		image?: string | null;
 		title?: string | null;

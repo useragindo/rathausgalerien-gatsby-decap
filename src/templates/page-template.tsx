@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { ContentBlockRenderer } from "../components/content-blocks";
+import { LocationPlan } from "../components/location-plan";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
 import {
@@ -358,6 +359,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 
 	const pageClassName = `page page--${page.key}`;
 	const isHomepage = page.key === "index";
+	const isLocationPlan = page.key === "locations";
 
 	return (
 		<SiteLayout
@@ -375,10 +377,20 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 						) : null}
 					</header>
 				) : null}
-				<ContentBlockRenderer blocks={page.blocks} />
-				<div className="page-body">
-					<MarkdownContent content={page.body} />
-				</div>
+				{isLocationPlan ? (
+					<LocationPlan
+						page={page}
+						locations={locations}
+						categories={categories}
+					/>
+				) : (
+					<>
+						<ContentBlockRenderer blocks={page.blocks} />
+						<div className="page-body">
+							<MarkdownContent content={page.body} />
+						</div>
+					</>
+				)}
 			</article>
 
 			{page.key === "brands" ? (
