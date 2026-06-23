@@ -30,6 +30,52 @@
 	font-size: var(--font-size-md);
 }
 
+.listing-filters {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.75rem;
+	max-width: 78rem;
+	margin: 0 auto var(--space-lg);
+	padding-inline: var(--space-sm);
+}
+
+.listing-filters__pill {
+	padding: 0.7rem 1.2rem;
+	border: 1px solid color-mix(in srgb, var(--color-blue-900) 18%, transparent);
+	border-radius: 999rem;
+	font: inherit;
+	font-size: var(--font-size-xs);
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	line-height: 1;
+	text-transform: uppercase;
+	color: var(--color-blue-900);
+	background: color-mix(in srgb, var(--color-white) 52%, transparent);
+	cursor: pointer;
+	transition:
+		background var(--transition-base),
+		color var(--transition-base),
+		border-color var(--transition-base),
+		box-shadow var(--transition-base);
+}
+
+.listing-filters__pill:hover {
+	border-color: color-mix(in srgb, var(--color-blue-900) 38%, transparent);
+	background: color-mix(in srgb, var(--color-blue-300) 24%, var(--color-white));
+}
+
+.listing-filters__pill:focus-visible {
+	outline: 0.1875rem solid var(--color-blue-900);
+	outline-offset: 0.15rem;
+}
+
+.listing-filters__pill--active {
+	border-color: var(--color-blue-900);
+	color: var(--color-white);
+	background: var(--color-blue-900);
+}
+
 .listing-grid {
 	list-style: none;
 	display: grid;

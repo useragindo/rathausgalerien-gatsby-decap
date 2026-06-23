@@ -113,6 +113,11 @@ type LocationListingCard = {
 	categoryKey: string;
 };
 
+type ListingFilterOption = {
+	key: string;
+	label: string;
+};
+
 const getLocationListingCards = (
 	locations: NormalizedLocation[],
 	categories: NormalizedCategory[],
@@ -147,12 +152,50 @@ const LocationList: React.FC<{
 	language: string;
 	group: "brand" | "culinary";
 }> = ({ locations, categories, language, group }) => {
-	const items = getLocationListingCards(locations, categories, language, group);
+	const items = React.useMemo(
+		() => getLocationListingCards(locations, categories, language, group),
+		[locations, categories, language, group],
+	);
 	const title = group === "culinary" ? "Gastronomie" : "Shops";
 	const description =
 		group === "culinary"
 			? "Restaurants, Bars und Cafés mitten in den RathausGalerien."
 			: "Marken, Services und Boutiquen im Zentrum von Innsbruck.";
+	const hasCategoryFilter = group === "brand";
+	const filterOptions = React.useMemo<ListingFilterOption[]>(() => {
+		if (!hasCategoryFilter) {
+			return [];
+		}
+
+		const optionsByKey = new Map<string, ListingFilterOption>();
+
+		for (const item of items) {
+			if (!optionsByKey.has(item.categoryKey)) {
+				optionsByKey.set(item.categoryKey, {
+					key: item.categoryKey,
+					label: item.categoryLabel,
+				});
+			}
+		}
+
+		return Array.from(optionsByKey.values()).sort((a, b) =>
+			a.label.localeCompare(b.label, language),
+		);
+	}, [hasCategoryFilter, items, language]);
+	const [activeCategoryKey, setActiveCategoryKey] =
+		React.useState<string>("all");
+
+	React.useEffect(() => {
+		setActiveCategoryKey("all");
+	}, [language, group]);
+
+	const visibleItems = React.useMemo(
+		() =>
+			activeCategoryKey === "all"
+				? items
+				: items.filter((item) => item.categoryKey === activeCategoryKey),
+		[activeCategoryKey, items],
+	);
 
 	if (!items.length) {
 		return null;
@@ -168,8 +211,43 @@ const LocationList: React.FC<{
 				<h2 id={`${group}-list-title`}>{title}</h2>
 				<p>{description}</p>
 			</header>
+			{hasCategoryFilter && filterOptions.length > 0 ? (
+				<div
+					className="listing-filters"
+					role="toolbar"
+					aria-label="Shop-Kategorien filtern"
+				>
+					<button
+						type="button"
+						className={`listing-filters__pill${
+							activeCategoryKey === "all"
+								? " listing-filters__pill--active"
+								: ""
+						}`}
+						onClick={() => setActiveCategoryKey("all")}
+						aria-pressed={activeCategoryKey === "all"}
+					>
+						Alle
+					</button>
+					{filterOptions.map((option) => (
+						<button
+							key={option.key}
+							type="button"
+							className={`listing-filters__pill${
+								activeCategoryKey === option.key
+									? " listing-filters__pill--active"
+									: ""
+							}`}
+							onClick={() => setActiveCategoryKey(option.key)}
+							aria-pressed={activeCategoryKey === option.key}
+						>
+							{option.label}
+						</button>
+					))}
+				</div>
+			) : null}
 			<ul className="listing-grid">
-				{items.map(({ location, categoryLabel, categoryKey }) => {
+				{visibleItems.map(({ location, categoryLabel, categoryKey }) => {
 					const image = getLocationImage(location);
 					const logo = location.frontmatter.logo;
 
