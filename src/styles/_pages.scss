@@ -112,15 +112,51 @@
 	padding-block-start: var(--space-lg);
 }
 
-@media (max-width: 38rem) {
-	.home-intro {
-		margin-inline: calc(var(--page-gutter) * -0.35);
-	}
+	@media (max-width: 38rem) {
+		.home-intro,
+		.page--index {
+			width: auto;
+			margin-inline: calc(var(--page-gutter) * -0.72);
+		}
 
-	.home-intro__description {
-		padding-inline: var(--page-gutter);
+		.home-intro {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+			gap: clamp(0.45rem, 2vw, 0.7rem);
+			margin-block: 0 clamp(1.25rem, 5vw, 1.9rem);
+		}
+
+		.home-intro__media,
+		.home-intro__card {
+			min-height: clamp(9.75rem, 45vw, 12.25rem);
+		}
+
+		.home-intro__media img {
+			aspect-ratio: 1;
+		}
+
+		.home-intro__card {
+			padding: clamp(0.65rem, 3vw, 1rem);
+		}
+
+		.home-intro__card svg {
+			width: clamp(3.4rem, 15vw, 4.6rem);
+			margin-block-end: clamp(0.45rem, 2vw, 0.7rem);
+		}
+
+		.home-intro__card h1 {
+			font-size: clamp(1.15rem, 6vw, 1.6rem);
+			letter-spacing: 0.1em;
+		}
+
+		.home-intro__card p {
+			font-size: clamp(0.52rem, 2.35vw, 0.66rem);
+			letter-spacing: 0.09em;
+		}
+
+		.home-intro__description {
+			padding-inline: var(--page-gutter);
+		}
 	}
-}
 
 @media (min-width: 64rem) {
 	.home-intro,

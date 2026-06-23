@@ -151,15 +151,15 @@
 }
 
 	.page--index .content-block {
-		--home-tile-min: clamp(9.75rem, 42vw, 18rem);
-		--home-card-text: color-mix(in srgb, var(--color-blue-900) 78%, #6f8fa1);
+		--home-tile-min: clamp(10.5rem, 44.5vw, 18rem);
+		--home-card-text: color-mix(in srgb, var(--color-blue-900) 70%, #6f8fa1);
 
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: clamp(0.7rem, 2.5vw, 1.05rem);
-		margin-block: clamp(1.2rem, 4vw, 2.55rem);
-		padding-block: clamp(1.15rem, 4vw, 2.45rem) 0;
-		border-block-start: 2px dotted color-mix(in srgb, var(--color-blue-900) 22%, transparent);
+		gap: clamp(0.55rem, 2.05vw, 0.95rem);
+		margin-block: clamp(1.25rem, 4.5vw, 2.55rem);
+		padding-block: clamp(1.35rem, 5vw, 2.45rem) 0;
+		border-block-start: 2px dotted color-mix(in srgb, var(--color-blue-900) 24%, transparent);
 	}
 
 .page--index .content-block:first-child {
@@ -171,37 +171,37 @@
 		min-height: var(--home-tile-min);
 		flex-direction: column;
 		justify-content: center;
-		padding: clamp(0.8rem, 3.4vw, 2.1rem);
+		padding: clamp(0.65rem, 2.9vw, 1.9rem);
 		color: var(--home-card-text);
 		text-align: center;
 	}
 
 	.page--index .content-block__title {
-		max-width: 13ch;
+		max-width: 12ch;
 		margin-inline: auto;
 		margin-block-end: clamp(0.25rem, 1vw, 0.55rem);
 		color: inherit;
-		font-size: clamp(1rem, 5.2vw, 2.35rem);
+		font-size: clamp(1.08rem, 5.75vw, 2.35rem);
 		font-weight: 300;
 		line-height: 0.98;
-		letter-spacing: 0.085em;
+		letter-spacing: 0.075em;
 		text-transform: uppercase;
 	}
 
 	.page--index .content-block__text {
 		max-width: 34rem;
 		margin-inline: auto;
-		font-size: clamp(0.62rem, 2.45vw, 0.86rem);
+		font-size: clamp(0.58rem, 2.25vw, 0.84rem);
 		font-weight: 600;
-		line-height: 1.18;
-		letter-spacing: 0.035em;
+		line-height: 1.16;
+		letter-spacing: 0.025em;
 	}
 
 	.page--index .content-block__text > p:first-child {
-		font-size: clamp(0.66rem, 2.7vw, 0.94rem);
+		font-size: clamp(0.62rem, 2.45vw, 0.9rem);
 		font-weight: 700;
-		letter-spacing: 0.075em;
-		line-height: 1.15;
+		letter-spacing: 0.06em;
+		line-height: 1.12;
 		text-transform: uppercase;
 	}
 
@@ -209,7 +209,7 @@
 		display: -webkit-box;
 		overflow: hidden;
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 4;
+		-webkit-line-clamp: 3;
 	}
 
 	.page--index .content-block__text > :nth-child(n + 4) {

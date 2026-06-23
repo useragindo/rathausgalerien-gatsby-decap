@@ -43,6 +43,24 @@ const getHeaderIconName = (item: NormalizedNavigationItem): HeaderIconName => {
 	return "default";
 };
 
+const getHeaderIconLabel = (item: NormalizedNavigationItem): string => {
+	const iconName = getHeaderIconName(item);
+
+	if (iconName === "phone") {
+		return "Kontakt";
+	}
+
+	if (iconName === "location") {
+		return "Anfahrt";
+	}
+
+	if (iconName === "hours") {
+		return "Geöffnet";
+	}
+
+	return item.label;
+};
+
 const HeaderIcon: React.FC<{ name: HeaderIconName }> = ({ name }) => {
 	if (name === "phone") {
 		return (
@@ -106,7 +124,7 @@ const renderIconNavigationItems = (items: NormalizedNavigationItem[]) =>
 				rel={item.openInNewTab ? "noreferrer" : undefined}
 			>
 				<HeaderIcon name={getHeaderIconName(item)} />
-				<span className="visually-hidden">{item.label}</span>
+				<span className="visually-hidden">{getHeaderIconLabel(item)}</span>
 			</a>
 		</li>
 	));
@@ -173,15 +191,20 @@ export const Header: React.FC<HeaderProps> = ({
 	siteTitle = "RathausGalerien",
 }) => {
 	const [isScrolled, setIsScrolled] = React.useState(false);
-	const mobileNavigation = combineNavigation(
-		mainNavigation,
-		utilityNavigation,
-		headerIconNavigation,
-	);
 	const iconNavigation = toIconNavigation(
 		mainNavigation,
 		utilityNavigation,
 		headerIconNavigation,
+	);
+	const mobileNavigation = combineNavigation(
+		mainNavigation,
+		utilityNavigation,
+	).filter(
+		(item) =>
+			!iconNavigation.some(
+				(iconItem) =>
+					iconItem.url === item.url && iconItem.label === item.label,
+			),
 	);
 
 	React.useEffect(() => {
@@ -235,11 +258,28 @@ export const Header: React.FC<HeaderProps> = ({
 								<span className="visually-hidden">Menü</span>
 							</summary>
 							<div className="site-header__mobile-panel">
+								<img
+									className="site-header__mobile-logo"
+									src="/media/_rathausgalerien.svg"
+									alt=""
+									width="210"
+									height="100"
+								/>
 								<nav aria-label="Mobile Navigation">
 									<ul className="site-header__nav-list site-header__nav-list--mobile">
 										{renderNavigationItems(mobileNavigation)}
 									</ul>
 								</nav>
+								{iconNavigation.length > 0 ? (
+									<nav
+										className="site-header__mobile-quick-nav"
+										aria-label="Schnellzugriffe"
+									>
+										<ul className="site-header__icon-list site-header__icon-list--mobile">
+											{renderIconNavigationItems(iconNavigation.slice(0, 3))}
+										</ul>
+									</nav>
+								) : null}
 							</div>
 						</details>
 					) : null}
