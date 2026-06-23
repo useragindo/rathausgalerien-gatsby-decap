@@ -67,6 +67,13 @@
   - smaller mobile logo/header proportions
   - shorter burger/menu lines
   - full-screen mobile menu panel below the sticky header
+- Browser-checked the homepage against `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/0001.png` and `temp/H001_148_01_Entwicklung_LO8_Desktop_RGB-umgewandelt-von-pdf.jpeg`, and moved the homepage styling closer to the references:
+  - balanced the mobile hero image/shopping tile proportions
+  - hid the extra intro description from the visual hero area
+  - converted imported homepage blocks into compact two-column tile clusters on mobile
+  - widened the desktop homepage content column to the reference-like `84vw` rhythm
+  - switched desktop homepage blocks to a compact four-column tile grid, with one-image sections split 50/50
+  - capped oversized imported media groups for a tighter magazine-grid rhythm
 
 ### Milestone 4 — Shops, gastronomy, and jobs started
 
@@ -147,8 +154,8 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 
 ### Milestone 3 — Homepage and content block design
 
-1. Visually QA the homepage in-browser against `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/0001.png` and the desktop PDFs, especially the new sticky header shrink behavior, then tune spacing/sizing where needed.
-2. Continue tuning homepage content hierarchy after visual QA, especially exact card colors and any remaining image crop positions.
+1. Curate/reorder the homepage CMS blocks if the live content must match `temp/H001_148_01_Entwicklung_LO8_Mobile_RGB/0001.png` exactly; the current imported content order differs from the static design reference.
+2. Continue tuning homepage content hierarchy after visual QA, especially exact card colors, tile content mapping, and any remaining image crop positions.
 3. Extend reusable frontend components for imported content blocks where CSS-only styling is not enough:
    - hero sections
    - image/text feature blocks
@@ -166,6 +173,9 @@ Note: mobile PNG references are available in the folder as `0001.png`–`0012.pn
 Recent homepage progress:
 - Homepage intro now prefers the lead hero image from the page body before falling back to block images.
 - Reduced the homepage body section spacing to bring the first content block closer to the intro.
+- Checked `/` in-browser at a narrow mobile viewport against `0001.png`; hero proportions and imported block styling now follow a compact two-column tile layout.
+- Checked `/` in-browser at `1440px` desktop width against the desktop JPEG; homepage content now uses a wider reference-like column and compact four-column desktop tile grid.
+- Validation after the homepage styling pass: `npm run typecheck` passes and `npm run build` passes.
 
 ### Milestone 4 — Shops, gastronomy, and jobs
 

@@ -48,6 +48,29 @@ const getImportedBlockVariant = (
 	return "compact";
 };
 
+const getHostnameLabel = (url: string): string | undefined => {
+	try {
+		return new URL(url).hostname.replace(/^www\./, "");
+	} catch {
+		return undefined;
+	}
+};
+
+const getPathLabel = (url: string): string | undefined => {
+	const path = url.replace(/^\/+|\/+$/g, "");
+	return path ? path.replace(/[-_]+/g, " ") : undefined;
+};
+
+const getActionLinkLabel = (url?: string | null): string | undefined => {
+	const cleanUrl = text(url);
+
+	if (!cleanUrl) {
+		return undefined;
+	}
+
+	return getHostnameLabel(cleanUrl) ?? getPathLabel(cleanUrl) ?? cleanUrl;
+};
+
 const LinkList: React.FC<{ links?: LinkField[] | null }> = ({ links }) => {
 	const validLinks = (links ?? []).filter(
 		(link) => text(link.label) && text(link.url),
@@ -276,22 +299,38 @@ const ImportedBlock: React.FC<{
 				{icons.length ? (
 					<ul className="content-block__icons" aria-label="Schnelllinks">
 						{icons.map((icon) => {
-							const iconText = text(icon.text) ?? text(icon.link);
+							const visibleText = text(icon.text);
+							const linkLabel = visibleText ?? getActionLinkLabel(icon.link);
+							const hasIcon = Boolean(text(icon.icon));
+							const actionClassName = [
+								"content-block__icon-action",
+								hasIcon && !visibleText
+									? "content-block__icon-action--icon-only"
+									: "",
+							]
+								.filter(Boolean)
+								.join(" ");
 							const iconContent = (
 								<>
 									{text(icon.icon) ? (
 										<img src={text(icon.icon)} alt="" loading="lazy" />
 									) : null}
-									{iconText ? <span>{iconText}</span> : null}
+									{visibleText ? <span>{visibleText}</span> : null}
 								</>
 							);
 
 							return (
 								<li key={`${icon.icon}-${icon.text}-${icon.link}`}>
 									{text(icon.link) ? (
-										<a href={text(icon.link)}>{iconContent}</a>
+										<a
+											className={actionClassName}
+											href={text(icon.link)}
+											aria-label={linkLabel}
+										>
+											{iconContent}
+										</a>
 									) : (
-										<span>{iconContent}</span>
+										<span className={actionClassName}>{iconContent}</span>
 									)}
 								</li>
 							);
