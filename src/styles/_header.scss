@@ -219,6 +219,7 @@
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-md);
 		box-shadow: var(--shadow-soft);
+		margin-block-start: 3rem;
 	}
 
 	.site-header__mobile-logo {
@@ -317,6 +318,7 @@
 		border: 0;
 		border-radius: 0;
 		box-shadow: none;
+		margin-block-start: 0;
 	}
 
 	.site-header__mobile-logo {
