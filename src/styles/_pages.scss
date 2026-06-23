@@ -74,7 +74,7 @@
 .page-hero {
 	max-width: var(--container-md);
 	margin-inline: auto;
-	padding-block: clamp(2.5rem, 7vw, 7rem) var(--space-xl);
+	padding-block: clamp(1.5rem, 4vw, 3rem) var(--space-md);
 	text-align: center;
 }
 
@@ -89,6 +89,7 @@
 .page-hero__description {
 	max-width: 64rem;
 	margin-inline: auto;
+	margin-block-start: var(--space-sm);
 	font-size: clamp(1.05rem, 2vw, 1.45rem);
 	line-height: 1.45;
 }
@@ -96,7 +97,7 @@
 .page-body {
 	max-width: var(--container-sm);
 	margin-inline: auto;
-	padding-block: var(--space-xl) 0;
+	padding-block: var(--space-md) 0;
 }
 
 .page-body:empty {

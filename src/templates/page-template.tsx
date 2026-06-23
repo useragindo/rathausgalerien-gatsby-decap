@@ -146,12 +146,21 @@ const getLocationListingCards = (
 		});
 };
 
-const LocationList: React.FC<{
+type LocationListProps = {
 	locations: NormalizedLocation[];
 	categories: NormalizedCategory[];
 	language: string;
 	group: "brand" | "culinary";
-}> = ({ locations, categories, language, group }) => {
+	showHeader?: boolean;
+};
+
+const LocationList: React.FC<LocationListProps> = ({
+	locations,
+	categories,
+	language,
+	group,
+	showHeader = true,
+}) => {
 	const items = React.useMemo(
 		() => getLocationListingCards(locations, categories, language, group),
 		[locations, categories, language, group],
@@ -204,13 +213,15 @@ const LocationList: React.FC<{
 	return (
 		<section
 			className={`listing-section listing-section--${group}`}
-			aria-labelledby={`${group}-list-title`}
+			aria-labelledby={showHeader ? `${group}-list-title` : undefined}
 		>
-			<header className="listing-section__header">
-				<p className="listing-section__eyebrow">Alle {title}</p>
-				<h2 id={`${group}-list-title`}>{title}</h2>
-				<p>{description}</p>
-			</header>
+			{showHeader ? (
+				<header className="listing-section__header">
+					<p className="listing-section__eyebrow">Alle {title}</p>
+					<h2 id={`${group}-list-title`}>{title}</h2>
+					<p>{description}</p>
+				</header>
+			) : null}
 			{hasCategoryFilter && filterOptions.length > 0 ? (
 				<div
 					className="listing-filters"
@@ -477,6 +488,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 					categories={categories}
 					language={page.language}
 					group="brand"
+					showHeader={false}
 				/>
 			) : null}
 			{page.key === "culinary" ? (
@@ -485,6 +497,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 					categories={categories}
 					language={page.language}
 					group="culinary"
+					showHeader={false}
 				/>
 			) : null}
 			{page.key === "jobs" ? (
