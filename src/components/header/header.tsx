@@ -327,20 +327,20 @@ export const Header: React.FC<HeaderProps> = ({
 			<header className={`site-header${isScrolled ? " site-header--scrolled" : ""}`}>
 				<div className="site-header__inner">
 
-					{/* Logo + DE/EN */}
-					<div className="site-header__brand-group">
-						<a className="site-header__brand" href={homeUrl} aria-label={`${siteTitle} Startseite`}>
-							<img
-								className="site-header__logo"
-								src="/media/_rathausgalerien.svg"
-								alt=""
-								width="220"
-								height="105"
-							/>
-							<span className="visually-hidden">{siteTitle}</span>
-						</a>
-						<LanguageSwitcher languages={languages} />
-					</div>
+					{/* Logo */}
+					<a className="site-header__brand" href={homeUrl} aria-label={`${siteTitle} Startseite`}>
+						<img
+							className="site-header__logo"
+							src="/media/_rathausgalerien.svg"
+							alt=""
+							width="400"
+							height="109"
+						/>
+						<span className="visually-hidden">{siteTitle}</span>
+					</a>
+
+					{/* Language switcher — separate from logo */}
+					<LanguageSwitcher languages={languages} />
 
 					{/* Icons + Burger */}
 					<div className="site-header__actions">

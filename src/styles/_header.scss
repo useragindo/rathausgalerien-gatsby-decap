@@ -29,17 +29,13 @@
 	padding-inline: clamp(1rem, 5vw, 115px);
 }
 
-/* ─── Brand (logo + language) ─────────────────────────────────────── */
-.site-header__brand-group {
-	position: absolute;
-	inset-block-start: clamp(0.75rem, 3vw, 1.875rem); /* 30px on desktop */
-	inset-inline-start: clamp(1rem, 5vw, 115px);
-	display: flex;
-	flex-direction: column;
-	gap: clamp(0.5rem, 2vw, 1rem);
-}
-
+/* ─── Brand (logo) ────────────────────────────────────────────────── */
 .site-header__brand {
+	position: absolute;
+	/* mobile: vertically centered */
+	top: 50%;
+	transform: translateY(-50%);
+	inset-inline-start: clamp(1rem, 5vw, 115px);
 	display: inline-flex;
 	align-items: center;
 	color: var(--color-dunkelblau);
@@ -55,7 +51,10 @@
 
 /* ─── Language switcher ───────────────────────────────────────────── */
 .site-header__language {
-	flex: 0 0 auto;
+	position: absolute;
+	/* mobile: sits just below logo */
+	bottom: clamp(0.5rem, 2vw, 0.75rem);
+	inset-inline-start: clamp(1rem, 5vw, 115px);
 }
 
 .site-header__language-list {
@@ -69,9 +68,9 @@
 
 .site-header__language-link,
 .site-header__language-separator {
-	font-size: clamp(0.75rem, 1.5vw, 0.9375rem); /* ~15px */
+	font-size: clamp(0.75rem, 1.5vw, 1rem);
 	font-weight: var(--font-weight-thin);
-	letter-spacing: 0.1em;
+	letter-spacing: 0.12em;
 	text-transform: uppercase;
 	color: var(--color-dunkelblau);
 	text-decoration: none;
@@ -108,7 +107,7 @@
 .site-header__icon-list {
 	display: flex;
 	align-items: center;
-	gap: clamp(0.6rem, 2vw, 2rem); /* ~32px on desktop */
+	gap: clamp(0.6rem, 2vw, 2rem); /* 32px on desktop */
 }
 
 .site-header__icon-link {
@@ -374,52 +373,58 @@
 /* ─── Desktop (≥ 1024px) ──────────────────────────────────────────── */
 @media (min-width: 64rem) {
 	.site-header {
-		--header-height: 17.5rem;           /* 280px */
-		--header-logo-width: 20rem;         /* 320px — matches Figma */
-		--header-icon-size: 2.5rem;         /* 40px  */
-		--header-menu-width: 5.125rem;      /* 82px  */
-		--header-menu-line-gap: 0.625rem;   /* 10px  */
+		--header-height: 17.5rem;           /* 280px  Figma */
+		--header-logo-width: 25rem;         /* 400px  Figma */
+		--header-icon-size: 3.125rem;       /* 50px   Figma */
+		--header-menu-width: 5rem;          /* 80px   Figma */
+		--header-menu-line-gap: 0.8125rem;  /* 13px   Figma */
 	}
 
-	/* Fix 115px padding on desktop */
+	/* 115px side padding on desktop */
 	.site-header__inner {
 		padding-inline: 115px;
 	}
 
-	.site-header__brand-group {
-		inset-block-start: 1.875rem;   /* 30px */
+	/* Logo: vertically centred in 280px header */
+	.site-header__brand {
+		top: 50%;
+		transform: translateY(-50%);
 		inset-inline-start: 115px;
-		gap: 0; /* DE/EN is absolutely positioned separately */
 	}
 
+	/* Actions: top-edge of centred logo.
+	   Logo h = 400 * (45.8 / 168.2) ≈ 109px
+	   Logo top = (280 - 109) / 2 ≈ 86px = 5.375rem */
 	.site-header__actions {
-		inset-block-start: 1.875rem;   /* 30px */
+		inset-block-start: 5.375rem;   /* ~86px */
 		inset-inline-end: 115px;
-		gap: 2.5rem;
+		gap: 2rem;
 	}
 
-	/* DE/EN: sits below logo — sits near bottom of 280px header */
-	.site-header__brand-group .site-header__language {
-		margin-block-start: 0;
-		position: absolute;
-		inset-block-start: 14.0625rem; /* 225px from top */
+	/* DE/EN: directly below logo (logo-bottom ≈ 195px, gap 20px → 215px) */
+	.site-header__language {
+		top: auto;
+		bottom: 0;
 		inset-inline-start: 115px;
 	}
 
-	/* Language in overlay-footer: NOT absolutely positioned */
+	/* Language in overlay-footer stays in flow */
 	.site-header__overlay-footer .site-header__language {
 		position: static;
+		bottom: auto;
 	}
 
+	/* Icons: thin strokes, 1px */
 	.site-header__icon-link svg {
-		stroke-width: 1.25;
+		stroke-width: 1;
 	}
 
+	/* Burger lines: all 1px, uniform */
 	.site-header__menu-lines span {
-		height: 1.5px;
+		height: 1px;
 	}
 
-	/* Overlay body: 2-column on desktop */
+	/* Overlay body: 2-column */
 	.site-header__overlay-body {
 		grid-template-columns: 1fr auto;
 		align-items: center;
@@ -432,16 +437,16 @@
 
 	.site-header__menu-teasers {
 		display: grid;
-		grid-template-columns: repeat(2, clamp(10rem, 16vw, 17.75rem)); /* ~284px each */
+		grid-template-columns: repeat(2, clamp(10rem, 16vw, 17.75rem));
 		gap: 1rem;
 	}
 
 	.site-header__overlay-actions {
-		--header-icon-size: 2.5rem;
-		--header-menu-width: 5.125rem;
-		inset-block-start: 1.875rem;
+		--header-icon-size: 3.125rem;
+		--header-menu-width: 5rem;
+		inset-block-start: 5.375rem;   /* same as header actions top */
 		inset-inline-end: 115px;
-		gap: 2.5rem;
+		gap: 2rem;
 	}
 
 	.site-header__overlay-close {
@@ -462,6 +467,11 @@
 		--header-icon-size: clamp(1.1rem, 5vw, 1.35rem);
 		--header-menu-width: clamp(1.6rem, 7vw, 2rem);
 		--header-menu-line-gap: clamp(0.18rem, 1vw, 0.28rem);
+	}
+
+	/* Hide language switcher in compact mobile header */
+	.site-header__language {
+		display: none;
 	}
 
 	.site-header__overlay-footer {
