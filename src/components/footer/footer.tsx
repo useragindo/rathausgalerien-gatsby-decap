@@ -115,7 +115,7 @@ export const Footer: React.FC<FooterProps> = ({
 			/>
 
 			<p className="site-footer__copyright">
-				{copyrightLabel ?? `© ${new Date().getFullYear()} ${siteTitle}`}
+				{copyrightLabel ?? `©${siteTitle.toUpperCase()} ${new Date().getFullYear()}`}
 			</p>
 		</div>
 	</footer>

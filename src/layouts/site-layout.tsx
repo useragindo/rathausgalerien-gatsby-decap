@@ -34,6 +34,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 			mainNavigation={mainNavigation}
 			utilityNavigation={utilityNavigation}
 			headerIconNavigation={headerIconNavigation}
+			socialLinks={socialLinks}
 			homeUrl={homeUrl}
 			siteTitle={siteTitle}
 		/>
