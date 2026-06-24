@@ -29,7 +29,7 @@
 	width: min(100%, var(--container-lg));
 	min-height: 28rem;
 	margin-inline: auto;
-	padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 8vw, 7.1875rem) clamp(2rem, 5vw, 3rem);
+	padding: clamp(3rem, 8vw, 6rem) clamp(16px, 7.99vw, 115px) clamp(2rem, 5vw, 3rem);
 	display: flex;
 	flex-direction: column;
 	align-items: center;

@@ -73,7 +73,7 @@
 	--container-md: 68rem;
 	--container-lg: 90rem; /* 1440px Figma page width */
 	--container-content: 75.6875rem; /* 1211px Figma content width */
-	--page-gutter: clamp(1rem, 4vw, 4rem);
+	--page-gutter: clamp(16px, 7.99vw, 115px); /* 115px at 1440px Figma margin */
 	--radius-sm: 0.35rem;
 	--radius-md: 0.75rem;
 	--shadow-soft: 0 1.5rem 4rem rgba(34, 37, 78, 0.12);

@@ -29,7 +29,7 @@
 	width: min(100%, var(--container-lg));
 	min-height: var(--header-height);
 	margin-inline: auto;
-	padding: clamp(1rem, 2.9vw, 2.6rem) clamp(1rem, 8vw, 7.1875rem) clamp(0.75rem, 1.8vw, 1.6rem);
+	padding: clamp(1rem, 2.9vw, 2.6rem) clamp(16px, 7.99vw, 115px) clamp(0.75rem, 1.8vw, 1.6rem);
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
@@ -215,7 +215,7 @@
 	display: grid;
 	grid-template-rows: 1fr auto;
 	min-height: 100dvh;
-	padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 8vw, 7.1875rem);
+	padding: clamp(1.5rem, 4vw, 4rem) clamp(16px, 7.99vw, 115px);
 	background: var(--color-background);
 	overflow: auto;
 }
@@ -363,7 +363,7 @@
 	position: fixed;
 	z-index: 102;
 	top: clamp(1rem, 2.9vw, 2.6rem);
-	right: clamp(1rem, 8vw, 7.1875rem);
+	right: clamp(16px, 7.99vw, 115px);
 }
 
 @media (min-width: 64rem) {
