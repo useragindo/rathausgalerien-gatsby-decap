@@ -1,33 +1,65 @@
 :root {
 	color-scheme: light;
 
-	--color-blue-50: #d8eff8;
-	--color-blue-100: #c7e8f4;
-	--color-blue-300: #72cadb;
-	--color-blue-900: #212554;
-	--color-blue-950: #171b46;
-	--color-pink: #f598c7;
-	--color-lavender: #b998cf;
-	--color-yellow: #ffc344;
-	--color-orange: #f5a623;
-	--color-cream: #f8f0e2;
+	/* Figma design tokens — RathausGalerien 2026 */
+	--color-dunkelblau: #22254e;
+	--color-background: #d1efff;
+	--color-rosa: #ffa4cc;
+	--color-gelb: #ffbb33;
+	--color-lila: #b58ec1;
+	--color-blau: #7bd0e5;
 	--color-white: #ffffff;
 	--color-black: #111111;
-	--color-text: var(--color-blue-900);
-	--color-background: var(--color-blue-50);
-	--color-surface: rgba(255, 255, 255, 0.72);
-	--color-border: rgba(33, 37, 84, 0.22);
-	--color-focus: var(--color-pink);
 
-	--font-family-base: "Avenir Next", Avenir, Montserrat, "Segoe UI", sans-serif;
+	/* Legacy aliases kept for compatibility with existing components */
+	--color-blue-50: var(--color-background);
+	--color-blue-100: #c7e8f4;
+	--color-blue-300: var(--color-blau);
+	--color-blue-900: var(--color-dunkelblau);
+	--color-blue-950: var(--color-dunkelblau);
+	--color-pink: var(--color-rosa);
+	--color-lavender: var(--color-lila);
+	--color-yellow: var(--color-gelb);
+	--color-cyan: var(--color-blau);
+	--color-orange: #f5a623;
+	--color-cream: #f8f0e2;
+
+	/* Semantic colors */
+	--color-text: var(--color-dunkelblau);
+	--color-surface: rgba(255, 255, 255, 0.72);
+	--color-border: rgba(34, 37, 78, 0.22);
+	--color-focus: var(--color-rosa);
+
+	/* Typography — Museo Sans Rounded is the Figma reference font.
+	 * The project must load the webfont separately (self-hosted or licensed CDN).
+	 * Until then the browser will use the first available fallback.
+	 */
+	--font-family-base: "Museo Sans Rounded", "Nunito", "Varela Round", "Avenir Next", Avenir, Montserrat, "Segoe UI", sans-serif;
 	--font-family-accent: var(--font-family-base);
+
+	/* Figma font sizes (desktop px values in comments) */
+	--font-size-h1: clamp(2.25rem, 5vw, 3.25rem); /* 52px */
+	--font-size-h2: clamp(1.75rem, 4vw, 2.5rem); /* 40px */
+	--font-size-sub: clamp(1rem, 2vw, 1.125rem); /* 18px */
+	--font-size-text: clamp(0.875rem, 1.5vw, 1rem); /* 16px */
+	--font-size-body: clamp(0.8125rem, 1.5vw, 0.875rem); /* 14px */
+
+	/* Generic scale used by existing components */
 	--font-size-xs: clamp(0.72rem, 0.68rem + 0.18vw, 0.8rem);
-	--font-size-sm: clamp(0.86rem, 0.8rem + 0.25vw, 1rem);
-	--font-size-md: clamp(1rem, 0.94rem + 0.28vw, 1.125rem);
-	--font-size-lg: clamp(1.25rem, 1.03rem + 0.95vw, 1.75rem);
-	--font-size-xl: clamp(2rem, 1.35rem + 2.75vw, 3.6rem);
-	--line-height-tight: 1.08;
-	--line-height-base: 1.6;
+	--font-size-sm: clamp(0.8125rem, 1.5vw, 0.875rem);
+	--font-size-md: var(--font-size-text);
+	--font-size-lg: var(--font-size-sub);
+	--font-size-xl: var(--font-size-h1);
+
+	/* Figma font weights */
+	--font-weight-thin: 300;
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+
+	/* Line heights */
+	--line-height-tight: 1;
+	--line-height-snug: 1.222;
+	--line-height-base: 1.429;
 
 	--space-2xs: clamp(0.25rem, 0.22rem + 0.15vw, 0.375rem);
 	--space-xs: clamp(0.5rem, 0.44rem + 0.3vw, 0.75rem);
@@ -40,9 +72,10 @@
 	--container-sm: 48rem;
 	--container-md: 68rem;
 	--container-lg: 92rem;
+	--container-content: 75.6875rem; /* 1211px Figma content width */
 	--page-gutter: clamp(1rem, 4vw, 4rem);
 	--radius-sm: 0.35rem;
 	--radius-md: 0.75rem;
-	--shadow-soft: 0 1.5rem 4rem rgba(33, 37, 84, 0.12);
+	--shadow-soft: 0 1.5rem 4rem rgba(34, 37, 78, 0.12);
 	--transition-base: 180ms ease;
 }

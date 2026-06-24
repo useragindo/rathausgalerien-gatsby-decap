@@ -23,7 +23,7 @@
 	transform: translateY(calc(-100% - var(--space-lg)));
 	padding: var(--space-xs) var(--space-sm);
 	color: var(--color-white);
-	background: var(--color-blue-950);
+	background: var(--color-dunkelblau);
 	border-radius: var(--radius-sm);
 	transition: transform var(--transition-base);
 }
@@ -32,9 +32,25 @@
 	transform: translateY(0);
 }
 
+/* Figma content container: max 1211px, centered */
+.content-container {
+	width: min(100%, var(--container-content));
+	margin-inline: auto;
+}
+
 .content-section {
 	max-width: var(--container-md);
 	margin-inline: auto;
+}
+
+/* Figma section divider: thin horizontal line between segments */
+.section-divider {
+	width: min(100%, var(--container-content));
+	height: 0;
+	margin-inline: auto;
+	border: 0;
+	border-block-start: 1px solid var(--color-dunkelblau);
+	opacity: 0.2;
 }
 
 address {

@@ -1,10 +1,13 @@
 body {
 	font-family: var(--font-family-base);
-	font-size: var(--font-size-md);
+	font-size: var(--font-size-body);
+	font-weight: var(--font-weight-regular);
 	line-height: var(--line-height-base);
+	letter-spacing: 0.08em;
 	color: var(--color-text);
 	background: var(--color-background);
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
 }
 
@@ -13,23 +16,30 @@ h2,
 h3,
 h4 {
 	font-family: var(--font-family-accent);
-	font-weight: 400;
 	line-height: var(--line-height-tight);
-	letter-spacing: 0.12em;
+	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	margin-block: 0 var(--space-sm);
 }
 
 h1 {
-	font-size: var(--font-size-xl);
+	font-size: var(--font-size-h1);
+	font-weight: var(--font-weight-thin);
 }
 
 h2 {
-	font-size: var(--font-size-lg);
+	font-size: var(--font-size-h2);
+	font-weight: var(--font-weight-medium);
 }
 
 h3 {
-	font-size: clamp(1rem, 0.86rem + 0.68vw, 1.35rem);
+	font-size: var(--font-size-sub);
+	font-weight: var(--font-weight-medium);
+}
+
+h4 {
+	font-size: var(--font-size-text);
+	font-weight: var(--font-weight-medium);
 }
 
 p {
@@ -44,7 +54,25 @@ a {
 }
 
 a:hover {
-	color: var(--color-pink);
+	color: var(--color-rosa);
+}
+
+/* Figma text style: 16px/20px uppercase, medium weight (used for labels, sublines) */
+.text-label {
+	font-size: var(--font-size-text);
+	font-weight: var(--font-weight-medium);
+	line-height: 1.25;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+/* Figma text style: 18px/22px uppercase, light weight (used for nav, sub headlines) */
+.text-sub {
+	font-size: var(--font-size-sub);
+	font-weight: var(--font-weight-thin);
+	line-height: var(--line-height-snug);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
 }
 
 :focus-visible {
@@ -53,6 +81,6 @@ a:hover {
 }
 
 ::selection {
-	color: var(--color-blue-950);
-	background: var(--color-pink);
+	color: var(--color-dunkelblau);
+	background: var(--color-rosa);
 }
