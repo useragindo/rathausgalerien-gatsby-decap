@@ -1,4 +1,5 @@
 import * as React from "react";
+import { createPortal } from "react-dom";
 import type { NormalizedNavigationItem } from "../../lib/navigation";
 
 type HeaderProps = {
@@ -15,51 +16,17 @@ type HeaderIconName = "phone" | "location" | "hours" | "default";
 
 const getHeaderIconName = (item: NormalizedNavigationItem): HeaderIconName => {
 	const value = `${item.icon ?? ""} ${item.label} ${item.url}`.toLowerCase();
-
-	if (
-		value.includes("phone") ||
-		value.includes("telefon") ||
-		value.includes("tel:")
-	) {
-		return "phone";
-	}
-
-	if (
-		value.includes("location") ||
-		value.includes("lage") ||
-		value.includes("anfahrt") ||
-		value.includes("map")
-	) {
-		return "location";
-	}
-
-	if (
-		value.includes("hour") ||
-		value.includes("zeit") ||
-		value.includes("geöffnet") ||
-		value.includes("open")
-	) {
-		return "hours";
-	}
-
+	if (value.includes("phone") || value.includes("telefon") || value.includes("tel:")) return "phone";
+	if (value.includes("location") || value.includes("lage") || value.includes("anfahrt") || value.includes("map")) return "location";
+	if (value.includes("hour") || value.includes("zeit") || value.includes("geöffnet") || value.includes("open")) return "hours";
 	return "default";
 };
 
 const getHeaderIconLabel = (item: NormalizedNavigationItem): string => {
-	const iconName = getHeaderIconName(item);
-
-	if (iconName === "phone") {
-		return "Kontakt";
-	}
-
-	if (iconName === "location") {
-		return "Anfahrt";
-	}
-
-	if (iconName === "hours") {
-		return "Geöffnet";
-	}
-
+	const n = getHeaderIconName(item);
+	if (n === "phone") return "Kontakt";
+	if (n === "location") return "Anfahrt";
+	if (n === "hours") return "Öffnungszeiten";
 	return item.label;
 };
 
@@ -71,7 +38,6 @@ const HeaderIcon: React.FC<{ name: HeaderIconName }> = ({ name }) => {
 			</svg>
 		);
 	}
-
 	if (name === "location") {
 		return (
 			<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
@@ -80,17 +46,14 @@ const HeaderIcon: React.FC<{ name: HeaderIconName }> = ({ name }) => {
 			</svg>
 		);
 	}
-
 	if (name === "hours") {
 		return (
 			<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
 				<circle cx="32" cy="32" r="22" />
 				<path d="M32 17v16l11 6" />
-				<path d="M32 10v4M32 50v4M54 32h-4M14 32h-4" />
 			</svg>
 		);
 	}
-
 	return (
 		<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
 			<circle cx="32" cy="32" r="22" />
@@ -103,23 +66,15 @@ const getAlternateLanguageUrl = (
 	languages: { code: string; label: string; url: string }[],
 ): { code: string; label: string; url: string }[] => {
 	const normalizedPath = currentPath.replace(/\/$/, "") || "/";
-
-	return languages.map((language) => {
-		if (language.code === "en") {
-			const englishPath =
-				normalizedPath === "/" ? "/en/" : `/en${normalizedPath}/`;
-			return { ...language, url: englishPath };
+	return languages.map((lang) => {
+		if (lang.code === "en") {
+			return { ...lang, url: normalizedPath === "/" ? "/en/" : `/en${normalizedPath}/` };
 		}
-
-		if (language.code === "de") {
-			const germanPath =
-				normalizedPath === "/en" || normalizedPath === "/en/"
-					? "/"
-					: normalizedPath.replace(/^\/en/, "") || "/";
-			return { ...language, url: germanPath };
+		if (lang.code === "de") {
+			const germanPath = normalizedPath === "/en" || normalizedPath === "/en/" ? "/" : normalizedPath.replace(/^\/en/, "") || "/";
+			return { ...lang, url: germanPath };
 		}
-
-		return language;
+		return lang;
 	});
 };
 
@@ -128,16 +83,13 @@ const LanguageSwitcher: React.FC<{
 	modifier?: string;
 }> = ({ languages, modifier }) => {
 	const [hrefMap, setHrefMap] = React.useState<Record<string, string>>(() =>
-		Object.fromEntries(languages.map((language) => [language.code, language.url])),
+		Object.fromEntries(languages.map((l) => [l.code, l.url])),
 	);
 
 	React.useEffect(() => {
-		if (typeof window === "undefined") {
-			return;
-		}
-
+		if (typeof window === "undefined") return;
 		const updated = getAlternateLanguageUrl(window.location.pathname, languages);
-		setHrefMap(Object.fromEntries(updated.map((language) => [language.code, language.url])));
+		setHrefMap(Object.fromEntries(updated.map((l) => [l.code, l.url])));
 	}, [languages]);
 
 	const className = modifier
@@ -147,20 +99,14 @@ const LanguageSwitcher: React.FC<{
 	return (
 		<nav className={className} aria-label="Sprachwechsel">
 			<ul className="site-header__language-list">
-				{languages.map((language, index) => (
-					<li key={language.code}>
-						<a
-							className="site-header__language-link"
-							href={hrefMap[language.code] ?? language.url}
-							aria-label={`Sprache ${language.code}`}
-						>
-							{language.label}
+				{languages.map((lang, i) => (
+					<li key={lang.code}>
+						<a className="site-header__language-link" href={hrefMap[lang.code] ?? lang.url} aria-label={`Sprache ${lang.code}`}>
+							{lang.label}
 						</a>
-						{index < languages.length - 1 ? (
-							<span className="site-header__language-separator" aria-hidden="true">
-								/
-							</span>
-						) : null}
+						{i < languages.length - 1 && (
+							<span className="site-header__language-separator" aria-hidden="true"> / </span>
+						)}
 					</li>
 				))}
 			</ul>
@@ -170,30 +116,25 @@ const LanguageSwitcher: React.FC<{
 
 const SocialIcon: React.FC<{ label: string }> = ({ label }) => {
 	const key = label.toLowerCase();
-	const isInstagram = key.includes("instagram");
-	const isFacebook = key.includes("facebook") || key.includes("fb");
-
-	if (isInstagram) {
+	if (key.includes("instagram")) {
 		return (
-			<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-				<rect x="3" y="3" width="18" height="18" rx="5" fill="currentColor" opacity="0" />
-				<path d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6z" fill="currentColor" />
-				<circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" />
+			<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+				<rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+				<circle cx="12" cy="12" r="5" />
+				<circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
 			</svg>
 		);
 	}
-
-	if (isFacebook) {
+	if (key.includes("facebook") || key.includes("fb")) {
 		return (
-			<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-				<path d="M15 8h2.5V5.5H15c-1.38 0-2.5 1.12-2.5 2.5V11H10v2h2.5v6h2.5v-6H17l.5-2h-2V8z" fill="currentColor" />
+			<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+				<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
 			</svg>
 		);
 	}
-
 	return (
-		<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-			<circle cx="12" cy="12" r="9" fill="currentColor" />
+		<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" strokeWidth="1.5">
+			<circle cx="12" cy="12" r="9" />
 		</svg>
 	);
 };
@@ -201,7 +142,7 @@ const SocialIcon: React.FC<{ label: string }> = ({ label }) => {
 const MenuTeaserCards: React.FC = () => (
 	<div className="site-header__menu-teasers">
 		<div className="site-header__menu-teaser site-header__menu-teaser--blue">
-			<div className="site-header__menu-teaser-g">G</div>
+			<div className="site-header__menu-teaser-g" aria-hidden="true">G</div>
 			<p className="site-header__menu-teaser-title">Das neue Galerien Magazin!</p>
 			<p className="site-header__menu-teaser-sub">Gleich reinschauen</p>
 		</div>
@@ -211,7 +152,7 @@ const MenuTeaserCards: React.FC = () => (
 	</div>
 );
 
-const renderNavigationItems = (items: NormalizedNavigationItem[]) =>
+const renderNavItems = (items: NormalizedNavigationItem[]) =>
 	items.map((item) => (
 		<li key={`${item.url}-${item.label}`}>
 			<a
@@ -221,20 +162,19 @@ const renderNavigationItems = (items: NormalizedNavigationItem[]) =>
 				target={item.openInNewTab ? "_blank" : undefined}
 				rel={item.openInNewTab ? "noreferrer" : undefined}
 			>
-				{item.icon ? <span aria-hidden="true">{item.icon}</span> : null}
 				<span>{item.label}</span>
 			</a>
 		</li>
 	));
 
-const renderIconNavigationItems = (items: NormalizedNavigationItem[]) =>
+const renderIconItems = (items: NormalizedNavigationItem[]) =>
 	items.map((item) => (
 		<li key={`${item.url}-${item.label}`}>
 			<a
 				className="site-header__icon-link"
 				href={item.url}
-				aria-label={item.ariaLabel ?? item.label}
-				title={item.label}
+				aria-label={item.ariaLabel ?? getHeaderIconLabel(item)}
+				title={getHeaderIconLabel(item)}
 				target={item.openInNewTab ? "_blank" : undefined}
 				rel={item.openInNewTab ? "noreferrer" : undefined}
 			>
@@ -243,60 +183,6 @@ const renderIconNavigationItems = (items: NormalizedNavigationItem[]) =>
 			</a>
 		</li>
 	));
-
-const NavigationList: React.FC<{
-	items: NormalizedNavigationItem[];
-	label: string;
-	className?: string;
-}> = ({ items, label, className = "site-header__nav" }) => {
-	if (items.length === 0) {
-		return null;
-	}
-
-	return (
-		<nav className={className} aria-label={label}>
-			<ul className="site-header__nav-list">{renderNavigationItems(items)}</ul>
-		</nav>
-	);
-};
-
-const IconNavigation: React.FC<{
-	items: NormalizedNavigationItem[];
-	label: string;
-}> = ({ items, label }) => {
-	if (items.length === 0) {
-		return null;
-	}
-
-	return (
-		<nav className="site-header__icon-nav" aria-label={label}>
-			<ul className="site-header__icon-list">
-				{renderIconNavigationItems(items)}
-			</ul>
-		</nav>
-	);
-};
-
-const combineNavigation = (
-	...navigationGroups: NormalizedNavigationItem[][]
-): NormalizedNavigationItem[] => navigationGroups.flat();
-
-const toIconNavigation = (
-	mainNavigation: NormalizedNavigationItem[],
-	utilityNavigation: NormalizedNavigationItem[],
-	headerIconNavigation: NormalizedNavigationItem[],
-): NormalizedNavigationItem[] => {
-	if (headerIconNavigation.length > 0) {
-		return headerIconNavigation;
-	}
-
-	const derivedItems = combineNavigation(
-		utilityNavigation,
-		mainNavigation,
-	).filter((item) => getHeaderIconName(item) !== "default");
-
-	return derivedItems;
-};
 
 const renderSocialItems = (items: NormalizedNavigationItem[]) =>
 	items.map((item) => (
@@ -314,6 +200,100 @@ const renderSocialItems = (items: NormalizedNavigationItem[]) =>
 		</li>
 	));
 
+/* ─── Menu Overlay ────────────────────────────────────────────────── */
+const MenuOverlay: React.FC<{
+	isOpen: boolean;
+	onClose: () => void;
+	menuNavigation: NormalizedNavigationItem[];
+	iconNavigation: NormalizedNavigationItem[];
+	socialLinks: NormalizedNavigationItem[];
+	languages: { code: string; label: string; url: string }[];
+}> = ({ isOpen, onClose, menuNavigation, iconNavigation, socialLinks, languages }) => {
+	const [mounted, setMounted] = React.useState(false);
+
+	React.useEffect(() => { setMounted(true); }, []);
+
+	React.useEffect(() => {
+		document.body.style.overflow = isOpen ? "hidden" : "";
+		return () => { document.body.style.overflow = ""; };
+	}, [isOpen]);
+
+	React.useEffect(() => {
+		if (!isOpen) return;
+		const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+		window.addEventListener("keydown", handler);
+		return () => window.removeEventListener("keydown", handler);
+	}, [isOpen, onClose]);
+
+	if (!mounted || !isOpen) return null;
+
+	const overlay = (
+		<div className="site-header__overlay" role="dialog" aria-modal="true" aria-label="Navigation">
+
+			{/* Icons + Close — mirrors header-actions position */}
+			<div className="site-header__overlay-actions">
+				{iconNavigation.length > 0 && (
+					<nav aria-label="Schnellzugriffe">
+						<ul className="site-header__icon-list">
+							{renderIconItems(iconNavigation.slice(0, 3))}
+						</ul>
+					</nav>
+				)}
+				<button
+					className="site-header__overlay-close"
+					onClick={onClose}
+					aria-label="Menü schließen"
+					type="button"
+				>
+					<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+						<path d="M14 14 L50 50 M50 14 L14 50" />
+					</svg>
+					<span className="visually-hidden">Schließen</span>
+				</button>
+			</div>
+
+			{/* Nav + Teasers */}
+			<div className="site-header__overlay-body">
+				<nav aria-label="Hauptnavigation">
+					<ul className="site-header__nav-list site-header__nav-list--overlay">
+						{renderNavItems(menuNavigation)}
+					</ul>
+				</nav>
+
+				<MenuTeaserCards />
+			</div>
+
+			{/* Footer: Language + Social */}
+			<div className="site-header__overlay-footer">
+				<LanguageSwitcher languages={languages} modifier="overlay" />
+
+				{socialLinks.length > 0 && (
+					<nav aria-label="Social Media">
+						<ul className="site-header__social-list">
+							{renderSocialItems(socialLinks)}
+						</ul>
+					</nav>
+				)}
+			</div>
+
+		</div>
+	);
+
+	return createPortal(overlay, document.body);
+};
+
+/* ─── Header ──────────────────────────────────────────────────────── */
+const combineNavigation = (...groups: NormalizedNavigationItem[][]): NormalizedNavigationItem[] => groups.flat();
+
+const toIconNavigation = (
+	main: NormalizedNavigationItem[],
+	utility: NormalizedNavigationItem[],
+	explicit: NormalizedNavigationItem[],
+): NormalizedNavigationItem[] => {
+	if (explicit.length > 0) return explicit;
+	return combineNavigation(utility, main).filter((item) => getHeaderIconName(item) !== "default");
+};
+
 export const Header: React.FC<HeaderProps> = ({
 	mainNavigation = [],
 	utilityNavigation = [],
@@ -327,59 +307,58 @@ export const Header: React.FC<HeaderProps> = ({
 	siteTitle = "RathausGalerien",
 }) => {
 	const [isScrolled, setIsScrolled] = React.useState(false);
-	const iconNavigation = toIconNavigation(
-		mainNavigation,
-		utilityNavigation,
-		headerIconNavigation,
-	);
+	const [menuOpen, setMenuOpen] = React.useState(false);
+
+	const iconNavigation = toIconNavigation(mainNavigation, utilityNavigation, headerIconNavigation);
 	const menuNavigation = combineNavigation(mainNavigation, utilityNavigation);
 
+	const openMenu = React.useCallback(() => setMenuOpen(true), []);
+	const closeMenu = React.useCallback(() => setMenuOpen(false), []);
+
 	React.useEffect(() => {
-		const updateHeaderState = () => {
-			setIsScrolled(window.scrollY > 24);
-		};
-
-		updateHeaderState();
-		window.addEventListener("scroll", updateHeaderState, { passive: true });
-
-		return () => window.removeEventListener("scroll", updateHeaderState);
+		const update = () => setIsScrolled(window.scrollY > 24);
+		update();
+		window.addEventListener("scroll", update, { passive: true });
+		return () => window.removeEventListener("scroll", update);
 	}, []);
 
 	return (
-		<header
-			className={`site-header${isScrolled ? " site-header--scrolled" : ""}`}
-		>
-			<div className="site-header__inner">
-				<div className="site-header__brand-group">
-					<a
-						className="site-header__brand"
-						href={homeUrl}
-						aria-label={`${siteTitle} Startseite`}
-					>
-						<img
-							className="site-header__logo"
-							src="/media/_rathausgalerien.svg"
-							alt=""
-							width="210"
-							height="100"
-						/>
-						<span className="visually-hidden">{siteTitle}</span>
-					</a>
+		<>
+			<header className={`site-header${isScrolled ? " site-header--scrolled" : ""}`}>
+				<div className="site-header__inner">
 
-					<LanguageSwitcher languages={languages} />
-				</div>
+					{/* Logo + DE/EN */}
+					<div className="site-header__brand-group">
+						<a className="site-header__brand" href={homeUrl} aria-label={`${siteTitle} Startseite`}>
+							<img
+								className="site-header__logo"
+								src="/media/_rathausgalerien.svg"
+								alt=""
+								width="220"
+								height="105"
+							/>
+							<span className="visually-hidden">{siteTitle}</span>
+						</a>
+						<LanguageSwitcher languages={languages} />
+					</div>
 
-				<div className="site-header__actions">
-					<IconNavigation
-						items={iconNavigation.slice(0, 3)}
-						label="Schnellzugriffe"
-					/>
+					{/* Icons + Burger */}
+					<div className="site-header__actions">
+						{iconNavigation.length > 0 && (
+							<nav className="site-header__icon-nav" aria-label="Schnellzugriffe">
+								<ul className="site-header__icon-list">
+									{renderIconItems(iconNavigation.slice(0, 3))}
+								</ul>
+							</nav>
+						)}
 
-					{menuNavigation.length > 0 ? (
-						<details className="site-header__menu">
-							<summary
-								className="site-header__menu-summary"
+						{menuNavigation.length > 0 && (
+							<button
+								className="site-header__menu-btn"
+								onClick={openMenu}
 								aria-label="Menü öffnen"
+								aria-expanded={menuOpen}
+								type="button"
 							>
 								<span aria-hidden="true" className="site-header__menu-lines">
 									<span />
@@ -387,37 +366,21 @@ export const Header: React.FC<HeaderProps> = ({
 									<span />
 								</span>
 								<span className="visually-hidden">Menü</span>
-							</summary>
-							<div className="site-header__overlay">
-								<div className="site-header__overlay-grid">
-									<nav aria-label="Hauptnavigation">
-										<ul className="site-header__nav-list site-header__nav-list--overlay">
-											{renderNavigationItems(menuNavigation)}
-										</ul>
-										</nav>
+							</button>
+						)}
+					</div>
 
-									<MenuTeaserCards />
-								</div>
-
-								<div className="site-header__overlay-footer">
-									{socialLinks.length > 0 ? (
-										<nav
-											className="site-header__social-nav"
-											aria-label="Social Media"
-										>
-											<ul className="site-header__social-list">
-												{renderSocialItems(socialLinks)}
-											</ul>
-										</nav>
-									) : null}
-
-								<LanguageSwitcher languages={languages} modifier="overlay" />
-								</div>
-							</div>
-						</details>
-					) : null}
 				</div>
-			</div>
-		</header>
+			</header>
+
+			<MenuOverlay
+				isOpen={menuOpen}
+				onClose={closeMenu}
+				menuNavigation={menuNavigation}
+				iconNavigation={iconNavigation}
+				socialLinks={socialLinks}
+				languages={languages}
+			/>
+		</>
 	);
 };
