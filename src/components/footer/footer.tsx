@@ -24,28 +24,32 @@ const FooterNavigation: React.FC<{
 		: "site-footer__nav-list";
 
     const renderIcon = (item: NormalizedNavigationItem) => {
-        // simple mapping for common social icons; prefer explicit icon string
+        // map common social icons by explicit icon value, label or url
         const key = (item.icon || item.label || "").toLowerCase();
+        const url = (item.url || "").toLowerCase();
 
-        if (key.includes("instagram")) {
+        const isInstagram = key.includes("instagram") || url.includes("instagram");
+        const isFacebook = key.includes("facebook") || key.includes("fb") || url.includes("facebook") || url.includes("fb.");
+
+        if (isInstagram) {
             return (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.5" />
-                    <path d="M7 12a5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5z" stroke="currentColor" strokeWidth="1.2" />
-                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <rect x="3" y="3" width="18" height="18" rx="5" fill="currentColor" opacity="0.0" />
+                    <path d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6z" fill="currentColor" />
+                    <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" />
                 </svg>
             );
         }
 
-        if (key.includes("facebook") || key.includes("fb")) {
+        if (isFacebook) {
             return (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path d="M15 8h2.5V5.5H15c-1.38 0-2.5 1.12-2.5 2.5V11H10v2h2.5v6h2.5v-6H17l.5-2h-2V8z" fill="currentColor" />
                 </svg>
             );
         }
 
-        // fallback: if icon string contains inline SVG/emoji or similar, render it
+        // fallback: if icon string contains inline content, render it
         return item.icon ? <span aria-hidden="true">{item.icon}</span> : null;
     };
 
