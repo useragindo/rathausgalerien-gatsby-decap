@@ -1,11 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Content Blocks — Figma-Design 2026
    Vier Layout-Typen:
-     1. grid-4      — 1 Content-Kachel + 3 Bild-Kacheln (quadratisch)
-     2. image-left  — Bild links | Content rechts (je 1:1 quadratisch)
-     3. text-left   — Content links | Bild rechts  (je 1:1 quadratisch)
-     4. slider-left — Slider links | Content rechts (je 1:1 quadratisch)
-        slider-right — Content links | Slider rechts (je 1:1 quadratisch)
+     1. grid-4      — 1 Content-Kachel + 3 Bild-Kacheln
+                      Figma: Kachel 1+3 = 284×284, Kachel 2+4 = 284×374
+     2. image-left  — Bild links | Content rechts (je 284×374)
+     3. text-left   — Content links | Bild rechts  (je 284×374)
+     4. slider-left — Slider links | Content rechts (je 284×374)
+        slider-right — Content links | Slider rechts (je 284×374)
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ─── Basis-Block ──────────────────────────────────────────────────────── */
@@ -35,6 +36,7 @@
 	--cb-gap: clamp(0.45rem, 1vw, 0.85rem);
 
 	display: grid;
+	align-items: center;
 	gap: var(--cb-gap);
 	max-width: var(--container-content);
 	margin-inline: auto;
@@ -79,36 +81,52 @@
 
 /* ═══════════════════════════════════════════════════════════════════════
    Layout Typ 1: grid-4
-   Mobile:  Content volle Breite, darunter 3 Bilder in einer Reihe
-   Tablet+: alle 4 Kacheln in einer Reihe (4-spaltig)
+   Figma-Proportionen: 284×284 und 284×374 abwechselnd
+     Kachel 1 (Content): 284×284  → aspect-ratio: 1
+     Kachel 2 (Bild):    284×374  → aspect-ratio: 284/374
+     Kachel 3 (Bild):    284×284  → aspect-ratio: 1
+     Kachel 4 (Bild):    284×374  → aspect-ratio: 284/374
+
+   Mobile (<44rem):
+     Content-Tile: volle Breite, 1:1
+     3 Bild-Tiles darunter: 3-spaltig, abwechselnde Höhen
+   Tablet+ (≥44rem):
+     Alle 4 in einer Reihe, 4-spaltig, abwechselnde Höhen
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* Mobile: 1-spaltig */
+/* Mobile: Content-Tile volle Breite, Bild-Tiles als 3-Spalten-Grid darunter */
 .content-block--grid-4 .content-block__body {
-	grid-template-columns: 1fr;
+	/* 2 Reihen: Content oben, dann 3 Bilder nebeneinander */
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-rows: auto auto;
 }
 
-/* Content-Tile: volle Breite, quadratisch */
+/* Content-Tile: volle Breite der 3 Spalten, quadratisch */
 .content-block--grid-4 .content-block__tile--content {
+	grid-column: 1 / -1;
 	aspect-ratio: 1;
 }
 
-/* Die ersten 3 Media-Tiles nebeneinander unter dem Content */
-.content-block--grid-4 .content-block__tile--media {
+/* Bild-Tile 1 (DOM-Kind 2): 284×284 → 1:1 */
+.content-block--grid-4 .content-block__tile--media:nth-of-type(1) {
 	aspect-ratio: 1;
 }
 
-/* 3 Bilder nebeneinander auf Mobile mit Subgrid-Trick */
-.content-block--grid-4 .content-block__tile--media:first-of-type,
-.content-block--grid-4 .content-block__body > .content-block__tile--media {
-	/* handled by grid rearrangement below */
+/* Bild-Tile 2 (DOM-Kind 3): 284×374 → höher */
+.content-block--grid-4 .content-block__tile--media:nth-of-type(2) {
+	aspect-ratio: 284 / 374;
+}
+
+/* Bild-Tile 3 (DOM-Kind 4): 284×284 → 1:1 */
+.content-block--grid-4 .content-block__tile--media:nth-of-type(3) {
+	aspect-ratio: 1;
 }
 
 
 /* ═══════════════════════════════════════════════════════════════════════
    Layout Typ 2 & 3: image-left / text-left
-   Beide Spalten gleich groß, 1:1 quadratisch
-   Mobile: 2-spaltig übereinander (aber schmal → lieber 2-spaltig sofort)
+   Figma: beide Tiles 284×374 → aspect-ratio: 284/374
+   2-spaltig, gleiche Höhe
    ═══════════════════════════════════════════════════════════════════════ */
 
 .content-block--image-left .content-block__body,
@@ -118,21 +136,20 @@
 
 .content-block--image-left .content-block__tile,
 .content-block--text-left .content-block__tile {
-	aspect-ratio: 1;
+	aspect-ratio: 284 / 374;
 }
 
-/* Content-Tile soll gleiche Höhe wie Bild-Tile bekommen */
 .content-block--image-left .content-block__tile--content,
 .content-block--text-left .content-block__tile--content {
-	aspect-ratio: 1;
+	aspect-ratio: 284 / 374;
 	min-height: 0;
 }
 
 
 /* ═══════════════════════════════════════════════════════════════════════
    Layout Typ 4: slider-left / slider-right
-   Slider-Tile links/rechts, Content-Tile rechts/links
-   Beide 1:1 quadratisch, 2-spaltig
+   Figma: beide Tiles 284×374 → aspect-ratio: 284/374
+   2-spaltig, Slider links oder rechts
    ═══════════════════════════════════════════════════════════════════════ */
 
 .content-block--slider-left .content-block__body,
@@ -142,12 +159,12 @@
 
 .content-block--slider-left .content-block__tile,
 .content-block--slider-right .content-block__tile {
-	aspect-ratio: 1;
+	aspect-ratio: 284 / 374;
 }
 
 .content-block--slider-left .content-block__tile--content,
 .content-block--slider-right .content-block__tile--content {
-	aspect-ratio: 1;
+	aspect-ratio: 284 / 374;
 	min-height: 0;
 }
 
@@ -217,7 +234,7 @@
 }
 
 .image-slider__slide[aria-hidden="true"] {
-	visibility: hidden;
+	/* Slides werden per transform translateX ausgeblendet, nicht per visibility */
 }
 
 .image-slider__slide img {
@@ -348,22 +365,40 @@
 
 /* ═══════════════════════════════════════════════════════════════════════
    Tablet (≥ 44rem / 704px)
-   grid-4: alle 4 Kacheln in einer Reihe
-   2-spaltige Layouts: bleiben 2-spaltig
+   grid-4: Content + 3 Bilder alle 4 in einer Reihe
+           Figma: 1+3=quadratisch (284×284), 2+4=höher (284×374)
    ═══════════════════════════════════════════════════════════════════════ */
 
 @media (min-width: 44rem) {
-	/* grid-4: Content + 3 Bilder alle in einer Reihe */
 	.content-block--grid-4 .content-block__body {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-rows: auto;
 	}
 
-	.content-block--grid-4 .content-block__tile {
-		aspect-ratio: 1;
-	}
-
+	/* Content-Tile (Kind 1): nicht mehr über alle Spalten, 1×1 quadratisch */
 	.content-block--grid-4 .content-block__tile--content {
+		grid-column: auto;
 		aspect-ratio: 1;
+	}
+
+	/* Kachel 1 (Content, :nth-child(1)): 284×284 → 1:1 */
+	.content-block--grid-4 .content-block__body > .content-block__tile:nth-child(1) {
+		aspect-ratio: 1;
+	}
+
+	/* Kachel 2 (:nth-child(2)): 284×374 */
+	.content-block--grid-4 .content-block__body > .content-block__tile:nth-child(2) {
+		aspect-ratio: 284 / 374;
+	}
+
+	/* Kachel 3 (:nth-child(3)): 284×284 → 1:1 */
+	.content-block--grid-4 .content-block__body > .content-block__tile:nth-child(3) {
+		aspect-ratio: 1;
+	}
+
+	/* Kachel 4 (:nth-child(4)): 284×374 */
+	.content-block--grid-4 .content-block__body > .content-block__tile:nth-child(4) {
+		aspect-ratio: 284 / 374;
 	}
 }
 
@@ -397,13 +432,5 @@
 
 	.page--index .content-block__tile--content .content-block__text strong {
 		font-size: clamp(1.35rem, 2.2vw, 2.1rem);
-	}
-
-	/* Mindesth öhe für 2-spaltige Tiles auf Desktop */
-	.content-block--image-left .content-block__tile,
-	.content-block--text-left .content-block__tile,
-	.content-block--slider-left .content-block__tile,
-	.content-block--slider-right .content-block__tile {
-		min-height: clamp(16rem, 28vw, 26rem);
 	}
 }

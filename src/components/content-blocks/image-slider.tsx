@@ -31,7 +31,10 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
 
 	return (
 		<div className={`image-slider ${className}`.trim()}>
-			<div className="image-slider__track">
+			<div
+				className="image-slider__track"
+				style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+			>
 				{validImages.map((image, index) => (
 					<div
 						key={`${image.image}-${index}`}

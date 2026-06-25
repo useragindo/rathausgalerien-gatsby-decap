@@ -10,7 +10,7 @@ seo:
   title: Shopping in Innsbruck
 blocks:
   - date: ""
-    layout: grid-4
+    layout: slider-left
     header: OUT NOW
     text: >-
       Galerien Wonderland 

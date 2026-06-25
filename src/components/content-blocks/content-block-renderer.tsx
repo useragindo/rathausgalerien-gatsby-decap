@@ -40,24 +40,22 @@ const isImportedBlockLayout = (value?: string | null): value is ImportedBlockLay
 
 const getImportedBlockLayout = (
 	block: ImportedContentBlock,
-	index: number,
+	_index: number,
 ): ImportedBlockLayout => {
+	// CMS-Layout hat immer Priorität — kein Auto-Fallback der es überschreibt
 	if (isImportedBlockLayout(block.layout)) {
 		return block.layout;
 	}
 
+	// Fallback wenn kein Layout im CMS gesetzt ist
 	const header = text(block.header)?.toLowerCase() ?? "";
 	const imageCount = block.images?.length ?? 0;
-
-	if (index === 0 || imageCount >= 4) {
-		return "grid-4";
-	}
 
 	if (header.includes("follow")) {
 		return "slider-left";
 	}
 
-	if (imageCount > 1) {
+	if (imageCount >= 4 || imageCount > 1) {
 		return "grid-4";
 	}
 
