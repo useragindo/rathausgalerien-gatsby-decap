@@ -10,8 +10,7 @@ seo:
 name: Cafe-Bar Magistrat
 group: culinary
 categories:
-  - ddfcab86-1237-4de6-9081-cafe473eecfd
-  - 619a69d0-fe0b-45da-80ec-e3203da79c23
+  - 9fa25aa3-e40e-4ba4-a702-a6a75a50360c
 logo: /media/magistrat_cafepizzeria_02.svg
 images:
   - /media/rathausgalerien_2021_danielzangerl_299.jpg
