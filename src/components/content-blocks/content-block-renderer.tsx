@@ -290,7 +290,16 @@ const ImportedBlock: React.FC<{
 	const layout = getImportedBlockLayout(block, index);
 	const isSliderLayout = layout === "slider-left" || layout === "slider-right";
 	const isGridLayout = layout === "grid-4";
+	// For 2-column layouts (image-left / text-left), show all images as a slider
+	// when multiple images are present; for grid-4, show first 3 images as static tiles
+	const isTwoColumnLayout =
+		layout === "image-left" ||
+		layout === "text-left" ||
+		layout === "slider-left" ||
+		layout === "slider-right";
 	const displayedImages = isGridLayout ? images.slice(0, 3) : images.slice(0, 1);
+	// For 2-column layouts with multiple images, use a slider instead of single image
+	const useDynamicSlider = isTwoColumnLayout && images.length > 1;
 
 	const blockClassName = [
 		"content-block",
@@ -371,6 +380,13 @@ const ImportedBlock: React.FC<{
 		</div>
 	) : null;
 
+	// For 2-column layouts with multiple images, use a dynamic slider
+	const dynamicSliderTile = images.length ? (
+		<div className="content-block__tile content-block__tile--media">
+			<ImageSlider images={images} />
+		</div>
+	) : null;
+
 	return (
 		<section className={blockClassName}>
 			{text(block.header) ? (
@@ -379,13 +395,13 @@ const ImportedBlock: React.FC<{
 			<div className="content-block__body">
 				{layout === "image-left" || layout === "slider-left" ? (
 					<>
-						{isSliderLayout ? sliderTile : mediaTiles}
+						{isSliderLayout ? sliderTile : useDynamicSlider ? dynamicSliderTile : mediaTiles}
 						{contentTile}
 					</>
 				) : (
 					<>
 						{contentTile}
-						{isSliderLayout ? sliderTile : mediaTiles}
+						{isSliderLayout ? sliderTile : useDynamicSlider ? dynamicSliderTile : mediaTiles}
 					</>
 				)}
 			</div>
