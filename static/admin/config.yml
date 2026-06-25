@@ -65,7 +65,9 @@ collections:
           - label: "Blocks"
             name: "blocks"
             widget: list
+            identifier_field: header
             fields:
+              - { label: "Header", name: "header", widget: string }
               - label: "Layout"
                 name: "layout"
                 widget: "select"
@@ -76,7 +78,6 @@ collections:
                   - { label: "Text links / Bild rechts", value: "text-left" }
                   - { label: "Slider links / Text rechts", value: "slider-left" }
                   - { label: "Text links / Slider rechts", value: "slider-right" }
-              - { label: "Header", name: "header", widget: string }
               - label: "Text"
                 name: "text"
                 widget: "markdown"
@@ -514,7 +515,9 @@ collections:
           - label: "Blocks"
             name: "blocks"
             widget: list
+            identifier_field: header
             fields:
+              - { label: "Header", name: "header", widget: string }
               - label: "Layout"
                 name: "layout"
                 widget: "select"
@@ -525,7 +528,6 @@ collections:
                   - { label: "Text left / Image right", value: "text-left" }
                   - { label: "Slider left / Text right", value: "slider-left" }
                   - { label: "Text left / Slider right", value: "slider-right" }
-              - { label: "Header", name: "header", widget: string }
               - label: "Text"
                 name: "text"
                 widget: "markdown"
