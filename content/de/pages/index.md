@@ -10,7 +10,7 @@ seo:
   title: Shopping
 blocks:
   - date: ""
-    layout: slider-left
+    layout: text-left
     header: OUT NOW.
     text: >-
       GALERIEN WUNDERLAND
