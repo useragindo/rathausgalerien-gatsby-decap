@@ -3,7 +3,7 @@ key: job
 type: job
 locale: de
 uuid: 6e1c2560-f9ec-49da-aa5e-cc6926e1bcd5
-location: Calzedonia
+location: Calzedonia hurra die Gams
 position: "Verkäufer (m/w/d) "
 specification: Vollzeit
 images: []
