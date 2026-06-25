@@ -31,8 +31,7 @@
 	--color-focus: var(--color-rosa);
 
 	/* Typography — Museo Sans Rounded is the Figma reference font.
-	 * The project must load the webfont separately (self-hosted or licensed CDN).
-	 * Until then the browser will use the first available fallback.
+	 * Self-hosted WOFF files are loaded via _fonts.scss from /static/fonts.
 	 */
 	--font-family-base: "Museo Sans Rounded", "Nunito", "Varela Round", "Avenir Next", Avenir, Montserrat, "Segoe UI", sans-serif;
 	--font-family-accent: var(--font-family-base);
@@ -51,9 +50,11 @@
 	--font-size-lg: var(--font-size-sub);
 	--font-size-xl: var(--font-size-h1);
 
-	/* Figma font weights */
+	/* Available Museo Sans Rounded cuts: 100, 300, 500, 700, 900, 1000.
+	 * 400 is not provided, so "regular" maps to the 500 cut.
+	 */
 	--font-weight-thin: 300;
-	--font-weight-regular: 400;
+	--font-weight-regular: 500;
 	--font-weight-medium: 500;
 
 	/* Line heights */

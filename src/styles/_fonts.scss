@@ -1,0 +1,51 @@
+/* Self-hosted Museo Sans Rounded webfont files live in /static/fonts.
+ * Gatsby serves the static folder at the site root, so the font URLs are /fonts/…
+ */
+
+@font-face {
+	font-family: "Museo Sans Rounded";
+	src: url("/fonts/MuseoSansRounded100.woff") format("woff");
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Museo Sans Rounded";
+	src: url("/fonts/MuseoSansRounded300.woff") format("woff");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Museo Sans Rounded";
+	src: url("/fonts/MuseoSansRounded500.woff") format("woff");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Museo Sans Rounded";
+	src: url("/fonts/MuseoSansRounded700.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Museo Sans Rounded";
+	src: url("/fonts/MuseoSansRounded900.woff") format("woff");
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Museo Sans Rounded";
+	src: url("/fonts/MuseoSansRounded1000.woff") format("woff");
+	font-weight: 1000;
+	font-style: normal;
+	font-display: swap;
+}
