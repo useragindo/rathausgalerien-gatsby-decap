@@ -10,6 +10,7 @@ seo:
   title: Shopping in Innsbruck
 blocks:
   - date: ""
+    layout: grid-4
     header: OUT NOW
     text: >-
       Galerien Wonderland 
@@ -27,6 +28,7 @@ blocks:
       - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_05.jpg
       - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_06.jpg
   - date: ""
+    layout: slider-left
     header: Follow us on Instagram.
     icons:
       - icon: /media/instagram_icon.svg
@@ -36,6 +38,7 @@ blocks:
     text: Explore the wonderful world of the RathausGalerien. Insights, tips und
       raffles are waiting for you!
   - date: ""
+    layout: grid-4
     images:
       - image: /media/karma-suncare-post.jpg
       - image: /media/novelties-post.jpg
@@ -47,6 +50,7 @@ blocks:
       treating yourself. My Rituals members receive a The Rituals of Yozakura
       Body Set with purchases of €50 or more.
   - date: ""
+    layout: grid-4
     header: Fashion. Food. Lifestyle.
     icons:
       - icon: /media/auto_icon.svg
@@ -60,6 +64,7 @@ blocks:
     text: 21 shops. 4 restaurants. 4 bars. 2 Hotels. And one bakery. The No. 1
       address for Fashion, Food and Lifestyle.
   - date: ""
+    layout: grid-4
     header: Kids Galerien.
     text: The coolest and sweetest styles for our little ones. Best biological
       cotton quality and more. Visit Name it at RathausGalerien.
@@ -69,6 +74,7 @@ blocks:
       - image: /media/name-it_spring_summer_2026_large_13253813_13253819_2-kopie.jpg
       - image: /media/name-it_spring_summer_2026_large_13252159_13228693_v1-kopie.jpg
   - date: ""
+    layout: grid-4
     header: Läderach Chocolate
     text: Taste the delicious and finest FRISCHSCHOGGI and chocolate specialities
       from Switzerland at Läderach!
@@ -81,12 +87,14 @@ blocks:
       - image: /media/la-derach_4.jpg
       - image: /media/la-derach_14.jpg
   - date: ""
+    layout: slider-right
     header: G stands for Galerien.
     images:
       - image: /media/h001_132_02_05_galerien_fru-hling_rz_1000-x-1000_01.jpg
     text: Let yourself be inspired, and discover the top fashion and color trends.
       Many special ideas for young and old await you in the RathausGalerien.
   - date: ""
+    layout: text-left
     header: Innsbruck's No. 1 Address
     icons:
       - icon: /media/location_icon.svg
@@ -96,6 +104,7 @@ blocks:
     text: Located right in the middle of events. And in the middle of
       Maria-Theresien-Straße in the centre of Innsbruck.
   - date: ""
+    layout: text-left
     header: MORAWA KIOSK.
     images:
       - image: /media/plakat_a3-01_1zu1.jpg

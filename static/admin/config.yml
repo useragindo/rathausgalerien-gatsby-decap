@@ -66,6 +66,16 @@ collections:
             name: "blocks"
             widget: list
             fields:
+              - label: "Layout"
+                name: "layout"
+                widget: "select"
+                default: "grid-4"
+                options:
+                  - { label: "4er Grid", value: "grid-4" }
+                  - { label: "Bild links / Text rechts", value: "image-left" }
+                  - { label: "Text links / Bild rechts", value: "text-left" }
+                  - { label: "Slider links / Text rechts", value: "slider-left" }
+                  - { label: "Text links / Slider rechts", value: "slider-right" }
               - { label: "Header", name: "header", widget: string }
               - label: "Text"
                 name: "text"
@@ -505,6 +515,16 @@ collections:
             name: "blocks"
             widget: list
             fields:
+              - label: "Layout"
+                name: "layout"
+                widget: "select"
+                default: "grid-4"
+                options:
+                  - { label: "4 Grid", value: "grid-4" }
+                  - { label: "Image left / Text right", value: "image-left" }
+                  - { label: "Text left / Image right", value: "text-left" }
+                  - { label: "Slider left / Text right", value: "slider-left" }
+                  - { label: "Text left / Slider right", value: "slider-right" }
               - { label: "Header", name: "header", widget: string }
               - label: "Text"
                 name: "text"

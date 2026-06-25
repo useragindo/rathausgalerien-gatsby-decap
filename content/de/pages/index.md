@@ -10,6 +10,7 @@ seo:
   title: Shopping
 blocks:
   - date: ""
+    layout: grid-4
     header: OUT NOW.
     text: >-
       GALERIEN WUNDERLAND
@@ -27,6 +28,7 @@ blocks:
       - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_05.jpg
       - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_06.jpg
   - date: ""
+    layout: slider-left
     header: WEEKEND PARKING.
     text: >-
       DIE ERSTEN 3 STUNDEN ZUM HALBEN PREIS.\
@@ -35,6 +37,7 @@ blocks:
     images:
       - image: /media/h001_132_02_11_weekend_parking_rz_1000-x-1000_01.jpg
   - date: ""
+    layout: grid-4
     header: Rituals News.
     text: Entdecken Sie die neuen Sonnenpflege- und Selbstbräunungs-Prpdukte von The
       Rituals of Karma sowie die Me-Time Gift Sets zum verschenken oder selbst
@@ -46,6 +49,7 @@ blocks:
       - image: /media/rituals-refill-week-post.jpg
       - image: /media/yozakura-novelties-post.jpg
   - date: ""
+    layout: slider-left
     header: FOLLOW US.
     icons:
       - icon: /media/instagram_icon.svg
@@ -59,6 +63,7 @@ blocks:
       Social Media Accounts\r auf Instagram und Facebook. \rBleiben wir in
       Kontakt!"
   - date: ""
+    layout: grid-4
     header: Kids Galerien.
     text: Die coolsten und süßesten Styles für unsere Liebsten. Beste Bio-Baumwolle
       und hochwertige Qualität. Zu finden bei Name It in den RathausGalerien.
@@ -68,6 +73,7 @@ blocks:
       - image: /media/name-it_spring_summer_2026_large_13253813_13253819_2-kopie.jpg
       - image: /media/name-it_spring_summer_2026_large_13252159_13228693_v1-kopie.jpg
   - date: ""
+    layout: grid-4
     header: Läderach in Innsbruck.
     text: Probieren Sie die bekannte FrischSchoggi sowie feinste Schweizer
       Schokoladespezialitäten und Pralinen von Läderach. Hier finden Sie das
@@ -78,12 +84,14 @@ blocks:
       - image: /media/la-derach_14.jpg
       - image: /media/la-derach_10.jpg
   - date: ""
+    layout: slider-right
     header: Freude schenken.
     images:
       - image: /media/h001_132_02_06_gutscheine_rz_1000-x-1000_01.jpg
     text: Unsere RathausGalerien Gutscheine sind ein totaler Geschenke Hit. Zu
       finden bei Betty Barclay in den RathausGalerien.
   - date: ""
+    layout: grid-4
     header: Fashion. Food. Lifestyle.
     icons:
       - icon: /media/auto_icon.svg
@@ -101,6 +109,7 @@ blocks:
 
       Perfekte Anbindung zu Bus und Straßenbahn.
   - date: ""
+    layout: text-left
     header: GALERIEN. GENUSS.
     images:
       - image: /media/h001_132_02_03_food_rz_1000-x-1000_01.jpg
@@ -111,6 +120,7 @@ blocks:
     text: Die kulinarische Weltreise in den RathausGalerien erleben und alle
       Köstlichkeiten genießen.
   - date: ""
+    layout: text-left
     header: Innsbrucks erste Adresse.
     icons:
       - icon: /media/location_icon.svg
@@ -119,6 +129,7 @@ blocks:
       - image: /media/eingang_.jpg
     text: Mitten im Geschehen. Und mitten in der Maria-Theresien-Straße.
   - date: ""
+    layout: text-left
     header: Morawa Kiosk.
     images:
       - image: /media/plakat_a3-01_1zu1.jpg
@@ -127,6 +138,7 @@ blocks:
       und Magazinen. Einfach die App downloaden, verbinden und das Lesevergnügen
       kann beginnen!
   - date: ""
+    layout: text-left
     images:
       - image: /media/h001_117_04_schliessfach_rz.jpg
     header: Galerien Schliess- fächer.

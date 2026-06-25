@@ -14,38 +14,54 @@ import type {
 } from "../../lib/cms";
 import { MarkdownContent } from "../../lib/content/markdown";
 import type { ImportedContentBlock } from "../../lib/content/types";
+import { ImageSlider } from "./image-slider";
 
 type ContentBlockRendererProps = {
 	blocks?: Array<PageContentBlock | ImportedContentBlock> | null;
 };
 
-type ImportedBlockVariant = "feature" | "compact" | "gallery" | "social";
+type ImportedBlockLayout =
+	| "grid-4"
+	| "image-left"
+	| "text-left"
+	| "slider-left"
+	| "slider-right";
 
 const text = (value?: string | null): string | undefined => {
 	const trimmed = value?.trim();
 	return trimmed ? trimmed : undefined;
 };
 
-const getImportedBlockVariant = (
+const isImportedBlockLayout = (value?: string | null): value is ImportedBlockLayout =>
+	Boolean(
+		value &&
+			["grid-4", "image-left", "text-left", "slider-left", "slider-right"].includes(value),
+	);
+
+const getImportedBlockLayout = (
 	block: ImportedContentBlock,
 	index: number,
-): ImportedBlockVariant => {
+): ImportedBlockLayout => {
+	if (isImportedBlockLayout(block.layout)) {
+		return block.layout;
+	}
+
 	const header = text(block.header)?.toLowerCase() ?? "";
 	const imageCount = block.images?.length ?? 0;
 
 	if (index === 0 || imageCount >= 4) {
-		return "feature";
+		return "grid-4";
 	}
 
 	if (header.includes("follow")) {
-		return "social";
+		return "slider-left";
 	}
 
 	if (imageCount > 1) {
-		return "gallery";
+		return "grid-4";
 	}
 
-	return "compact";
+	return "text-left";
 };
 
 const getHostnameLabel = (url: string): string | undefined => {
@@ -271,89 +287,108 @@ const ImportedBlock: React.FC<{
 	const icons = (block.icons ?? []).filter(
 		(icon) => text(icon.icon) || text(icon.text),
 	);
-	const variant = getImportedBlockVariant(block, index);
+	const layout = getImportedBlockLayout(block, index);
+	const isSliderLayout = layout === "slider-left" || layout === "slider-right";
+	const isGridLayout = layout === "grid-4";
+	const displayedImages = isGridLayout ? images.slice(0, 3) : images.slice(0, 1);
+
 	const blockClassName = [
 		"content-block",
 		"content-block--imported",
-		`content-block--${variant}`,
+		`content-block--${layout}`,
 		`content-block--index-${index + 1}`,
 		images.length ? "content-block--has-images" : "",
-		images.length ? `content-block--media-count-${images.length}` : "",
 		icons.length ? "content-block--has-icons" : "",
 	]
 		.filter(Boolean)
 		.join(" ");
 
-	return (
-		<section className={blockClassName}>
-			<div className="content-block__content">
-				{text(block.date) ? (
-					<p className="content-block__eyebrow">{text(block.date)}</p>
-				) : null}
-				{text(block.header) ? (
-					<h2 className="content-block__title">{text(block.header)}</h2>
-				) : null}
-				<div className="content-block__text">
-					<MarkdownContent content={block.text} />
-				</div>
-				{icons.length ? (
-					<ul className="content-block__icons" aria-label="Schnelllinks">
-						{icons.map((icon) => {
-							const visibleText = text(icon.text);
-							const linkLabel = visibleText ?? getActionLinkLabel(icon.link);
-							const hasIcon = Boolean(text(icon.icon));
-							const actionClassName = [
-								"content-block__icon-action",
-								hasIcon && !visibleText
-									? "content-block__icon-action--icon-only"
-									: "",
-							]
-								.filter(Boolean)
-								.join(" ");
-							const iconContent = (
-								<>
-									{text(icon.icon) ? (
-										<img src={text(icon.icon)} alt="" loading="lazy" />
-									) : null}
-									{visibleText ? <span>{visibleText}</span> : null}
-								</>
-							);
-
-							return (
-								<li key={`${icon.icon}-${icon.text}-${icon.link}`}>
-									{text(icon.link) ? (
-										<a
-											className={actionClassName}
-											href={text(icon.link)}
-											aria-label={linkLabel}
-										>
-											{iconContent}
-										</a>
-									) : (
-										<span className={actionClassName}>{iconContent}</span>
-									)}
-								</li>
-							);
-						})}
-					</ul>
-				) : null}
+	const contentTile = (
+		<div className="content-block__tile content-block__tile--content">
+			<div className="content-block__text">
+				<MarkdownContent content={block.text} />
 			</div>
-			{images.length ? (
-				<ul className="content-block__media-grid">
-					{images.map((image, imageIndex) => (
-						<li
-							className="content-block__media-item"
-							key={`${text(image.image)}-${imageIndex}`}
-						>
-							<img
-								src={text(image.image)}
-								alt={text(image.alt) ?? ""}
-								loading={index === 0 && imageIndex === 0 ? "eager" : "lazy"}
-							/>
-						</li>
-					))}
+			{icons.length ? (
+				<ul className="content-block__icons" aria-label="Schnelllinks">
+					{icons.map((icon) => {
+						const visibleText = text(icon.text);
+						const linkLabel = visibleText ?? getActionLinkLabel(icon.link);
+						const hasIcon = Boolean(text(icon.icon));
+						const actionClassName = [
+							"content-block__icon-action",
+							hasIcon && !visibleText
+								? "content-block__icon-action--icon-only"
+								: "",
+						]
+							.filter(Boolean)
+							.join(" ");
+						const iconContent = (
+							<>
+								{text(icon.icon) ? (
+									<img src={text(icon.icon)} alt="" loading="lazy" />
+								) : null}
+								{visibleText ? <span>{visibleText}</span> : null}
+							</>
+						);
+
+						return (
+							<li key={`${icon.icon}-${icon.text}-${icon.link}`}>
+								{text(icon.link) ? (
+									<a
+										className={actionClassName}
+										href={text(icon.link)}
+										aria-label={linkLabel}
+									>
+										{iconContent}
+									</a>
+								) : (
+									<span className={actionClassName}>{iconContent}</span>
+								)}
+							</li>
+						);
+					})}
 				</ul>
 			) : null}
+		</div>
+	);
+
+	const mediaTiles = displayedImages.map((image, imageIndex) => (
+		<div
+			className="content-block__tile content-block__tile--media"
+			key={`${text(image.image)}-${imageIndex}`}
+		>
+			<img
+				src={text(image.image)}
+				alt={text(image.alt) ?? ""}
+				loading={index === 0 && imageIndex === 0 ? "eager" : "lazy"}
+			/>
+		</div>
+	));
+
+	const sliderTile = images.length ? (
+		<div className="content-block__tile content-block__tile--media">
+			<ImageSlider images={images} />
+		</div>
+	) : null;
+
+	return (
+		<section className={blockClassName}>
+			{text(block.header) ? (
+				<p className="content-block__section-title">{text(block.header)}</p>
+			) : null}
+			<div className="content-block__body">
+				{layout === "image-left" || layout === "slider-left" ? (
+					<>
+						{isSliderLayout ? sliderTile : mediaTiles}
+						{contentTile}
+					</>
+				) : (
+					<>
+						{contentTile}
+						{isSliderLayout ? sliderTile : mediaTiles}
+					</>
+				)}
+			</div>
 		</section>
 	);
 };

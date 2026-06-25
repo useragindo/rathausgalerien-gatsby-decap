@@ -18,6 +18,7 @@ export type ImportedIcon = {
 };
 
 export type ImportedContentBlock = {
+	layout?: string | null;
 	header?: string | null;
 	text?: string | null;
 	date?: string | null;
