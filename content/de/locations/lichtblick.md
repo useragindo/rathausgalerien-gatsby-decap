@@ -12,6 +12,7 @@ group: culinary
 categories:
   - 619a69d0-fe0b-45da-80ec-e3203da79c23
   - ddfcab86-1237-4de6-9081-cafe473eecfd
+  - 9fa25aa3-e40e-4ba4-a702-a6a75a50360c
 logo: /media/lichtblick.svg
 images:
   - /media/lichtblick.jpg
