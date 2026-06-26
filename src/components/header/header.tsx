@@ -61,37 +61,12 @@ const HeaderIcon: React.FC<{ name: HeaderIconName }> = ({ name }) => {
 	);
 };
 
-const getAlternateLanguageUrl = (
-	currentPath: string,
-	languages: { code: string; label: string; url: string }[],
-): { code: string; label: string; url: string }[] => {
-	const normalizedPath = currentPath.replace(/\/$/, "") || "/";
-	return languages.map((lang) => {
-		if (lang.code === "en") {
-			return { ...lang, url: normalizedPath === "/" ? "/en/" : `/en${normalizedPath}/` };
-		}
-		if (lang.code === "de") {
-			const germanPath = normalizedPath === "/en" || normalizedPath === "/en/" ? "/" : normalizedPath.replace(/^\/en/, "") || "/";
-			return { ...lang, url: germanPath };
-		}
-		return lang;
-	});
-};
-
 const LanguageSwitcher: React.FC<{
 	languages: { code: string; label: string; url: string }[];
 	modifier?: string;
 }> = ({ languages, modifier }) => {
-	const [hrefMap, setHrefMap] = React.useState<Record<string, string>>(() =>
-		Object.fromEntries(languages.map((l) => [l.code, l.url])),
-	);
-
-	React.useEffect(() => {
-		if (typeof window === "undefined") return;
-		const updated = getAlternateLanguageUrl(window.location.pathname, languages);
-		setHrefMap(Object.fromEntries(updated.map((l) => [l.code, l.url])));
-	}, [languages]);
-
+	// URLs are resolved per page at build time (see gatsby-node `languageLinks`),
+	// so each link points at the correct translation of the current page.
 	const className = modifier
 		? `site-header__language site-header__language--${modifier}`
 		: "site-header__language";
@@ -101,7 +76,7 @@ const LanguageSwitcher: React.FC<{
 			<ul className="site-header__language-list">
 				{languages.map((lang, i) => (
 					<li key={lang.code}>
-						<a className="site-header__language-link" href={hrefMap[lang.code] ?? lang.url} aria-label={`Sprache ${lang.code}`}>
+						<a className="site-header__language-link" href={lang.url} aria-label={`Sprache ${lang.code}`}>
 							{lang.label}
 						</a>
 						{i < languages.length - 1 && (

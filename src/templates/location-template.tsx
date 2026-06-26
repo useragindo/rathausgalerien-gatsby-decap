@@ -5,10 +5,12 @@ import { SiteLayout } from "../layouts";
 import { resolveCategoryLabels } from "../lib/content/categories";
 import { MarkdownContent } from "../lib/content/markdown";
 import type {
+	LanguageLinks,
 	NormalizedCategory,
 	NormalizedLocation,
 	SiteNavigationItem,
 } from "../lib/content/types";
+import { buildLanguageOptions } from "../lib/language";
 import type { NormalizedNavigationItem } from "../lib/navigation";
 import type { ResolvedSeo } from "../lib/seo";
 
@@ -16,6 +18,7 @@ type LocationTemplateContext = {
 	location: NormalizedLocation;
 	navigation: SiteNavigationItem[];
 	categories: NormalizedCategory[];
+	languageLinks?: LanguageLinks;
 };
 
 type LocationTemplateProps = PageProps<
@@ -224,8 +227,9 @@ const PinIcon: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
-	const { location, navigation, categories } = pageContext;
+	const { location, navigation, categories, languageLinks } = pageContext;
 	const { frontmatter } = location;
+	const languages = buildLanguageOptions(languageLinks);
 	const images = frontmatter.images ?? [];
 	const heroImage = images[0];
 	const aboutImage = images[1] ?? images[0];
@@ -261,6 +265,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 				location.language,
 				"misc",
 			)}
+			languages={languages}
 			siteTitle="RathausGalerien"
 		>
 			<article className={`location-detail location-detail--${location.group}`}>

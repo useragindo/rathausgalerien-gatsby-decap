@@ -3,13 +3,19 @@ import type { HeadFC, PageProps } from "gatsby";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
 import { MarkdownContent } from "../lib/content/markdown";
-import type { NormalizedJob, SiteNavigationItem } from "../lib/content/types";
+import type {
+	LanguageLinks,
+	NormalizedJob,
+	SiteNavigationItem,
+} from "../lib/content/types";
+import { buildLanguageOptions } from "../lib/language";
 import type { NormalizedNavigationItem } from "../lib/navigation";
 import type { ResolvedSeo } from "../lib/seo";
 
 type JobTemplateContext = {
 	job: NormalizedJob;
 	navigation: SiteNavigationItem[];
+	languageLinks?: LanguageLinks;
 };
 
 type JobTemplateProps = PageProps<Record<string, never>, JobTemplateContext>;
@@ -122,8 +128,9 @@ const ApplicationIcon: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
-	const { job, navigation } = pageContext;
+	const { job, navigation, languageLinks } = pageContext;
 	const { frontmatter } = job;
+	const languages = buildLanguageOptions(languageLinks);
 	const images = frontmatter.images ?? [];
 	const heroImage = images[0];
 	const galleryImages = images.slice(1);
@@ -136,6 +143,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 		<SiteLayout
 			mainNavigation={toNavigationItems(navigation, job.language, "main")}
 			footerNavigation={toNavigationItems(navigation, job.language, "misc")}
+			languages={languages}
 			siteTitle="RathausGalerien"
 		>
 			<article className="job-detail">

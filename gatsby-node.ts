@@ -1,6 +1,6 @@
 import path from "path";
 import type { GatsbyNode } from "gatsby";
-import { normalizeNodes } from "./src/lib/content/normalize";
+import { buildLanguageLinks, normalizeNodes } from "./src/lib/content/normalize";
 import type { ImportedMdxNode } from "./src/lib/content/types";
 
 const pageTemplate = path.resolve("./src/templates/page-template.tsx");
@@ -39,6 +39,10 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 		normalizeNodes(mdxNodes);
 	const usedPaths = new Map<string, number>();
 
+	const pageLanguageLinks = buildLanguageLinks(pages);
+	const locationLanguageLinks = buildLanguageLinks(locations);
+	const jobLanguageLinks = buildLanguageLinks(jobs);
+
 	for (const page of pages) {
 		actions.createPage({
 			path: makeUniquePath(page.path, usedPaths),
@@ -49,6 +53,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				locations,
 				jobs,
 				categories,
+				languageLinks: pageLanguageLinks(page),
 			},
 		});
 	}
@@ -61,6 +66,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				location,
 				navigation,
 				categories,
+				languageLinks: locationLanguageLinks(location),
 			},
 		});
 	}
@@ -72,6 +78,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 			context: {
 				job,
 				navigation,
+				languageLinks: jobLanguageLinks(job),
 			},
 		});
 	}

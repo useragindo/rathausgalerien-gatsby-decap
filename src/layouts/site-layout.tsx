@@ -11,6 +11,7 @@ type SiteLayoutProps = {
 	footerNavigation?: NormalizedNavigationItem[];
 	footerLegalNavigation?: NormalizedNavigationItem[];
 	socialLinks?: NormalizedNavigationItem[];
+	languages?: { code: string; label: string; url: string }[];
 	homeUrl?: string;
 	siteTitle?: string;
 };
@@ -23,6 +24,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 	footerNavigation = [],
 	footerLegalNavigation = [],
 	socialLinks = [],
+	languages,
 	homeUrl = "/",
 	siteTitle = "RathausGalerien",
 }) => (
@@ -35,6 +37,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 			utilityNavigation={utilityNavigation}
 			headerIconNavigation={headerIconNavigation}
 			socialLinks={socialLinks}
+			languages={languages}
 			homeUrl={homeUrl}
 			siteTitle={siteTitle}
 		/>

@@ -16,6 +16,22 @@ const PAGE_PATH_OVERRIDES: Record<string, string> = {
 	culinary: "gastronomie",
 };
 
+// Maps legacy `key` values to the template that drives the page rendering.
+// Used as a fallback when a page has no explicit `template` in its frontmatter.
+const KEY_TEMPLATE_FALLBACK: Record<string, string> = {
+	index: "home",
+	brands: "shops",
+	culinary: "gastronomie",
+	locations: "lageplan",
+	jobs: "jobs",
+};
+
+const getPageTemplate = (
+	frontmatter: ImportedFrontmatter,
+	key: string,
+): string =>
+	trim(frontmatter.template) ?? KEY_TEMPLATE_FALLBACK[key] ?? "standard";
+
 export const trim = (value?: string | null): string | undefined => {
 	const trimmed = value?.trim();
 	return trimmed ? trimmed : undefined;
@@ -61,10 +77,12 @@ const getFileSlug = (node: ImportedMdxNode): string | undefined => {
 
 const getPageSlug = (node: ImportedMdxNode): string | undefined => {
 	const frontmatter = node.frontmatter ?? {};
-	const key = trim(frontmatter.key);
+	const key = trim(frontmatter.key) ?? getFileSlug(node) ?? "";
+	const template = getPageTemplate(frontmatter, key);
 	const configuredSlug = trim(frontmatter.seo?.url);
 
-	if (key === "index") {
+	// The homepage lives at the language root ("/" or "/en/").
+	if (template === "home" || key === "index") {
 		return undefined;
 	}
 
@@ -84,13 +102,16 @@ export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
 
 	const language = getLanguage(frontmatter);
 	const key = trim(frontmatter.key) ?? getFileSlug(node) ?? node.id;
+	const template = getPageTemplate(frontmatter, key);
 	const title = trim(frontmatter.seo?.title) ?? key;
 	const slug = getPageSlug(node);
 
 	return {
 		id: node.id,
 		language,
+		i18nKey: key,
 		key,
+		template,
 		title,
 		description: trim(frontmatter.seo?.description),
 		path: withLanguagePrefix(language, slug),
@@ -121,6 +142,7 @@ export const normalizeLocation = (
 	return {
 		id: node.id,
 		language,
+		i18nKey: getFileSlug(node) ?? slug,
 		title,
 		description: trim(frontmatter.seo?.description),
 		slug,
@@ -149,6 +171,7 @@ export const normalizeJob = (node: ImportedMdxNode): NormalizedJob | null => {
 	return {
 		id: node.id,
 		language,
+		i18nKey: getFileSlug(node) ?? slug,
 		title,
 		slug,
 		path: withLanguagePrefix(language, `jobs/${slug}`),
@@ -197,6 +220,30 @@ export const createNavigationFromPages = (
 			menu: trim(page.frontmatter.menu),
 		}))
 		.sort((a, b) => a.order - b.order || a.label.localeCompare(b.label));
+
+type Translatable = { language: LanguageCode; i18nKey: string; path: string };
+
+// Groups items by their language-independent identity so each item can resolve
+// the URL of its counterpart in the other language.
+export const buildLanguageLinks = <T extends Translatable>(
+	items: T[],
+): ((item: T) => Record<LanguageCode, string>) => {
+	const byKey = new Map<string, Partial<Record<LanguageCode, string>>>();
+
+	for (const item of items) {
+		const entry = byKey.get(item.i18nKey) ?? {};
+		entry[item.language] = item.path;
+		byKey.set(item.i18nKey, entry);
+	}
+
+	return (item: T) => {
+		const entry = byKey.get(item.i18nKey) ?? {};
+		return {
+			de: entry.de ?? "/",
+			en: entry.en ?? "/en/",
+		};
+	};
+};
 
 export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 	const pages = nodes

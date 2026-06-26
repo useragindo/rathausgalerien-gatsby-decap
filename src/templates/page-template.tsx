@@ -10,12 +10,14 @@ import {
 } from "../lib/content/categories";
 import { MarkdownContent } from "../lib/content/markdown";
 import type {
+	LanguageLinks,
 	NormalizedCategory,
 	NormalizedJob,
 	NormalizedLocation,
 	NormalizedPage,
 	SiteNavigationItem,
 } from "../lib/content/types";
+import { buildLanguageOptions } from "../lib/language";
 import type { NormalizedNavigationItem } from "../lib/navigation";
 import type { ResolvedSeo } from "../lib/seo";
 
@@ -25,6 +27,7 @@ type PageTemplateContext = {
 	locations: NormalizedLocation[];
 	jobs: NormalizedJob[];
 	categories: NormalizedCategory[];
+	languageLinks?: LanguageLinks;
 };
 
 type PageTemplateProps = PageProps<Record<string, never>, PageTemplateContext>;
@@ -442,18 +445,22 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 };
 
 const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
-	const { page, navigation, locations, jobs, categories } = pageContext;
+	const { page, navigation, locations, jobs, categories, languageLinks } =
+		pageContext;
 	const mainNavigation = toNavigationItems(navigation, page.language, "main");
 	const footerNavigation = toNavigationItems(navigation, page.language, "misc");
+	const languages = buildLanguageOptions(languageLinks);
 
+	// Keep the key-based CSS hook (`.page--index`, `.page--locations`, …) stable.
 	const pageClassName = `page page--${page.key}`;
-	const isHomepage = page.key === "index";
-	const isLocationPlan = page.key === "locations";
+	const isHomepage = page.template === "home";
+	const isLocationPlan = page.template === "lageplan";
 
 	return (
 		<SiteLayout
 			mainNavigation={mainNavigation}
 			footerNavigation={footerNavigation}
+			languages={languages}
 			siteTitle="RathausGalerien"
 		>
 			{isHomepage ? <HomepageIntro page={page} locations={locations} /> : null}
@@ -482,7 +489,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 				)}
 			</article>
 
-			{page.key === "brands" ? (
+			{page.template === "shops" ? (
 				<LocationList
 					locations={locations}
 					categories={categories}
@@ -491,7 +498,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 					showHeader={false}
 				/>
 			) : null}
-			{page.key === "culinary" ? (
+			{page.template === "gastronomie" ? (
 				<LocationList
 					locations={locations}
 					categories={categories}
@@ -500,7 +507,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 					showHeader={false}
 				/>
 			) : null}
-			{page.key === "jobs" ? (
+			{page.template === "jobs" ? (
 				<JobList jobs={jobs} language={page.language} />
 			) : null}
 		</SiteLayout>

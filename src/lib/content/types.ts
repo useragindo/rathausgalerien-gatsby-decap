@@ -1,5 +1,8 @@
 export type LanguageCode = "de" | "en";
 
+// Maps each language to the URL of the equivalent content in that language.
+export type LanguageLinks = Partial<Record<LanguageCode, string>>;
+
 export type ImportedSeo = {
 	title?: string | null;
 	description?: string | null;
@@ -29,6 +32,7 @@ export type ImportedContentBlock = {
 export type ImportedFrontmatter = {
 	locale?: LanguageCode | string | null;
 	key?: string | null;
+	template?: string | null;
 	type?: "page" | "location" | "job" | string | null;
 	order?: number | null;
 	menu?: string | null;
@@ -79,7 +83,10 @@ export type ImportedMdxNode = {
 export type NormalizedPage = {
 	id: string;
 	language: LanguageCode;
+	// Language-independent identity used to link translations of the same page.
+	i18nKey: string;
 	key: string;
+	template: string;
 	title: string;
 	description?: string;
 	path: string;
@@ -91,6 +98,7 @@ export type NormalizedPage = {
 export type NormalizedLocation = {
 	id: string;
 	language: LanguageCode;
+	i18nKey: string;
 	title: string;
 	description?: string;
 	slug: string;
@@ -103,6 +111,7 @@ export type NormalizedLocation = {
 export type NormalizedJob = {
 	id: string;
 	language: LanguageCode;
+	i18nKey: string;
 	title: string;
 	slug: string;
 	path: string;
