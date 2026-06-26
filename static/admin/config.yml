@@ -41,13 +41,9 @@ collections:
         pattern: "en"
     create: true
     sortable_fields:
-      fields:
-        - order
-        - key
-        - locale
-      default:
-        field: order
-        direction: Ascending
+      - order
+      - key
+      - locale
     editor:
       preview: false
     fields:
