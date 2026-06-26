@@ -10,6 +10,7 @@ import type {
 	NormalizedLocation,
 	SiteNavigationItem,
 } from "../lib/content/types";
+import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
 import type { NormalizedNavigationItem } from "../lib/navigation";
 import type { ResolvedSeo } from "../lib/seo";
@@ -19,6 +20,7 @@ type LocationTemplateContext = {
 	navigation: SiteNavigationItem[];
 	categories: NormalizedCategory[];
 	languageLinks?: LanguageLinks;
+	socialLinks?: NormalizedNavigationItem[];
 };
 
 type LocationTemplateProps = PageProps<
@@ -227,7 +229,8 @@ const PinIcon: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
-	const { location, navigation, categories, languageLinks } = pageContext;
+	const { location, navigation, categories, languageLinks, socialLinks } =
+		pageContext;
 	const { frontmatter } = location;
 	const languages = buildLanguageOptions(languageLinks);
 	const images = frontmatter.images ?? [];
@@ -260,11 +263,8 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 	return (
 		<SiteLayout
 			mainNavigation={toNavigationItems(navigation, location.language, "main")}
-			footerNavigation={toNavigationItems(
-				navigation,
-				location.language,
-				"misc",
-			)}
+			footerNavigation={buildFooterNavigation(navigation, location.language)}
+			socialLinks={socialLinks}
 			languages={languages}
 			siteTitle="RathausGalerien"
 		>

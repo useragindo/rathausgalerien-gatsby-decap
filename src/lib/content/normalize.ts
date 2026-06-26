@@ -213,6 +213,7 @@ export const createNavigationFromPages = (
 	pages
 		.filter((page) => trim(page.frontmatter.menu))
 		.map((page) => ({
+			key: page.key,
 			label: page.title,
 			url: page.path,
 			language: page.language,
@@ -220,6 +221,57 @@ export const createNavigationFromPages = (
 			menu: trim(page.frontmatter.menu),
 		}))
 		.sort((a, b) => a.order - b.order || a.label.localeCompare(b.label));
+
+export type FooterSocialLink = {
+	label: string;
+	url: string;
+	icon?: string;
+	openInNewTab: boolean;
+};
+
+const deriveSocialLabel = (url: string): string => {
+	const value = url.toLowerCase();
+	if (value.includes("instagram")) return "Instagram";
+	if (value.includes("facebook") || value.includes("fb.")) return "Facebook";
+	if (value.includes("youtube")) return "YouTube";
+	if (value.includes("tiktok")) return "TikTok";
+	if (value.includes("linkedin")) return "LinkedIn";
+	return "Social Media";
+};
+
+// Reads the per-language social links from the "footer" block so the footer
+// can render them (the block content is otherwise not consumed by the site).
+export const buildFooterSocialLinks = (
+	nodes: ImportedMdxNode[],
+): Record<LanguageCode, FooterSocialLink[]> => {
+	const byLanguage: Record<LanguageCode, FooterSocialLink[]> = {
+		de: [],
+		en: [],
+	};
+
+	for (const node of nodes) {
+		const frontmatter = node.frontmatter;
+		if (frontmatter?.type !== "block" || trim(frontmatter.name) !== "footer") {
+			continue;
+		}
+
+		const language = getLanguage(frontmatter);
+		byLanguage[language] = (frontmatter.social_media ?? [])
+			.map((item): FooterSocialLink | null => {
+				const url = trim(item?.link);
+				if (!url) return null;
+				return {
+					label: deriveSocialLabel(url),
+					url,
+					icon: trim(item?.icon),
+					openInNewTab: true,
+				};
+			})
+			.filter((item): item is FooterSocialLink => item !== null);
+	}
+
+	return byLanguage;
+};
 
 type Translatable = { language: LanguageCode; i18nKey: string; path: string };
 

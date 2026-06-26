@@ -17,6 +17,7 @@ import type {
 	NormalizedPage,
 	SiteNavigationItem,
 } from "../lib/content/types";
+import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
 import type { NormalizedNavigationItem } from "../lib/navigation";
 import type { ResolvedSeo } from "../lib/seo";
@@ -28,6 +29,7 @@ type PageTemplateContext = {
 	jobs: NormalizedJob[];
 	categories: NormalizedCategory[];
 	languageLinks?: LanguageLinks;
+	socialLinks?: NormalizedNavigationItem[];
 };
 
 type PageTemplateProps = PageProps<Record<string, never>, PageTemplateContext>;
@@ -445,10 +447,17 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 };
 
 const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
-	const { page, navigation, locations, jobs, categories, languageLinks } =
-		pageContext;
+	const {
+		page,
+		navigation,
+		locations,
+		jobs,
+		categories,
+		languageLinks,
+		socialLinks,
+	} = pageContext;
 	const mainNavigation = toNavigationItems(navigation, page.language, "main");
-	const footerNavigation = toNavigationItems(navigation, page.language, "misc");
+	const footerNavigation = buildFooterNavigation(navigation, page.language);
 	const languages = buildLanguageOptions(languageLinks);
 
 	// Keep the key-based CSS hook (`.page--index`, `.page--locations`, …) stable.
@@ -460,6 +469,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 		<SiteLayout
 			mainNavigation={mainNavigation}
 			footerNavigation={footerNavigation}
+			socialLinks={socialLinks}
 			languages={languages}
 			siteTitle="RathausGalerien"
 		>

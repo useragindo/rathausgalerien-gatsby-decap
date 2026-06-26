@@ -49,6 +49,11 @@ export type ImportedFrontmatter = {
 		title?: string | null;
 	} | null;
 	message?: string | null;
+	social_media?: Array<{
+		icon?: string | null;
+		link?: string | null;
+	}> | null;
+	copyright?: string | null;
 	uuid?: string | null;
 	name?: string | null;
 	group?: "brand" | "culinary" | string | null;
@@ -129,6 +134,7 @@ export type NormalizedCategory = {
 };
 
 export type SiteNavigationItem = {
+	key: string;
 	label: string;
 	url: string;
 	language: LanguageCode;

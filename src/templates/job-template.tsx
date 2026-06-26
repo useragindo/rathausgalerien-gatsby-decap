@@ -8,6 +8,7 @@ import type {
 	NormalizedJob,
 	SiteNavigationItem,
 } from "../lib/content/types";
+import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
 import type { NormalizedNavigationItem } from "../lib/navigation";
 import type { ResolvedSeo } from "../lib/seo";
@@ -16,6 +17,7 @@ type JobTemplateContext = {
 	job: NormalizedJob;
 	navigation: SiteNavigationItem[];
 	languageLinks?: LanguageLinks;
+	socialLinks?: NormalizedNavigationItem[];
 };
 
 type JobTemplateProps = PageProps<Record<string, never>, JobTemplateContext>;
@@ -128,7 +130,7 @@ const ApplicationIcon: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
-	const { job, navigation, languageLinks } = pageContext;
+	const { job, navigation, languageLinks, socialLinks } = pageContext;
 	const { frontmatter } = job;
 	const languages = buildLanguageOptions(languageLinks);
 	const images = frontmatter.images ?? [];
@@ -142,7 +144,8 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 	return (
 		<SiteLayout
 			mainNavigation={toNavigationItems(navigation, job.language, "main")}
-			footerNavigation={toNavigationItems(navigation, job.language, "misc")}
+			footerNavigation={buildFooterNavigation(navigation, job.language)}
+			socialLinks={socialLinks}
 			languages={languages}
 			siteTitle="RathausGalerien"
 		>

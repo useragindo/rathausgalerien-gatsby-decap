@@ -1,6 +1,10 @@
 import path from "path";
 import type { GatsbyNode } from "gatsby";
-import { buildLanguageLinks, normalizeNodes } from "./src/lib/content/normalize";
+import {
+	buildFooterSocialLinks,
+	buildLanguageLinks,
+	normalizeNodes,
+} from "./src/lib/content/normalize";
 import type { ImportedMdxNode } from "./src/lib/content/types";
 
 const pageTemplate = path.resolve("./src/templates/page-template.tsx");
@@ -42,6 +46,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 	const pageLanguageLinks = buildLanguageLinks(pages);
 	const locationLanguageLinks = buildLanguageLinks(locations);
 	const jobLanguageLinks = buildLanguageLinks(jobs);
+	const socialLinksByLanguage = buildFooterSocialLinks(mdxNodes);
 
 	for (const page of pages) {
 		actions.createPage({
@@ -54,6 +59,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				jobs,
 				categories,
 				languageLinks: pageLanguageLinks(page),
+				socialLinks: socialLinksByLanguage[page.language],
 			},
 		});
 	}
@@ -67,6 +73,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				navigation,
 				categories,
 				languageLinks: locationLanguageLinks(location),
+				socialLinks: socialLinksByLanguage[location.language],
 			},
 		});
 	}
@@ -79,6 +86,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				job,
 				navigation,
 				languageLinks: jobLanguageLinks(job),
+				socialLinks: socialLinksByLanguage[job.language],
 			},
 		});
 	}
