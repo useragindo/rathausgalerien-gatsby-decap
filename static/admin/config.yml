@@ -33,6 +33,14 @@ collections:
     identifier_field: key
     summary: "{{key}} ({{locale}})"
     create: true
+    sortable_fields:
+      fields:
+        - order
+        - key
+        - locale
+      default:
+        field: order
+        direction: Ascending
     editor:
       preview: false
     fields:
