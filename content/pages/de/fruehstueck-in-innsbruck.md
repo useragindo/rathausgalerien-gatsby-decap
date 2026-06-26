@@ -2,7 +2,7 @@
 locale: de
 type: page
 key: fruehstueck-in-innsbruck
-template: home
+template: standard
 menu: main
 order: 7
 seo:
