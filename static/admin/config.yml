@@ -32,6 +32,13 @@ collections:
     path: "{{locale}}/{{slug}}"
     identifier_field: key
     summary: "{{key}} ({{locale}})"
+    view_filters:
+      - label: "Deutsch"
+        field: locale
+        pattern: "de"
+      - label: "English"
+        field: locale
+        pattern: "en"
     create: true
     sortable_fields:
       fields:
@@ -233,6 +240,13 @@ collections:
     path: "{{locale}}/{{slug}}"
     identifier_field: name
     summary: "{{name}} ({{locale}})"
+    view_filters:
+      - label: "Deutsch"
+        field: locale
+        pattern: "de"
+      - label: "English"
+        field: locale
+        pattern: "en"
     create: true
     editor:
       preview: false
@@ -290,6 +304,13 @@ collections:
     path: "{{locale}}/{{slug}}"
     identifier_field: name
     summary: "{{name}} ({{locale}})"
+    view_filters:
+      - label: "Deutsch"
+        field: locale
+        pattern: "de"
+      - label: "English"
+        field: locale
+        pattern: "en"
     create: true
     editor:
       preview: false
@@ -315,6 +336,13 @@ collections:
     path: "{{locale}}/{{slug}}"
     identifier_field: name
     summary: "{{name}} ({{locale}})"
+    view_filters:
+      - label: "Deutsch"
+        field: locale
+        pattern: "de"
+      - label: "English"
+        field: locale
+        pattern: "en"
     create: true
     editor:
       preview: false
@@ -437,6 +465,13 @@ collections:
     identifier_field: uuid
     summary: "{{location}} - {{position}} ({{locale}})"
     slug: "{{location}}-{{position}}-{{year}}-{{month}}-{{day}}"
+    view_filters:
+      - label: "Deutsch"
+        field: locale
+        pattern: "de"
+      - label: "English"
+        field: locale
+        pattern: "en"
     create: true
     editor:
       preview: false
