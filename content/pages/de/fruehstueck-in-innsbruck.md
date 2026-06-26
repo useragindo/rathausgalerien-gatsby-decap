@@ -4,7 +4,7 @@ type: page
 key: fruehstueck-in-innsbruck
 template: home
 menu: main
-order: 1
+order: 7
 seo:
   title: Frühstück in Innsbruck
   description: Wo kann man exzellent in Innsbruck frühstücken? Wir haben die besten Ideen!
