@@ -47,6 +47,13 @@
 	position: relative;
 	overflow: hidden;
 	min-height: 0;
+	display: block;
+	color: inherit;
+	text-decoration: none;
+}
+
+.content-block__tile:hover {
+	color: inherit;
 }
 
 /* ─── Content-Tile (farbig) ───────────────────────────────────────────── */

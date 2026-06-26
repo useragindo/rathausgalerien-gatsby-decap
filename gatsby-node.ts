@@ -5,11 +5,16 @@ import {
 	buildLanguageLinks,
 	normalizeNodes,
 } from "./src/lib/content/normalize";
-import type { ImportedMdxNode } from "./src/lib/content/types";
+import type {
+	ImportedMdxNode,
+	LanguageCode,
+	NormalizedCategory,
+} from "./src/lib/content/types";
 
 const pageTemplate = path.resolve("./src/templates/page-template.tsx");
 const locationTemplate = path.resolve("./src/templates/location-template.tsx");
 const jobTemplate = path.resolve("./src/templates/job-template.tsx");
+const categoryTemplate = path.resolve("./src/templates/category-template.tsx");
 
 const makeUniquePath = (
 	requestedPath: string,
@@ -91,7 +96,42 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 		});
 	}
 
+	const categoriesBySlug = new Map<string, NormalizedCategory[]>();
+	for (const category of categories) {
+		const list = categoriesBySlug.get(category.slug) ?? [];
+		list.push(category);
+		categoriesBySlug.set(category.slug, list);
+	}
+
+	for (const category of categories) {
+		const languagePrefix = category.language === "de" ? "" : `${category.language}/`;
+		const categoryPath = `/${languagePrefix}category/${category.slug}/`;
+		const relatedCategories = categoriesBySlug.get(category.slug) ?? [];
+		const languageLinks: Record<LanguageCode, string> = {
+			de: "/",
+			en: "/en/",
+		};
+
+		for (const related of relatedCategories) {
+			const prefix = related.language === "de" ? "" : `${related.language}/`;
+			languageLinks[related.language] = `/${prefix}category/${related.slug}/`;
+		}
+
+		actions.createPage({
+			path: makeUniquePath(categoryPath, usedPaths),
+			component: categoryTemplate,
+			context: {
+				category,
+				navigation,
+				locations,
+				categories,
+				languageLinks,
+				socialLinks: socialLinksByLanguage[category.language],
+			},
+		});
+	}
+
 	reporter.info(
-		`Created ${pages.length} content pages, ${locations.length} location pages, ${jobs.length} job pages, and loaded ${categories.length} categories.`,
+		`Created ${pages.length} content pages, ${locations.length} location pages, ${jobs.length} job pages, ${categories.length} category pages.`,
 	);
 };

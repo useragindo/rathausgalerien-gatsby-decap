@@ -24,7 +24,6 @@ editor:
   preview: false
 
 collections:
-
   - name: "pages"
     label: "Pages"
     label_singular: "Page"
@@ -87,7 +86,14 @@ collections:
           - { label: "Hauptmenü", value: "main" }
           - { label: "Sonstiges (Footer)", value: "misc" }
 
-      - { label: "Reihenfolge", name: "order", widget: "number", required: false, default: 1, value_type: "int" }
+      - {
+          label: "Reihenfolge",
+          name: "order",
+          widget: "number",
+          required: false,
+          default: 1,
+          value_type: "int",
+        }
 
       - label: "SEO"
         name: "seo"
@@ -156,6 +162,105 @@ collections:
                 name: "text"
                 widget: "string"
                 required: false
+          - label: "Tiles"
+            name: "tiles"
+            widget: list
+            required: false
+            max: 2
+            hint: "2 Reihen mit je 2 Kacheln (links/rechts). Wenn leer, werden die oberen Felder 'Text' und 'Images' verwendet."
+            fields:
+              - label: "Linke Kachel"
+                name: "left"
+                widget: object
+                required: false
+                fields:
+                  - label: "Text"
+                    name: "text"
+                    widget: markdown
+                    required: false
+                    buttons:
+                      - bold
+                      - italic
+                      - quote
+                      - link
+                      - heading-two
+                      - bulleted-list
+                      - numbered-list
+                  - label: "Bilder"
+                    name: "images"
+                    widget: list
+                    required: false
+                    fields:
+                      - label: "Image"
+                        name: "image"
+                        widget: image
+                      - label: "Text"
+                        name: "text"
+                        widget: string
+                        required: false
+                  - label: "Kategorie"
+                    name: "category"
+                    widget: relation
+                    collection: categories
+                    valueField: uuid
+                    displayFields:
+                      - name
+                      - locale
+                    searchFields:
+                      - name
+                    required: false
+                    hint: "Wenn gesetzt, wird die Kachel zur Kategorie-Seite verlinkt."
+                  - label: "Manueller Link"
+                    name: "link"
+                    widget: string
+                    required: false
+                    hint: "Optionaler Link, der statt der Kategorie verwendet wird."
+              - label: "Rechte Kachel"
+                name: "right"
+                widget: object
+                required: false
+                fields:
+                  - label: "Text"
+                    name: "text"
+                    widget: markdown
+                    required: false
+                    buttons:
+                      - bold
+                      - italic
+                      - quote
+                      - link
+                      - heading-two
+                      - bulleted-list
+                      - numbered-list
+                  - label: "Bilder"
+                    name: "images"
+                    widget: list
+                    required: false
+                    fields:
+                      - label: "Image"
+                        name: "image"
+                        widget: image
+                      - label: "Text"
+                        name: "text"
+                        widget: string
+                        required: false
+                  - label: "Kategorie"
+                    name: "category"
+                    widget: relation
+                    collection: categories
+                    valueField: uuid
+                    displayFields:
+                      - name
+                      - locale
+                    searchFields:
+                      - name
+                    required: false
+                    hint: "Wenn gesetzt, wird die Kachel zur Kategorie-Seite verlinkt."
+                  - label: "Manueller Link"
+                    name: "link"
+                    widget: string
+                    required: false
+                    hint: "Optionaler Link, der statt der Kategorie verwendet wird."
           - label: "Date"
             name: "date"
             default: ""
@@ -178,7 +283,11 @@ collections:
                 name: "link"
                 required: false
                 widget: "string"
-                pattern: ["^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$", "Must start with slash or http(s)://"]
+                pattern:
+                  [
+                    "^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$",
+                    "Must start with slash or http(s)://",
+                  ]
                 hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
 
       - label: "Teaser"
@@ -203,7 +312,8 @@ collections:
             name: "viewId"
             widget: "string"
             hint: "The ID of the image on the 'Location' site's view."
-            pattern: ["^foto-(?:[a-z0-9-])+$", "Must be something like f.e. 'foto-1'."]
+            pattern:
+              ["^foto-(?:[a-z0-9-])+$", "Must be something like f.e. 'foto-1'."]
           - label: "Label"
             name: "label"
             widget: "string"
@@ -266,7 +376,12 @@ collections:
           - { label: "Footer", value: "footer" }
           - { label: "Location", value: "location" }
 
-      - { label: "Company Name", name: "company_name", widget: string, required: false }
+      - {
+          label: "Company Name",
+          name: "company_name",
+          widget: string,
+          required: false,
+        }
 
       - label: "Address Lines"
         name: "address_lines"
@@ -286,12 +401,26 @@ collections:
           - label: "Link"
             name: "link"
             widget: "string"
-            pattern: ["^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$", "Must start with slash or http(s)://"]
+            pattern:
+              [
+                "^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$",
+                "Must start with slash or http(s)://",
+              ]
             hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
 
-      - { label: "Copyright", name: "copyright", widget: "string", required: false }
+      - {
+          label: "Copyright",
+          name: "copyright",
+          widget: "string",
+          required: false,
+        }
 
-      - { label: "Label Hours", name: "label_hours", widget: string, required: false }
+      - {
+          label: "Label Hours",
+          name: "label_hours",
+          widget: string,
+          required: false,
+        }
 
   - name: "categories"
     label: "Categories"
@@ -444,7 +573,11 @@ collections:
             name: "url"
             widget: "string"
             required: false
-            pattern: ["^$|(?:https?:\/\/)[a-z0-9-_.\/]+", "Must be an URL like https://www.google.com"]
+            pattern:
+              [
+                "^$|(?:https?:\/\/)[a-z0-9-_.\/]+",
+                "Must be an URL like https://www.google.com",
+              ]
 
       - label: "View ID"
         name: "viewId"

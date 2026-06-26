@@ -13,11 +13,20 @@ import type {
 	TeaserGridBlock,
 } from "../../lib/cms";
 import { MarkdownContent } from "../../lib/content/markdown";
-import type { ImportedContentBlock } from "../../lib/content/types";
+import type { LanguageCode } from "../../lib/content/types";
+import type {
+	ImportedContentBlock,
+	ImportedContentTile,
+	ImportedContentTileRow,
+	ImportedImage,
+	NormalizedCategory,
+} from "../../lib/content/types";
 import { ImageSlider } from "./image-slider";
 
 type ContentBlockRendererProps = {
 	blocks?: Array<PageContentBlock | ImportedContentBlock> | null;
+	language?: LanguageCode;
+	categories?: NormalizedCategory[] | null;
 };
 
 type ImportedBlockLayout =
@@ -277,10 +286,146 @@ const LinkListBlockComponent: React.FC<{ block: LinkListBlock }> = ({
 	</section>
 );
 
+const resolveCategorySlug = (
+	categoryUuid: string,
+	categories: NormalizedCategory[] | null | undefined,
+	language: LanguageCode,
+): string | undefined => {
+	const normalizedUuid = categoryUuid.trim().toLowerCase();
+	return categories?.find(
+		(category) =>
+			category.uuid.trim().toLowerCase() === normalizedUuid &&
+			category.language === language,
+	)?.slug;
+};
+
+const resolveTileLink = (
+	tile: ImportedContentTile,
+	categories: NormalizedCategory[] | null | undefined,
+	language: LanguageCode,
+): string | undefined => {
+	const manualLink = text(tile.link);
+	if (manualLink) {
+		return manualLink;
+	}
+
+	const categoryUuid = text(tile.category);
+	if (!categoryUuid) {
+		return undefined;
+	}
+
+	const slug = resolveCategorySlug(categoryUuid, categories, language);
+	if (!slug) {
+		return undefined;
+	}
+
+	return `/${language === "de" ? "" : `${language}/`}category/${slug}/`;
+};
+
+const hasTileContent = (
+	tile?: ImportedContentTile | null,
+): tile is ImportedContentTile => {
+	if (!tile) {
+		return false;
+	}
+
+	const hasText = Boolean(text(tile.text));
+	const hasImages = (tile.images ?? []).some((image) => text(image.image));
+	const hasLink = Boolean(text(tile.link)) || Boolean(text(tile.category));
+
+	return hasText || hasImages || hasLink;
+};
+
+const Tile: React.FC<{
+	tile: ImportedContentTile;
+	categories: NormalizedCategory[] | null | undefined;
+	language: LanguageCode;
+	className?: string;
+}> = ({ tile, categories, language, className = "" }) => {
+	const images = (tile.images ?? []).filter((image) => text(image.image));
+	const tileText = text(tile.text);
+	const link = resolveTileLink(tile, categories, language);
+	const isSlider = images.length > 1;
+
+	const tileClassName = [
+		"content-block__tile",
+		images.length ? "content-block__tile--media" : "content-block__tile--content",
+		className,
+	]
+		.filter(Boolean)
+		.join(" ");
+
+	const tileContent = (
+		<>
+			{images.length ? (
+				isSlider ? (
+					<ImageSlider images={images} />
+				) : (
+					<img
+						src={text(images[0].image)}
+						alt={text(images[0].alt) ?? ""}
+						loading="lazy"
+					/>
+				)
+			) : null}
+			{tileText ? (
+				<div className="content-block__text">
+					<MarkdownContent content={tileText} />
+				</div>
+			) : null}
+		</>
+	);
+
+	return link ? (
+		<a href={link} className={tileClassName}>
+			{tileContent}
+		</a>
+	) : (
+		<div className={tileClassName}>{tileContent}</div>
+	);
+};
+
+const TileGrid: React.FC<{
+	tiles: ImportedContentTileRow[];
+	categories: NormalizedCategory[] | null | undefined;
+	language: LanguageCode;
+}> = ({ tiles, categories, language }) => {
+	const items: { tile: ImportedContentTile; key: string }[] = [];
+
+	for (const row of tiles.slice(0, 2)) {
+		if (hasTileContent(row.left)) {
+			items.push({ tile: row.left, key: `tile-left-${items.length}` });
+		}
+
+		if (hasTileContent(row.right)) {
+			items.push({ tile: row.right, key: `tile-right-${items.length}` });
+		}
+	}
+
+	if (items.length === 0) {
+		return null;
+	}
+
+	return (
+		<>
+			{items.map(({ tile, key }) => (
+				<Tile
+					key={key}
+					tile={tile}
+					categories={categories}
+					language={language}
+				/>
+			))}
+		</>
+	);
+};
+
 const ImportedBlock: React.FC<{
 	block: ImportedContentBlock;
 	index: number;
-}> = ({ block, index }) => {
+	language?: LanguageCode;
+	categories?: NormalizedCategory[] | null;
+}> = ({ block, index, language = "de", categories }) => {
 	const images = (block.images ?? []).filter((image) => text(image.image));
 	const icons = (block.icons ?? []).filter(
 		(icon) => text(icon.icon) || text(icon.text),
@@ -298,6 +443,9 @@ const ImportedBlock: React.FC<{
 	const displayedImages = isGridLayout ? images.slice(0, 3) : images.slice(0, 1);
 	// For 2-column layouts with multiple images, use a slider instead of single image
 	const useDynamicSlider = isTwoColumnLayout && images.length > 1;
+	const hasTiles = (block.tiles ?? []).some(
+		(row) => hasTileContent(row.left) || hasTileContent(row.right),
+	);
 
 	const blockClassName = [
 		"content-block",
@@ -391,7 +539,13 @@ const ImportedBlock: React.FC<{
 				<p className="content-block__section-title">{text(block.header)}</p>
 			) : null}
 			<div className="content-block__body">
-				{layout === "image-left" || layout === "slider-left" ? (
+				{hasTiles ? (
+					<TileGrid
+						tiles={block.tiles ?? []}
+						categories={categories}
+						language={language}
+					/>
+				) : layout === "image-left" || layout === "slider-left" ? (
 					<>
 						{isSliderLayout ? sliderTile : useDynamicSlider ? dynamicSliderTile : mediaTiles}
 						{contentTile}
@@ -414,6 +568,8 @@ const isImportedBlock = (
 const renderBlock = (
 	block: PageContentBlock | ImportedContentBlock,
 	index: number,
+	language: LanguageCode,
+	categories: NormalizedCategory[] | null | undefined,
 ): React.ReactNode => {
 	if (isImportedBlock(block)) {
 		return (
@@ -421,6 +577,8 @@ const renderBlock = (
 				key={`${block.header ?? "imported"}-${index}`}
 				block={block}
 				index={index}
+				language={language}
+				categories={categories}
 			/>
 		);
 	}
@@ -453,10 +611,12 @@ const renderBlock = (
 
 export const ContentBlockRenderer: React.FC<ContentBlockRendererProps> = ({
 	blocks,
+	language = "de",
+	categories,
 }) => {
 	if (!blocks?.length) {
 		return null;
 	}
 
-	return <>{blocks.map(renderBlock)}</>;
+	return <>{blocks.map((block, index) => renderBlock(block, index, language, categories))}</>;
 };

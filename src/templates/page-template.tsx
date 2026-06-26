@@ -6,6 +6,7 @@ import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
 import {
 	normalizeCategoryKey,
+	resolveCategories,
 	resolveCategoryLabels,
 } from "../lib/content/categories";
 import { MarkdownContent } from "../lib/content/markdown";
@@ -128,22 +129,45 @@ const getLocationListingCards = (
 	categories: NormalizedCategory[],
 	language: string,
 	group: "brand" | "culinary",
+	categoryUuid?: string,
 ): LocationListingCard[] => {
 	const fallbackLabel = group === "culinary" ? "Genuss" : "Shop";
+	const normalizedTargetUuid = categoryUuid?.trim().toLowerCase();
 	return locations
 		.filter(
 			(location) => location.language === language && location.group === group,
 		)
 		.sort((a, b) => a.title.localeCompare(b.title))
 		.flatMap((location) => {
-			const cardLabels = resolveCategoryLabels(
+			const resolvedCategories = resolveCategories(
 				location.frontmatter.categories,
 				categories,
 				language,
-				fallbackLabel,
 			);
 
-			return cardLabels.map((categoryLabel) => ({
+			if (normalizedTargetUuid) {
+				const matchedCategory = resolvedCategories.find(
+					(category) =>
+						category.uuid.trim().toLowerCase() === normalizedTargetUuid,
+				);
+
+				if (!matchedCategory) {
+					return [];
+				}
+
+				return [
+					{
+						location,
+						categoryLabel: matchedCategory.name,
+						categoryKey: normalizeCategoryKey(matchedCategory.name),
+					},
+				];
+			}
+
+			const cardLabels = resolvedCategories.map((category) => category.name);
+			const labels = cardLabels.length ? cardLabels : [fallbackLabel];
+
+			return labels.map((categoryLabel) => ({
 				location,
 				categoryLabel,
 				categoryKey: normalizeCategoryKey(categoryLabel),
@@ -157,25 +181,27 @@ type LocationListProps = {
 	language: string;
 	group: "brand" | "culinary";
 	showHeader?: boolean;
+	categoryUuid?: string;
 };
 
-const LocationList: React.FC<LocationListProps> = ({
+export const LocationList: React.FC<LocationListProps> = ({
 	locations,
 	categories,
 	language,
 	group,
 	showHeader = true,
+	categoryUuid,
 }) => {
 	const items = React.useMemo(
-		() => getLocationListingCards(locations, categories, language, group),
-		[locations, categories, language, group],
+		() => getLocationListingCards(locations, categories, language, group, categoryUuid),
+		[locations, categories, language, group, categoryUuid],
 	);
 	const title = group === "culinary" ? "Gastronomie" : "Shops";
 	const description =
 		group === "culinary"
 			? "Restaurants, Bars und Cafés mitten in den RathausGalerien."
 			: "Marken, Services und Boutiquen im Zentrum von Innsbruck.";
-	const hasCategoryFilter = group === "brand";
+	const hasCategoryFilter = group === "brand" && !categoryUuid;
 	const filterOptions = React.useMemo<ListingFilterOption[]>(() => {
 		if (!hasCategoryFilter) {
 			return [];
@@ -491,7 +517,11 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 					/>
 				) : (
 					<>
-						<ContentBlockRenderer blocks={page.blocks} />
+						<ContentBlockRenderer
+							blocks={page.blocks}
+							language={page.language}
+							categories={categories}
+						/>
 						<div className="page-body">
 							<MarkdownContent content={page.body} />
 						</div>

@@ -20,6 +20,18 @@ export type ImportedIcon = {
 	text?: string | null;
 };
 
+export type ImportedContentTile = {
+	text?: string | null;
+	images?: ImportedImage[] | null;
+	category?: string | null;
+	link?: string | null;
+};
+
+export type ImportedContentTileRow = {
+	left?: ImportedContentTile | null;
+	right?: ImportedContentTile | null;
+};
+
 export type ImportedContentBlock = {
 	layout?: string | null;
 	header?: string | null;
@@ -27,6 +39,7 @@ export type ImportedContentBlock = {
 	date?: string | null;
 	images?: ImportedImage[] | null;
 	icons?: ImportedIcon[] | null;
+	tiles?: ImportedContentTileRow[] | null;
 };
 
 export type ImportedFrontmatter = {
