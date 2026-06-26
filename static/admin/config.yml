@@ -31,6 +31,7 @@ collections:
     folder: "content/pages"
     path: "{{locale}}/{{slug}}"
     identifier_field: key
+    summary: "{{key}} ({{locale}})"
     create: true
     editor:
       preview: false
@@ -223,6 +224,7 @@ collections:
     folder: "content/blocks"
     path: "{{locale}}/{{slug}}"
     identifier_field: name
+    summary: "{{name}} ({{locale}})"
     create: true
     editor:
       preview: false
@@ -279,6 +281,7 @@ collections:
     folder: "content/categories"
     path: "{{locale}}/{{slug}}"
     identifier_field: name
+    summary: "{{name}} ({{locale}})"
     create: true
     editor:
       preview: false
@@ -303,6 +306,7 @@ collections:
     folder: "content/locations"
     path: "{{locale}}/{{slug}}"
     identifier_field: name
+    summary: "{{name}} ({{locale}})"
     create: true
     editor:
       preview: false
@@ -423,7 +427,7 @@ collections:
     folder: "content/jobs"
     path: "{{locale}}/{{slug}}"
     identifier_field: uuid
-    summary: "{{location}} - {{position}} - {{specification}}"
+    summary: "{{location}} - {{position}} ({{locale}})"
     slug: "{{location}}-{{position}}-{{year}}-{{month}}-{{day}}"
     create: true
     editor:
