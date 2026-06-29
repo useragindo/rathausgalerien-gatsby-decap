@@ -1,4 +1,9 @@
-import type { ImageField, OpenGraphFields, SeoFields, SiteSettings } from "./cms/types";
+import type {
+	ImageField,
+	OpenGraphFields,
+	SeoFields,
+	SiteSettings,
+} from "./cms/types";
 
 export type ResolvedSeo = {
 	title: string;
@@ -7,6 +12,7 @@ export type ResolvedSeo = {
 	openGraph: {
 		title: string;
 		description: string;
+		url?: string;
 		image?: string;
 		imageAlt?: string;
 	};
@@ -33,7 +39,10 @@ const resolveImage = (
 	imageAlt: trim(entryOpenGraph?.imageAlt) ?? trim(defaultOgImage?.alt),
 });
 
-export const joinUrl = (baseUrl?: string | null, path?: string | null): string | undefined => {
+export const joinUrl = (
+	baseUrl?: string | null,
+	path?: string | null,
+): string | undefined => {
 	const base = trim(baseUrl)?.replace(/\/$/, "");
 	const cleanPath = trim(path)?.replace(/^\//, "");
 
@@ -59,7 +68,10 @@ export const parseStructuredData = (
 
 	try {
 		const parsed = JSON.parse(value) as unknown;
-		if (Array.isArray(parsed) || (typeof parsed === "object" && parsed !== null)) {
+		if (
+			Array.isArray(parsed) ||
+			(typeof parsed === "object" && parsed !== null)
+		) {
 			return parsed as ResolvedSeo["structuredData"];
 		}
 	} catch {
@@ -81,9 +93,11 @@ export const resolveSeo = (
 		trim(entry.excerpt) ??
 		trim(settings.siteDescription) ??
 		"";
-	const canonicalUrl = trim(entry.canonicalUrl) ?? joinUrl(settings.siteUrl, entry.slug);
+	const canonicalUrl =
+		trim(entry.canonicalUrl) ?? joinUrl(settings.siteUrl, entry.slug);
 	const openGraphTitle = trim(entry.openGraph?.title) ?? title;
-	const openGraphDescription = trim(entry.openGraph?.description) ?? description;
+	const openGraphDescription =
+		trim(entry.openGraph?.description) ?? description;
 	const openGraphImage = resolveImage(entry.openGraph, settings.defaultOgImage);
 
 	return {

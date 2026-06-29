@@ -280,6 +280,220 @@ collections:
         required: false
         hint: "Nur für das Template 'Jobs' – wird angezeigt, wenn keine offenen Stellen vorhanden sind."
 
+  - name: "funnels"
+    label: "Funnels"
+    label_singular: "Funnel"
+    folder: "content/funnels"
+    path: "{{locale}}/{{slug}}"
+    identifier_field: key
+    summary: "{{key}} ({{locale}})"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - label: "Sprache"
+        name: "locale"
+        widget: "select"
+        default: "de"
+        options:
+          - { label: "Deutsch", value: "de" }
+          - { label: "English", value: "en" }
+
+      - { label: "Type", name: "type", widget: "hidden", default: "page" }
+
+      - {
+          label: "Template",
+          name: "template",
+          widget: "hidden",
+          default: "funnel",
+        }
+
+      - label: "Key / Slug"
+        name: "key"
+        widget: "string"
+        hint: "Eindeutiger Schlüssel und Dateiname."
+        pattern: ["^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
+
+      - label: "Funnel URL"
+        name: "funnel_url"
+        widget: "string"
+        required: false
+        hint: "Kanonische URL für diesen Funnel (z.B. https://meine-domain.com). Wird für canonical und og:url verwendet."
+
+      - label: "SEO"
+        name: "seo"
+        widget: object
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+
+      - label: "Content"
+        name: "body"
+        required: false
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
+
+      - label: "Blocks"
+        name: "blocks"
+        widget: list
+        required: false
+        identifier_field: header
+        fields:
+          - { label: "Header", name: "header", widget: string }
+          - label: "Layout"
+            name: "layout"
+            widget: "select"
+            default: "grid-4"
+            options:
+              - { label: "4er Grid", value: "grid-4" }
+              - { label: "Bild links / Text rechts", value: "image-left" }
+              - { label: "Text links / Bild rechts", value: "text-left" }
+              - { label: "Slider links / Text rechts", value: "slider-left" }
+              - { label: "Text links / Slider rechts", value: "slider-right" }
+          - label: "Text"
+            name: "text"
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - quote
+              - link
+              - heading-two
+              - bulleted-list
+              - numbered-list
+          - label: "Images"
+            name: "images"
+            widget: list
+            required: false
+            fields:
+              - label: "Image"
+                name: "image"
+                widget: "image"
+              - label: "Text"
+                name: "text"
+                widget: "string"
+                required: false
+          - label: "Tiles"
+            name: "tiles"
+            widget: list
+            required: false
+            max: 4
+            hint: "Bis zu 4 Kacheln in Anzeige-Reihenfolge (z. B. Text, Bild, Text, Bild). Pro Kachel entweder Text ODER Bild ausfüllen."
+            fields:
+              - label: "Text"
+                name: "text"
+                widget: markdown
+                required: false
+                buttons:
+                  - bold
+                  - italic
+                  - quote
+                  - link
+                  - heading-two
+                  - bulleted-list
+                  - numbered-list
+              - label: "Bild"
+                name: "image"
+                widget: "image"
+                required: false
+              - label: "Kategorie"
+                name: "category"
+                widget: relation
+                collection: categories
+                valueField: uuid
+                displayFields:
+                  - name
+                  - locale
+                searchFields:
+                  - name
+                required: false
+                hint: "Wenn gesetzt, wird die Kachel zur Kategorie-Seite verlinkt."
+              - label: "Manueller Link"
+                name: "link"
+                widget: string
+                required: false
+                hint: "Optionaler Link, der statt der Kategorie verwendet wird."
+          - label: "Date"
+            name: "date"
+            default: ""
+            widget: datetime
+            required: false
+          - label: "Icons"
+            name: "icons"
+            widget: "list"
+            required: false
+            fields:
+              - label: "Icon"
+                name: "icon"
+                widget: "image"
+                pattern: ["(?:.+)svg$", "Must be a SVG file"]
+              - label: "Text"
+                name: "text"
+                widget: "string"
+                required: false
+              - label: "Link"
+                name: "link"
+                required: false
+                widget: "string"
+                pattern:
+                  [
+                    "^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$",
+                    "Must start with slash or http(s)://",
+                  ]
+                hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
+
+      - label: "Teaser"
+        name: "teaser"
+        widget: object
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Image", name: "image", widget: "image", required: false }
+
+      - label: "Photos"
+        name: "photos"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Image"
+            name: "image"
+            widget: "image"
+          - label: "View ID"
+            name: "viewId"
+            widget: "string"
+            hint: "The ID of the image on the 'Location' site's view."
+            pattern:
+              ["^foto-(?:[a-z0-9-])+$", "Must be something like f.e. 'foto-1'."]
+          - label: "Label"
+            name: "label"
+            widget: "string"
+            required: false
+
+      - label: "Traffic information"
+        name: "traffic_information"
+        widget: "markdown"
+        required: false
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
+
+      - label: "Message"
+        name: "message"
+        widget: "string"
+        required: false
+
   - name: "blocks"
     label: "Blocks"
     label_singular: "Block"

@@ -86,6 +86,12 @@ const getPageSlug = (node: ImportedMdxNode): string | undefined => {
 		return undefined;
 	}
 
+	// Funnel pages get a /funnels/ path prefix.
+	if (template === "funnel") {
+		const slug = configuredSlug ?? key ?? getFileSlug(node);
+		return slug ? `funnels/${slug}` : "funnels";
+	}
+
 	if (key && PAGE_PATH_OVERRIDES[key]) {
 		return PAGE_PATH_OVERRIDES[key];
 	}

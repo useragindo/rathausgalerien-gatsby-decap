@@ -42,6 +42,7 @@ export type ImportedFrontmatter = {
 	key?: string | null;
 	template?: string | null;
 	type?: "page" | "location" | "job" | string | null;
+	funnel_url?: string | null;
 	order?: number | null;
 	menu?: string | null;
 	seo?: ImportedSeo | null;

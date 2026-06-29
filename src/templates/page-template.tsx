@@ -51,15 +51,20 @@ const toNavigationItems = (
 			openInNewTab: false,
 		}));
 
-const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => ({
-	title: page.title,
-	description: page.description ?? "",
-	canonicalUrl: page.path,
-	openGraph: {
+const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => {
+	const funnelUrl = page.frontmatter.funnel_url?.trim() || undefined;
+	const canonicalUrl = funnelUrl ?? page.path;
+	return {
 		title: page.title,
 		description: page.description ?? "",
-	},
-});
+		canonicalUrl,
+		openGraph: {
+			title: page.title,
+			description: page.description ?? "",
+			url: canonicalUrl,
+		},
+	};
+};
 
 const getLocationImage = (location: NormalizedLocation): string | undefined =>
 	location.frontmatter.images?.[0] ?? undefined;
@@ -193,7 +198,14 @@ export const LocationList: React.FC<LocationListProps> = ({
 	categoryUuid,
 }) => {
 	const items = React.useMemo(
-		() => getLocationListingCards(locations, categories, language, group, categoryUuid),
+		() =>
+			getLocationListingCards(
+				locations,
+				categories,
+				language,
+				group,
+				categoryUuid,
+			),
 		[locations, categories, language, group, categoryUuid],
 	);
 	const title = group === "culinary" ? "Gastronomie" : "Shops";
@@ -488,7 +500,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 
 	// Keep the key-based CSS hook (`.page--index`, `.page--locations`, …) stable.
 	const pageClassName = `page page--${page.key}`;
-	const isHomepage = page.template === "home";
+	const isHomepage = page.template === "home" || page.template === "funnel";
 	const isLocationPlan = page.template === "lageplan";
 
 	return (
