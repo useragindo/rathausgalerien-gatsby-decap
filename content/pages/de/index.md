@@ -1,7 +1,7 @@
 ---
 locale: de
-key: index
 type: page
+key: index
 template: home
 order: 1
 seo:
@@ -146,6 +146,41 @@ blocks:
     text: In den RathausGalerien-Schließfächern beim Lifteingang im 1. UG findet
       sich Raum für alles, was dich beschwert - von einer Handtasche bis hin
       zur Ski-Ausrüstung.
+  - layout: grid-4
+    date: ""
+    header: fashion, food, & lifestyle
+    text: |-
+      RathausGalerien: Das Herz der Stadt! 
+
+      Eine große Auswahl an Shops und gastronomischen Angeboten 
+
+      direkt im Zentrum von Innsbruck.
+    tiles:
+      - left:
+          text: |-
+            ## spring\
+            fashion
+
+            JETZT DIE NEUE
+
+            FRÜHJAHRSMODE
+
+            ENTDECKEN!
+          image: https://glowing-cranachan-5255ae.netlify.app/media/0a3a7201.jpg
+          category: ddfcab86-1237-4de6-9081-cafe473eecfd
+        right:
+          text: |-
+            ## DAS NEUE
+
+            ## GALERIEN
+
+            ## MAGAZIN!
+
+            GLEICH
+
+            REINSCHAUEN
+          image: https://glowing-cranachan-5255ae.netlify.app/media/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
+          category: 9f4d16d7-0a3b-4222-9e69-c9b4604c20ec
 ---
 ![Rathausgalerien von Maria-Theresien-Straße](/media/dsc_1672_bearb.jpg)
 
