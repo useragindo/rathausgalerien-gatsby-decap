@@ -31,6 +31,21 @@
 	color: var(--color-text);
 }
 
+/* ─── Intro-Text (unterhalb des Titels, oberhalb des Grids) ───────────── */
+.content-block__intro {
+	max-width: var(--container-content);
+	margin-block: 0 var(--space-md);
+	margin-inline: auto;
+	font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+	line-height: 1.4;
+	text-align: center;
+	color: var(--color-text);
+}
+
+.content-block__intro > :last-child {
+	margin-block-end: 0;
+}
+
 /* ─── Grid-Wrapper ────────────────────────────────────────────────────── */
 .content-block__body {
 	--cb-gap: clamp(0.45rem, 1vw, 0.85rem);

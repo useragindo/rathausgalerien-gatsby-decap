@@ -166,85 +166,42 @@ collections:
             name: "tiles"
             widget: list
             required: false
-            max: 2
-            hint: "2 Reihen mit je 2 Kacheln (links/rechts). Wenn leer, werden die oberen Felder 'Text' und 'Images' verwendet."
+            max: 4
+            hint: "Bis zu 4 Kacheln in Anzeige-Reihenfolge (z. B. Text, Bild, Text, Bild). Pro Kachel entweder Text ODER Bild ausfüllen."
             fields:
-              - label: "Linke Kachel"
-                name: "left"
-                widget: object
+              - label: "Text"
+                name: "text"
+                widget: markdown
                 required: false
-                fields:
-                  - label: "Text"
-                    name: "text"
-                    widget: markdown
-                    required: false
-                    buttons:
-                      - bold
-                      - italic
-                      - quote
-                      - link
-                      - heading-two
-                      - bulleted-list
-                      - numbered-list
-                  - label: "Bild"
-                    name: "image"
-                    widget: "image"
-                    required: false
-                  - label: "Kategorie"
-                    name: "category"
-                    widget: relation
-                    collection: categories
-                    valueField: uuid
-                    displayFields:
-                      - name
-                      - locale
-                    searchFields:
-                      - name
-                    required: false
-                    hint: "Wenn gesetzt, wird die Kachel zur Kategorie-Seite verlinkt."
-                  - label: "Manueller Link"
-                    name: "link"
-                    widget: string
-                    required: false
-                    hint: "Optionaler Link, der statt der Kategorie verwendet wird."
-              - label: "Rechte Kachel"
-                name: "right"
-                widget: object
+                buttons:
+                  - bold
+                  - italic
+                  - quote
+                  - link
+                  - heading-two
+                  - bulleted-list
+                  - numbered-list
+              - label: "Bild"
+                name: "image"
+                widget: "image"
                 required: false
-                fields:
-                  - label: "Text"
-                    name: "text"
-                    widget: markdown
-                    required: false
-                    buttons:
-                      - bold
-                      - italic
-                      - quote
-                      - link
-                      - heading-two
-                      - bulleted-list
-                      - numbered-list
-                  - label: "Bild"
-                    name: "image"
-                    widget: "image"
-                    required: false
-                  - label: "Kategorie"
-                    name: "category"
-                    widget: relation
-                    collection: categories
-                    valueField: uuid
-                    displayFields:
-                      - name
-                      - locale
-                    searchFields:
-                      - name
-                    required: false
-                    hint: "Wenn gesetzt, wird die Kachel zur Kategorie-Seite verlinkt."
-                  - label: "Manueller Link"
-                    name: "link"
-                    widget: string
-                    required: false
-                    hint: "Optionaler Link, der statt der Kategorie verwendet wird."
+              - label: "Kategorie"
+                name: "category"
+                widget: relation
+                collection: categories
+                valueField: uuid
+                displayFields:
+                  - name
+                  - locale
+                searchFields:
+                  - name
+                required: false
+                hint: "Wenn gesetzt, wird die Kachel zur Kategorie-Seite verlinkt."
+              - label: "Manueller Link"
+                name: "link"
+                widget: string
+                required: false
+                hint: "Optionaler Link, der statt der Kategorie verwendet wird."
           - label: "Date"
             name: "date"
             default: ""

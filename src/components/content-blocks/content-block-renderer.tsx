@@ -17,7 +17,6 @@ import type { LanguageCode } from "../../lib/content/types";
 import type {
 	ImportedContentBlock,
 	ImportedContentTile,
-	ImportedContentTileRow,
 	ImportedImage,
 	NormalizedCategory,
 } from "../../lib/content/types";
@@ -336,60 +335,59 @@ const hasTileContent = (
 	return hasText || hasImage || hasLink;
 };
 
-const Tile: React.FC<{
+// A single visual box: either the tile's text (content box) or its image
+// (media box). A tile carrying both text and image yields two boxes, so a
+// row of left/right tiles renders as text, image, text, image.
+const TileBox: React.FC<{
+	variant: "content" | "media";
 	tile: ImportedContentTile;
-	categories: NormalizedCategory[] | null | undefined;
-	language: LanguageCode;
-	className?: string;
-}> = ({ tile, categories, language, className = "" }) => {
-	const tileImage = text(tile.image);
-	const tileText = text(tile.text);
-	const link = resolveTileLink(tile, categories, language);
-
-	const tileClassName = [
+	link?: string;
+}> = ({ variant, tile, link }) => {
+	const boxClassName = [
 		"content-block__tile",
-		tileImage ? "content-block__tile--media" : "content-block__tile--content",
-		className,
-	]
-		.filter(Boolean)
-		.join(" ");
+		variant === "media"
+			? "content-block__tile--media"
+			: "content-block__tile--content",
+	].join(" ");
 
-	const tileContent = (
-		<>
-			{tileImage ? (
-				<img src={tileImage} alt="" loading="lazy" />
-			) : null}
-			{tileText ? (
-				<div className="content-block__text">
-					<MarkdownContent content={tileText} />
-				</div>
-			) : null}
-		</>
-	);
+	const inner =
+		variant === "media" ? (
+			<img src={text(tile.image)} alt="" loading="lazy" />
+		) : (
+			<div className="content-block__text">
+				<MarkdownContent content={tile.text} />
+			</div>
+		);
 
 	return link ? (
-		<a href={link} className={tileClassName}>
-			{tileContent}
+		<a href={link} className={boxClassName}>
+			{inner}
 		</a>
 	) : (
-		<div className={tileClassName}>{tileContent}</div>
+		<div className={boxClassName}>{inner}</div>
 	);
 };
 
 const TileGrid: React.FC<{
-	tiles: ImportedContentTileRow[];
+	tiles: ImportedContentTile[];
 	categories: NormalizedCategory[] | null | undefined;
 	language: LanguageCode;
 }> = ({ tiles, categories, language }) => {
-	const items: { tile: ImportedContentTile; key: string }[] = [];
+	const items: { variant: "content" | "media"; tile: ImportedContentTile; link?: string; key: string }[] = [];
 
-	for (const row of tiles.slice(0, 2)) {
-		if (hasTileContent(row.left)) {
-			items.push({ tile: row.left, key: `tile-left-${items.length}` });
+	for (const tile of tiles.slice(0, 4)) {
+		if (!hasTileContent(tile)) {
+			continue;
 		}
 
-		if (hasTileContent(row.right)) {
-			items.push({ tile: row.right, key: `tile-right-${items.length}` });
+		const link = resolveTileLink(tile, categories, language);
+
+		if (text(tile.text)) {
+			items.push({ variant: "content", tile, link, key: `tile-text-${items.length}` });
+		}
+
+		if (text(tile.image)) {
+			items.push({ variant: "media", tile, link, key: `tile-media-${items.length}` });
 		}
 	}
 
@@ -399,13 +397,8 @@ const TileGrid: React.FC<{
 
 	return (
 		<>
-			{items.map(({ tile, key }) => (
-				<Tile
-					key={key}
-					tile={tile}
-					categories={categories}
-					language={language}
-				/>
+			{items.map(({ variant, tile, link, key }) => (
+				<TileBox key={key} variant={variant} tile={tile} link={link} />
 			))}
 		</>
 	);
@@ -434,9 +427,7 @@ const ImportedBlock: React.FC<{
 	const displayedImages = isGridLayout ? images.slice(0, 3) : images.slice(0, 1);
 	// For 2-column layouts with multiple images, use a slider instead of single image
 	const useDynamicSlider = isTwoColumnLayout && images.length > 1;
-	const hasTiles = (block.tiles ?? []).some(
-		(row) => hasTileContent(row.left) || hasTileContent(row.right),
-	);
+	const hasTiles = (block.tiles ?? []).some((tile) => hasTileContent(tile));
 
 	const blockClassName = [
 		"content-block",
@@ -528,6 +519,11 @@ const ImportedBlock: React.FC<{
 		<section className={blockClassName}>
 			{text(block.header) ? (
 				<p className="content-block__section-title">{text(block.header)}</p>
+			) : null}
+			{hasTiles && text(block.text) ? (
+				<div className="content-block__intro">
+					<MarkdownContent content={block.text} />
+				</div>
 			) : null}
 			<div className="content-block__body">
 				{hasTiles ? (

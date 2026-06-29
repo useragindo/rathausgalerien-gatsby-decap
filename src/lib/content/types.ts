@@ -27,11 +27,6 @@ export type ImportedContentTile = {
 	link?: string | null;
 };
 
-export type ImportedContentTileRow = {
-	left?: ImportedContentTile | null;
-	right?: ImportedContentTile | null;
-};
-
 export type ImportedContentBlock = {
 	layout?: string | null;
 	header?: string | null;
@@ -39,7 +34,7 @@ export type ImportedContentBlock = {
 	date?: string | null;
 	images?: ImportedImage[] | null;
 	icons?: ImportedIcon[] | null;
-	tiles?: ImportedContentTileRow[] | null;
+	tiles?: ImportedContentTile[] | null;
 };
 
 export type ImportedFrontmatter = {
