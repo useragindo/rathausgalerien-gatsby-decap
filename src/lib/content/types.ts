@@ -22,7 +22,7 @@ export type ImportedIcon = {
 
 export type ImportedContentTile = {
 	text?: string | null;
-	images?: ImportedImage[] | null;
+	image?: string | null;
 	category?: string | null;
 	link?: string | null;
 };

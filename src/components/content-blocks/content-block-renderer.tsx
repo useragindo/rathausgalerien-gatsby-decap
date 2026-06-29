@@ -330,10 +330,10 @@ const hasTileContent = (
 	}
 
 	const hasText = Boolean(text(tile.text));
-	const hasImages = (tile.images ?? []).some((image) => text(image.image));
+	const hasImage = Boolean(text(tile.image));
 	const hasLink = Boolean(text(tile.link)) || Boolean(text(tile.category));
 
-	return hasText || hasImages || hasLink;
+	return hasText || hasImage || hasLink;
 };
 
 const Tile: React.FC<{
@@ -342,14 +342,13 @@ const Tile: React.FC<{
 	language: LanguageCode;
 	className?: string;
 }> = ({ tile, categories, language, className = "" }) => {
-	const images = (tile.images ?? []).filter((image) => text(image.image));
+	const tileImage = text(tile.image);
 	const tileText = text(tile.text);
 	const link = resolveTileLink(tile, categories, language);
-	const isSlider = images.length > 1;
 
 	const tileClassName = [
 		"content-block__tile",
-		images.length ? "content-block__tile--media" : "content-block__tile--content",
+		tileImage ? "content-block__tile--media" : "content-block__tile--content",
 		className,
 	]
 		.filter(Boolean)
@@ -357,16 +356,8 @@ const Tile: React.FC<{
 
 	const tileContent = (
 		<>
-			{images.length ? (
-				isSlider ? (
-					<ImageSlider images={images} />
-				) : (
-					<img
-						src={text(images[0].image)}
-						alt={text(images[0].alt) ?? ""}
-						loading="lazy"
-					/>
-				)
+			{tileImage ? (
+				<img src={tileImage} alt="" loading="lazy" />
 			) : null}
 			{tileText ? (
 				<div className="content-block__text">

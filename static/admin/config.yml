@@ -186,18 +186,10 @@ collections:
                       - heading-two
                       - bulleted-list
                       - numbered-list
-                  - label: "Bilder"
-                    name: "images"
-                    widget: list
+                  - label: "Bild"
+                    name: "image"
+                    widget: "image"
                     required: false
-                    fields:
-                      - label: "Image"
-                        name: "image"
-                        widget: image
-                      - label: "Text"
-                        name: "text"
-                        widget: string
-                        required: false
                   - label: "Kategorie"
                     name: "category"
                     widget: relation
@@ -232,18 +224,10 @@ collections:
                       - heading-two
                       - bulleted-list
                       - numbered-list
-                  - label: "Bilder"
-                    name: "images"
-                    widget: list
+                  - label: "Bild"
+                    name: "image"
+                    widget: "image"
                     required: false
-                    fields:
-                      - label: "Image"
-                        name: "image"
-                        widget: image
-                      - label: "Text"
-                        name: "text"
-                        widget: string
-                        required: false
                   - label: "Kategorie"
                     name: "category"
                     widget: relation
