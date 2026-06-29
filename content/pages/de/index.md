@@ -1,7 +1,7 @@
 ---
 locale: de
-key: index
 type: page
+key: index
 template: home
 order: 1
 seo:
@@ -10,24 +10,41 @@ seo:
     Sie uns vor Ort!
   title: Shopping
 blocks:
-  - date: ""
-    layout: grid-4
-    header: OUT NOW.
-    text: >-
-      GALERIEN WUNDERLAND
+  - layout: grid-4
+    date: ""
+    header: fashion, food, & lifestyle
+    text: |-
+      RathausGalerien: Das Herz der Stadt! 
 
+      Eine große Auswahl an Shops und gastronomischen Angeboten 
 
-      Das neue Galerien Frühjahrsmagazin 2026 ist da. Zu finden in den RathausGalerien oder online zum Durchblättern [](static/media/h001_127_02_magazin_hw.2025_rz_es.pdf)[](https://online.fliphtml5.com/ajmvx/xelq/)[HIER](https://online.fliphtml5.com/ajmvx/H001_143_01_Magazin_FJ_2026_RZ_ES/). 
+      direkt im Zentrum von Innsbruck.
+    tiles:
+      - left:
+          text: |-
+            ## spring\
+            fashion
 
+            JETZT DIE NEUE
 
-      Seid gespannt auf neue Kollektionen, Trends und Insights!
-    images:
-      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
-      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_02.jpg
-      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_03.jpg
-      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_04.jpg
-      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_05.jpg
-      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_06.jpg
+            FRÜHJAHRSMODE
+
+            ENTDECKEN!
+          image: https://glowing-cranachan-5255ae.netlify.app/media/0a3a7201.jpg
+          category: ddfcab86-1237-4de6-9081-cafe473eecfd
+        right:
+          text: |-
+            ## DAS NEUE
+
+            ## GALERIEN
+
+            ## MAGAZIN!
+
+            GLEICH
+
+            REINSCHAUEN
+          image: https://glowing-cranachan-5255ae.netlify.app/media/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
+          category: 9f4d16d7-0a3b-4222-9e69-c9b4604c20ec
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
@@ -49,6 +66,24 @@ blocks:
       - image: /media/novelties-post.jpg
       - image: /media/rituals-refill-week-post.jpg
       - image: /media/yozakura-novelties-post.jpg
+  - date: ""
+    layout: grid-4
+    header: OUT NOW.
+    text: >-
+      GALERIEN WUNDERLAND
+
+
+      Das neue Galerien Frühjahrsmagazin 2026 ist da. Zu finden in den RathausGalerien oder online zum Durchblättern [](static/media/h001_127_02_magazin_hw.2025_rz_es.pdf)[](https://online.fliphtml5.com/ajmvx/xelq/)[HIER](https://online.fliphtml5.com/ajmvx/H001_143_01_Magazin_FJ_2026_RZ_ES/). 
+
+
+      Seid gespannt auf neue Kollektionen, Trends und Insights!
+    images:
+      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
+      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_02.jpg
+      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_03.jpg
+      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_04.jpg
+      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_05.jpg
+      - image: /media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_06.jpg
   - date: ""
     layout: slider-left
     header: FOLLOW US.
