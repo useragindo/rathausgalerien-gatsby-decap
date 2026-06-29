@@ -30,21 +30,21 @@ blocks:
             FRÜHJAHRSMODE
 
             ENTDECKEN!
-          image: https://glowing-cranachan-5255ae.netlify.app/media/0a3a7201.jpg
+          image: ""
           category: ddfcab86-1237-4de6-9081-cafe473eecfd
         right:
+          text: ""
+          image: https://glowing-cranachan-5255ae.netlify.app/media/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
+          category: 9f4d16d7-0a3b-4222-9e69-c9b4604c20ec
+      - left:
           text: |-
             ## DAS NEUE
 
             ## GALERIEN
 
             ## MAGAZIN!
-
-            GLEICH
-
-            REINSCHAUEN
-          image: https://glowing-cranachan-5255ae.netlify.app/media/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
-          category: 9f4d16d7-0a3b-4222-9e69-c9b4604c20ec
+          image: http://localhost:8000/media/h001_147_02_news_03_fj-so_rlo_1000-x-1000_02.jpg
+          category: a3375da3-e4fe-40ba-a57b-68658d3c8da7
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
