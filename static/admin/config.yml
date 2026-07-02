@@ -160,6 +160,7 @@ collections:
               - label: "Image"
                 name: "image"
                 widget: "image"
+                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
               - label: "Text"
                 name: "text"
                 widget: "string"
@@ -186,6 +187,7 @@ collections:
               - label: "Bild"
                 name: "image"
                 widget: "image"
+                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
                 required: false
               - label: "Kategorie"
                 name: "category"
@@ -217,6 +219,7 @@ collections:
               - label: "Icon"
                 name: "icon"
                 widget: "image"
+                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
                 pattern: ["(?:.+)svg$", "Must be a SVG file"]
               - label: "Text"
                 name: "text"
@@ -240,7 +243,12 @@ collections:
         hint: "Nur für die Templates 'Shops-Übersicht' / 'Gastronomie-Übersicht'."
         fields:
           - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Image", name: "image", widget: "image", required: false }
+          - 
+            label: "Image"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
 
       - label: "Photos"
         name: "photos"
@@ -251,6 +259,7 @@ collections:
           - label: "Image"
             name: "image"
             widget: "image"
+            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
           - label: "View ID"
             name: "viewId"
             widget: "string"
@@ -380,6 +389,7 @@ collections:
               - label: "Image"
                 name: "image"
                 widget: "image"
+                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
               - label: "Text"
                 name: "text"
                 widget: "string"
@@ -406,6 +416,7 @@ collections:
               - label: "Bild"
                 name: "image"
                 widget: "image"
+                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
                 required: false
               - label: "Kategorie"
                 name: "category"
@@ -437,6 +448,7 @@ collections:
               - label: "Icon"
                 name: "icon"
                 widget: "image"
+                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
                 pattern: ["(?:.+)svg$", "Must be a SVG file"]
               - label: "Text"
                 name: "text"
@@ -459,7 +471,12 @@ collections:
         required: false
         fields:
           - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Image", name: "image", widget: "image", required: false }
+          - 
+            label: "Image"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
 
       - label: "Photos"
         name: "photos"
@@ -469,6 +486,7 @@ collections:
           - label: "Image"
             name: "image"
             widget: "image"
+            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
           - label: "View ID"
             name: "viewId"
             widget: "string"
@@ -558,6 +576,7 @@ collections:
           - label: "Icon"
             name: "icon"
             widget: "image"
+            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
             pattern: ["(?:.+)svg$", "Must be a SVG file"]
           - label: "Link"
             name: "link"
@@ -690,7 +709,11 @@ collections:
         multiple: true
         hint: "Kategorie in der passenden Sprache der Location wählen (Sprache wird in Klammern angezeigt)."
 
-      - { label: "Logo", name: "logo", widget: "image" }
+      - 
+        label: "Logo"
+        name: "logo"
+        widget: "image"
+        hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
 
       - label: "Images"
         name: "images"
