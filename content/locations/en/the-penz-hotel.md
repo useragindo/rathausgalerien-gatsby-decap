@@ -14,7 +14,7 @@ group: culinary
 categories:
   - ed8a51dd-4460-4079-83d8-6938c579f8c8
   - d25f525f-7330-443d-a023-919a31370f7e
-logo: /media/penz_hotel.svg
+logo: /media/locations/penz_hotel.svg
 address: |-
   The PENZ Hotel\
   Adolf-Pichler-Platz 3\

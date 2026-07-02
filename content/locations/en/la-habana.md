@@ -12,12 +12,12 @@ name: La Habana
 group: culinary
 categories:
   - d25f525f-7330-443d-a023-919a31370f7e
-logo: /media/lahabana.svg
+logo: /media/locations/lahabana.svg
 images:
-  - /media/lahabana_.jpg
-  - /media/lahabana_2.jpg
-  - /media/lahabana_3.jpg
-  - /media/lahabana_4.jpg
+  - /media/locations/lahabana_.jpg
+  - /media/locations/lahabana_2.jpg
+  - /media/locations/lahabana_3.jpg
+  - /media/locations/lahabana_4.jpg
 hours:
   - date: Mon. - Thu.
     time: 09.00 - 21.00

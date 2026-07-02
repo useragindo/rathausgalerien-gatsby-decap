@@ -10,9 +10,9 @@ name: Sphere - architectural environments
 group: brand
 categories:
   - b640ac1f-3ce7-4d0c-a49c-2d8e61e48258
-logo: /media/sphere.svg
+logo: /media/locations/sphere.svg
 images:
-  - /media/thumbnail_img_9061.jpg
+  - /media/locations/thumbnail_img_9061.jpg
 hours:
   - date: Mo - Do
     time: 8:30 - 12:30 und 14:00 - 17:00 Uhr

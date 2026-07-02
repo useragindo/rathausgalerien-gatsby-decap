@@ -13,11 +13,11 @@ group: brand
 categories:
   - df119a0a-f851-4f38-a345-811aa2ab152c
   - 2364a914-14d1-45fb-b06b-69e97b5184bf
-logo: /media/rituals.svg
+logo: /media/locations/rituals.svg
 images:
-  - /media/rituals_.jpg
-  - /media/rituals_2.jpg
-  - /media/rituals_3.jpg
+  - /media/locations/rituals_.jpg
+  - /media/locations/rituals_2.jpg
+  - /media/locations/rituals_3.jpg
 hours:
   - date: Mon. - Fri.
     time: 09.00 - 19.00

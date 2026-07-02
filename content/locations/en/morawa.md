@@ -12,11 +12,11 @@ name: Morawa - Egger
 group: brand
 categories:
   - 84989d9d-13d2-4cb9-81b5-97135e1d20e0
-logo: /media/morawa.svg
+logo: /media/locations/morawa.svg
 images:
-  - /media/morawa_2.jpg
-  - /media/morawa_3.jpg
-  - /media/morawa_.jpg
+  - /media/locations/morawa_2.jpg
+  - /media/locations/morawa_3.jpg
+  - /media/locations/morawa_.jpg
 hours:
   - date: Mon. - Fri.
     time: 08.00 - 19.00

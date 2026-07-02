@@ -12,9 +12,9 @@ name: Bürgerservice
 group: brand
 categories:
   - 2ef4f4b1-7e09-48e1-9a1b-24d4faad2b12
-logo: /media/innsbruck.svg
+logo: /media/locations/innsbruck.svg
 images:
-  - /media/bu_rgerservice_.jpg
+  - /media/locations/bu_rgerservice_.jpg
 hours:
   - date: Mon. - Thu.
     time: 08.00 - 17.30

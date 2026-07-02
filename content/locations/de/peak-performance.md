@@ -14,11 +14,11 @@ categories:
   - aa167073-ba10-44d0-81d9-90c23be34d91
   - b640ac1f-3ce7-4d0c-a49c-2d8e61e48258
   - 28e2ac65-354b-4ab3-b4ea-385863152807
-logo: /media/wutscher.svg
+logo: /media/locations/wutscher.svg
 images:
-  - /media/0a3a7201.jpg
-  - /media/dsc02257.jpg
-  - /media/dsc02727_retusche.jpg
+  - /media/locations/0a3a7201.jpg
+  - /media/locations/dsc02257.jpg
+  - /media/locations/dsc02727_retusche.jpg
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00

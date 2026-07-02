@@ -13,11 +13,11 @@ group: brand
 categories:
   - b83bcc8a-45d7-409d-90a3-97baaf6a5735
   - 7d14bb2b-1e2e-48b0-8073-57bd17b06b6f
-logo: /media/appeltjuwelen.svg
+logo: /media/locations/appeltjuwelen.svg
 images:
-  - /media/appelt_juwelen_3.jpg
-  - /media/appelt_juwelen_2.jpg
-  - /media/appelt_juwelen_4.jpg
+  - /media/locations/appelt_juwelen_3.jpg
+  - /media/locations/appelt_juwelen_2.jpg
+  - /media/locations/appelt_juwelen_4.jpg
 hours:
   - date: Mon. - Fri.
     time: 09.00 - 19.00

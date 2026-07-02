@@ -12,12 +12,12 @@ group: brand
 categories:
   - 1031988d-98a9-4ad9-b3cf-09a8d10b23ee
   - aa167073-ba10-44d0-81d9-90c23be34d91
-logo: /media/hoegl.svg
+logo: /media/locations/hoegl.svg
 images:
-  - /media/rhg_eroeffnung_hoegl-3.jpg
-  - /media/rhg_eroeffnung_hoegl-2.jpg
-  - /media/rhg_eroeffnung_hoegl-6.jpg
-  - /media/rhg_eroeffnung_hoegl.jpg
+  - /media/locations/rhg_eroeffnung_hoegl-3.jpg
+  - /media/locations/rhg_eroeffnung_hoegl-2.jpg
+  - /media/locations/rhg_eroeffnung_hoegl-6.jpg
+  - /media/locations/rhg_eroeffnung_hoegl.jpg
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00

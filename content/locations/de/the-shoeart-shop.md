@@ -12,14 +12,14 @@ group: brand
 categories:
   - aa167073-ba10-44d0-81d9-90c23be34d91
   - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
-logo: /media/intimissimi_uomo.svg
+logo: /media/locations/intimissimi_uomo.svg
 images:
-  - /media/dsc_7840.jpg
-  - /media/h001_132_03_shops_02_rlo_1000-x-1000_04.jpg
-  - /media/h001_132_03_shops_02_rlo_1000-x-1000_03.jpg
-  - /media/h001_132_03_shops_02_rlo_1000-x-1000_02.jpg
-  - /media/h001_132_03_shops_02_rlo_1000-x-1000_01.jpg
-  - /media/dsc_7896.jpg
+  - /media/locations/dsc_7840.jpg
+  - /media/locations/h001_132_03_shops_02_rlo_1000-x-1000_04.jpg
+  - /media/locations/h001_132_03_shops_02_rlo_1000-x-1000_03.jpg
+  - /media/locations/h001_132_03_shops_02_rlo_1000-x-1000_02.jpg
+  - /media/locations/h001_132_03_shops_02_rlo_1000-x-1000_01.jpg
+  - /media/locations/dsc_7896.jpg
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00

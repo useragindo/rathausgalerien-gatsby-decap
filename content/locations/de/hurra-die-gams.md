@@ -10,7 +10,7 @@ name: Hurra die Gams
 group: brand
 categories:
   - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
-logo: /media/0001.jpg
+logo: /media/locations/0001.jpg
 address: Gamsstadt Kitzbühel
 contact:
   phone: "33433434"

@@ -12,11 +12,11 @@ group: brand
 categories:
   - 5d022c40-ebe6-4ce1-9c01-f1d3fda8f2fa
   - a3375da3-e4fe-40ba-a57b-68658d3c8da7
-logo: /media/appeltjuwelen.svg
+logo: /media/locations/appeltjuwelen.svg
 images:
-  - /media/h001_053_02_06_appelt_01.jpg
-  - /media/h001_053_02_06_appelt_02.jpg
-  - /media/h001_053_02_06_appelt_03.jpg
+  - /media/locations/h001_053_02_06_appelt_01.jpg
+  - /media/locations/h001_053_02_06_appelt_02.jpg
+  - /media/locations/h001_053_02_06_appelt_03.jpg
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00

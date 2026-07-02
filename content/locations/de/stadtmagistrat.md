@@ -11,7 +11,7 @@ name: Stadtmagistrat
 group: brand
 categories:
   - 82074ef4-f123-45c9-8765-bbf0685b05a4
-logo: /media/innsbruck.svg
+logo: /media/locations/innsbruck.svg
 hours:
   - date: Mo - Sa
     time: 08.00 - 24.00 Uhr

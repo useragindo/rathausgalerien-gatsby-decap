@@ -14,14 +14,14 @@ categories:
   - e05b73b2-68f8-4aa7-8f94-a5353d6c4381
   - 2364a914-14d1-45fb-b06b-69e97b5184bf
   - 1c603395-91e5-4a54-8237-a82bc73271e8
-logo: /media/odlo.svg
+logo: /media/locations/odlo.svg
 images:
-  - /media/odlo_.jpg
-  - /media/h001_132_03_shops_rlo_1000-x-1000_01.jpg
-  - /media/odlo_2.jpg
-  - /media/h001_132_03_shops_rlo_1000-x-1000_02.jpg
-  - /media/h001_132_03_shops_rlo_1000-x-1000_03.jpg
-  - /media/h001_132_03_shops_rlo_1000-x-1000_04.jpg
+  - /media/locations/odlo_.jpg
+  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_01.jpg
+  - /media/locations/odlo_2.jpg
+  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_02.jpg
+  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_03.jpg
+  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_04.jpg
 hours:
   - date: Mon. - Fri.
     time: 09.00 - 19.00

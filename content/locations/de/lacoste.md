@@ -13,12 +13,12 @@ categories:
   - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
   - aa167073-ba10-44d0-81d9-90c23be34d91
   - 1031988d-98a9-4ad9-b3cf-09a8d10b23ee
-logo: /media/lacoste.svg
+logo: /media/locations/lacoste.svg
 images:
-  - /media/lacoste_.jpg
-  - /media/lacoste_4.jpg
-  - /media/lacoste_2.jpg
-  - /media/lacoste_3.jpg
+  - /media/locations/lacoste_.jpg
+  - /media/locations/lacoste_4.jpg
+  - /media/locations/lacoste_2.jpg
+  - /media/locations/lacoste_3.jpg
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00

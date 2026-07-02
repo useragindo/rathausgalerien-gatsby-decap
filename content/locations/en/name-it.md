@@ -11,11 +11,11 @@ group: brand
 categories:
   - 2364a914-14d1-45fb-b06b-69e97b5184bf
   - 1c603395-91e5-4a54-8237-a82bc73271e8
-logo: /media/nameit.svg
+logo: /media/locations/nameit.svg
 images:
-  - /media/name-it_springsummer2026_4716529_13237025_4-kopie.jpg
-  - /media/name-it_autumnwinter_4823228_13246226_2-kopie.jpg
-  - /media/name-it_noos2025_4377286_13224943_4-kopie.jpg
+  - /media/locations/name-it_springsummer2026_4716529_13237025_4-kopie.jpg
+  - /media/locations/name-it_autumnwinter_4823228_13246226_2-kopie.jpg
+  - /media/locations/name-it_noos2025_4377286_13224943_4-kopie.jpg
 hours:
   - date: Mon - Fri
     time: 09.00 - 19.00

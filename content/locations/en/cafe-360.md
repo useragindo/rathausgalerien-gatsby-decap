@@ -13,12 +13,12 @@ name: Cafe 360°
 group: culinary
 categories:
   - d25f525f-7330-443d-a023-919a31370f7e
-logo: /media/360-grad.svg
+logo: /media/locations/360-grad.svg
 images:
-  - /media/360_grad_7.jpg
-  - /media/360_grad_9.jpg
-  - /media/360_grad_8.jpg
-  - /media/360_grad_10.jpg
+  - /media/locations/360_grad_7.jpg
+  - /media/locations/360_grad_9.jpg
+  - /media/locations/360_grad_8.jpg
+  - /media/locations/360_grad_10.jpg
 hours:
   - date: Mon. - Sat.
     time: 10.00 - 01.00

@@ -11,9 +11,9 @@ name: RLB
 group: brand
 categories:
   - e49accfd-97ee-4531-8193-bb1007da6c7e
-logo: /media/rlb.svg
+logo: /media/locations/rlb.svg
 images:
-  - /media/rlb_.jpg
+  - /media/locations/rlb_.jpg
 hours:
   - date: Mo - So
     time: 5.00 - 24.00

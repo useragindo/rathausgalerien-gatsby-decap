@@ -12,9 +12,9 @@ group: brand
 categories:
   - 1c603395-91e5-4a54-8237-a82bc73271e8
   - 2364a914-14d1-45fb-b06b-69e97b5184bf
-logo: /media/_rathausgalerien.svg
+logo: /media/locations/_rathausgalerien.svg
 images:
-  - /media/h001_102_02_04_u-berraschung_lo2.jpg
+  - /media/locations/h001_102_02_04_u-berraschung_lo2.jpg
 hours: []
 address: |-
   Maria-Theresien-Straße 18\

@@ -11,7 +11,7 @@ name: 'RathausGarage '
 group: brand
 categories:
   - 82074ef4-f123-45c9-8765-bbf0685b05a4
-logo: /media/boe_parking.svg
+logo: /media/locations/boe_parking.svg
 address: |-
   RathausGalerien\
   Maria-Theresien-Straße 18\

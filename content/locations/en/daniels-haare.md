@@ -12,10 +12,10 @@ name: Daniel's Haare Hair Stylist
 group: brand
 categories:
   - df119a0a-f851-4f38-a345-811aa2ab152c
-logo: /media/danielshaare2020.svg
+logo: /media/locations/danielshaare2020.svg
 images:
-  - /media/danielshaare_2.jpg
-  - /media/danielshaare_.jpg
+  - /media/locations/danielshaare_2.jpg
+  - /media/locations/danielshaare_.jpg
 hours:
   - date: Mon. - Fri.
     time: 09.00 - 18.00

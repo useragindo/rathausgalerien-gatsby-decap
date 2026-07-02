@@ -12,7 +12,7 @@ name: Centerverwaltung
 group: brand
 categories:
   - 82074ef4-f123-45c9-8765-bbf0685b05a4
-logo: /media/_rathausgalerien.svg
+logo: /media/locations/_rathausgalerien.svg
 hours:
   - date: Mo - Fr
     time: 08.30 bis 11.30 Uhr

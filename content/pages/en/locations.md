@@ -10,25 +10,25 @@ seo:
   title: Location
   url: locationmap
 photos:
-  - image: /media/rhg_mts_eingang.jpg
+  - image: /media/pages/rhg_mts_eingang.jpg
     label: Entrance Maria-Theresien-Straße
     viewId: foto-eingang-mts
-  - image: /media/rhg_anichstrasse.jpg
+  - image: /media/pages/rhg_anichstrasse.jpg
     label: Entrance Anichstraße
     viewId: foto-eingang-anichstrasse
-  - image: /media/rhg_stage12_gastgarten.jpg
+  - image: /media/pages/rhg_stage12_gastgarten.jpg
     label: Stage 12 Gastgarten
     viewId: foto-stage-12
-  - image: /media/rhg_360_frau.jpg
+  - image: /media/pages/rhg_360_frau.jpg
     label: Cafe 360 Grad
     viewId: foto-360-grad
-  - image: /media/rhg_lichtblick.jpg
+  - image: /media/pages/rhg_lichtblick.jpg
     label: Restaurant Lichtblick
     viewId: foto-lichtblick
-  - image: /media/rhg_goessers_gastgarten.jpg
+  - image: /media/pages/rhg_goessers_gastgarten.jpg
     label: Gastgarten Gössers
     viewId: foto-adolf-pichler-platz
-  - image: /media/rhg_stainerstrasse_eingang.jpg
+  - image: /media/pages/rhg_stainerstrasse_eingang.jpg
     label: Entrance Stainerstraße
     viewId: foto-eingang-stainerstrasse
 traffic_information: >-

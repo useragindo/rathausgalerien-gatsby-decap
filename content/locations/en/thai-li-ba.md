@@ -12,12 +12,12 @@ name: Thai-Li-Ba
 group: culinary
 categories:
   - 4d03aaa3-caaa-46e5-9738-0951622e97d6
-logo: /media/thailiba.svg
+logo: /media/locations/thailiba.svg
 images:
-  - /media/thailiba_4.jpg
-  - /media/thailiba_3.jpg
-  - /media/thailiba_.jpg
-  - /media/thailiba_2.jpg
+  - /media/locations/thailiba_4.jpg
+  - /media/locations/thailiba_3.jpg
+  - /media/locations/thailiba_.jpg
+  - /media/locations/thailiba_2.jpg
 hours:
   - date: Mon. - Sat.
     time: 09.00 - 23.00

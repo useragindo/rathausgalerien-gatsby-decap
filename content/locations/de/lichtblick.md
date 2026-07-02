@@ -13,11 +13,11 @@ categories:
   - 619a69d0-fe0b-45da-80ec-e3203da79c23
   - ddfcab86-1237-4de6-9081-cafe473eecfd
   - 9fa25aa3-e40e-4ba4-a702-a6a75a50360c
-logo: /media/lichtblick.svg
+logo: /media/locations/lichtblick.svg
 images:
-  - /media/lichtblick.jpg
-  - /media/lichtblick2.jpg
-  - /media/lichtblick3.jpg
+  - /media/locations/lichtblick.jpg
+  - /media/locations/lichtblick2.jpg
+  - /media/locations/lichtblick3.jpg
 hours:
   - date: Mo - Sa
     time: 10.00 - 24.00

@@ -12,14 +12,14 @@ name: Initimissimi Uomo
 group: brand
 categories:
   - 1c603395-91e5-4a54-8237-a82bc73271e8
-logo: /media/intimissimi_uomo.svg
+logo: /media/locations/intimissimi_uomo.svg
 images:
-  - /media/h001_132_03_shops_02_rlo_1000-x-1000_04.jpg
-  - /media/h001_132_03_shops_02_rlo_1000-x-1000_03.jpg
-  - /media/h001_132_03_shops_02_rlo_1000-x-1000_02.jpg
-  - /media/h001_132_03_shops_02_rlo_1000-x-1000_01.jpg
-  - /media/dsc_7840.jpg
-  - /media/dsc_7896.jpg
+  - /media/locations/h001_132_03_shops_02_rlo_1000-x-1000_04.jpg
+  - /media/locations/h001_132_03_shops_02_rlo_1000-x-1000_03.jpg
+  - /media/locations/h001_132_03_shops_02_rlo_1000-x-1000_02.jpg
+  - /media/locations/h001_132_03_shops_02_rlo_1000-x-1000_01.jpg
+  - /media/locations/dsc_7840.jpg
+  - /media/locations/dsc_7896.jpg
 hours:
   - date: Mon. - Fri.
     time: 09.00 - 19.00

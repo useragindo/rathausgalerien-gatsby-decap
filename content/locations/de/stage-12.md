@@ -12,10 +12,10 @@ group: culinary
 categories:
   - ddfcab86-1237-4de6-9081-cafe473eecfd
   - 6484b646-4c69-405a-aacf-1fe3f550f8ab
-logo: /media/stage12.svg
+logo: /media/locations/stage12.svg
 images:
-  - /media/rathausgalerien_adpartners_print_dz-69.jpg
-  - /media/rathausgalerien_adpartners_print_dz-91.jpg
+  - /media/locations/rathausgalerien_adpartners_print_dz-69.jpg
+  - /media/locations/rathausgalerien_adpartners_print_dz-91.jpg
 hours:
   - date: Mo - Do
     time: 12.00 - 00.00

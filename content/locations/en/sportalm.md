@@ -12,12 +12,12 @@ name: Sportalm
 group: brand
 categories:
   - 1c603395-91e5-4a54-8237-a82bc73271e8
-logo: /media/sportalm_kitzbuehel.svg
+logo: /media/locations/sportalm_kitzbuehel.svg
 images:
-  - /media/sportalm_4.jpg
-  - /media/sportalm_5.jpg
-  - /media/sportalm_.jpg
-  - /media/sportalm_3.jpg
+  - /media/locations/sportalm_4.jpg
+  - /media/locations/sportalm_5.jpg
+  - /media/locations/sportalm_.jpg
+  - /media/locations/sportalm_3.jpg
 hours:
   - date: Mon. - Fri.
     time: 09.00 - 19.00

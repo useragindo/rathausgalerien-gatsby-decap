@@ -12,12 +12,12 @@ group: culinary
 categories:
   - b9979400-46f4-45cc-8378-077a4d464e70
   - ddfcab86-1237-4de6-9081-cafe473eecfd
-logo: /media/ruetz.svg
+logo: /media/locations/ruetz.svg
 images:
-  - /media/ruetz_.jpg
-  - /media/ruetz_2.jpg
-  - /media/ruetz_3.jpg
-  - /media/ruetz_4.jpg
+  - /media/locations/ruetz_.jpg
+  - /media/locations/ruetz_2.jpg
+  - /media/locations/ruetz_3.jpg
+  - /media/locations/ruetz_4.jpg
 hours:
   - date: Mo - Fr
     time: 06.30 - 19.00 Uhr

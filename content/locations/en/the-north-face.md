@@ -14,12 +14,12 @@ categories:
   - e05b73b2-68f8-4aa7-8f94-a5353d6c4381
   - 2364a914-14d1-45fb-b06b-69e97b5184bf
   - 1c603395-91e5-4a54-8237-a82bc73271e8
-logo: /media/colmar.svg
+logo: /media/locations/colmar.svg
 images:
-  - /media/rhg_shops_-32.jpg
-  - /media/rhg_shops_-16.jpg
-  - /media/rhg_shops_-33.jpg
-  - /media/rhg_shops_-34.jpg
+  - /media/locations/rhg_shops_-32.jpg
+  - /media/locations/rhg_shops_-16.jpg
+  - /media/locations/rhg_shops_-33.jpg
+  - /media/locations/rhg_shops_-34.jpg
 hours:
   - date: Mon. - Fri.
     time: 09.00 - 19.00

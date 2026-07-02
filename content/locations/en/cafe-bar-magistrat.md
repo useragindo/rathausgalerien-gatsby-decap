@@ -13,11 +13,11 @@ group: culinary
 categories:
   - d25f525f-7330-443d-a023-919a31370f7e
   - 4d03aaa3-caaa-46e5-9738-0951622e97d6
-logo: /media/magistrat_cafepizzeria.svg
+logo: /media/locations/magistrat_cafepizzeria.svg
 images:
-  - /media/rathausgalerien_2021_danielzangerl_071.jpg
-  - /media/kaeltepol_magistrat007dsc_3558.jpg
-  - /media/rathausgalerien_2021_danielzangerl_299.jpg
+  - /media/locations/rathausgalerien_2021_danielzangerl_071.jpg
+  - /media/locations/kaeltepol_magistrat007dsc_3558.jpg
+  - /media/locations/rathausgalerien_2021_danielzangerl_299.jpg
 hours:
   - date: Mon. - Sat.
     time: 08.00 - 24.00

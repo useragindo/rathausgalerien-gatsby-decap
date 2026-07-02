@@ -13,11 +13,11 @@ group: culinary
 categories:
   - d25f525f-7330-443d-a023-919a31370f7e
   - 4d03aaa3-caaa-46e5-9738-0951622e97d6
-logo: /media/goessers.svg
+logo: /media/locations/goessers.svg
 images:
-  - /media/go_ssers_.jpg
-  - /media/go_ssers_3.jpg
-  - /media/go_ssers_2.jpg
+  - /media/locations/go_ssers_.jpg
+  - /media/locations/go_ssers_3.jpg
+  - /media/locations/go_ssers_2.jpg
 hours:
   - date: Mon. - Sat..
     time: 09.00 - 24.00

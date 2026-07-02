@@ -11,11 +11,11 @@ name: Cafe-Bar Magistrat
 group: culinary
 categories:
   - 9fa25aa3-e40e-4ba4-a702-a6a75a50360c
-logo: /media/magistrat_cafepizzeria_02.svg
+logo: /media/locations/magistrat_cafepizzeria_02.svg
 images:
-  - /media/rathausgalerien_2021_danielzangerl_299.jpg
-  - /media/kaeltepol_magistrat007dsc_3558.jpg
-  - /media/rathausgalerien_2021_danielzangerl_071.jpg
+  - /media/locations/rathausgalerien_2021_danielzangerl_299.jpg
+  - /media/locations/kaeltepol_magistrat007dsc_3558.jpg
+  - /media/locations/rathausgalerien_2021_danielzangerl_071.jpg
 hours:
   - date: Mo - Sa
     time: 08.00 - 24.00

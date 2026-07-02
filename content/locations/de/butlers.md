@@ -13,12 +13,12 @@ categories:
   - aa167073-ba10-44d0-81d9-90c23be34d91
   - a3375da3-e4fe-40ba-a57b-68658d3c8da7
   - 0cc9ada7-e950-4089-b3fe-13f92774c8c9
-logo: /media/butlers.svg
+logo: /media/locations/butlers.svg
 images:
-  - /media/butlers_.jpg
-  - /media/butlers_2.jpg
-  - /media/butlers_3.jpg
-  - /media/butlers_4.jpg
+  - /media/locations/butlers_.jpg
+  - /media/locations/butlers_2.jpg
+  - /media/locations/butlers_3.jpg
+  - /media/locations/butlers_4.jpg
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00

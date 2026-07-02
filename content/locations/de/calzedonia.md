@@ -13,10 +13,10 @@ categories:
   - aa167073-ba10-44d0-81d9-90c23be34d91
   - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
   - a3375da3-e4fe-40ba-a57b-68658d3c8da7
-logo: /media/calzedonia.svg
+logo: /media/locations/calzedonia.svg
 images:
-  - /media/calzedonia_2.jpg
-  - /media/calzedonia_.jpg
+  - /media/locations/calzedonia_2.jpg
+  - /media/locations/calzedonia_.jpg
 hours:
   - date: Mo-Fr
     time: 09.00 - 19.00

@@ -7,7 +7,7 @@ location: Rituals
 position: Kundenberater (m/w/d)
 specification: Teilzeit
 images:
-  - /media/bild-08.01.26-um-12.06.jpg
+  - /media/jobs/bild-08.01.26-um-12.06.jpg
 ---
 Liebst du den Kontakt mit der Kundschaft? Blühst du im Team auf? Passt deine Energie zum dynamischen Retail-Umfeld?
 

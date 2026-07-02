@@ -12,10 +12,10 @@ group: culinary
 categories:
   - d25f525f-7330-443d-a023-919a31370f7e
   - ed8a51dd-4460-4079-83d8-6938c579f8c8
-logo: /media/stage12.svg
+logo: /media/locations/stage12.svg
 images:
-  - /media/rathausgalerien_adpartners_print_dz-74.jpg
-  - /media/rathausgalerien_adpartners_print_dz-92.jpg
+  - /media/locations/rathausgalerien_adpartners_print_dz-74.jpg
+  - /media/locations/rathausgalerien_adpartners_print_dz-92.jpg
 hours:
   - date: Mon - Thu
     time: 12:00 - 00:00

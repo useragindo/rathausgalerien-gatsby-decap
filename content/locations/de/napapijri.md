@@ -12,12 +12,12 @@ group: brand
 categories:
   - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
   - f1ea6839-f5e1-45e1-9e08-0c87d8092889
-logo: /media/napapijri.svg
+logo: /media/locations/napapijri.svg
 images:
-  - /media/napapijri_ss19_001.jpg
-  - /media/napapijri_ss19_002.jpg
-  - /media/napapijri_ss19_003.jpg
-  - /media/napapijri_ss19_004.jpg
+  - /media/locations/napapijri_ss19_001.jpg
+  - /media/locations/napapijri_ss19_002.jpg
+  - /media/locations/napapijri_ss19_003.jpg
+  - /media/locations/napapijri_ss19_004.jpg
 hours:
   - date: Mo - Fr
     time: 10.00 - 18.30

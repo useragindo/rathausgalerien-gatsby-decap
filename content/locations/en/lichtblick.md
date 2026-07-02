@@ -13,11 +13,11 @@ group: culinary
 categories:
   - 4d03aaa3-caaa-46e5-9738-0951622e97d6
   - d25f525f-7330-443d-a023-919a31370f7e
-logo: /media/lichtblick.svg
+logo: /media/locations/lichtblick.svg
 images:
-  - /media/lichtblick.jpg
-  - /media/lichtblick2.jpg
-  - /media/lichtblick3.jpg
+  - /media/locations/lichtblick.jpg
+  - /media/locations/lichtblick2.jpg
+  - /media/locations/lichtblick3.jpg
 hours:
   - date: Mon. - Sat.
     time: 10.00 - 24.00

@@ -14,10 +14,10 @@ categories:
   - 1c603395-91e5-4a54-8237-a82bc73271e8
   - 0f2f9138-2e65-4006-84c9-d0658dcffe7f
   - 2364a914-14d1-45fb-b06b-69e97b5184bf
-logo: /media/betty_barclay.svg
+logo: /media/locations/betty_barclay.svg
 images:
-  - /media/betty_barclay_shop.jpg
-  - /media/dsc_4220.jpg
+  - /media/locations/betty_barclay_shop.jpg
+  - /media/locations/dsc_4220.jpg
 hours:
   - date: Mon. - Fri.
     time: 09.00 - 19.00

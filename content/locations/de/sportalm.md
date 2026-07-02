@@ -12,12 +12,12 @@ group: brand
 categories:
   - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
   - aa167073-ba10-44d0-81d9-90c23be34d91
-logo: /media/sportalm_kitzbuehel.svg
+logo: /media/locations/sportalm_kitzbuehel.svg
 images:
-  - /media/sportalm_4.jpg
-  - /media/sportalm_5.jpg
-  - /media/sportalm_.jpg
-  - /media/sportalm_3.jpg
+  - /media/locations/sportalm_4.jpg
+  - /media/locations/sportalm_5.jpg
+  - /media/locations/sportalm_.jpg
+  - /media/locations/sportalm_3.jpg
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00

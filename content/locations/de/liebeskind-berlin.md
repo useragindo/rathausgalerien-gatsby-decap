@@ -12,14 +12,14 @@ group: brand
 categories:
   - a3375da3-e4fe-40ba-a57b-68658d3c8da7
   - 307d9957-6917-4c8b-bd5a-6db9c9beefd0
-logo: /media/laederach.svg
+logo: /media/locations/laederach.svg
 images:
-  - /media/la-derach_2.jpg
-  - /media/lad_rathausgalerien_website_sticks_dunkel_900x900px.jpg
-  - /media/lad_rathausgalerien_website_frischschoggiberg_900x900px.jpg
-  - /media/la-derach_14.jpg
-  - /media/la-derach_10.jpg
-  - /media/la-derach_11.jpg
+  - /media/locations/la-derach_2.jpg
+  - /media/locations/lad_rathausgalerien_website_sticks_dunkel_900x900px.jpg
+  - /media/locations/lad_rathausgalerien_website_frischschoggiberg_900x900px.jpg
+  - /media/locations/la-derach_14.jpg
+  - /media/locations/la-derach_10.jpg
+  - /media/locations/la-derach_11.jpg
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00

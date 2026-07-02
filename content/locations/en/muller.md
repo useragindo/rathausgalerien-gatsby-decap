@@ -15,9 +15,9 @@ categories:
   - a6c52e98-8a7e-4b24-85cd-2f2f9fd33c6b
   - 6581b186-dfff-48a4-b20f-1c1faf304921
   - b7de2273-6d1d-4df8-8941-18eac9ded9b4
-logo: /media/mueller.svg
+logo: /media/locations/mueller.svg
 images:
-  - /media/mueller_.jpg
+  - /media/locations/mueller_.jpg
 hours:
   - date: Mon. - Fri.
     time: 08.30 - 19.00

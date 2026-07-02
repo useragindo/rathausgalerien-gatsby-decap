@@ -11,10 +11,10 @@ name: Daniel's Haare
 group: brand
 categories:
   - b640ac1f-3ce7-4d0c-a49c-2d8e61e48258
-logo: /media/danielshaare2020.svg
+logo: /media/locations/danielshaare2020.svg
 images:
-  - /media/danielshaare_2.jpg
-  - /media/danielshaare_.jpg
+  - /media/locations/danielshaare_2.jpg
+  - /media/locations/danielshaare_.jpg
 hours:
   - date: Mo - Fr
     time: 09.00 - 18.00

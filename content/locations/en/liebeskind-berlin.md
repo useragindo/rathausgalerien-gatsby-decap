@@ -13,7 +13,7 @@ group: brand
 categories:
   - 7d14bb2b-1e2e-48b0-8073-57bd17b06b6f
   - 63f5f9d8-cb5d-42a6-b985-ceb25af7e344
-logo: /media/laederach.svg
+logo: /media/locations/laederach.svg
 images: []
 hours:
   - date: Mon. - Fri.

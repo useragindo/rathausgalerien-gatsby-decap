@@ -12,13 +12,13 @@ group: brand
 categories:
   - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
   - aa167073-ba10-44d0-81d9-90c23be34d91
-logo: /media/samsonite_.svg
+logo: /media/locations/samsonite_.svg
 images:
-  - /media/h001_117_homepage_2024_16_01_samsonite_rlo_1000-x-1000_04.jpg
-  - /media/banner-900-x-900-px3.jpg
-  - /media/banner-900-x-900-px8.jpg
-  - /media/banner-900-x-900-px5.jpg
-  - /media/h001_117_homepage_2024_16_01_samsonite_rlo_1000-x-1000_02.jpg
+  - /media/locations/h001_117_homepage_2024_16_01_samsonite_rlo_1000-x-1000_04.jpg
+  - /media/locations/banner-900-x-900-px3.jpg
+  - /media/locations/banner-900-x-900-px8.jpg
+  - /media/locations/banner-900-x-900-px5.jpg
+  - /media/locations/h001_117_homepage_2024_16_01_samsonite_rlo_1000-x-1000_02.jpg
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00

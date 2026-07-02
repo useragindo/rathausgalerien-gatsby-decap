@@ -8,7 +8,7 @@ local_backend: true
 
 site_url: /
 display_url: /
-logo_url: /media/_rathausgalerien.svg
+logo_url: /media/locations/_rathausgalerien.svg
 locale: de
 
 media_folder: static/media
@@ -28,6 +28,8 @@ collections:
     label: "Pages"
     label_singular: "Page"
     folder: "content/pages"
+    media_folder: "/static/media/pages"
+    public_folder: "/media/pages"
     path: "{{locale}}/{{slug}}"
     identifier_field: key
     summary: "{{key}} ({{locale}})"
@@ -284,6 +286,8 @@ collections:
     label: "Funnels"
     label_singular: "Funnel"
     folder: "content/funnels"
+    media_folder: "/static/media/funnels"
+    public_folder: "/media/funnels"
     path: "{{locale}}/{{slug}}"
     identifier_field: key
     summary: "{{key}} ({{locale}})"
@@ -498,6 +502,8 @@ collections:
     label: "Blocks"
     label_singular: "Block"
     folder: "content/blocks"
+    media_folder: "/static/media/shared"
+    public_folder: "/media/shared"
     path: "{{locale}}/{{slug}}"
     identifier_field: name
     summary: "{{name}} ({{locale}})"
@@ -581,6 +587,8 @@ collections:
     label: "Categories"
     label_singular: "Category"
     folder: "content/categories"
+    media_folder: "/static/media/categories"
+    public_folder: "/media/categories"
     path: "{{locale}}/{{slug}}"
     identifier_field: name
     summary: "{{name}} ({{locale}})"
@@ -613,6 +621,8 @@ collections:
     label: "Locations"
     label_singular: "Location"
     folder: "content/locations"
+    media_folder: "/static/media/locations"
+    public_folder: "/media/locations"
     path: "{{locale}}/{{slug}}"
     identifier_field: name
     summary: "{{name}} ({{locale}})"
@@ -745,6 +755,8 @@ collections:
     label: "Jobs"
     label_singular: "Job"
     folder: "content/jobs"
+    media_folder: "/static/media/jobs"
+    public_folder: "/media/jobs"
     path: "{{locale}}/{{slug}}"
     identifier_field: uuid
     summary: "{{location}} - {{position}} ({{locale}})"

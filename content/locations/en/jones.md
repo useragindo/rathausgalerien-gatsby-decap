@@ -12,9 +12,9 @@ group: brand
 categories:
   - 2364a914-14d1-45fb-b06b-69e97b5184bf
   - 1c603395-91e5-4a54-8237-a82bc73271e8
-logo: /media/samsonite_.svg
+logo: /media/locations/samsonite_.svg
 images:
-  - /media/h001_117_homepage_2024_16_01_samsonite_rlo_1000-x-1000_04.jpg
+  - /media/locations/h001_117_homepage_2024_16_01_samsonite_rlo_1000-x-1000_04.jpg
 hours:
   - date: Mon. - Fri.
     time: 09.00 - 19.00

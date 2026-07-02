@@ -13,12 +13,12 @@ group: brand
 categories:
   - 0f2f9138-2e65-4006-84c9-d0658dcffe7f
   - 2364a914-14d1-45fb-b06b-69e97b5184bf
-logo: /media/ecco_gabor.svg
+logo: /media/locations/ecco_gabor.svg
 images:
-  - /media/dsc_6626.jpg
-  - /media/dsc_6622.jpg
-  - /media/dsc_6618.jpg
-  - /media/dsc_6637.jpg
+  - /media/locations/dsc_6626.jpg
+  - /media/locations/dsc_6622.jpg
+  - /media/locations/dsc_6618.jpg
+  - /media/locations/dsc_6637.jpg
 hours:
   - date: Mon. - Fri.
     time: 09.00 - 19.00
