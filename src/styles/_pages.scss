@@ -48,22 +48,24 @@
 	stroke-linejoin: round;
 }
 
+/* Figma: 52px / LH 52px, Weight 300 */
 .home-intro__card h1 {
 	max-width: 10ch;
 	margin-block-end: var(--space-xs);
-	font-size: clamp(1.45rem, 4.2vw, 3.4rem);
+	font-size: clamp(1.45rem, 3.6vw, 3.25rem);
 	font-weight: 300;
 	line-height: var(--line-height-tight);
-	letter-spacing: 0.13em;
+	letter-spacing: 0.08em;
 	text-transform: uppercase;
 }
 
+/* Figma: 18px / LH 22px, Weight 500 */
 .home-intro__card p {
 	margin: 0;
-	font-size: clamp(0.72rem, 1.35vw, 1rem);
-	font-weight: 700;
-	letter-spacing: 0.12em;
-	line-height: 1.25;
+	font-size: clamp(0.72rem, 1.25vw, 1.125rem);
+	font-weight: var(--font-weight-medium);
+	letter-spacing: 0.08em;
+	line-height: var(--line-height-snug);
 	text-transform: uppercase;
 }
 
@@ -165,17 +167,26 @@
 		width: min(84vw, 76rem);
 	}
 
+	/* Figma: Foto 897px | Textspalte 314px, kein Gap */
 	.home-intro {
+		grid-template-columns: minmax(0, 897fr) minmax(0, 314fr);
+		gap: 0;
 		margin-block: var(--space-sm) clamp(2.25rem, 4vw, 4rem);
 	}
 
 	.home-intro__media,
 	.home-intro__card {
-		min-height: clamp(18rem, 28vw, 25rem);
+		min-height: 0;
 	}
 
+	/* Figma: 897×518 */
 	.home-intro__media img {
-		aspect-ratio: 4 / 3;
+		aspect-ratio: 897 / 518;
+	}
+
+	/* Schmale Textspalte (314px): Padding nur vertikal */
+	.home-intro__card {
+		padding-inline: 0;
 	}
 }
 

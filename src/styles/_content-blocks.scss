@@ -1,12 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Content Blocks — Figma-Design 2026
-   Vier Layout-Typen:
-     1. grid-4      — 1 Content-Kachel + 3 Bild-Kacheln
-                      Figma: Kachel 1+3 = 284×284, Kachel 2+4 = 284×374
-     2. image-left  — Bild links | Content rechts (je 284×374)
-     3. text-left   — Content links | Bild rechts  (je 284×374)
-     4. slider-left — Slider links | Content rechts (je 284×374)
-        slider-right — Content links | Slider rechts (je 284×374)
+   Vier Layout-Typen (Figma-Maße bei 1440px, Content-Breite 1211px, Gap 25px):
+     1. grid-4      — 4 Kacheln in einer Reihe, je 284px breit
+                      Kachel 1+3 = 284×284, Kachel 2+4 = 284×374
+     2. image-left  — Bild 691×520 links | Content 520×520 rechts, kein Gap
+     3. text-left   — Content 520×520 links | Bild 691×520 rechts, kein Gap
+     4. slider-left — Slider 691×520 links | Content 520×520 rechts, kein Gap
+        slider-right — Content links | Slider rechts (gleiche Maße)
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ─── Basis-Block ──────────────────────────────────────────────────────── */
@@ -19,10 +19,11 @@
 }
 
 /* ─── Überschrift oberhalb des Grids ──────────────────────────────────── */
+/* Figma: 52px / LH 52px (H1), Weight 300 */
 .content-block__section-title {
 	margin-block: 0 var(--space-md);
 	font-family: var(--font-family-accent);
-	font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+	font-size: clamp(1.5rem, 3.6vw, 3.25rem);
 	font-weight: var(--font-weight-thin);
 	line-height: var(--line-height-tight);
 	letter-spacing: 0.08em;
@@ -32,12 +33,13 @@
 }
 
 /* ─── Intro-Text (unterhalb des Titels, oberhalb des Grids) ───────────── */
+/* Figma: 18px / LH 22px, danach 56px Abstand zum Grid */
 .content-block__intro {
 	max-width: var(--container-content);
-	margin-block: 0 var(--space-md);
+	margin-block: 0 clamp(1.25rem, 3.9vw, 3.5rem);
 	margin-inline: auto;
-	font-size: clamp(0.8rem, 1.2vw, 0.95rem);
-	line-height: 1.4;
+	font-size: clamp(0.9rem, 1.25vw, 1.125rem);
+	line-height: var(--line-height-snug);
 	text-align: center;
 	color: var(--color-text);
 }
@@ -48,7 +50,7 @@
 
 /* ─── Grid-Wrapper ────────────────────────────────────────────────────── */
 .content-block__body {
-	--cb-gap: clamp(0.45rem, 1vw, 0.85rem);
+	--cb-gap: clamp(0.5rem, 1.74vw, 1.5625rem); /* 25px Figma bei 1440px */
 
 	display: grid;
 	align-items: center;
@@ -84,12 +86,26 @@
 
 .content-block__tile--content .content-block__text {
 	width: 100%;
-	font-size: clamp(0.75rem, 1.2vw, 0.92rem);
-	line-height: 1.35;
+	font-size: clamp(0.75rem, 1.11vw, 1rem); /* Figma: 16px */
+	line-height: 1.25; /* Figma: 16/20 */
 }
 
 .content-block__tile--content .content-block__text > :last-child {
 	margin-block-end: 0;
+}
+
+/* Kachel-Titel = Überschriften im Kachel-Markdown.
+ * Figma kleine Kachel (284×284): 40px / LH 40px, Weight 300 */
+.content-block__tile--content .content-block__text :is(h1, h2, h3, h4) {
+	margin-block: 0;
+	font-size: clamp(1.35rem, 2.78vw, 2.5rem);
+	font-weight: var(--font-weight-thin);
+	line-height: var(--line-height-tight);
+	letter-spacing: 0.08em;
+}
+
+.content-block__tile--content .content-block__text :is(h1, h2, h3, h4) + p {
+	margin-block-start: 0.5em;
 }
 
 /* ─── Media-Tile (Bilder) ─────────────────────────────────────────────── */
@@ -116,77 +132,71 @@
      Alle 4 in einer Reihe, 4-spaltig, abwechselnde Höhen
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* Mobile: Content-Tile volle Breite, Bild-Tiles als 3-Spalten-Grid darunter */
+/* Mobile: 2×2-Grid (Figma Mobile: Content + Bild nebeneinander, alternierend) */
 .content-block--grid-4 .content-block__body {
-	/* 2 Reihen: Content oben, dann 3 Bilder nebeneinander */
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	grid-template-rows: auto auto;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-/* Content-Tile: volle Breite der 3 Spalten, quadratisch */
+/* Content-Tiles quadratisch, Bild-Tiles höher (wie Desktop-Alternation) */
 .content-block--grid-4 .content-block__tile--content {
-	grid-column: 1 / -1;
 	aspect-ratio: 1;
 }
 
-/* Bild-Tile 1 (DOM-Kind 2): 284×284 → 1:1 */
-.content-block--grid-4 .content-block__tile--media:nth-of-type(1) {
-	aspect-ratio: 1;
-}
-
-/* Bild-Tile 2 (DOM-Kind 3): 284×374 → höher */
-.content-block--grid-4 .content-block__tile--media:nth-of-type(2) {
+.content-block--grid-4 .content-block__tile--media {
 	aspect-ratio: 284 / 374;
-}
-
-/* Bild-Tile 3 (DOM-Kind 4): 284×284 → 1:1 */
-.content-block--grid-4 .content-block__tile--media:nth-of-type(3) {
-	aspect-ratio: 1;
 }
 
 
 /* ═══════════════════════════════════════════════════════════════════════
    Layout Typ 2 & 3: image-left / text-left
-   Figma: beide Tiles 284×374 → aspect-ratio: 284/374
-   2-spaltig, gleiche Höhe
+   Figma: Content-Kachel 520×520 (quadratisch), Bild 691×520 — KEIN Gap
    ═══════════════════════════════════════════════════════════════════════ */
 
-.content-block--image-left .content-block__body,
-.content-block--text-left .content-block__body {
-	grid-template-columns: 1fr 1fr;
+.content-block--image-left .content-block__body {
+	grid-template-columns: minmax(0, 691fr) minmax(0, 520fr);
+	gap: 0;
 }
 
-.content-block--image-left .content-block__tile,
-.content-block--text-left .content-block__tile {
-	aspect-ratio: 284 / 374;
+.content-block--text-left .content-block__body {
+	grid-template-columns: minmax(0, 520fr) minmax(0, 691fr);
+	gap: 0;
+}
+
+.content-block--image-left .content-block__tile--media,
+.content-block--text-left .content-block__tile--media {
+	aspect-ratio: 691 / 520;
 }
 
 .content-block--image-left .content-block__tile--content,
 .content-block--text-left .content-block__tile--content {
-	aspect-ratio: 284 / 374;
+	aspect-ratio: 1;
 	min-height: 0;
 }
 
 
 /* ═══════════════════════════════════════════════════════════════════════
    Layout Typ 4: slider-left / slider-right
-   Figma: beide Tiles 284×374 → aspect-ratio: 284/374
-   2-spaltig, Slider links oder rechts
+   Figma: wie Typ 2/3 — Content 520×520, Slider 691×520, kein Gap
    ═══════════════════════════════════════════════════════════════════════ */
 
-.content-block--slider-left .content-block__body,
-.content-block--slider-right .content-block__body {
-	grid-template-columns: 1fr 1fr;
+.content-block--slider-left .content-block__body {
+	grid-template-columns: minmax(0, 691fr) minmax(0, 520fr);
+	gap: 0;
 }
 
-.content-block--slider-left .content-block__tile,
-.content-block--slider-right .content-block__tile {
-	aspect-ratio: 284 / 374;
+.content-block--slider-right .content-block__body {
+	grid-template-columns: minmax(0, 520fr) minmax(0, 691fr);
+	gap: 0;
+}
+
+.content-block--slider-left .content-block__tile--media,
+.content-block--slider-right .content-block__tile--media {
+	aspect-ratio: 691 / 520;
 }
 
 .content-block--slider-left .content-block__tile--content,
 .content-block--slider-right .content-block__tile--content {
-	aspect-ratio: 284 / 374;
+	aspect-ratio: 1;
 	min-height: 0;
 }
 
@@ -308,9 +318,10 @@
    Index-Seite: spezifisches Figma-Styling
    ═══════════════════════════════════════════════════════════════════════ */
 
+/* Figma: ~58px Abstand vor/nach der gepunkteten Trennlinie */
 .page--index .content-block {
-	margin-block: clamp(1.25rem, 4.5vw, 2.55rem);
-	padding-block: clamp(1.35rem, 5vw, 2.45rem) 0;
+	margin-block: clamp(1.25rem, 4vw, 3.625rem);
+	padding-block: clamp(1.35rem, 4vw, 3.625rem) 0;
 	border-block-start: 2px dotted color-mix(in srgb, var(--color-blue-900) 24%, transparent);
 }
 
@@ -318,14 +329,11 @@
 	margin-block-start: 0;
 }
 
+/* Figma: 52px / LH 52px */
 .page--index .content-block__section-title {
 	margin-block-end: clamp(0.75rem, 2vw, 1.5rem);
-	font-size: clamp(1.35rem, 3.2vw, 2.5rem);
+	font-size: clamp(1.35rem, 3.6vw, 3.25rem);
 	letter-spacing: clamp(0.06em, 0.5vw, 0.1em);
-}
-
-.page--index .content-block__body {
-	--cb-gap: clamp(0.45rem, 1vw, 0.85rem);
 }
 
 .page--index .content-block__tile--content {
@@ -335,23 +343,32 @@
 
 .page--index .content-block__tile--content .content-block__text {
 	max-width: 100%;
-	font-size: clamp(0.72rem, 1.1vw, 0.9rem);
-	line-height: 1.3;
 }
 
-/* Erster Block-Text (= Titel im Content-Tile) */
-.page--index .content-block__tile--content .content-block__text > :first-child {
-	display: block;
-	margin-block-end: 0.35em;
-	font-size: clamp(1.1rem, 2.2vw, 1.65rem);
-	font-weight: var(--font-weight-thin);
-	line-height: 1.05;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
+/* Kachel-Titel in kleinen Kacheln (grid-4): Figma 40px, WEISS */
+.page--index .content-block--grid-4 .content-block__tile--content .content-block__text :is(h1, h2, h3, h4) {
+	color: var(--color-white);
+}
+
+/* Große Content-Kacheln (520×520): Titel 52px, Body 18px/22px */
+.page--index
+	:is(.content-block--image-left, .content-block--text-left, .content-block--slider-left, .content-block--slider-right)
+	.content-block__tile--content
+	.content-block__text {
+	font-size: clamp(0.9rem, 1.25vw, 1.125rem);
+	line-height: var(--line-height-snug);
+}
+
+.page--index
+	:is(.content-block--image-left, .content-block--text-left, .content-block--slider-left, .content-block--slider-right)
+	.content-block__tile--content
+	.content-block__text
+	:is(h1, h2, h3, h4) {
+	font-size: clamp(1.75rem, 3.6vw, 3.25rem);
 }
 
 .page--index .content-block__tile--content .content-block__text strong {
-	font-weight: var(--font-weight-medium);
+	font-weight: 700;
 }
 
 .page--index .content-block__icons {
@@ -426,6 +443,23 @@
 
 
 /* ═══════════════════════════════════════════════════════════════════════
+   Mobile (< 44rem): Content-Kacheln dürfen mit dem Text wachsen —
+   Zeilenhöhe kommt vom Bild (aspect-ratio), Kacheln strecken sich.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 43.9375rem) {
+	.content-block .content-block__body {
+		align-items: stretch;
+	}
+
+	.content-block .content-block__tile--content {
+		aspect-ratio: auto;
+		min-height: 0;
+	}
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
    Desktop (≥ 64rem / 1024px)
    ═══════════════════════════════════════════════════════════════════════ */
 
@@ -434,25 +468,23 @@
 		margin-block: var(--space-2xl);
 	}
 
+	/* Figma: 58px vor/nach Trennlinie bei 1440px */
 	.page--index .content-block {
-		margin-block: clamp(1.45rem, 2.7vw, 2.8rem);
-		padding-block-start: clamp(1.45rem, 2.7vw, 2.8rem);
+		margin-block: clamp(2rem, 4.03vw, 3.625rem);
+		padding-block-start: clamp(2rem, 4.03vw, 3.625rem);
 	}
 
 	.page--index .content-block:first-child {
-		padding-block-start: clamp(1.45rem, 2.7vw, 2.8rem);
+		padding-block-start: clamp(2rem, 4.03vw, 3.625rem);
 	}
 
 	.page--index .content-block__tile--content {
 		padding: clamp(1.25rem, 2.5vw, 2.5rem);
 	}
 
+	/* Figma: 16px/20px in kleinen Kacheln */
 	.page--index .content-block__tile--content .content-block__text {
-		font-size: clamp(0.78rem, 1vw, 0.92rem);
-		line-height: 1.32;
-	}
-
-	.page--index .content-block__tile--content .content-block__text strong {
-		font-size: clamp(1.35rem, 2.2vw, 2.1rem);
+		font-size: clamp(0.78rem, 1.11vw, 1rem);
+		line-height: 1.25;
 	}
 }
