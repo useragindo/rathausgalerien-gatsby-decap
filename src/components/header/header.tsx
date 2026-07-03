@@ -306,7 +306,7 @@ export const Header: React.FC<HeaderProps> = ({
 					<a className="site-header__brand" href={homeUrl} aria-label={`${siteTitle} Startseite`}>
 						<img
 							className="site-header__logo"
-							src="/media/_rathausgalerien.svg"
+							src="/media/locations/_rathausgalerien.svg"
 							alt=""
 							width="400"
 							height="109"

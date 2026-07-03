@@ -94,7 +94,7 @@ export const Footer: React.FC<FooterProps> = ({
 				aria-label={`${siteTitle} Startseite`}
 			>
 				<img
-					src="/media/_rathausgalerien.svg"
+					src="/media/locations/_rathausgalerien.svg"
 					alt=""
 					width="210"
 					height="100"
