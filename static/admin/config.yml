@@ -170,7 +170,7 @@ collections:
             widget: list
             required: false
             max: 4
-            hint: "Bis zu 4 Kacheln in Anzeige-Reihenfolge (z. B. Text, Bild, Text, Bild). Pro Kachel entweder Text ODER Bild ausfüllen."
+            hint: "Bis zu 4 Kacheln in Anzeige-Reihenfolge (z. B. Text, Bild, Text, Bild). Pro Kachel entweder Text ODER Bilder ausfüllen."
             fields:
               - label: "Text"
                 name: "text"
@@ -184,11 +184,20 @@ collections:
                   - heading-two
                   - bulleted-list
                   - numbered-list
-              - label: "Bild"
-                name: "image"
-                widget: "image"
-                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+              - label: "Bilder"
+                name: "images"
+                widget: list
                 required: false
+                hint: "Ein Bild wird wie bisher angezeigt. Bei mehreren Bildern wird die Kachel automatisch als Slider mit Pfeilen dargestellt."
+                fields:
+                  - label: "Bild"
+                    name: "image"
+                    widget: "image"
+                    hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+                  - label: "Alt-Text"
+                    name: "alt"
+                    widget: "string"
+                    required: false
               - label: "Kategorie"
                 name: "category"
                 widget: relation
@@ -399,7 +408,7 @@ collections:
             widget: list
             required: false
             max: 4
-            hint: "Bis zu 4 Kacheln in Anzeige-Reihenfolge (z. B. Text, Bild, Text, Bild). Pro Kachel entweder Text ODER Bild ausfüllen."
+            hint: "Bis zu 4 Kacheln in Anzeige-Reihenfolge (z. B. Text, Bild, Text, Bild). Pro Kachel entweder Text ODER Bilder ausfüllen."
             fields:
               - label: "Text"
                 name: "text"
@@ -413,11 +422,20 @@ collections:
                   - heading-two
                   - bulleted-list
                   - numbered-list
-              - label: "Bild"
-                name: "image"
-                widget: "image"
-                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+              - label: "Bilder"
+                name: "images"
+                widget: list
                 required: false
+                hint: "Ein Bild wird wie bisher angezeigt. Bei mehreren Bildern wird die Kachel automatisch als Slider mit Pfeilen dargestellt."
+                fields:
+                  - label: "Bild"
+                    name: "image"
+                    widget: "image"
+                    hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+                  - label: "Alt-Text"
+                    name: "alt"
+                    widget: "string"
+                    required: false
               - label: "Kategorie"
                 name: "category"
                 widget: relation

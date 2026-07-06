@@ -17,13 +17,17 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
 		return null;
 	}
 
-	const goToPrevious = (): void => {
+	const goToPrevious = (event: React.MouseEvent): void => {
+		event.preventDefault();
+		event.stopPropagation();
 		setCurrentIndex((index) =>
 			index === 0 ? validImages.length - 1 : index - 1,
 		);
 	};
 
-	const goToNext = (): void => {
+	const goToNext = (event: React.MouseEvent): void => {
+		event.preventDefault();
+		event.stopPropagation();
 		setCurrentIndex((index) =>
 			index === validImages.length - 1 ? 0 : index + 1,
 		);

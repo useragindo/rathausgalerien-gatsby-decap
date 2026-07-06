@@ -22,7 +22,9 @@ export type ImportedIcon = {
 
 export type ImportedContentTile = {
 	text?: string | null;
+	// Legacy single-image field, kept for tiles created before the "images" list existed.
 	image?: string | null;
+	images?: ImportedImage[] | null;
 	category?: string | null;
 	link?: string | null;
 };

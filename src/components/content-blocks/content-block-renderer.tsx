@@ -321,6 +321,16 @@ const resolveTileLink = (
 	return `/${language === "de" ? "" : `${language}/`}category/${slug}/`;
 };
 
+const getTileImages = (tile: ImportedContentTile): ImportedImage[] => {
+	const images = (tile.images ?? []).filter((image) => text(image.image));
+	if (images.length) {
+		return images;
+	}
+
+	const legacyImage = text(tile.image);
+	return legacyImage ? [{ image: legacyImage }] : [];
+};
+
 const hasTileContent = (
 	tile?: ImportedContentTile | null,
 ): tile is ImportedContentTile => {
@@ -329,15 +339,17 @@ const hasTileContent = (
 	}
 
 	const hasText = Boolean(text(tile.text));
-	const hasImage = Boolean(text(tile.image));
+	const hasImage = getTileImages(tile).length > 0;
 	const hasLink = Boolean(text(tile.link)) || Boolean(text(tile.category));
 
 	return hasText || hasImage || hasLink;
 };
 
-// A single visual box: either the tile's text (content box) or its image
-// (media box). A tile carrying both text and image yields two boxes, so a
-// row of left/right tiles renders as text, image, text, image.
+// A single visual box: either the tile's text (content box) or its image(s)
+// (media box). A tile carrying both text and image(s) yields two boxes, so a
+// row of left/right tiles renders as text, image, text, image. A media box
+// with more than one image renders as a slider with the same arrows used
+// elsewhere in the content blocks.
 const TileBox: React.FC<{
 	variant: "content" | "media";
 	tile: ImportedContentTile;
@@ -350,9 +362,15 @@ const TileBox: React.FC<{
 			: "content-block__tile--content",
 	].join(" ");
 
+	const tileImages = variant === "media" ? getTileImages(tile) : [];
+
 	const inner =
 		variant === "media" ? (
-			<img src={text(tile.image)} alt="" loading="lazy" />
+			tileImages.length > 1 ? (
+				<ImageSlider images={tileImages} />
+			) : (
+				<img src={text(tileImages[0]?.image)} alt="" loading="lazy" />
+			)
 		) : (
 			<div className="content-block__text">
 				<MarkdownContent content={tile.text} />
@@ -386,7 +404,7 @@ const TileGrid: React.FC<{
 			items.push({ variant: "content", tile, link, key: `tile-text-${items.length}` });
 		}
 
-		if (text(tile.image)) {
+		if (getTileImages(tile).length) {
 			items.push({ variant: "media", tile, link, key: `tile-media-${items.length}` });
 		}
 	}
