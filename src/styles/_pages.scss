@@ -24,7 +24,7 @@
 .home-intro__media img {
 	width: 100%;
 	height: 100%;
-	aspect-ratio: 1;
+	aspect-ratio: 696 / 522;
 	object-fit: cover;
 }
 
@@ -38,34 +38,30 @@
 	text-align: center;
 }
 
-.home-intro__card svg {
-	width: clamp(3.75rem, 10vw, 7rem);
-	margin-block-end: var(--space-sm);
-	fill: none;
-	stroke: currentColor;
-	stroke-width: 2;
-	stroke-linecap: round;
-	stroke-linejoin: round;
+/* Figma: Shopping_Bag 95px */
+.home-intro__card img {
+	width: clamp(3.2rem, 6.6vw, 5.9375rem);
+	margin-block-end: var(--space-md);
 }
 
-/* Figma: 52px / LH 52px, Weight 300 */
+/* Figma: 52px / LH 52px, Weight 100 */
 .home-intro__card h1 {
 	max-width: 10ch;
 	margin-block-end: var(--space-xs);
 	font-size: clamp(1.45rem, 3.6vw, 3.25rem);
-	font-weight: 300;
+	font-weight: 100;
 	line-height: var(--line-height-tight);
-	letter-spacing: 0.08em;
+	letter-spacing: 0.06em;
 	text-transform: uppercase;
 }
 
-/* Figma: 18px / LH 22px, Weight 500 */
+/* Figma: 18px / LH 22px, Weight 300 */
 .home-intro__card p {
 	margin: 0;
 	font-size: clamp(0.72rem, 1.25vw, 1.125rem);
-	font-weight: var(--font-weight-thin);
+	font-weight: 300;
 	letter-spacing: 0.08em;
-	line-height: var(--line-height-snug);
+	line-height: 1.222;
 	text-transform: uppercase;
 }
 
@@ -141,9 +137,9 @@
 			padding: clamp(0.65rem, 3vw, 1rem);
 		}
 
-		.home-intro__card svg {
-			width: clamp(3.4rem, 15vw, 4.6rem);
-			margin-block-end: clamp(0.45rem, 2vw, 0.7rem);
+		.home-intro__card img {
+			width: clamp(2.8rem, 12vw, 3.8rem);
+			margin-block-end: clamp(0.75rem, 3vw, 1rem);
 		}
 
 		.home-intro__card h1 {
@@ -167,10 +163,10 @@
 		width: min(84vw, 76rem);
 	}
 
-	/* Figma: Foto 897px | Textspalte 314px, kein Gap */
+	/* Figma: Foto 696px | Textspalte 514px, Gap 1rem */
 	.home-intro {
-		grid-template-columns: minmax(0, 897fr) minmax(0, 314fr);
-		gap: 0;
+		grid-template-columns: minmax(0, 696fr) minmax(0, 514fr);
+		gap: clamp(0.75rem, 1.5vw, 1.5rem);
 		margin-block: var(--space-sm) clamp(2.25rem, 4vw, 4rem);
 	}
 
@@ -179,12 +175,12 @@
 		min-height: 0;
 	}
 
-	/* Figma: 897×518 */
+	/* Figma: 696×522 */
 	.home-intro__media img {
-		aspect-ratio: 897 / 518;
+		aspect-ratio: 696 / 522;
 	}
 
-	/* Schmale Textspalte (314px): Padding nur vertikal */
+	/* Breitere Textspalte (514px): Padding nur vertikal */
 	.home-intro__card {
 		padding-inline: 0;
 	}
