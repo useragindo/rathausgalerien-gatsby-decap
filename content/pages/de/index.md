@@ -40,6 +40,10 @@ blocks:
           ## fashion
         image: http://localhost:8000/media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_02.jpg
         category: e49accfd-97ee-4531-8193-bb1007da6c7e
+        images:
+          - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_01.jpg
+          - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
+          - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_01.jpg
       - left:
           text: |-
             ## DAS NEUE
