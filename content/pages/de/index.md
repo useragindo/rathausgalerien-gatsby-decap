@@ -14,10 +14,8 @@ blocks:
     date: ""
     header: fashion, food, & lifestyle1
     text: |-
-      RathausGalerien: Das Herz der Stadt! 
-
-      Eine große Auswahl an Shops und gastronomischen Angeboten 
-
+      RathausGalerien: Das Herz der Stadt! \
+      Eine große Auswahl an Shops und gastronomischen Angeboten \
       direkt im Zentrum von Innsbruck.
     tiles:
       - left:
