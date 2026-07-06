@@ -382,12 +382,12 @@ const getHomepageIntroImage = (page: NormalizedPage): string | undefined => {
 };
 
 const ShoppingBagIcon: React.FC = () => (
-	<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false">
-		<path d="M28 36h40l6 42H22l6-42Z" />
-		<path d="M36 36v-8c0-8 5.5-14 12-14s12 6 12 14v8" />
-		<circle cx="38" cy="50" r="2.5" />
-		<circle cx="58" cy="50" r="2.5" />
-	</svg>
+	<img
+		src="/icons/shopping-bag.svg"
+		alt=""
+		aria-hidden="true"
+		loading="eager"
+	/>
 );
 
 const HomepageIntro: React.FC<{
