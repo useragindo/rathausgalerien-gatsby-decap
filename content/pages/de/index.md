@@ -38,6 +38,12 @@ blocks:
           ## spring
 
           ## fashion
+
+          Jetzt die neue
+
+          Frühjahrsmode
+
+          entdecken!
         image: http://localhost:8000/media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_02.jpg
         category: e49accfd-97ee-4531-8193-bb1007da6c7e
         images:
