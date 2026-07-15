@@ -74,6 +74,10 @@ gatsby-browser.ts    # Netlify Identity Init
 - Decap CMS wird per CDN eingebunden, NICHT als npm-Paket. `decap-cms-app` in package.json ist nur für den lokalen Proxy.
 - Keine Secrets, API Keys oder private Pfade in Dateien eintragen.
 
+## Task-Tracking
+
+Dieses Projekt nutzt **bd (beads)** für Task-Tracking. Nutze `bd ready`, `bd show <id>`, `bd update <id> --status in_progress` und `bd close <id>` für den Workflow. Erstelle KEINE eigenen TASKS.md oder PLAN.md-Checklisten mehr für Task-Status. Neue, während der Arbeit entdeckte Aufgaben werden mit `bd create ... --deps "discovered-from:<id>"` angelegt.
+
 ## Bekannte Fallstricke
 
 - `npm run develop` muss laufen bevor `npm run cms:proxy` funktioniert.
