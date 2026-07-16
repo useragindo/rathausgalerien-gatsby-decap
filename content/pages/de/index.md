@@ -81,7 +81,7 @@ blocks:
     backgroundColor: "#7bd0e5"
     reversed: false
     icons:
-      - icon: /media/pages/auto_icon.svg
+      - icon: /media/pages/icon-car.svg
   - date: ""
     layout: grid-4
     header: Rituals News.
