@@ -137,10 +137,7 @@ collections:
             default: "grid-4"
             options:
               - { label: "4er Grid", value: "grid-4" }
-              - { label: "Bild links / Text rechts", value: "image-left" }
-              - { label: "Text links / Bild rechts", value: "text-left" }
-              - { label: "Slider links / Text rechts", value: "slider-left" }
-              - { label: "Text links / Slider rechts", value: "slider-right" }
+              - { label: "Text + Bild (2 Spalten)", value: "columns" }
           - label: "Text"
             name: "text"
             widget: "markdown"
@@ -152,6 +149,19 @@ collections:
               - heading-two
               - bulleted-list
               - numbered-list
+          - label: "Hintergrundfarbe"
+            name: "backgroundColor"
+            widget: color
+            required: false
+            allowInput: true
+            enableAlpha: false
+            hint: "Nur für 'Text + Bild (2 Spalten)'. Hintergrundfarbe der Text-Box."
+          - label: "Umgekehrt (Bild links, Text rechts)"
+            name: "reversed"
+            widget: boolean
+            default: false
+            required: false
+            hint: "Nur für 'Text + Bild (2 Spalten)'. Standard: Text links, Bild rechts."
           - label: "Images"
             name: "images"
             widget: list
@@ -382,10 +392,7 @@ collections:
             default: "grid-4"
             options:
               - { label: "4er Grid", value: "grid-4" }
-              - { label: "Bild links / Text rechts", value: "image-left" }
-              - { label: "Text links / Bild rechts", value: "text-left" }
-              - { label: "Slider links / Text rechts", value: "slider-left" }
-              - { label: "Text links / Slider rechts", value: "slider-right" }
+              - { label: "Text + Bild (2 Spalten)", value: "columns" }
           - label: "Text"
             name: "text"
             widget: "markdown"
@@ -397,6 +404,19 @@ collections:
               - heading-two
               - bulleted-list
               - numbered-list
+          - label: "Hintergrundfarbe"
+            name: "backgroundColor"
+            widget: color
+            required: false
+            allowInput: true
+            enableAlpha: false
+            hint: "Nur für 'Text + Bild (2 Spalten)'. Hintergrundfarbe der Text-Box."
+          - label: "Umgekehrt (Bild links, Text rechts)"
+            name: "reversed"
+            widget: boolean
+            default: false
+            required: false
+            hint: "Nur für 'Text + Bild (2 Spalten)'. Standard: Text links, Bild rechts."
           - label: "Images"
             name: "images"
             widget: list

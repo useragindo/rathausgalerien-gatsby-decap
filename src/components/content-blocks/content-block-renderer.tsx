@@ -30,6 +30,7 @@ type ContentBlockRendererProps = {
 
 type ImportedBlockLayout =
 	| "grid-4"
+	| "columns"
 	| "image-left"
 	| "text-left"
 	| "slider-left"
@@ -43,7 +44,14 @@ const text = (value?: string | null): string | undefined => {
 const isImportedBlockLayout = (value?: string | null): value is ImportedBlockLayout =>
 	Boolean(
 		value &&
-			["grid-4", "image-left", "text-left", "slider-left", "slider-right"].includes(value),
+			[
+				"grid-4",
+				"columns",
+				"image-left",
+				"text-left",
+				"slider-left",
+				"slider-right",
+			].includes(value),
 	);
 
 const getImportedBlockLayout = (
@@ -439,9 +447,10 @@ const ImportedBlock: React.FC<{
 	const layout = getImportedBlockLayout(block, index);
 	const isSliderLayout = layout === "slider-left" || layout === "slider-right";
 	const isGridLayout = layout === "grid-4";
-	// For 2-column layouts (image-left / text-left), show all images as a slider
-	// when multiple images are present; for grid-4, show first 3 images as static tiles
+	// For 2-column layouts (columns + legacy image-left / text-left / slider-*), show all
+	// images as a slider when multiple images are present; for grid-4, show first 3 as static tiles
 	const isTwoColumnLayout =
+		layout === "columns" ||
 		layout === "image-left" ||
 		layout === "text-left" ||
 		layout === "slider-left" ||
@@ -450,11 +459,18 @@ const ImportedBlock: React.FC<{
 	// For 2-column layouts with multiple images, use a slider instead of single image
 	const useDynamicSlider = isTwoColumnLayout && images.length > 1;
 	const hasTiles = (block.tiles ?? []).some((tile) => hasTileContent(tile));
+	// Legacy layout values encode the column order directly; the new "columns" layout uses the
+	// "reversed" checkbox instead, defaulting to false (text left / image right).
+	const isReversed =
+		typeof block.reversed === "boolean"
+			? block.reversed
+			: layout === "image-left" || layout === "slider-left";
+	const orderClassLayout = isReversed ? "image-left" : "text-left";
 
 	const blockClassName = [
 		"content-block",
 		"content-block--imported",
-		`content-block--${layout}`,
+		`content-block--${isTwoColumnLayout ? orderClassLayout : layout}`,
 		`content-block--index-${index + 1}`,
 		images.length ? "content-block--has-images" : "",
 		icons.length ? "content-block--has-icons" : "",
@@ -462,8 +478,13 @@ const ImportedBlock: React.FC<{
 		.filter(Boolean)
 		.join(" ");
 
+	const contentBackgroundColor = text(block.backgroundColor);
+
 	const contentTile = (
-		<div className="content-block__tile content-block__tile--content">
+		<div
+			className="content-block__tile content-block__tile--content"
+			style={contentBackgroundColor ? { backgroundColor: contentBackgroundColor } : undefined}
+		>
 			<div className="content-block__text">
 				<MarkdownContent content={block.text} />
 			</div>
@@ -554,7 +575,7 @@ const ImportedBlock: React.FC<{
 						categories={categories}
 						language={language}
 					/>
-				) : layout === "image-left" || layout === "slider-left" ? (
+				) : isReversed ? (
 					<>
 						{isSliderLayout ? sliderTile : useDynamicSlider ? dynamicSliderTile : mediaTiles}
 						{contentTile}

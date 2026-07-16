@@ -34,6 +34,8 @@ export type ImportedContentBlock = {
 	layout?: string | null;
 	header?: string | null;
 	text?: string | null;
+	backgroundColor?: string | null;
+	reversed?: boolean | null;
 	date?: string | null;
 	images?: ImportedImage[] | null;
 	icons?: ImportedIcon[] | null;
