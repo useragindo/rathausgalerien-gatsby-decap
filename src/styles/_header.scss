@@ -370,6 +370,34 @@
 	flex: 0 0 auto;
 }
 
+/* ─── Tablet (640 - 1023px) ────────────────────────────────────────── */
+@media (min-width: 40rem) and (max-width: 63.9375rem) {
+	.site-header {
+		--header-height: clamp(7rem, 11vw, 9rem);
+		--header-logo-width: clamp(11rem, 26vw, 16rem);
+		--header-icon-size: clamp(1.5rem, 2.4vw, 1.85rem);
+		--header-menu-width: clamp(2.5rem, 4vw, 3rem);
+		--header-menu-line-gap: clamp(0.3rem, 0.5vw, 0.4rem);
+	}
+
+	.site-header__actions {
+		inset-block-start: clamp(1.25rem, 2vw, 1.75rem);
+		gap: clamp(1.5rem, 2vw, 2rem);
+	}
+
+	.site-header__icon-list {
+		gap: clamp(0.85rem, 1.4vw, 1.15rem);
+	}
+
+	.site-header__menu-lines span {
+		height: 2px;
+	}
+
+	.site-header__menu-teasers {
+		display: none;
+	}
+}
+
 /* ─── Desktop (≥ 1024px) ──────────────────────────────────────────── */
 @media (min-width: 64rem) {
 	.site-header {
