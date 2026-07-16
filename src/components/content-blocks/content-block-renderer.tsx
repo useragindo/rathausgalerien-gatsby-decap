@@ -363,6 +363,8 @@ const TileBox: React.FC<{
 	].join(" ");
 
 	const tileImages = variant === "media" ? getTileImages(tile) : [];
+	const backgroundColor = variant === "content" ? text(tile.backgroundColor) : undefined;
+	const style = backgroundColor ? { backgroundColor } : undefined;
 
 	const inner =
 		variant === "media" ? (
@@ -378,11 +380,13 @@ const TileBox: React.FC<{
 		);
 
 	return link ? (
-		<a href={link} className={boxClassName}>
+		<a href={link} className={boxClassName} style={style}>
 			{inner}
 		</a>
 	) : (
-		<div className={boxClassName}>{inner}</div>
+		<div className={boxClassName} style={style}>
+			{inner}
+		</div>
 	);
 };
 

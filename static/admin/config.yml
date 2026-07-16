@@ -215,6 +215,13 @@ collections:
                 widget: string
                 required: false
                 hint: "Optionaler Link, der statt der Kategorie verwendet wird."
+              - label: "Hintergrundfarbe"
+                name: "backgroundColor"
+                widget: color
+                required: false
+                allowInput: true
+                enableAlpha: false
+                hint: "Nur für Text-Kacheln. Wenn leer, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
           - label: "Date"
             name: "date"
             default: ""
@@ -453,6 +460,13 @@ collections:
                 widget: string
                 required: false
                 hint: "Optionaler Link, der statt der Kategorie verwendet wird."
+              - label: "Hintergrundfarbe"
+                name: "backgroundColor"
+                widget: color
+                required: false
+                allowInput: true
+                enableAlpha: false
+                hint: "Nur für Text-Kacheln. Wenn leer, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
           - label: "Date"
             name: "date"
             default: ""

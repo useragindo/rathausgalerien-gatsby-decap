@@ -27,6 +27,7 @@ export type ImportedContentTile = {
 	images?: ImportedImage[] | null;
 	category?: string | null;
 	link?: string | null;
+	backgroundColor?: string | null;
 };
 
 export type ImportedContentBlock = {
