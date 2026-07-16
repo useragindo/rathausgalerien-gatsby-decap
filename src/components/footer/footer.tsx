@@ -34,9 +34,9 @@ const FooterNavigation: React.FC<{
         if (isInstagram) {
             return (
                 <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <rect x="3" y="3" width="18" height="18" rx="5" fill="currentColor" opacity="0.0" />
-                    <path d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6z" fill="currentColor" />
-                    <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" />
+                    <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                    <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                    <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
                 </svg>
             );
         }
@@ -53,6 +53,21 @@ const FooterNavigation: React.FC<{
         return item.icon ? <span aria-hidden="true">{item.icon}</span> : null;
     };
 
+    const iconModifier = (item: NormalizedNavigationItem) => {
+        const key = (item.icon || item.label || "").toLowerCase();
+        const url = (item.url || "").toLowerCase();
+
+        if (key.includes("instagram") || url.includes("instagram")) {
+            return "instagram";
+        }
+
+        if (key.includes("facebook") || key.includes("fb") || url.includes("facebook") || url.includes("fb.")) {
+            return "facebook";
+        }
+
+        return undefined;
+    };
+
     return (
         <nav className="site-footer__nav" aria-label={label}>
             <ul className={listClassName}>
@@ -63,6 +78,11 @@ const FooterNavigation: React.FC<{
                             aria-label={item.ariaLabel || item.label}
                             target={item.openInNewTab ? "_blank" : undefined}
                             rel={item.openInNewTab ? "noreferrer" : undefined}
+                            className={
+                                modifier === "social" && iconModifier(item)
+                                    ? `site-footer__social-link--${iconModifier(item)}`
+                                    : undefined
+                            }
                         >
                             {modifier === "social" ? (
                                 <span className="site-footer__social-icon">{renderIcon(item)}</span>
