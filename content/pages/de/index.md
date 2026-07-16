@@ -80,6 +80,8 @@ blocks:
       - image: /media/pages/h001_132_02_11_weekend_parking_rz_1000-x-1000_01.jpg
     backgroundColor: "#7bd0e5"
     reversed: false
+    icons:
+      - icon: /media/pages/auto_icon.svg
   - date: ""
     layout: grid-4
     header: Rituals News.
