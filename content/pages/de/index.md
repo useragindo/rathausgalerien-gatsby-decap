@@ -50,6 +50,7 @@ blocks:
           - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_01.jpg
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
           - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_01.jpg
+        backgroundColor: "#ffa4cc"
       - left:
           text: |-
             ## DAS NEUE
@@ -67,6 +68,7 @@ blocks:
           ## MAGAZIN!
         image: https://glowing-cranachan-5255ae.netlify.app/media/pages/karma-suncare-post.jpg
         category: ddfcab86-1237-4de6-9081-cafe473eecfd
+        backgroundColor: "#b58ec1"
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
