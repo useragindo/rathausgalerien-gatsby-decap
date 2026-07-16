@@ -373,20 +373,20 @@
 /* ─── Tablet (640 - 1023px) ────────────────────────────────────────── */
 @media (min-width: 40rem) and (max-width: 63.9375rem) {
 	.site-header {
-		--header-height: clamp(7rem, 11vw, 9rem);
-		--header-logo-width: clamp(11rem, 26vw, 16rem);
-		--header-icon-size: clamp(1.5rem, 2.4vw, 1.85rem);
-		--header-menu-width: clamp(2.5rem, 4vw, 3rem);
+		--header-height: clamp(7.5rem, 13vw, 11rem);
+		--header-logo-width: clamp(11rem, 22vw, 15rem);
+		--header-icon-size: clamp(1.4rem, 2.2vw, 1.75rem);
+		--header-menu-width: clamp(2.2rem, 3.5vw, 2.8rem);
 		--header-menu-line-gap: clamp(0.3rem, 0.5vw, 0.4rem);
 	}
 
 	.site-header__actions {
-		inset-block-start: clamp(1.25rem, 2vw, 1.75rem);
-		gap: clamp(1.5rem, 2vw, 2rem);
+		inset-block-start: clamp(1.25rem, 2.5vw, 2rem);
+		gap: clamp(1.25rem, 2vw, 1.75rem);
 	}
 
 	.site-header__icon-list {
-		gap: clamp(0.85rem, 1.4vw, 1.15rem);
+		gap: clamp(0.75rem, 1.3vw, 1rem);
 	}
 
 	.site-header__menu-lines span {
@@ -398,8 +398,74 @@
 	}
 }
 
-/* ─── Desktop (≥ 1024px) ──────────────────────────────────────────── */
-@media (min-width: 64rem) {
+/* ─── Small desktop (1024 - 1279px) ────────────────────────────────── */
+@media (min-width: 64rem) and (max-width: 79.9375rem) {
+	.site-header {
+		--header-height: clamp(11rem, 18vw, 14rem);
+		--header-logo-width: clamp(16rem, 22vw, 20rem);
+		--header-icon-size: clamp(2rem, 2.5vw, 2.25rem);
+		--header-menu-width: clamp(3.5rem, 5vw, 4.5rem);
+		--header-menu-line-gap: clamp(0.45rem, 0.7vw, 0.6rem);
+	}
+
+	.site-header__inner {
+		padding-inline: clamp(2rem, 8vw, 80px);
+	}
+
+	.site-header__brand {
+		inset-inline-start: clamp(2rem, 8vw, 80px);
+	}
+
+	.site-header__actions {
+		inset-block-start: clamp(2rem, 3.5vw, 2.75rem);
+		inset-inline-end: clamp(2rem, 8vw, 80px);
+		gap: clamp(2rem, 3vw, 2.5rem);
+	}
+
+	.site-header__icon-list {
+		gap: clamp(1.25rem, 2vw, 1.5rem);
+	}
+
+	.site-header__language {
+		bottom: 0;
+		inset-inline-start: clamp(2rem, 8vw, 80px);
+	}
+
+	.site-header__icon-link svg {
+		stroke-width: 1.25;
+	}
+
+	.site-header__menu-lines span {
+		height: 2px;
+	}
+
+	.site-header__overlay-actions {
+		--header-icon-size: clamp(2rem, 2.5vw, 2.25rem);
+		--header-menu-width: clamp(3.5rem, 5vw, 4.5rem);
+		inset-block-start: clamp(2rem, 3.5vw, 2.75rem);
+		inset-inline-end: clamp(2rem, 8vw, 80px);
+		gap: clamp(2rem, 3vw, 2.5rem);
+	}
+
+	.site-header__overlay-body {
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		padding: clamp(4rem, 10vw, 6.5rem) clamp(2rem, 8vw, 80px) clamp(2rem, 5vw, 3rem);
+	}
+
+	.site-header__overlay-footer {
+		padding-inline: clamp(2rem, 8vw, 80px);
+	}
+
+	.site-header__menu-teasers {
+		display: grid;
+		grid-template-columns: repeat(2, clamp(10rem, 14vw, 15rem));
+		gap: 1rem;
+	}
+}
+
+/* ─── Desktop (≥ 1280px) ───────────────────────────────────────────── */
+@media (min-width: 80rem) {
 	.site-header {
 		--header-height: 17.5rem;           /* 280px  Figma */
 		--header-logo-width: 26rem;         /* 416px  Figma (gemessen ~415px) */
