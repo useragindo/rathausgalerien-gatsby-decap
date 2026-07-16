@@ -415,7 +415,7 @@ const TileGrid: React.FC<{
 
 	return (
 		<>
-			{items.map(({ variant, tile, link, key }) => (
+			{items.slice(0, 4).map(({ variant, tile, link, key }) => (
 				<TileBox key={key} variant={variant} tile={tile} link={link} />
 			))}
 		</>

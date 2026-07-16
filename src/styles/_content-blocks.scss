@@ -391,6 +391,33 @@
 }
 
 
+/* ─── Figma-Decoration: Scribble innerhalb der Textkacheln ─────────── */
+.page--index .content-block--grid-4 .content-block__tile--content {
+	align-items: center;
+	text-align: center;
+	isolation: isolate;
+}
+
+.page--index .content-block--grid-4 .content-block__tile--content::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: url("/icons/scribble.svg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	pointer-events: none;
+	opacity: 0.7;
+	z-index: 0;
+	filter: brightness(0) invert(1);
+}
+
+.page--index .content-block--grid-4 .content-block__tile--content .content-block__text {
+	position: relative;
+	z-index: 1;
+}
+
+
 /* ─── Farb-Rotation der Content-Kacheln auf der Index-Seite ─────────── */
 .page--index .content-block--index-1 .content-block__tile--content,
 .page--index .content-block--index-2 .content-block__tile--content,
