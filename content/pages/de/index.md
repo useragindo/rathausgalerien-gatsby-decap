@@ -72,10 +72,12 @@ blocks:
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
-    text: >-
-      DIE ERSTEN 3 STUNDEN ZUM HALBEN PREIS.\
+    text: |-
+      ## PARKEN
 
-      Unsere Aktion: Parken Sie von freitags ab 12.00 Uhr bis sonntags 24.00 Uhr für die ersten 3 Stunden zum halben Preis!
+      340 Parkplätze
+
+      8 E-Lade Plätze
     images:
       - image: /media/pages/h001_132_02_11_weekend_parking_rz_1000-x-1000_01.jpg
     backgroundColor: "#7bd0e5"
