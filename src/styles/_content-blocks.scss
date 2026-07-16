@@ -255,6 +255,21 @@
 	object-fit: contain;
 }
 
+/* Content-Kachel mit einzelnem dekorativem Icon (ohne Text/Link): großes,
+ * zentriertes Icon oberhalb der Überschrift statt der kleinen Action-Pills */
+.content-block__tile--hero {
+	align-items: center;
+	text-align: center;
+}
+
+.content-block__hero-icon {
+	display: block;
+	width: clamp(4rem, 7vw, 6rem);
+	height: auto;
+	margin: 0 auto var(--space-sm);
+	object-fit: contain;
+}
+
 
 /* ═══════════════════════════════════════════════════════════════════════
    Slider-Komponente

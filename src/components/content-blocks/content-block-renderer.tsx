@@ -444,6 +444,14 @@ const ImportedBlock: React.FC<{
 	const icons = (block.icons ?? []).filter(
 		(icon) => text(icon.icon) || text(icon.text),
 	);
+	// A single decorative icon (no label, no link) is a hero graphic: large,
+	// centered above the text, instead of the small action pills used for
+	// icon lists (e.g. "24/7 Parkgarage" or Follow-us social links).
+	const heroIcon =
+		icons.length === 1 && !text(icons[0].text) && !text(icons[0].link)
+			? icons[0]
+			: undefined;
+	const listIcons = heroIcon ? [] : icons;
 	const layout = getImportedBlockLayout(block, index);
 	const isSliderLayout = layout === "slider-left" || layout === "slider-right";
 	const isGridLayout = layout === "grid-4";
@@ -482,15 +490,24 @@ const ImportedBlock: React.FC<{
 
 	const contentTile = (
 		<div
-			className="content-block__tile content-block__tile--content"
+			className={[
+				"content-block__tile",
+				"content-block__tile--content",
+				heroIcon ? "content-block__tile--hero" : "",
+			]
+				.filter(Boolean)
+				.join(" ")}
 			style={contentBackgroundColor ? { backgroundColor: contentBackgroundColor } : undefined}
 		>
+			{heroIcon && text(heroIcon.icon) ? (
+				<img className="content-block__hero-icon" src={text(heroIcon.icon)} alt="" loading="lazy" />
+			) : null}
 			<div className="content-block__text">
 				<MarkdownContent content={block.text} />
 			</div>
-			{icons.length ? (
+			{listIcons.length ? (
 				<ul className="content-block__icons" aria-label="Schnelllinks">
-					{icons.map((icon) => {
+					{listIcons.map((icon) => {
 						const visibleText = text(icon.text);
 						const linkLabel = visibleText ?? getActionLinkLabel(icon.link);
 						const hasIcon = Boolean(text(icon.icon));
