@@ -63,6 +63,7 @@ The following apps are authenticated and have MCP tools available. Use `ToolSear
 - **pandaos-navigation** (`pandaos-navigation`) - 1 tools
 - **pandaos-ui** (`pandaos-ui`) - 1 tools
 - **devserver** (`devserver`) - 3 tools
+- **mcp-youtrack** (`mcp-youtrack`) - 23 tools
 
 ## Team Members
 
@@ -88,6 +89,7 @@ agent provides the persona and workflow, the skill provides the how.
 | builder | After planning (and design if UI), to implement the feature | `.pandaos/team/builder.md` | incremental-implementation, ai-code-review, git-commit |
 | reviewer | After implementation, to verify quality and correctness before shipping | `.pandaos/team/reviewer.md` | ai-code-review |
 | designer | After planning, when the feature has UI that needs design decisions before implementation | `.pandaos/team/designer.md` | frontend-design, pandaos-design |
+| frontend-developer | When the task involves UI, components, or client-side code | `.pandaos/team/frontend-developer.md` | frontend-design, web-a11y, tdd |
 
 Before starting any non-trivial task, check the "When to invoke" column above. If the task matches a team member's trigger, adopt that member's persona and follow their instructions.
 For ad-hoc questions, quick answers, and tasks that don't match any trigger, respond directly.
