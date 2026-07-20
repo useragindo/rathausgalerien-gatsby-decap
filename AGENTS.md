@@ -150,7 +150,6 @@ The following apps are authenticated and have MCP tools available. Use `ToolSear
 - **pandaos-navigation** (`pandaos-navigation`) - 1 tools
 - **pandaos-ui** (`pandaos-ui`) - 1 tools
 - **devserver** (`devserver`) - 3 tools
-- **mcp-youtrack** (`mcp-youtrack`) - 23 tools
 
 ## Team Members
 
