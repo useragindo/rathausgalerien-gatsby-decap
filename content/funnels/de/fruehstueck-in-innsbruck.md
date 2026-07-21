@@ -4,7 +4,7 @@ type: page
 template: funnel
 key: fruehstueck-in-innsbruck
 seo:
-  title: Frühstück in Innstbuck
+  title: Frühstück in Innsrbuck
   description: Wo kann man Frühstücken in Innsbruck
 blocks:
   - layout: columns
