@@ -1,14 +1,14 @@
 ---
 locale: de
-key: service
 type: page
+key: services
 template: standard
 menu: main
-order: 6
+order: 400
 seo:
   description: Ein Überblick über die Angebote in den RathausGalerien.
-  title: Service
-  url: service
+  title: Services
+  url: services
 ---
 ## RathausGarage
 
