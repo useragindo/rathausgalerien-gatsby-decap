@@ -6,7 +6,7 @@ template: standard
 menu: main
 order: 900
 seo:
-  title: FAQS - Häufig gestellte Fragen
+  title: FAQS
   description: Wir beantworten alle Fragen....
 blocks:
   - layout: grid-4
