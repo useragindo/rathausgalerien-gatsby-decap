@@ -1,13 +1,13 @@
 ---
 locale: de
-key: locations
 type: page
+key: locations
 template: lageplan
 menu: main
-order: 3
+order: 500
 seo:
   description: Einen interaktiven Lageplan der Rathausgalerien finden Sie hier.
-  title: Location
+  title: Lageplan
   url: lageplan
 photos:
   - image: /media/pages/rhg_mts_eingang.jpg
