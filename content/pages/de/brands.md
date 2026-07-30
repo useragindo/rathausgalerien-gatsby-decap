@@ -1,9 +1,9 @@
 ---
 locale: de
-key: brands
 type: page
+key: brands
 template: shops
-menu: main
+menu: ""
 order: 4
 seo:
   description: Alle Shops und Geschäfte finden Sie hier.
