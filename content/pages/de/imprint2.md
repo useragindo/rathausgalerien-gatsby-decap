@@ -3,7 +3,7 @@ locale: de
 type: page
 key: imprint2
 template: standard
-menu: misc
+menu: ""
 order: 1
 seo:
   description: Alle gesetzlichen Inhaberangaben finden Sie hier!
