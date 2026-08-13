@@ -86,7 +86,7 @@ blocks:
     images:
       - image: /media/pages/rhg_parken_01.png
     backgroundColor: "#7bd0e5"
-    reversed: false
+    reversed: true
     icons:
       - icon: /media/pages/icon-car.svg
   - date: ""
