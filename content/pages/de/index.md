@@ -81,7 +81,7 @@ blocks:
 
       8 E-Lade Plätze
     images:
-      - image: /media/pages/h001_132_02_11_weekend_parking_rz_1000-x-1000_01.jpg
+      - image: /media/pages/rhg_parken_01.png
     backgroundColor: "#7bd0e5"
     reversed: false
     icons:
