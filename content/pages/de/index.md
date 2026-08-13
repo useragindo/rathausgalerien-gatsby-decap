@@ -71,7 +71,7 @@ blocks:
         image: https://glowing-cranachan-5255ae.netlify.app/media/pages/karma-suncare-post.jpg
         category: ddfcab86-1237-4de6-9081-cafe473eecfd
         backgroundColor: "#b58ec1"
-  - layout: grid-4
+  - layout: columns
     reversed: false
     date: ""
     header: MITTAGSPAUSE, MITTEN IN INNSBRUCK
