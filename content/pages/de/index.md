@@ -71,16 +71,9 @@ blocks:
         image: https://glowing-cranachan-5255ae.netlify.app/media/pages/karma-suncare-post.jpg
         category: ddfcab86-1237-4de6-9081-cafe473eecfd
         backgroundColor: "#b58ec1"
-  - layout: columns
-    reversed: false
-    date: ""
-    header: MITTAGSPAUSE, MITTEN IN INNSBRUCK
-    text: |-
-      Asiatisch oder Italienisch? Hausmannskost oder Fine Dining?
-
-      Sie haben die Wahl zwischen acht verschiedenen 
-
-      gastronomischen Angeboten.
+        images:
+          - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
+            alt: Zum Magazin
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
@@ -91,7 +84,7 @@ blocks:
 
       8 E-Lade Plätze
     images:
-      - image: /media/pages/h001_132_02_11_weekend_parking_rz_1000-x-1000_01.jpg
+      - image: /media/pages/rhg_parken_01.png
     backgroundColor: "#7bd0e5"
     reversed: false
     icons:
