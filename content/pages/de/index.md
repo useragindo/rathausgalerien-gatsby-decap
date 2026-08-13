@@ -71,6 +71,9 @@ blocks:
         image: https://glowing-cranachan-5255ae.netlify.app/media/pages/karma-suncare-post.jpg
         category: ddfcab86-1237-4de6-9081-cafe473eecfd
         backgroundColor: "#b58ec1"
+        images:
+          - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
+            alt: Zum Magazin
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
