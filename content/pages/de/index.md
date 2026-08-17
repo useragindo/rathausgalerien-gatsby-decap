@@ -14,8 +14,10 @@ blocks:
     date: ""
     header: fashion, food, & lifestyle
     text: |-
-      RathausGalerien: Das Herz der Stadt! \
-      Eine große Auswahl an Shops und gastronomischen Angeboten \
+      RathausGalerien: Das Herz der Stadt! 
+
+      Eine große Auswahl an Shops und gastronomischen Angeboten 
+
       direkt im Zentrum von Innsbruck.
     tiles:
       - left:
@@ -69,6 +71,9 @@ blocks:
         image: https://glowing-cranachan-5255ae.netlify.app/media/pages/karma-suncare-post.jpg
         category: ddfcab86-1237-4de6-9081-cafe473eecfd
         backgroundColor: "#b58ec1"
+        images:
+          - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
+            alt: Zum Magazin
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
@@ -79,9 +84,9 @@ blocks:
 
       8 E-Lade Plätze
     images:
-      - image: /media/pages/h001_132_02_11_weekend_parking_rz_1000-x-1000_01.jpg
+      - image: /media/pages/rhg_parken_01.png
     backgroundColor: "#7bd0e5"
-    reversed: false
+    reversed: true
     icons:
       - icon: /media/pages/icon-car.svg
   - date: ""
@@ -158,7 +163,9 @@ blocks:
       finden bei Betty Barclay in den RathausGalerien.
   - date: ""
     layout: grid-4
-    header: Fashion. Food. Lifestyle.
+    header: |-
+      Fashion. Food. 
+      Lifestyle.
     icons:
       - icon: /media/pages/auto_icon.svg
         text: 24/7 Parkgarage

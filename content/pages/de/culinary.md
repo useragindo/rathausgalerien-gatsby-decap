@@ -1,9 +1,9 @@
 ---
 locale: de
-key: culinary
 type: page
+key: culinary
 template: gastronomie
-menu: main
+menu: ""
 order: 5
 seo:
   description: Alle Gastronomiebetriebe finden Sie hier.

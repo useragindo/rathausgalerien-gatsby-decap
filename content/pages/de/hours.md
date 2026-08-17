@@ -1,9 +1,9 @@
 ---
 locale: de
-key: hours
 type: page
+key: hours
 template: standard
-menu: main
+menu: ""
 order: 7
 seo:
   description: Unsere Öffnungszeiten auf einen Blick.

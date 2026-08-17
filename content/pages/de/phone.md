@@ -1,13 +1,12 @@
 ---
 locale: de
-key: phone
 type: page
+key: phone
 template: standard
-menu: main
+menu: ""
 order: 2
 seo:
   description: Alle Telefonnummern unserer Geschäfte finden Sie hier.
   title: Phone
   url: telefonnummern
 ---
-
