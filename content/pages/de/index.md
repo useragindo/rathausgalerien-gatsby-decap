@@ -163,7 +163,9 @@ blocks:
       finden bei Betty Barclay in den RathausGalerien.
   - date: ""
     layout: grid-4
-    header: Fashion. Food. Lifestyle.
+    header: |-
+      Fashion. Food. 
+      Lifestyle.
     icons:
       - icon: /media/pages/auto_icon.svg
         text: 24/7 Parkgarage
