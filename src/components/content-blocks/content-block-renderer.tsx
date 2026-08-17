@@ -41,6 +41,14 @@ const text = (value?: string | null): string | undefined => {
 	return trimmed ? trimmed : undefined;
 };
 
+const renderMultiline = (value: string): React.ReactNode =>
+	value.split("\n").map((line, index) => (
+		<React.Fragment key={index}>
+			{index > 0 ? <br /> : null}
+			{line}
+		</React.Fragment>
+	));
+
 const isImportedBlockLayout = (value?: string | null): value is ImportedBlockLayout =>
 	Boolean(
 		value &&
@@ -578,7 +586,7 @@ const ImportedBlock: React.FC<{
 	return (
 		<section className={blockClassName}>
 			{text(block.header) ? (
-				<p className="content-block__section-title">{text(block.header)}</p>
+				<p className="content-block__section-title">{renderMultiline(text(block.header) as string)}</p>
 			) : null}
 			{hasTiles && text(block.text) ? (
 				<div className="content-block__intro">

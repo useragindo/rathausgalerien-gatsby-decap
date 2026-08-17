@@ -130,7 +130,10 @@ collections:
         identifier_field: header
         hint: "Nur für die Startseite (Template 'Startseite')."
         fields:
-          - { label: "Header", name: "header", widget: string }
+          - label: "Header"
+            name: "header"
+            widget: text
+            hint: "Für einen manuellen Zeilenumbruch Enter drücken."
           - label: "Layout"
             name: "layout"
             widget: "select"
@@ -385,7 +388,10 @@ collections:
         required: false
         identifier_field: header
         fields:
-          - { label: "Header", name: "header", widget: string }
+          - label: "Header"
+            name: "header"
+            widget: text
+            hint: "Für einen manuellen Zeilenumbruch Enter drücken."
           - label: "Layout"
             name: "layout"
             widget: "select"
