@@ -6,5 +6,9 @@ temp
 SKILL.md
 TASKS.md
 .playwright-mcp
+.playwrite-mcp
 .beads
-.pandaos/knowledge
+.agent
+.claude
+.pandaos
+.mcp.json
