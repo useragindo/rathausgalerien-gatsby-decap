@@ -74,6 +74,19 @@ blocks:
         images:
           - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
             alt: Zum Magazin
+  - layout: columns
+    reversed: true
+    date: ""
+    header: |-
+      MITTAGSPAUSE, 
+      MITTEN IN INNSBRUCK
+    text: |-
+      Asiatisch oder Italienisch? Hausmannskost oder Fine Dining?
+
+      Sie haben die Wahl zwischen acht verschiedenen 
+
+      gastronomischen Angeboten.
+    backgroundColor: "#c2d1bd"
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
@@ -218,19 +231,6 @@ blocks:
     text: In den RathausGalerien-Schließfächern beim Lifteingang im 1. UG findet
       sich Raum für alles, was dich beschwert - von einer Handtasche bis hin
       zur Ski-Ausrüstung.
-  - layout: columns
-    reversed: true
-    date: ""
-    header: |-
-      MITTAGSPAUSE, 
-      MITTEN IN INNSBRUCK
-    text: |-
-      Asiatisch oder Italienisch? Hausmannskost oder Fine Dining?
-
-      Sie haben die Wahl zwischen acht verschiedenen 
-
-      gastronomischen Angeboten.
-    backgroundColor: "#c2d1bd"
 ---
 ![Rathausgalerien von Maria-Theresien-Straße](/media/pages/dsc_1672_bearb.jpg)
 
