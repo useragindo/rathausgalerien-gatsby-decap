@@ -2,7 +2,7 @@
 locale: de
 type: page
 key: genuss
-template: standard
+template: gastronomie
 menu: main
 order: 200
 seo:
