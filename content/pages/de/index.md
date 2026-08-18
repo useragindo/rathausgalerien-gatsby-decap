@@ -87,6 +87,13 @@ blocks:
 
       gastronomischen Angeboten.
     backgroundColor: "#c2d1bd"
+    tiles:
+      - text: |-
+          Genuss
+
+          8 Cafes, Bars 
+
+          & Restaurants
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
