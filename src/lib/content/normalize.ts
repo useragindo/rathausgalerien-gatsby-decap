@@ -158,16 +158,27 @@ export const normalizeLocation = (
 	}
 
 	const language = getLanguage(frontmatter);
-	const title =
-		trim(frontmatter.seo?.title) ?? trim(frontmatter.name) ?? node.id;
-	const slug = trim(frontmatter.seo?.url) ?? slugify(title);
+	const heading = deriveDisplay(
+		frontmatter.heading,
+		frontmatter.name,
+		frontmatter.seo?.title,
+		node.id,
+	);
+	const intro =
+		deriveDisplay(frontmatter.intro, frontmatter.seo?.description) ||
+		undefined;
+	const seoTitle = deriveDisplay(frontmatter.seo?.title, heading);
+	const slug = trim(frontmatter.seo?.url) ?? slugify(heading);
 	const baseSlug = getLocationBaseSlug(frontmatter.group);
 
 	return {
 		id: node.id,
 		language,
 		i18nKey: getFileSlug(node) ?? slug,
-		title,
+		title: heading,
+		heading,
+		intro,
+		seoTitle,
 		description: trim(frontmatter.seo?.description),
 		slug,
 		path: withLanguagePrefix(language, `${baseSlug}/${slug}`),

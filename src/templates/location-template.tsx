@@ -48,11 +48,11 @@ const resolveLocationSeo = (location: NormalizedLocation): ResolvedSeo => {
 	const description = getLocationSeoDescription(location);
 
 	return {
-		title: location.title,
+		title: location.seoTitle,
 		description,
 		canonicalUrl: location.path,
 		openGraph: {
-			title: location.title,
+			title: location.seoTitle,
 			description,
 		},
 	};
@@ -282,7 +282,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 					) : (
 						<div className="location-detail__hero-placeholder" />
 					)}
-					<h1 className="visually-hidden">{location.title}</h1>
+					<h1 className="visually-hidden">{location.heading}</h1>
 				</header>
 
 				<section
@@ -294,7 +294,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 							{frontmatter.logo ? (
 								<img src={frontmatter.logo} alt={`${location.title} Logo`} />
 							) : (
-								<h2>{location.title}</h2>
+								<h2>{location.heading}</h2>
 							)}
 						</div>
 						<p className="location-detail__category-title">
@@ -403,7 +403,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 						aria-labelledby="location-about-title"
 					>
 						<div className="location-detail__about-copy">
-							<h2 id="location-about-title">{location.title}</h2>
+							<h2 id="location-about-title">{location.heading}</h2>
 							<div className="detail-rich-text">
 								<MarkdownContent content={bodyContent} />
 							</div>

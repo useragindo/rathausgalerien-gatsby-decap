@@ -125,6 +125,9 @@ export type NormalizedLocation = {
 	language: LanguageCode;
 	i18nKey: string;
 	title: string;
+	heading: string;
+	intro?: string;
+	seoTitle: string;
 	description?: string;
 	slug: string;
 	path: string;

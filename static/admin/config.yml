@@ -735,6 +735,16 @@ collections:
       - { label: "Type", name: "type", widget: "hidden", default: "location" }
       - { label: "UUID", name: "uuid", widget: "uuid" }
 
+      - {
+          label: "Heading",
+          name: "heading",
+          widget: "string",
+          required: false,
+          hint: "Standard: Name",
+        }
+
+      - { label: "Intro", name: "intro", widget: "text", required: false }
+
       - label: "SEO"
         name: "seo"
         widget: object
