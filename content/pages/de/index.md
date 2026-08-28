@@ -87,6 +87,7 @@ blocks:
     tiles:
       - text: Leckeres Essen für alle
         backgroundColor: "#c2d1bd"
+        category: b9979400-46f4-45cc-8378-077a4d464e70
       - images:
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
   - date: ""
