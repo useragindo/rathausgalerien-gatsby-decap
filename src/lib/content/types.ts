@@ -33,6 +33,7 @@ export type ImportedContentTile = {
 export type ImportedContentBlock = {
 	layout?: string | null;
 	header?: string | null;
+	teaserText?: string | null;
 	text?: string | null;
 	backgroundColor?: string | null;
 	reversed?: boolean | null;

@@ -588,6 +588,9 @@ const ImportedBlock: React.FC<{
 			{text(block.header) ? (
 				<p className="content-block__section-title">{renderMultiline(text(block.header) as string)}</p>
 			) : null}
+			{text(block.teaserText) ? (
+				<p className="content-block__intro">{renderMultiline(text(block.teaserText) as string)}</p>
+			) : null}
 			{hasTiles && text(block.text) ? (
 				<div className="content-block__intro">
 					<MarkdownContent content={block.text} />

@@ -134,6 +134,11 @@ collections:
             name: "header"
             widget: text
             hint: "Für einen manuellen Zeilenumbruch Enter drücken."
+          - label: "Anrisstext"
+            name: "teaserText"
+            widget: text
+            required: false
+            hint: "Wird unterhalb des Headers angezeigt. Für einen manuellen Zeilenumbruch Enter drücken."
           - label: "Layout"
             name: "layout"
             widget: "select"
@@ -392,6 +397,11 @@ collections:
             name: "header"
             widget: text
             hint: "Für einen manuellen Zeilenumbruch Enter drücken."
+          - label: "Anrisstext"
+            name: "teaserText"
+            widget: text
+            required: false
+            hint: "Wird unterhalb des Headers angezeigt. Für einen manuellen Zeilenumbruch Enter drücken."
           - label: "Layout"
             name: "layout"
             widget: "select"
