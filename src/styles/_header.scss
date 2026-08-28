@@ -1,10 +1,14 @@
 .site-header {
 	/* Mobile defaults */
+	--header-scale: 1;
+	--header-icon-scale: 1;
 	--header-height: clamp(4rem, 15vw, 5rem);
 	--header-logo-width: clamp(8rem, 35vw, 11rem);
 	--header-icon-size: clamp(1.2rem, 5vw, 1.5rem);
 	--header-menu-width: clamp(1.8rem, 8vw, 2.4rem);
 	--header-menu-line-gap: clamp(0.22rem, 1.2vw, 0.35rem);
+	--header-actions-gap: clamp(0.75rem, 2.5vw, 2.5rem);
+	--header-icon-gap: clamp(0.6rem, 2vw, 2rem);
 
 	position: sticky;
 	z-index: 100;
@@ -16,6 +20,10 @@
 }
 
 .site-header--scrolled {
+	/* Header height + logo shrink more aggressively than icons/language,
+	   which stay closer to full size for legibility/tap targets. */
+	--header-scale: 0.32;
+	--header-icon-scale: 0.72;
 	background: rgba(209, 239, 255, 0.96);
 	box-shadow: 0 0.25rem 1.5rem rgba(34, 37, 78, 0.08);
 }
@@ -24,9 +32,10 @@
 .site-header__inner {
 	position: relative;
 	width: min(100%, 1440px);
-	height: var(--header-height);
+	height: calc(var(--header-height) * var(--header-scale, 1));
 	margin-inline: auto;
 	padding-inline: clamp(1rem, 5vw, 115px);
+	transition: height var(--transition-base);
 }
 
 /* ─── Brand (logo) ────────────────────────────────────────────────── */
@@ -43,7 +52,7 @@
 }
 
 .site-header__logo {
-	width: var(--header-logo-width);
+	width: calc(var(--header-logo-width) * var(--header-scale, 1));
 	height: auto;
 	filter: brightness(0) saturate(100%) invert(13%) sepia(28%) saturate(1688%) hue-rotate(210deg) brightness(91%) contrast(95%);
 	transition: width var(--transition-base);
@@ -52,9 +61,15 @@
 /* ─── Language switcher ───────────────────────────────────────────── */
 .site-header__language {
 	position: absolute;
-	/* mobile: sits just below logo */
 	bottom: clamp(0.5rem, 2vw, 0.75rem);
 	inset-inline-start: clamp(1rem, 5vw, 115px);
+}
+
+/* Inline usage next to the header icons (see .site-header__actions) */
+.site-header__language--actions {
+	position: static;
+	bottom: auto;
+	inset-inline-start: auto;
 }
 
 .site-header__language-list {
@@ -68,13 +83,14 @@
 
 .site-header__language-link,
 .site-header__language-separator {
-	font-size: clamp(0.75rem, 1.5vw, 1rem);
+	font-size: calc(clamp(0.75rem, 1.5vw, 1rem) * var(--header-icon-scale, 1));
 	font-weight: var(--font-weight-thin);
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
 	color: var(--color-dunkelblau);
 	text-decoration: none;
 	line-height: 1;
+	transition: font-size var(--transition-base);
 }
 
 .site-header__language-link:hover,
@@ -82,14 +98,16 @@
 	color: var(--color-rosa);
 }
 
-/* ─── Actions (icons + burger) ────────────────────────────────────── */
+/* ─── Actions (language + icons + burger) ─────────────────────────── */
 .site-header__actions {
 	position: absolute;
-	inset-block-start: clamp(0.75rem, 3vw, 1.875rem); /* 30px on desktop */
+	top: 50%;
+	transform: translateY(-50%);
 	inset-inline-end: clamp(1rem, 5vw, 115px);
 	display: flex;
 	align-items: center;
-	gap: clamp(0.75rem, 2.5vw, 2.5rem); /* ~40px on desktop */
+	gap: calc(var(--header-actions-gap) * var(--header-icon-scale, 1));
+	transition: gap var(--transition-base);
 }
 
 .site-header__icon-nav {
@@ -107,18 +125,21 @@
 .site-header__icon-list {
 	display: flex;
 	align-items: center;
-	gap: clamp(0.6rem, 2vw, 2rem); /* 32px on desktop */
+	gap: calc(var(--header-icon-gap) * var(--header-icon-scale, 1));
+	transition: gap var(--transition-base);
 }
 
 .site-header__icon-link {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: var(--header-icon-size);
+	width: calc(var(--header-icon-size) * var(--header-icon-scale, 1));
 	aspect-ratio: 1;
 	color: var(--color-dunkelblau);
 	text-decoration: none;
-	transition: color var(--transition-base);
+	transition:
+		color var(--transition-base),
+		width var(--transition-base);
 }
 
 .site-header__icon-link:hover,
@@ -142,14 +163,17 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-end;
-	width: var(--header-menu-width);
-	height: var(--header-icon-size);
+	width: calc(var(--header-menu-width) * var(--header-icon-scale, 1));
+	height: calc(var(--header-icon-size) * var(--header-icon-scale, 1));
 	padding: 0;
 	border: 0;
 	background: transparent;
 	color: var(--color-dunkelblau);
 	cursor: pointer;
-	transition: color var(--transition-base);
+	transition:
+		color var(--transition-base),
+		width var(--transition-base),
+		height var(--transition-base);
 }
 
 .site-header__menu-btn:hover,
@@ -160,8 +184,9 @@
 .site-header__menu-lines {
 	display: flex;
 	flex-direction: column;
-	gap: var(--header-menu-line-gap);
+	gap: calc(var(--header-menu-line-gap) * var(--header-icon-scale, 1));
 	width: 100%;
+	transition: gap var(--transition-base);
 }
 
 .site-header__menu-lines span {
@@ -311,7 +336,6 @@
 	font-size: clamp(0.7rem, 1.1vw, 0.875rem);
 	font-weight: var(--font-weight-medium);
 	letter-spacing: 0.1em;
-	text-transform: uppercase;
 	color: var(--color-white);
 }
 
@@ -378,15 +402,8 @@
 		--header-icon-size: clamp(1.4rem, 2.2vw, 1.75rem);
 		--header-menu-width: clamp(2.2rem, 3.5vw, 2.8rem);
 		--header-menu-line-gap: clamp(0.3rem, 0.5vw, 0.4rem);
-	}
-
-	.site-header__actions {
-		inset-block-start: clamp(1.25rem, 2.5vw, 2rem);
-		gap: clamp(1.25rem, 2vw, 1.75rem);
-	}
-
-	.site-header__icon-list {
-		gap: clamp(0.75rem, 1.3vw, 1rem);
+		--header-actions-gap: clamp(1.25rem, 2vw, 1.75rem);
+		--header-icon-gap: clamp(0.75rem, 1.3vw, 1rem);
 	}
 
 	.site-header__menu-lines span {
@@ -406,6 +423,8 @@
 		--header-icon-size: clamp(2rem, 2.5vw, 2.25rem);
 		--header-menu-width: clamp(3.5rem, 5vw, 4.5rem);
 		--header-menu-line-gap: clamp(0.45rem, 0.7vw, 0.6rem);
+		--header-actions-gap: clamp(2rem, 3vw, 2.5rem);
+		--header-icon-gap: clamp(1.25rem, 2vw, 1.5rem);
 	}
 
 	.site-header__inner {
@@ -417,18 +436,7 @@
 	}
 
 	.site-header__actions {
-		inset-block-start: clamp(2rem, 3.5vw, 2.75rem);
 		inset-inline-end: clamp(2rem, 8vw, 80px);
-		gap: clamp(2rem, 3vw, 2.5rem);
-	}
-
-	.site-header__icon-list {
-		gap: clamp(1.25rem, 2vw, 1.5rem);
-	}
-
-	.site-header__language {
-		bottom: 0;
-		inset-inline-start: clamp(2rem, 8vw, 80px);
 	}
 
 	.site-header__icon-link svg {
@@ -472,6 +480,8 @@
 		--header-icon-size: 2.5rem;         /* 40px   Figma */
 		--header-menu-width: 6.25rem;       /* 100px  Figma */
 		--header-menu-line-gap: 0.9375rem;  /* 15px   Figma (Linienabstand, Linien 2px) */
+		--header-actions-gap: 3.875rem;     /* 62px Figma: Abstand Icons ↔ Burger */
+		--header-icon-gap: 1.5rem;          /* 24px Figma: Abstand zwischen den Icons */
 	}
 
 	/* 115px side padding on desktop */
@@ -486,24 +496,9 @@
 		inset-inline-start: 115px;
 	}
 
-	/* Actions: Icon-Mitte auf ~86px (Figma: Icons y 66–106).
-	   40px-Icons → Oberkante 66px = 4.125rem */
+	/* Actions: vertically centred, same anchor as logo */
 	.site-header__actions {
-		inset-block-start: 4.125rem;   /* ~66px */
 		inset-inline-end: 115px;
-		gap: 3.875rem;                 /* 62px Figma: Abstand Icons ↔ Burger */
-	}
-
-	/* Figma: 24px Abstand zwischen den Icons */
-	.site-header__icon-list {
-		gap: 1.5rem;
-	}
-
-	/* DE/EN: directly below logo (logo-bottom ≈ 195px, gap 20px → 215px) */
-	.site-header__language {
-		top: auto;
-		bottom: 0;
-		inset-inline-start: 115px;
 	}
 
 	/* Language in overlay-footer stays in flow */
@@ -565,11 +560,6 @@
 		--header-icon-size: clamp(1.1rem, 5vw, 1.35rem);
 		--header-menu-width: clamp(1.6rem, 7vw, 2rem);
 		--header-menu-line-gap: clamp(0.18rem, 1vw, 0.28rem);
-	}
-
-	/* Hide language switcher in compact mobile header */
-	.site-header__language {
-		display: none;
 	}
 
 	.site-header__overlay-footer {

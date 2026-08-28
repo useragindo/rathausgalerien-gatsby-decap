@@ -291,7 +291,7 @@ export const Header: React.FC<HeaderProps> = ({
 	const closeMenu = React.useCallback(() => setMenuOpen(false), []);
 
 	React.useEffect(() => {
-		const update = () => setIsScrolled(window.scrollY > 24);
+		const update = () => setIsScrolled(window.scrollY > 0);
 		update();
 		window.addEventListener("scroll", update, { passive: true });
 		return () => window.removeEventListener("scroll", update);
@@ -314,11 +314,10 @@ export const Header: React.FC<HeaderProps> = ({
 						<span className="visually-hidden">{siteTitle}</span>
 					</a>
 
-					{/* Language switcher — separate from logo */}
-					<LanguageSwitcher languages={languages} />
-
-					{/* Icons + Burger */}
+					{/* Language switcher + Icons + Burger */}
 					<div className="site-header__actions">
+						<LanguageSwitcher languages={languages} modifier="actions" />
+
 						{iconNavigation.length > 0 && (
 							<nav className="site-header__icon-nav" aria-label="Schnellzugriffe">
 								<ul className="site-header__icon-list">
