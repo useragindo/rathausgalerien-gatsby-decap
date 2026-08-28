@@ -76,7 +76,7 @@ blocks:
             alt: Zum Magazin
   - reversed: true
     layout: columns
-    text: Leckeres Essen
+    text: Leckeres Essen für alle
     header: |-
       MITTAGSPAUSE, 
       MITTEN IN INNSBRUCK
