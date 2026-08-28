@@ -89,8 +89,7 @@ blocks:
       MITTEN IN INNSBRUCK
     date: ""
     backgroundColor: "#c2d1bd"
-    icons:
-      - icon: /media/pages/bus_icon.svg
+    icons: []
     teaserText: |
       Asiatisch oder Italienisch? Hausmannskost oder Fine Dining?
       Sie haben die Wahl zwischen acht verschiedenen 
