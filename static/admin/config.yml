@@ -148,6 +148,8 @@ collections:
           - label: "Text"
             name: "text"
             widget: "markdown"
+            required: false
+            hint: "Legacy – nur für Boxen ohne Tiles. Bei Boxen mit Tiles bitte Text auf der jeweiligen Kachel pflegen."
             buttons:
               - bold
               - italic
@@ -437,6 +439,8 @@ collections:
           - label: "Text"
             name: "text"
             widget: "markdown"
+            required: false
+            hint: "Legacy – nur für Boxen ohne Tiles. Bei Boxen mit Tiles bitte Text auf der jeweiligen Kachel pflegen."
             buttons:
               - bold
               - italic
