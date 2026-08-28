@@ -87,6 +87,9 @@ blocks:
     tiles:
       - text: Leckeres Essen für alle
         backgroundColor: "#c2d1bd"
+      - images:
+          - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
+    text: " a"
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
