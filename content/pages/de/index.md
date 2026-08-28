@@ -108,7 +108,7 @@ blocks:
       - icon: /media/pages/icon-car.svg
   - date: ""
     layout: grid-4
-    header: Rituals News.
+    header: ""
     text: Entdecken Sie die neuen Sonnenpflege- und Selbstbräunungs-Prpdukte von The
       Rituals of Karma sowie die Me-Time Gift Sets zum verschenken oder selbst
       verwöhnen. Ab einem Einkaufswert von 50€ bekommen My Rituals Mitglieder
