@@ -74,19 +74,7 @@ blocks:
         images:
           - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
             alt: Zum Magazin
-  - layout: columns
-    reversed: true
-    date: ""
-    header: |-
-      MITTAGSPAUSE, 
-      MITTEN IN INNSBRUCK
-    text: |-
-      Asiatisch oder Italienisch? Hausmannskost oder Fine Dining?
-
-      Sie haben die Wahl zwischen acht verschiedenen 
-
-      gastronomischen Angeboten.
-    backgroundColor: "#c2d1bd"
+  - reversed: true
     tiles:
       - text: |-
           Genuss
@@ -94,6 +82,19 @@ blocks:
           8 Cafes, Bars 
 
           & Restaurants
+    layout: columns
+    text: Leckeres Essen
+    header: |-
+      MITTAGSPAUSE, 
+      MITTEN IN INNSBRUCK
+    date: ""
+    backgroundColor: "#c2d1bd"
+    icons:
+      - icon: /media/pages/bus_icon.svg
+    teaserText: |
+      Asiatisch oder Italienisch? Hausmannskost oder Fine Dining?
+      Sie haben die Wahl zwischen acht verschiedenen 
+      gastronomischen Angeboten.
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.
