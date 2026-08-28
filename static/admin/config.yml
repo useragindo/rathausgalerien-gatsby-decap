@@ -239,6 +239,31 @@ collections:
                 allowInput: true
                 enableAlpha: false
                 hint: "Nur für Text-Kacheln. Wenn leer, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
+              - label: "Icons"
+                name: "icons"
+                widget: "list"
+                required: false
+                hint: "Nur für Text-Kacheln. Werden unterhalb des Texts angezeigt."
+                fields:
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "image"
+                    hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+                    pattern: ["(?:.+)svg$", "Must be a SVG file"]
+                  - label: "Text"
+                    name: "text"
+                    widget: "string"
+                    required: false
+                  - label: "Link"
+                    name: "link"
+                    required: false
+                    widget: "string"
+                    pattern:
+                      [
+                        "^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$",
+                        "Must start with slash or http(s)://",
+                      ]
+                    hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
           - label: "Date"
             name: "date"
             default: ""
@@ -248,6 +273,7 @@ collections:
             name: "icons"
             widget: "list"
             required: false
+            hint: "Legacy – nur für 4er Grid / Text+Bild ohne Tiles. Bei Boxen mit Tiles bitte Icons auf der jeweiligen Kachel pflegen."
             fields:
               - label: "Icon"
                 name: "icon"
@@ -502,6 +528,31 @@ collections:
                 allowInput: true
                 enableAlpha: false
                 hint: "Nur für Text-Kacheln. Wenn leer, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
+              - label: "Icons"
+                name: "icons"
+                widget: "list"
+                required: false
+                hint: "Nur für Text-Kacheln. Werden unterhalb des Texts angezeigt."
+                fields:
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "image"
+                    hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+                    pattern: ["(?:.+)svg$", "Must be a SVG file"]
+                  - label: "Text"
+                    name: "text"
+                    widget: "string"
+                    required: false
+                  - label: "Link"
+                    name: "link"
+                    required: false
+                    widget: "string"
+                    pattern:
+                      [
+                        "^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$",
+                        "Must start with slash or http(s)://",
+                      ]
+                    hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
           - label: "Date"
             name: "date"
             default: ""
@@ -511,6 +562,7 @@ collections:
             name: "icons"
             widget: "list"
             required: false
+            hint: "Legacy – nur für 4er Grid / Text+Bild ohne Tiles. Bei Boxen mit Tiles bitte Icons auf der jeweiligen Kachel pflegen."
             fields:
               - label: "Icon"
                 name: "icon"
@@ -531,8 +583,6 @@ collections:
                     "Must start with slash or http(s)://",
                   ]
                 hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
-
-      - label: "Teaser"
         name: "teaser"
         widget: object
         required: false

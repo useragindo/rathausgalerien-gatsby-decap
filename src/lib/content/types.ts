@@ -28,6 +28,7 @@ export type ImportedContentTile = {
 	category?: string | null;
 	link?: string | null;
 	backgroundColor?: string | null;
+	icons?: ImportedIcon[] | null;
 };
 
 export type ImportedContentBlock = {

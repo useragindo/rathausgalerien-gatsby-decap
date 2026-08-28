@@ -76,17 +76,17 @@ blocks:
             alt: Zum Magazin
   - reversed: true
     layout: columns
-    text: Leckeres Essen für alle
     header: |-
       MITTAGSPAUSE, 
       MITTEN IN INNSBRUCK
     date: ""
-    backgroundColor: "#c2d1bd"
-    icons: []
     teaserText: |
       Asiatisch oder Italienisch? Hausmannskost oder Fine Dining?
       Sie haben die Wahl zwischen acht verschiedenen 
       gastronomischen Angeboten.
+    tiles:
+      - text: Leckeres Essen für alle
+        backgroundColor: "#c2d1bd"
   - date: ""
     layout: slider-left
     header: WEEKEND PARKING.

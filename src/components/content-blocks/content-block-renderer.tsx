@@ -17,6 +17,7 @@ import type { LanguageCode } from "../../lib/content/types";
 import type {
 	ImportedContentBlock,
 	ImportedContentTile,
+	ImportedIcon,
 	ImportedImage,
 	NormalizedCategory,
 } from "../../lib/content/types";
@@ -107,6 +108,63 @@ const getActionLinkLabel = (url?: string | null): string | undefined => {
 	}
 
 	return getHostnameLabel(cleanUrl) ?? getPathLabel(cleanUrl) ?? cleanUrl;
+};
+
+// A single decorative icon (no label, no link) is a hero graphic: large,
+// centered above the text, instead of the small action pills used for icon
+// lists (e.g. "24/7 Parkgarage" or Follow-us social links).
+const resolveIconDisplay = (
+	icons?: ImportedIcon[] | null,
+): { heroIcon?: ImportedIcon; listIcons: ImportedIcon[] } => {
+	const validIcons = (icons ?? []).filter(
+		(icon) => text(icon.icon) || text(icon.text),
+	);
+	const heroIcon =
+		validIcons.length === 1 && !text(validIcons[0].text) && !text(validIcons[0].link)
+			? validIcons[0]
+			: undefined;
+
+	return { heroIcon, listIcons: heroIcon ? [] : validIcons };
+};
+
+const IconList: React.FC<{ icons: ImportedIcon[] }> = ({ icons }) => {
+	if (!icons.length) {
+		return null;
+	}
+
+	return (
+		<ul className="content-block__icons" aria-label="Schnelllinks">
+			{icons.map((icon) => {
+				const visibleText = text(icon.text);
+				const linkLabel = visibleText ?? getActionLinkLabel(icon.link);
+				const hasIcon = Boolean(text(icon.icon));
+				const actionClassName = [
+					"content-block__icon-action",
+					hasIcon && !visibleText ? "content-block__icon-action--icon-only" : "",
+				]
+					.filter(Boolean)
+					.join(" ");
+				const iconContent = (
+					<>
+						{text(icon.icon) ? <img src={text(icon.icon)} alt="" loading="lazy" /> : null}
+						{visibleText ? <span>{visibleText}</span> : null}
+					</>
+				);
+
+				return (
+					<li key={`${icon.icon}-${icon.text}-${icon.link}`}>
+						{text(icon.link) ? (
+							<a className={actionClassName} href={text(icon.link)} aria-label={linkLabel}>
+								{iconContent}
+							</a>
+						) : (
+							<span className={actionClassName}>{iconContent}</span>
+						)}
+					</li>
+				);
+			})}
+		</ul>
+	);
 };
 
 const LinkList: React.FC<{ links?: LinkField[] | null }> = ({ links }) => {
@@ -357,8 +415,9 @@ const hasTileContent = (
 	const hasText = Boolean(text(tile.text));
 	const hasImage = getTileImages(tile).length > 0;
 	const hasLink = Boolean(text(tile.link)) || Boolean(text(tile.category));
+	const hasIcons = (tile.icons ?? []).some((icon) => text(icon.icon) || text(icon.text));
 
-	return hasText || hasImage || hasLink;
+	return hasText || hasImage || hasLink || hasIcons;
 };
 
 // A single visual box: either the tile's text (content box) or its image(s)
@@ -381,6 +440,8 @@ const TileBox: React.FC<{
 	const tileImages = variant === "media" ? getTileImages(tile) : [];
 	const backgroundColor = variant === "content" ? text(tile.backgroundColor) : undefined;
 	const style = backgroundColor ? { backgroundColor } : undefined;
+	const { heroIcon, listIcons } =
+		variant === "content" ? resolveIconDisplay(tile.icons) : { heroIcon: undefined, listIcons: [] };
 
 	const inner =
 		variant === "media" ? (
@@ -390,17 +451,27 @@ const TileBox: React.FC<{
 				<img src={text(tileImages[0]?.image)} alt="" loading="lazy" />
 			)
 		) : (
-			<div className="content-block__text">
-				<MarkdownContent content={tile.text} />
-			</div>
+			<>
+				{heroIcon && text(heroIcon.icon) ? (
+					<img className="content-block__hero-icon" src={text(heroIcon.icon)} alt="" loading="lazy" />
+				) : null}
+				<div className="content-block__text">
+					<MarkdownContent content={tile.text} />
+				</div>
+				<IconList icons={listIcons} />
+			</>
 		);
 
+	const fullClassName = [boxClassName, heroIcon ? "content-block__tile--hero" : ""]
+		.filter(Boolean)
+		.join(" ");
+
 	return link ? (
-		<a href={link} className={boxClassName} style={style}>
+		<a href={link} className={fullClassName} style={style}>
 			{inner}
 		</a>
 	) : (
-		<div className={boxClassName} style={style}>
+		<div className={fullClassName} style={style}>
 			{inner}
 		</div>
 	);
@@ -420,7 +491,8 @@ const TileGrid: React.FC<{
 
 		const link = resolveTileLink(tile, categories, language);
 
-		if (text(tile.text)) {
+		const hasIcons = (tile.icons ?? []).some((icon) => text(icon.icon) || text(icon.text));
+		if (text(tile.text) || hasIcons) {
 			items.push({ variant: "content", tile, link, key: `tile-text-${items.length}` });
 		}
 
@@ -449,17 +521,8 @@ const ImportedBlock: React.FC<{
 	categories?: NormalizedCategory[] | null;
 }> = ({ block, index, language = "de", categories }) => {
 	const images = (block.images ?? []).filter((image) => text(image.image));
-	const icons = (block.icons ?? []).filter(
-		(icon) => text(icon.icon) || text(icon.text),
-	);
-	// A single decorative icon (no label, no link) is a hero graphic: large,
-	// centered above the text, instead of the small action pills used for
-	// icon lists (e.g. "24/7 Parkgarage" or Follow-us social links).
-	const heroIcon =
-		icons.length === 1 && !text(icons[0].text) && !text(icons[0].link)
-			? icons[0]
-			: undefined;
-	const listIcons = heroIcon ? [] : icons;
+	const { heroIcon, listIcons } = resolveIconDisplay(block.icons);
+	const icons = [...(heroIcon ? [heroIcon] : []), ...listIcons];
 	const layout = getImportedBlockLayout(block, index);
 	const isSliderLayout = layout === "slider-left" || layout === "slider-right";
 	const isGridLayout = layout === "grid-4";
@@ -513,47 +576,7 @@ const ImportedBlock: React.FC<{
 			<div className="content-block__text">
 				<MarkdownContent content={block.text} />
 			</div>
-			{listIcons.length ? (
-				<ul className="content-block__icons" aria-label="Schnelllinks">
-					{listIcons.map((icon) => {
-						const visibleText = text(icon.text);
-						const linkLabel = visibleText ?? getActionLinkLabel(icon.link);
-						const hasIcon = Boolean(text(icon.icon));
-						const actionClassName = [
-							"content-block__icon-action",
-							hasIcon && !visibleText
-								? "content-block__icon-action--icon-only"
-								: "",
-						]
-							.filter(Boolean)
-							.join(" ");
-						const iconContent = (
-							<>
-								{text(icon.icon) ? (
-									<img src={text(icon.icon)} alt="" loading="lazy" />
-								) : null}
-								{visibleText ? <span>{visibleText}</span> : null}
-							</>
-						);
-
-						return (
-							<li key={`${icon.icon}-${icon.text}-${icon.link}`}>
-								{text(icon.link) ? (
-									<a
-										className={actionClassName}
-										href={text(icon.link)}
-										aria-label={linkLabel}
-									>
-										{iconContent}
-									</a>
-								) : (
-									<span className={actionClassName}>{iconContent}</span>
-								)}
-							</li>
-						);
-					})}
-				</ul>
-			) : null}
+			<IconList icons={listIcons} />
 		</div>
 	);
 
