@@ -13,7 +13,6 @@ locale: de
 
 media_folder: static/media
 public_folder: /media
-publish_mode: editorial_workflow
 
 slug:
   encoding: ascii
