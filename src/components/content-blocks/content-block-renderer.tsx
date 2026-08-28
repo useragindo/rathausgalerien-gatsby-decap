@@ -481,7 +481,11 @@ const TileGrid: React.FC<{
 	tiles: ImportedContentTile[];
 	categories: NormalizedCategory[] | null | undefined;
 	language: LanguageCode;
-}> = ({ tiles, categories, language }) => {
+	// Two-column layouts (e.g. "columns") position media before content when
+	// "reversed" is set, matching the legacy text/images rendering below. This
+	// has no effect on grid-4, which always keeps the tiles' authored order.
+	reverseTwoColumn?: boolean;
+}> = ({ tiles, categories, language, reverseTwoColumn }) => {
 	const items: { variant: "content" | "media"; tile: ImportedContentTile; link?: string; key: string }[] = [];
 
 	for (const tile of tiles.slice(0, 4)) {
@@ -505,9 +509,13 @@ const TileGrid: React.FC<{
 		return null;
 	}
 
+	const orderedItems = reverseTwoColumn
+		? [...items.filter((item) => item.variant === "media"), ...items.filter((item) => item.variant === "content")]
+		: items;
+
 	return (
 		<>
-			{items.slice(0, 4).map(({ variant, tile, link, key }) => (
+			{orderedItems.slice(0, 4).map(({ variant, tile, link, key }) => (
 				<TileBox key={key} variant={variant} tile={tile} link={link} />
 			))}
 		</>
@@ -625,6 +633,7 @@ const ImportedBlock: React.FC<{
 						tiles={block.tiles ?? []}
 						categories={categories}
 						language={language}
+						reverseTwoColumn={isTwoColumnLayout && isReversed}
 					/>
 				) : isReversed ? (
 					<>
