@@ -4,6 +4,7 @@ import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
 import { resolveCategoryLabels } from "../lib/content/categories";
 import { MarkdownContent } from "../lib/content/markdown";
+import { trim } from "../lib/content/normalize";
 import type {
 	LanguageLinks,
 	NormalizedCategory,
@@ -13,7 +14,14 @@ import type {
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
 import type { NormalizedNavigationItem } from "../lib/navigation";
-import type { ResolvedSeo } from "../lib/seo";
+import {
+	DEFAULT_OG_TYPE,
+	DEFAULT_TWITTER_CARD_WITH_IMAGE,
+	DEFAULT_TWITTER_CARD_WITHOUT_IMAGE,
+	OG_LOCALE_BY_LANGUAGE,
+	OG_SITE_NAME,
+	type ResolvedSeo,
+} from "../lib/seo";
 
 type LocationTemplateContext = {
 	location: NormalizedLocation;
@@ -45,7 +53,20 @@ const toNavigationItems = (
 		}));
 
 const resolveLocationSeo = (location: NormalizedLocation): ResolvedSeo => {
+	const seo = location.frontmatter.seo;
 	const description = getLocationSeoDescription(location);
+	const image =
+		trim(seo?.image) ??
+		trim(location.frontmatter.images?.[0]) ??
+		trim(location.frontmatter.logo);
+	const imageAlt = trim(seo?.imageAlt) ?? trim(location.heading);
+	const ogType = trim(seo?.ogType) ?? DEFAULT_OG_TYPE;
+	const ogLocale =
+		OG_LOCALE_BY_LANGUAGE[location.language] ?? OG_LOCALE_BY_LANGUAGE.de;
+	const twitterCard =
+		trim(seo?.twitterCard) ??
+		(image ? DEFAULT_TWITTER_CARD_WITH_IMAGE : DEFAULT_TWITTER_CARD_WITHOUT_IMAGE);
+	const noIndex = seo?.noIndex === true;
 
 	return {
 		title: location.seoTitle,
@@ -54,7 +75,21 @@ const resolveLocationSeo = (location: NormalizedLocation): ResolvedSeo => {
 		openGraph: {
 			title: location.seoTitle,
 			description,
+			url: location.path,
+			image,
+			imageAlt,
+			type: ogType,
+			locale: ogLocale,
+			siteName: OG_SITE_NAME,
 		},
+		twitter: {
+			card: twitterCard,
+			title: location.seoTitle,
+			description,
+			image,
+			imageAlt,
+		},
+		noIndex,
 	};
 };
 

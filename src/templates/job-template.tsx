@@ -3,6 +3,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
 import { MarkdownContent } from "../lib/content/markdown";
+import { trim } from "../lib/content/normalize";
 import type {
 	LanguageLinks,
 	NormalizedJob,
@@ -11,7 +12,14 @@ import type {
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
 import type { NormalizedNavigationItem } from "../lib/navigation";
-import type { ResolvedSeo } from "../lib/seo";
+import {
+	DEFAULT_OG_TYPE,
+	DEFAULT_TWITTER_CARD_WITH_IMAGE,
+	DEFAULT_TWITTER_CARD_WITHOUT_IMAGE,
+	OG_LOCALE_BY_LANGUAGE,
+	OG_SITE_NAME,
+	type ResolvedSeo,
+} from "../lib/seo";
 
 type JobTemplateContext = {
 	job: NormalizedJob;
@@ -37,11 +45,6 @@ const toNavigationItems = (
 			language: item.language,
 			openInNewTab: false,
 		}));
-
-const trim = (value?: string | null): string | undefined => {
-	const trimmed = value?.trim();
-	return trimmed ? trimmed : undefined;
-};
 
 const stripMarkdownText = (value: string): string =>
 	value
@@ -81,8 +84,17 @@ const getJobSeoDescription = (job: NormalizedJob): string =>
 	"";
 
 const resolveJobSeo = (job: NormalizedJob): ResolvedSeo => {
+	const seo = job.frontmatter.seo;
 	const description = getJobSeoDescription(job);
-	const title = trim(job.frontmatter.seo?.title) ?? job.title;
+	const title = trim(seo?.title) ?? job.title;
+	const image = trim(seo?.image) ?? trim(job.frontmatter.images?.[0]);
+	const imageAlt = trim(seo?.imageAlt) ?? trim(job.title);
+	const ogType = trim(seo?.ogType) ?? DEFAULT_OG_TYPE;
+	const ogLocale = OG_LOCALE_BY_LANGUAGE[job.language] ?? OG_LOCALE_BY_LANGUAGE.de;
+	const twitterCard =
+		trim(seo?.twitterCard) ??
+		(image ? DEFAULT_TWITTER_CARD_WITH_IMAGE : DEFAULT_TWITTER_CARD_WITHOUT_IMAGE);
+	const noIndex = seo?.noIndex === true;
 
 	return {
 		title,
@@ -91,7 +103,21 @@ const resolveJobSeo = (job: NormalizedJob): ResolvedSeo => {
 		openGraph: {
 			title,
 			description,
+			url: job.path,
+			image,
+			imageAlt,
+			type: ogType,
+			locale: ogLocale,
+			siteName: OG_SITE_NAME,
 		},
+		twitter: {
+			card: twitterCard,
+			title,
+			description,
+			image,
+			imageAlt,
+		},
+		noIndex,
 	};
 };
 

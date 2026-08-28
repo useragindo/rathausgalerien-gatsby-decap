@@ -7,6 +7,11 @@ export type ImportedSeo = {
 	title?: string | null;
 	description?: string | null;
 	url?: string | null;
+	image?: string | null;
+	imageAlt?: string | null;
+	ogType?: string | null;
+	twitterCard?: string | null;
+	noIndex?: boolean | null;
 };
 
 export type ImportedImage = {

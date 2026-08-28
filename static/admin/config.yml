@@ -124,6 +124,34 @@ collections:
             required: false
             hint: "Erscheint in der Adressleiste. Leer lassen für Standardseiten ohne eigene URL."
             pattern: ["^$|^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
+          - label: "Image (OpenGraph/Twitter)"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Bild fuer Social-Shares. Fallback: Teaser-Bild, sonst erstes Block-Bild."
+          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - label: "OG Type"
+            name: "ogType"
+            widget: "select"
+            default: "website"
+            required: false
+            options:
+              - { label: "Website", value: "website" }
+              - { label: "Article", value: "article" }
+          - label: "Twitter Card"
+            name: "twitterCard"
+            widget: "select"
+            default: "summary_large_image"
+            required: false
+            options:
+              - { label: "Summary Large Image", value: "summary_large_image" }
+              - { label: "Summary", value: "summary" }
+          - label: "noindex"
+            name: "noIndex"
+            widget: "boolean"
+            default: false
+            required: false
+            hint: "Verhindert Indexierung durch Suchmaschinen."
 
       - label: "Content"
         name: "body"
@@ -388,6 +416,34 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
+          - label: "Image (OpenGraph/Twitter)"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Bild fuer Social-Shares. Fallback: Teaser-Bild, sonst erstes Block-Bild."
+          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - label: "OG Type"
+            name: "ogType"
+            widget: "select"
+            default: "website"
+            required: false
+            options:
+              - { label: "Website", value: "website" }
+              - { label: "Article", value: "article" }
+          - label: "Twitter Card"
+            name: "twitterCard"
+            widget: "select"
+            default: "summary_large_image"
+            required: false
+            options:
+              - { label: "Summary Large Image", value: "summary_large_image" }
+              - { label: "Summary", value: "summary" }
+          - label: "noindex"
+            name: "noIndex"
+            widget: "boolean"
+            default: false
+            required: false
+            hint: "Verhindert Indexierung durch Suchmaschinen."
 
       - label: "Content"
         name: "body"
@@ -763,6 +819,34 @@ collections:
             required: false
             hint: "Will use name by default"
             pattern: ["^$|^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+          - label: "Image (OpenGraph/Twitter)"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Bild fuer Social-Shares. Fallback: erstes Galerie-Bild, sonst Logo."
+          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - label: "OG Type"
+            name: "ogType"
+            widget: "select"
+            default: "website"
+            required: false
+            options:
+              - { label: "Website", value: "website" }
+              - { label: "Article", value: "article" }
+          - label: "Twitter Card"
+            name: "twitterCard"
+            widget: "select"
+            default: "summary_large_image"
+            required: false
+            options:
+              - { label: "Summary Large Image", value: "summary_large_image" }
+              - { label: "Summary", value: "summary" }
+          - label: "noindex"
+            name: "noIndex"
+            widget: "boolean"
+            default: false
+            required: false
+            hint: "Verhindert Indexierung durch Suchmaschinen."
 
       - { label: "Name", name: "name", widget: "string" }
 
@@ -920,6 +1004,34 @@ collections:
             required: false
             hint: "Will use location and position by default"
             pattern: ["^$|^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+          - label: "Image (OpenGraph/Twitter)"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Bild fuer Social-Shares. Fallback: erstes Galerie-Bild."
+          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - label: "OG Type"
+            name: "ogType"
+            widget: "select"
+            default: "website"
+            required: false
+            options:
+              - { label: "Website", value: "website" }
+              - { label: "Article", value: "article" }
+          - label: "Twitter Card"
+            name: "twitterCard"
+            widget: "select"
+            default: "summary_large_image"
+            required: false
+            options:
+              - { label: "Summary Large Image", value: "summary_large_image" }
+              - { label: "Summary", value: "summary" }
+          - label: "noindex"
+            name: "noIndex"
+            widget: "boolean"
+            default: false
+            required: false
+            hint: "Verhindert Indexierung durch Suchmaschinen."
 
       - { label: "Location", name: "location", widget: "string" }
 

@@ -5,6 +5,24 @@ import type {
 	SiteSettings,
 } from "./cms/types";
 
+export type ResolvedTwitter = {
+	card?: string;
+	title?: string;
+	description?: string;
+	image?: string;
+	imageAlt?: string;
+};
+
+export const OG_SITE_NAME = "RathausGalerien";
+export const DEFAULT_OG_TYPE = "website";
+export const DEFAULT_TWITTER_CARD_WITH_IMAGE = "summary_large_image";
+export const DEFAULT_TWITTER_CARD_WITHOUT_IMAGE = "summary";
+
+export const OG_LOCALE_BY_LANGUAGE: Record<string, string> = {
+	de: "de_DE",
+	en: "en_US",
+};
+
 export type ResolvedSeo = {
 	title: string;
 	description: string;
@@ -15,7 +33,12 @@ export type ResolvedSeo = {
 		url?: string;
 		image?: string;
 		imageAlt?: string;
+		type?: string;
+		locale?: string;
+		siteName?: string;
 	};
+	twitter?: ResolvedTwitter;
+	noIndex?: boolean;
 	structuredData?: Record<string, unknown> | Record<string, unknown>[];
 };
 

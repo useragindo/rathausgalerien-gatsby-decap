@@ -10,7 +10,9 @@ import {
 	resolveCategoryLabels,
 } from "../lib/content/categories";
 import { MarkdownContent } from "../lib/content/markdown";
+import { trim } from "../lib/content/normalize";
 import type {
+	LanguageCode,
 	LanguageLinks,
 	NormalizedCategory,
 	NormalizedJob,
@@ -22,6 +24,13 @@ import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
 import type { NormalizedNavigationItem } from "../lib/navigation";
 import type { ResolvedSeo } from "../lib/seo";
+import {
+	DEFAULT_OG_TYPE,
+	DEFAULT_TWITTER_CARD_WITH_IMAGE,
+	DEFAULT_TWITTER_CARD_WITHOUT_IMAGE,
+	OG_LOCALE_BY_LANGUAGE,
+	OG_SITE_NAME,
+} from "../lib/seo";
 
 type PageTemplateContext = {
 	page: NormalizedPage;
@@ -51,12 +60,39 @@ const toNavigationItems = (
 			openInNewTab: false,
 		}));
 
+const getFirstBlockImage = (
+	blocks: NormalizedPage["blocks"],
+): string | undefined => {
+	for (const block of blocks) {
+		const firstImage = block.images?.[0]?.image;
+		const image = trim(firstImage);
+		if (image) {
+			return image;
+		}
+	}
+	return undefined;
+};
+
 const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => {
 	const seo = page.frontmatter.seo;
-	const funnelUrl = page.frontmatter.funnel_url?.trim() || undefined;
+	const funnelUrl = trim(page.frontmatter.funnel_url);
 	const canonicalUrl = funnelUrl ?? page.path;
-	const title = seo?.title?.trim() || page.title;
-	const description = seo?.description?.trim() ?? "";
+	const title = trim(seo?.title) ?? page.title;
+	const description = trim(seo?.description) ?? "";
+	const image =
+		trim(seo?.image) ??
+		trim(page.frontmatter.teaser?.image) ??
+		getFirstBlockImage(page.blocks);
+	const imageAlt =
+		trim(seo?.imageAlt) ??
+		trim(page.frontmatter.teaser?.title) ??
+		trim(page.heading);
+	const ogType = trim(seo?.ogType) ?? DEFAULT_OG_TYPE;
+	const ogLocale = OG_LOCALE_BY_LANGUAGE[page.language] ?? OG_LOCALE_BY_LANGUAGE.de;
+	const twitterCard =
+		trim(seo?.twitterCard) ??
+		(image ? DEFAULT_TWITTER_CARD_WITH_IMAGE : DEFAULT_TWITTER_CARD_WITHOUT_IMAGE);
+	const noIndex = seo?.noIndex === true;
 	return {
 		title,
 		description,
@@ -65,7 +101,20 @@ const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => {
 			title,
 			description,
 			url: canonicalUrl,
+			image,
+			imageAlt,
+			type: ogType,
+			locale: ogLocale,
+			siteName: OG_SITE_NAME,
 		},
+		twitter: {
+			card: twitterCard,
+			title,
+			description,
+			image,
+			imageAlt,
+		},
+		noIndex,
 	};
 };
 
