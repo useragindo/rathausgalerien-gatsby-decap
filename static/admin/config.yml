@@ -884,6 +884,22 @@ collections:
       - { label: "Type", name: "type", widget: "hidden", default: "job" }
       - { label: "UUID", name: "uuid", widget: "uuid" }
 
+      - {
+          label: "Heading",
+          name: "heading",
+          widget: "string",
+          required: false,
+          hint: "Standard: Location – Position",
+        }
+
+      - {
+          label: "Intro",
+          name: "intro",
+          widget: "text",
+          required: false,
+          hint: "Standard: SEO-Beschreibung",
+        }
+
       - label: "SEO"
         name: "seo"
         widget: object

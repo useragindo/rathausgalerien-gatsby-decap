@@ -202,12 +202,19 @@ export const normalizeJob = (node: ImportedMdxNode): NormalizedJob | null => {
 	].filter(Boolean);
 	const title = titleParts.join(" – ") || trim(frontmatter.position) || "Job";
 	const slug = getFileSlug(node) ?? slugify(title);
+	const intro =
+		deriveDisplay(
+			frontmatter.intro,
+			frontmatter.seo?.description,
+			frontmatter.specification,
+		) || undefined;
 
 	return {
 		id: node.id,
 		language,
 		i18nKey: getFileSlug(node) ?? slug,
 		title,
+		intro,
 		slug,
 		path: withLanguagePrefix(language, `jobs/${slug}`),
 		body: trim(node.body),

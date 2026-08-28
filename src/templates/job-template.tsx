@@ -138,7 +138,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 	const galleryImages = images.slice(1);
 	const location = trim(frontmatter.location);
 	const position = trim(frontmatter.position) ?? job.title;
-	const specification = trim(frontmatter.specification);
+	const intro = job.intro;
 	const excerpt = getBodyExcerpt(job.body);
 
 	return (
@@ -189,7 +189,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 						</div>
 						<h2>{position}</h2>
 						<div className="job-detail__info-copy">
-							{specification ? <p>{specification}</p> : null}
+							{intro ? <p>{intro}</p> : null}
 						</div>
 					</div>
 

@@ -141,6 +141,7 @@ export type NormalizedJob = {
 	language: LanguageCode;
 	i18nKey: string;
 	title: string;
+	intro?: string;
 	slug: string;
 	path: string;
 	body?: string;
