@@ -74,7 +74,7 @@ blocks:
         images:
           - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
             alt: Zum Magazin
-  - reversed: true
+  - reversed: false
     layout: columns
     header: |-
       MITTAGSPAUSE, 
