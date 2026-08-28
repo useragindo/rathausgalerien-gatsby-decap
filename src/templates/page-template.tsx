@@ -52,15 +52,18 @@ const toNavigationItems = (
 		}));
 
 const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => {
+	const seo = page.frontmatter.seo;
 	const funnelUrl = page.frontmatter.funnel_url?.trim() || undefined;
 	const canonicalUrl = funnelUrl ?? page.path;
+	const title = seo?.title?.trim() || page.title;
+	const description = seo?.description?.trim() ?? "";
 	return {
-		title: page.title,
-		description: page.description ?? "",
+		title,
+		description,
 		canonicalUrl,
 		openGraph: {
-			title: page.title,
-			description: page.description ?? "",
+			title,
+			description,
 			url: canonicalUrl,
 		},
 	};
@@ -410,12 +413,12 @@ const HomepageIntro: React.FC<{
 			) : null}
 			<div className="home-intro__card">
 				<ShoppingBagIcon />
-				<h1 id="home-intro-title">{page.title}</h1>
+				<h1 id="home-intro-title">{page.heading}</h1>
 				<p>{countLabel}</p>
 				<p>Mitten in Innsbruck</p>
 			</div>
-			{page.description ? (
-				<p className="home-intro__description">{page.description}</p>
+			{page.intro ? (
+				<p className="home-intro__description">{page.intro}</p>
 			) : null}
 		</section>
 	);
@@ -515,9 +518,9 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			<article className={pageClassName}>
 				{!isHomepage ? (
 					<header className="page-hero">
-						<h1 className="page-hero__title">{page.title}</h1>
-						{page.description ? (
-							<p className="page-hero__description">{page.description}</p>
+						<h1 className="page-hero__title">{page.heading}</h1>
+						{page.intro ? (
+							<p className="page-hero__description">{page.intro}</p>
 						) : null}
 					</header>
 				) : null}

@@ -49,6 +49,8 @@ export type ImportedFrontmatter = {
 	key?: string | null;
 	template?: string | null;
 	type?: "page" | "location" | "job" | string | null;
+	heading?: string | null;
+	intro?: string | null;
 	funnel_url?: string | null;
 	order?: number | null;
 	menu?: string | null;
@@ -110,6 +112,8 @@ export type NormalizedPage = {
 	template: string;
 	title: string;
 	description?: string;
+	heading: string;
+	intro?: string;
 	path: string;
 	body?: string;
 	blocks: ImportedContentBlock[];

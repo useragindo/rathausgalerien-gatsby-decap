@@ -37,6 +37,21 @@ export const trim = (value?: string | null): string | undefined => {
 	return trimmed ? trimmed : undefined;
 };
 
+// Resolves an explicit display value, falling back through later candidates
+// until one is non-empty. Used to keep visible content (heading/intro)
+// independent of SEO metadata (seo.title/seo.description) while preserving
+// the previous behaviour when only SEO fields are set.
+export const deriveDisplay = (
+	explicit?: string | null,
+	...fallbacks: Array<string | null | undefined>
+): string =>
+	trim(explicit) ??
+	fallbacks.reduce<string | undefined>(
+		(current, fallback) => current ?? trim(fallback),
+		undefined,
+	) ??
+	"";
+
 export const isLanguageCode = (value?: string | null): value is LanguageCode =>
 	value === "de" || value === "en";
 
@@ -108,7 +123,9 @@ export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
 	const language = getLanguage(frontmatter);
 	const key = trim(frontmatter.key) ?? getFileSlug(node) ?? node.id;
 	const template = getPageTemplate(frontmatter, key);
-	const title = trim(frontmatter.seo?.title) ?? key;
+	const seoTitle = trim(frontmatter.seo?.title);
+	const seoDescription = trim(frontmatter.seo?.description);
+	const title = seoTitle ?? key;
 	const slug = getPageSlug(node);
 
 	return {
@@ -118,7 +135,9 @@ export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
 		key,
 		template,
 		title,
-		description: trim(frontmatter.seo?.description),
+		description: seoDescription,
+		heading: deriveDisplay(frontmatter.heading, seoTitle, key),
+		intro: deriveDisplay(frontmatter.intro, seoDescription) || undefined,
 		path: withLanguagePrefix(language, slug),
 		body: trim(node.body),
 		blocks: frontmatter.blocks ?? [],
