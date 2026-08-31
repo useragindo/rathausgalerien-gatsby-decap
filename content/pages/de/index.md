@@ -62,7 +62,7 @@ blocks:
       gastronomischen Angeboten.
     tiles:
       - text: Leckeres Essen für alle
-        backgroundColor: ""
+        backgroundColor: "#ca1010"
         category: ""
         link: /genuss
         color_token: c1
