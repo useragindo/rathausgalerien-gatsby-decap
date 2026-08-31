@@ -68,7 +68,7 @@ blocks:
         color_token: c1
       - images:
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
-    color_token: c1
+    color_token: ""
   - date: ""
     layout: columns
     header: WEEKEND PARKING.
