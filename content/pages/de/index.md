@@ -38,7 +38,7 @@ blocks:
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
           - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_01.jpg
         backgroundColor: "#ffa4cc"
-        color_token: ""
+        color_token: c2
       - text: |-
           ## DAS NEUE
 
