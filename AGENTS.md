@@ -156,6 +156,7 @@ The following apps are authenticated and have MCP tools available. Use `ToolSear
 - **pandaos-docs** (`pandaos-docs`) - 3 tools
 - **skills** (`skills`) - 5 tools
 - **Slides** (`slides`) - 7 tools
+- **Git** (`git`) - 14 tools
 - **Docker** (`docker`) - 48 tools
 - **credentials** (`credentials`) - 6 tools
 - **design** (`design`) - 15 tools
