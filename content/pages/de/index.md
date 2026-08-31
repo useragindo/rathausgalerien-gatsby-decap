@@ -62,11 +62,13 @@ blocks:
       gastronomischen Angeboten.
     tiles:
       - text: Leckeres Essen für alle
-        backgroundColor: "#c2d1bd"
+        backgroundColor: ""
         category: ""
         link: /genuss
+        color_token: c3
       - images:
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
+    color_token: c1
   - date: ""
     layout: columns
     header: WEEKEND PARKING.
