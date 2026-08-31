@@ -62,10 +62,10 @@ blocks:
       gastronomischen Angeboten.
     tiles:
       - text: Leckeres Essen für alle
-        backgroundColor: "#151515"
+        backgroundColor: ""
         category: ""
         link: /genuss
-        color_token: c1
+        color_token: c2
       - images:
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
     color_token: ""
