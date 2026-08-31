@@ -288,6 +288,20 @@ collections:
             options:
               - { label: "4er Grid", value: "grid-4" }
               - { label: "Text + Bild (2 Spalten)", value: "columns" }
+          - label: "Farbe (aus dem Farbschema)"
+            name: "color_token"
+            widget: "select"
+            required: false
+            default: ""
+            options:
+              - { label: "– keine –", value: "" }
+              - { label: "Hintergrund (bg)", value: "bg" }
+              - { label: "Text (text)", value: "text" }
+              - { label: "Farbe 1 (c1)", value: "c1" }
+              - { label: "Farbe 2 (c2)", value: "c2" }
+              - { label: "Farbe 3 (c3)", value: "c3" }
+              - { label: "Farbe 4 (c4)", value: "c4" }
+            hint: "Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
           - label: "Umgekehrt (Bild links, Text rechts)"
             name: "reversed"
             widget: boolean
@@ -357,13 +371,27 @@ collections:
                 widget: string
                 required: false
                 hint: "Optionaler Link, der statt der Kategorie verwendet wird."
+              - label: "Farbe (aus dem Farbschema)"
+                name: "color_token"
+                widget: "select"
+                required: false
+                default: ""
+                options:
+                  - { label: "– keine –", value: "" }
+                  - { label: "Hintergrund (bg)", value: "bg" }
+                  - { label: "Text (text)", value: "text" }
+                  - { label: "Farbe 1 (c1)", value: "c1" }
+                  - { label: "Farbe 2 (c2)", value: "c2" }
+                  - { label: "Farbe 3 (c3)", value: "c3" }
+                  - { label: "Farbe 4 (c4)", value: "c4" }
+                hint: "Nur für Text-Kacheln. Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
               - label: "Hintergrundfarbe"
                 name: "backgroundColor"
                 widget: color
                 required: false
                 allowInput: true
                 enableAlpha: false
-                hint: "Nur für Text-Kacheln. Wenn leer, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
+                hint: "Nur für Text-Kacheln. Wird ignoriert, wenn oben eine Schema-Farbe gewählt ist. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
               - label: "Icons"
                 name: "icons"
                 widget: "list"
@@ -579,6 +607,20 @@ collections:
             options:
               - { label: "4er Grid", value: "grid-4" }
               - { label: "Text + Bild (2 Spalten)", value: "columns" }
+          - label: "Farbe (aus dem Farbschema)"
+            name: "color_token"
+            widget: "select"
+            required: false
+            default: ""
+            options:
+              - { label: "– keine –", value: "" }
+              - { label: "Hintergrund (bg)", value: "bg" }
+              - { label: "Text (text)", value: "text" }
+              - { label: "Farbe 1 (c1)", value: "c1" }
+              - { label: "Farbe 2 (c2)", value: "c2" }
+              - { label: "Farbe 3 (c3)", value: "c3" }
+              - { label: "Farbe 4 (c4)", value: "c4" }
+            hint: "Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
           - label: "Umgekehrt (Bild links, Text rechts)"
             name: "reversed"
             widget: boolean
@@ -648,13 +690,27 @@ collections:
                 widget: string
                 required: false
                 hint: "Optionaler Link, der statt der Kategorie verwendet wird."
+              - label: "Farbe (aus dem Farbschema)"
+                name: "color_token"
+                widget: "select"
+                required: false
+                default: ""
+                options:
+                  - { label: "– keine –", value: "" }
+                  - { label: "Hintergrund (bg)", value: "bg" }
+                  - { label: "Text (text)", value: "text" }
+                  - { label: "Farbe 1 (c1)", value: "c1" }
+                  - { label: "Farbe 2 (c2)", value: "c2" }
+                  - { label: "Farbe 3 (c3)", value: "c3" }
+                  - { label: "Farbe 4 (c4)", value: "c4" }
+                hint: "Nur für Text-Kacheln. Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
               - label: "Hintergrundfarbe"
                 name: "backgroundColor"
                 widget: color
                 required: false
                 allowInput: true
                 enableAlpha: false
-                hint: "Nur für Text-Kacheln. Wenn leer, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
+                hint: "Nur für Text-Kacheln. Wird ignoriert, wenn oben eine Schema-Farbe gewählt ist. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
               - label: "Icons"
                 name: "icons"
                 widget: "list"

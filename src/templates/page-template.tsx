@@ -589,6 +589,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 							blocks={page.blocks}
 							language={page.language}
 							categories={categories}
+							theme={theme}
 						/>
 						<div className="page-body">
 							<MarkdownContent content={page.body} />

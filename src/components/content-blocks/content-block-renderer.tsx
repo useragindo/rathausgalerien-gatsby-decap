@@ -20,6 +20,7 @@ import type {
 	ImportedIcon,
 	ImportedImage,
 	NormalizedCategory,
+	SiteTheme,
 } from "../../lib/content/types";
 import { ImageSlider } from "./image-slider";
 
@@ -27,6 +28,27 @@ type ContentBlockRendererProps = {
 	blocks?: Array<PageContentBlock | ImportedContentBlock> | null;
 	language?: LanguageCode;
 	categories?: NormalizedCategory[] | null;
+	theme?: SiteTheme | null;
+};
+
+// A colour token (bg, text, c1 … c4) always takes priority over a free hex
+// value. Resolved against the theme's own slots — a token the active scheme
+// doesn't carry is ignored rather than emitting a variable that resolves to
+// nothing.
+const resolveColorTokenStyle = (
+	token: string | null | undefined,
+	theme: SiteTheme | null | undefined,
+): React.CSSProperties | undefined => {
+	const slot = text(token);
+
+	if (!slot || !theme?.colors[slot]) {
+		return undefined;
+	}
+
+	return {
+		background: `var(--scheme-${slot})`,
+		color: `var(--scheme-${slot}-on)`,
+	};
 };
 
 type ImportedBlockLayout =
@@ -429,7 +451,8 @@ const TileBox: React.FC<{
 	variant: "content" | "media";
 	tile: ImportedContentTile;
 	link?: string;
-}> = ({ variant, tile, link }) => {
+	theme?: SiteTheme | null;
+}> = ({ variant, tile, link, theme }) => {
 	const boxClassName = [
 		"content-block__tile",
 		variant === "media"
@@ -439,7 +462,11 @@ const TileBox: React.FC<{
 
 	const tileImages = variant === "media" ? getTileImages(tile) : [];
 	const backgroundColor = variant === "content" ? text(tile.backgroundColor) : undefined;
-	const style = backgroundColor ? { backgroundColor } : undefined;
+	const style =
+		variant === "content"
+			? resolveColorTokenStyle(tile.color_token, theme) ??
+				(backgroundColor ? { backgroundColor } : undefined)
+			: undefined;
 	const { heroIcon, listIcons } =
 		variant === "content" ? resolveIconDisplay(tile.icons) : { heroIcon: undefined, listIcons: [] };
 
@@ -485,7 +512,8 @@ const TileGrid: React.FC<{
 	// "reversed" is set, matching the legacy text/images rendering below. This
 	// has no effect on grid-4, which always keeps the tiles' authored order.
 	reverseTwoColumn?: boolean;
-}> = ({ tiles, categories, language, reverseTwoColumn }) => {
+	theme?: SiteTheme | null;
+}> = ({ tiles, categories, language, reverseTwoColumn, theme }) => {
 	const items: { variant: "content" | "media"; tile: ImportedContentTile; link?: string; key: string }[] = [];
 
 	for (const tile of tiles.slice(0, 4)) {
@@ -516,7 +544,7 @@ const TileGrid: React.FC<{
 	return (
 		<>
 			{orderedItems.slice(0, 4).map(({ variant, tile, link, key }) => (
-				<TileBox key={key} variant={variant} tile={tile} link={link} />
+				<TileBox key={key} variant={variant} tile={tile} link={link} theme={theme} />
 			))}
 		</>
 	);
@@ -527,7 +555,8 @@ const ImportedBlock: React.FC<{
 	index: number;
 	language?: LanguageCode;
 	categories?: NormalizedCategory[] | null;
-}> = ({ block, index, language = "de", categories }) => {
+	theme?: SiteTheme | null;
+}> = ({ block, index, language = "de", categories, theme }) => {
 	const images = (block.images ?? []).filter((image) => text(image.image));
 	const { heroIcon, listIcons } = resolveIconDisplay(block.icons);
 	const icons = [...(heroIcon ? [heroIcon] : []), ...listIcons];
@@ -566,6 +595,9 @@ const ImportedBlock: React.FC<{
 		.join(" ");
 
 	const contentBackgroundColor = text(block.backgroundColor);
+	const contentTileStyle =
+		resolveColorTokenStyle(block.color_token, theme) ??
+		(contentBackgroundColor ? { backgroundColor: contentBackgroundColor } : undefined);
 
 	const contentTile = (
 		<div
@@ -576,7 +608,7 @@ const ImportedBlock: React.FC<{
 			]
 				.filter(Boolean)
 				.join(" ")}
-			style={contentBackgroundColor ? { backgroundColor: contentBackgroundColor } : undefined}
+			style={contentTileStyle}
 		>
 			{heroIcon && text(heroIcon.icon) ? (
 				<img className="content-block__hero-icon" src={text(heroIcon.icon)} alt="" loading="lazy" />
@@ -634,6 +666,7 @@ const ImportedBlock: React.FC<{
 						categories={categories}
 						language={language}
 						reverseTwoColumn={isTwoColumnLayout && isReversed}
+						theme={theme}
 					/>
 				) : isReversed ? (
 					<>
@@ -660,6 +693,7 @@ const renderBlock = (
 	index: number,
 	language: LanguageCode,
 	categories: NormalizedCategory[] | null | undefined,
+	theme: SiteTheme | null | undefined,
 ): React.ReactNode => {
 	if (isImportedBlock(block)) {
 		return (
@@ -669,6 +703,7 @@ const renderBlock = (
 				index={index}
 				language={language}
 				categories={categories}
+				theme={theme}
 			/>
 		);
 	}
@@ -703,10 +738,17 @@ export const ContentBlockRenderer: React.FC<ContentBlockRendererProps> = ({
 	blocks,
 	language = "de",
 	categories,
+	theme,
 }) => {
 	if (!blocks?.length) {
 		return null;
 	}
 
-	return <>{blocks.map((block, index) => renderBlock(block, index, language, categories))}</>;
+	return (
+		<>
+			{blocks.map((block, index) =>
+				renderBlock(block, index, language, categories, theme),
+			)}
+		</>
+	);
 };

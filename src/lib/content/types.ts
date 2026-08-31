@@ -33,6 +33,9 @@ export type ImportedContentTile = {
 	category?: string | null;
 	link?: string | null;
 	backgroundColor?: string | null;
+	// Slot of the active colour scheme (bg, text, c1 … c4). Takes priority over
+	// backgroundColor when set.
+	color_token?: string | null;
 	icons?: ImportedIcon[] | null;
 };
 
@@ -42,6 +45,7 @@ export type ImportedContentBlock = {
 	teaserText?: string | null;
 	text?: string | null;
 	backgroundColor?: string | null;
+	color_token?: string | null;
 	reversed?: boolean | null;
 	date?: string | null;
 	images?: ImportedImage[] | null;

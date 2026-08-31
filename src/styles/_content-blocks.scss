@@ -437,29 +437,34 @@
 }
 
 
-/* ─── Farb-Rotation der Content-Kacheln auf der Index-Seite ─────────── */
+/* ─── Farb-Rotation der Content-Kacheln auf der Index-Seite ───────────
+   Direkt an die Schema-Slots gebunden statt an den --color-*-Alias, damit ein
+   c1..c4 im aktiven Schema auch die automatische Abwechslung führt. Ein Tile
+   mit color_token oder backgroundColor trägt bereits ein Inline-Style, das
+   jede Klassenregel unabhängig von deren Reihenfolge überschreibt — die
+   Rotation greift also automatisch nur, wenn keins von beiden gesetzt ist. */
 .page--index .content-block--index-1 .content-block__tile--content,
 .page--index .content-block--index-2 .content-block__tile--content,
 .page--index .content-block--index-6 .content-block__tile--content,
 .page--index .content-block--index-10 .content-block__tile--content {
-	background: var(--color-blau);
+	background: var(--scheme-c1, #7bd0e5);
 }
 
 .page--index .content-block--index-3 .content-block__tile--content,
 .page--index .content-block--index-7 .content-block__tile--content,
 .page--index .content-block--index-11 .content-block__tile--content {
-	background: var(--color-rosa);
+	background: var(--scheme-c2, #ffa4cc);
 }
 
 .page--index .content-block--index-5 .content-block__tile--content,
 .page--index .content-block--index-9 .content-block__tile--content {
-	background: var(--color-gelb);
+	background: var(--scheme-c3, #ffbb33);
 }
 
 .page--index .content-block--index-4 .content-block__tile--content,
 .page--index .content-block--index-8 .content-block__tile--content,
 .page--index .content-block--index-12 .content-block__tile--content {
-	background: var(--color-lila);
+	background: var(--scheme-c4, #b58ec1);
 }
 
 
