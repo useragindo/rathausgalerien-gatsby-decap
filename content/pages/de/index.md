@@ -80,9 +80,10 @@ blocks:
           340 Parkplätze
 
           8 E-Lade Plätze
-        backgroundColor: "#7bd0e5"
+        backgroundColor: ""
         icons:
           - icon: /media/pages/icon-car.svg
+        color_token: c3
       - images:
           - image: /media/pages/rhg_parken_01.png
   - date: ""
