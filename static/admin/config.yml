@@ -290,17 +290,17 @@ collections:
               - { label: "Text + Bild (2 Spalten)", value: "columns" }
           - label: "Farbe (aus dem Farbschema)"
             name: "color_token"
-            widget: "select"
+            widget: "color-token-select"
             required: false
             default: ""
             options:
               - { label: "– keine –", value: "" }
-              - { label: "Hintergrund (bg)", value: "bg" }
-              - { label: "Text (text)", value: "text" }
-              - { label: "Farbe 1 (c1)", value: "c1" }
-              - { label: "Farbe 2 (c2)", value: "c2" }
-              - { label: "Farbe 3 (c3)", value: "c3" }
-              - { label: "Farbe 4 (c4)", value: "c4" }
+              - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+              - { label: "Text (text)", value: "text", color: "#22254e" }
+              - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+              - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+              - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+              - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
             hint: "Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
           - label: "Umgekehrt (Bild links, Text rechts)"
             name: "reversed"
@@ -373,17 +373,17 @@ collections:
                 hint: "Optionaler Link, der statt der Kategorie verwendet wird."
               - label: "Farbe (aus dem Farbschema)"
                 name: "color_token"
-                widget: "select"
+                widget: "color-token-select"
                 required: false
                 default: ""
                 options:
                   - { label: "– keine –", value: "" }
-                  - { label: "Hintergrund (bg)", value: "bg" }
-                  - { label: "Text (text)", value: "text" }
-                  - { label: "Farbe 1 (c1)", value: "c1" }
-                  - { label: "Farbe 2 (c2)", value: "c2" }
-                  - { label: "Farbe 3 (c3)", value: "c3" }
-                  - { label: "Farbe 4 (c4)", value: "c4" }
+                  - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+                  - { label: "Text (text)", value: "text", color: "#22254e" }
+                  - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+                  - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+                  - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+                  - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
                 hint: "Nur für Text-Kacheln. Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
               - label: "Hintergrundfarbe"
                 name: "backgroundColor"
@@ -609,17 +609,17 @@ collections:
               - { label: "Text + Bild (2 Spalten)", value: "columns" }
           - label: "Farbe (aus dem Farbschema)"
             name: "color_token"
-            widget: "select"
+            widget: "color-token-select"
             required: false
             default: ""
             options:
               - { label: "– keine –", value: "" }
-              - { label: "Hintergrund (bg)", value: "bg" }
-              - { label: "Text (text)", value: "text" }
-              - { label: "Farbe 1 (c1)", value: "c1" }
-              - { label: "Farbe 2 (c2)", value: "c2" }
-              - { label: "Farbe 3 (c3)", value: "c3" }
-              - { label: "Farbe 4 (c4)", value: "c4" }
+              - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+              - { label: "Text (text)", value: "text", color: "#22254e" }
+              - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+              - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+              - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+              - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
             hint: "Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
           - label: "Umgekehrt (Bild links, Text rechts)"
             name: "reversed"
@@ -692,17 +692,17 @@ collections:
                 hint: "Optionaler Link, der statt der Kategorie verwendet wird."
               - label: "Farbe (aus dem Farbschema)"
                 name: "color_token"
-                widget: "select"
+                widget: "color-token-select"
                 required: false
                 default: ""
                 options:
                   - { label: "– keine –", value: "" }
-                  - { label: "Hintergrund (bg)", value: "bg" }
-                  - { label: "Text (text)", value: "text" }
-                  - { label: "Farbe 1 (c1)", value: "c1" }
-                  - { label: "Farbe 2 (c2)", value: "c2" }
-                  - { label: "Farbe 3 (c3)", value: "c3" }
-                  - { label: "Farbe 4 (c4)", value: "c4" }
+                  - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+                  - { label: "Text (text)", value: "text", color: "#22254e" }
+                  - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+                  - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+                  - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+                  - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
                 hint: "Nur für Text-Kacheln. Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
               - label: "Hintergrundfarbe"
                 name: "backgroundColor"
