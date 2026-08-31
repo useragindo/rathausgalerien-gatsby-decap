@@ -23,104 +23,6 @@ editor:
   preview: false
 
 collections:
-  - name: "settings"
-    label: "Einstellungen"
-    editor:
-      preview: false
-    files:
-      - name: "theme"
-        label: "Farben"
-        file: "content/settings/theme.md"
-        fields:
-          - { label: "Type", name: "type", widget: "hidden", default: "settings" }
-          - { label: "Name", name: "name", widget: "hidden", default: "theme" }
-          - label: "Aktives Farbschema"
-            name: "active_scheme"
-            widget: relation
-            collection: "color-schemes"
-            valueField: "key"
-            displayFields:
-              - name
-            searchFields:
-              - name
-            hint: "Gilt für die gesamte Website. Die Auswahl kommt aus der Collection 'Farbschemas'."
-
-  - name: "color-schemes"
-    label: "Farbschemas"
-    label_singular: "Farbschema"
-    folder: "content/color-schemes"
-    identifier_field: key
-    summary: "{{name}}"
-    create: true
-    editor:
-      preview: false
-    fields:
-      - {
-          label: "Type",
-          name: "type",
-          widget: "hidden",
-          default: "color_scheme",
-        }
-
-      - label: "Key"
-        name: "key"
-        widget: "string"
-        hint: "Eindeutiger Schlüssel und Dateiname, z. B. herbst."
-        pattern: ["^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
-
-      - label: "Name"
-        name: "name"
-        widget: "string"
-        hint: "Anzeigename in der Auswahl unter Einstellungen, z. B. Herbst."
-
-      - label: "Farben"
-        name: "colors"
-        widget: "object"
-        hint: "Diese sechs Farben gelten für das gesamte Frontend, sobald das Schema aktiv ist."
-        fields:
-          - {
-              label: "Hintergrund (bg)",
-              name: "bg",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Text (text)",
-              name: "text",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Farbe 1 (c1)",
-              name: "c1",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Farbe 2 (c2)",
-              name: "c2",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Farbe 3 (c3)",
-              name: "c3",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Farbe 4 (c4)",
-              name: "c4",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-
   - name: "pages"
     label: "Pages"
     label_singular: "Page"
@@ -793,92 +695,6 @@ collections:
         widget: "string"
         required: false
 
-  - name: "blocks"
-    label: "Blocks"
-    label_singular: "Block"
-    folder: "content/blocks"
-    media_folder: "/static/media/shared"
-    public_folder: "/media/shared"
-    path: "{{locale}}/{{slug}}"
-    identifier_field: name
-    summary: "{{name}} ({{locale}})"
-    view_filters:
-      - label: "Deutsch"
-        field: locale
-        pattern: "de"
-      - label: "English"
-        field: locale
-        pattern: "en"
-    create: true
-    editor:
-      preview: false
-    fields:
-      - label: "Sprache"
-        name: "locale"
-        widget: "select"
-        default: "de"
-        options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
-
-      - { label: "Type", name: "type", widget: "hidden", default: "block" }
-
-      - label: "Name"
-        name: "name"
-        widget: "select"
-        options:
-          - { label: "General", value: "general" }
-          - { label: "Header", value: "header" }
-          - { label: "Footer", value: "footer" }
-          - { label: "Location", value: "location" }
-
-      - {
-          label: "Company Name",
-          name: "company_name",
-          widget: string,
-          required: false,
-        }
-
-      - label: "Address Lines"
-        name: "address_lines"
-        widget: "list"
-        required: false
-        field: { label: "Line", name: "line", widget: "string" }
-
-      - label: "Social Media"
-        name: "social_media"
-        widget: "list"
-        required: false
-        fields:
-          - label: "Icon"
-            name: "icon"
-            widget: "image"
-            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
-            pattern: ["(?:.+)svg$", "Must be a SVG file"]
-          - label: "Link"
-            name: "link"
-            widget: "string"
-            pattern:
-              [
-                "^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$",
-                "Must start with slash or http(s)://",
-              ]
-            hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
-
-      - {
-          label: "Copyright",
-          name: "copyright",
-          widget: "string",
-          required: false,
-        }
-
-      - {
-          label: "Label Hours",
-          name: "label_hours",
-          widget: string,
-          required: false,
-        }
-
   - name: "categories"
     label: "Categories"
     label_singular: "Category"
@@ -1209,3 +1025,187 @@ collections:
           - heading-two
           - bulleted-list
           - numbered-list
+  - name: "blocks"
+    label: "Blocks"
+    label_singular: "Block"
+    folder: "content/blocks"
+    media_folder: "/static/media/shared"
+    public_folder: "/media/shared"
+    path: "{{locale}}/{{slug}}"
+    identifier_field: name
+    summary: "{{name}} ({{locale}})"
+    view_filters:
+      - label: "Deutsch"
+        field: locale
+        pattern: "de"
+      - label: "English"
+        field: locale
+        pattern: "en"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - label: "Sprache"
+        name: "locale"
+        widget: "select"
+        default: "de"
+        options:
+          - { label: "Deutsch", value: "de" }
+          - { label: "English", value: "en" }
+
+      - { label: "Type", name: "type", widget: "hidden", default: "block" }
+
+      - label: "Name"
+        name: "name"
+        widget: "select"
+        options:
+          - { label: "General", value: "general" }
+          - { label: "Header", value: "header" }
+          - { label: "Footer", value: "footer" }
+          - { label: "Location", value: "location" }
+
+      - {
+          label: "Company Name",
+          name: "company_name",
+          widget: string,
+          required: false,
+        }
+
+      - label: "Address Lines"
+        name: "address_lines"
+        widget: "list"
+        required: false
+        field: { label: "Line", name: "line", widget: "string" }
+
+      - label: "Social Media"
+        name: "social_media"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Icon"
+            name: "icon"
+            widget: "image"
+            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+            pattern: ["(?:.+)svg$", "Must be a SVG file"]
+          - label: "Link"
+            name: "link"
+            widget: "string"
+            pattern:
+              [
+                "^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$",
+                "Must start with slash or http(s)://",
+              ]
+            hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
+
+      - {
+          label: "Copyright",
+          name: "copyright",
+          widget: "string",
+          required: false,
+        }
+
+      - {
+          label: "Label Hours",
+          name: "label_hours",
+          widget: string,
+          required: false,
+        }
+
+  - name: "color-schemes"
+    label: "Farbschemas"
+    label_singular: "Farbschema"
+    folder: "content/color-schemes"
+    identifier_field: key
+    summary: "{{name}}"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Type",
+          name: "type",
+          widget: "hidden",
+          default: "color_scheme",
+        }
+
+      - label: "Key"
+        name: "key"
+        widget: "string"
+        hint: "Eindeutiger Schlüssel und Dateiname, z. B. herbst."
+        pattern: ["^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
+
+      - label: "Name"
+        name: "name"
+        widget: "string"
+        hint: "Anzeigename in der Auswahl unter Einstellungen, z. B. Herbst."
+
+      - label: "Farben"
+        name: "colors"
+        widget: "object"
+        hint: "Diese sechs Farben gelten für das gesamte Frontend, sobald das Schema aktiv ist."
+        fields:
+          - {
+              label: "Hintergrund (bg)",
+              name: "bg",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+          - {
+              label: "Text (text)",
+              name: "text",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+          - {
+              label: "Farbe 1 (c1)",
+              name: "c1",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+          - {
+              label: "Farbe 2 (c2)",
+              name: "c2",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+          - {
+              label: "Farbe 3 (c3)",
+              name: "c3",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+          - {
+              label: "Farbe 4 (c4)",
+              name: "c4",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+
+  - name: "settings"
+    label: "Einstellungen"
+    editor:
+      preview: false
+    files:
+      - name: "theme"
+        label: "Farben"
+        file: "content/settings/theme.md"
+        fields:
+          - { label: "Type", name: "type", widget: "hidden", default: "settings" }
+          - { label: "Name", name: "name", widget: "hidden", default: "theme" }
+          - label: "Aktives Farbschema"
+            name: "active_scheme"
+            widget: relation
+            collection: "color-schemes"
+            valueField: "key"
+            displayFields:
+              - name
+            searchFields:
+              - name
+            hint: "Gilt für die gesamte Website. Die Auswahl kommt aus der Collection 'Farbschemas'."
+
