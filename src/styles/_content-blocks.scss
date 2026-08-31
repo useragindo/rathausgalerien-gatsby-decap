@@ -239,14 +239,14 @@
 	height: 3rem;
 	padding: var(--space-xs);
 	border-radius: 999rem;
-	background: rgba(255, 255, 255, 0.35);
+	background: color-mix(in srgb, var(--color-white) 35%, transparent);
 	color: inherit;
 	text-decoration: none;
 	transition: background var(--transition-base);
 }
 
 .content-block__icon-action:hover {
-	background: rgba(255, 255, 255, 0.55);
+	background: color-mix(in srgb, var(--color-white) 55%, transparent);
 }
 
 .content-block__icon-action img {
@@ -320,7 +320,9 @@
 	color: var(--color-white);
 	cursor: pointer;
 	opacity: 0.85;
-	filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.35));
+	filter: drop-shadow(
+		0 1px 6px color-mix(in srgb, var(--color-black) 35%, transparent)
+	);
 	transition:
 		opacity var(--transition-base),
 		transform var(--transition-base);

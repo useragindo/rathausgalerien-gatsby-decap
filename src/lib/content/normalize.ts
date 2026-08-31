@@ -3,10 +3,12 @@ import type {
 	ImportedMdxNode,
 	LanguageCode,
 	NormalizedCategory,
+	NormalizedColorScheme,
 	NormalizedJob,
 	NormalizedLocation,
 	NormalizedPage,
 	SiteNavigationItem,
+	SiteTheme,
 } from "./types";
 
 const DEFAULT_LANGUAGE: LanguageCode = "de";
@@ -249,6 +251,90 @@ export const normalizeCategory = (
 	};
 };
 
+// Slot names become CSS custom properties, so only characters that are safe
+// inside a custom property name are accepted. Which slots exist is the CMS's
+// business, not this module's.
+const COLOR_SLOT_PATTERN = /^[a-z][a-z0-9-]*$/;
+
+export const normalizeColorScheme = (
+	node: ImportedMdxNode,
+): NormalizedColorScheme | null => {
+	const frontmatter = node.frontmatter;
+
+	if (!frontmatter || frontmatter.type !== "color_scheme") {
+		return null;
+	}
+
+	const key = trim(frontmatter.key) ?? getFileSlug(node);
+
+	if (!key) {
+		return null;
+	}
+
+	const colors: Record<string, string> = {};
+
+	for (const [slot, value] of Object.entries(frontmatter.colors ?? {})) {
+		const color = trim(value);
+
+		if (!color || !COLOR_SLOT_PATTERN.test(slot)) {
+			continue;
+		}
+
+		colors[slot] = color;
+	}
+
+	if (!Object.keys(colors).length) {
+		return null;
+	}
+
+	return {
+		id: node.id,
+		key,
+		name: deriveDisplay(frontmatter.name, key),
+		colors,
+	};
+};
+
+// Reads the single settings entry that holds the active scheme. Returns the
+// scheme key, not the scheme itself, so resolving stays in one place.
+export const normalizeThemeSettings = (
+	node: ImportedMdxNode,
+): string | null => {
+	const frontmatter = node.frontmatter;
+
+	if (
+		!frontmatter ||
+		frontmatter.type !== "settings" ||
+		trim(frontmatter.name) !== "theme"
+	) {
+		return null;
+	}
+
+	return trim(frontmatter.active_scheme) ?? null;
+};
+
+// Falls back to the first scheme when the setting is empty or points at a
+// scheme that no longer exists, so a missing selection never leaves the site
+// without colours.
+export const resolveActiveTheme = (
+	schemes: NormalizedColorScheme[],
+	activeSchemeKey?: string | null,
+): SiteTheme | undefined => {
+	if (!schemes.length) {
+		return undefined;
+	}
+
+	const requested = trim(activeSchemeKey);
+	const scheme =
+		schemes.find((candidate) => candidate.key === requested) ?? schemes[0];
+
+	return {
+		key: scheme.key,
+		name: scheme.name,
+		colors: scheme.colors,
+	};
+};
+
 export const createNavigationFromPages = (
 	pages: NormalizedPage[],
 ): SiteNavigationItem[] =>
@@ -352,6 +438,12 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 	const categories = nodes
 		.map(normalizeCategory)
 		.filter((category): category is NormalizedCategory => Boolean(category));
+	const colorSchemes = nodes
+		.map(normalizeColorScheme)
+		.filter((scheme): scheme is NormalizedColorScheme => Boolean(scheme));
+	const activeSchemeKey = nodes
+		.map(normalizeThemeSettings)
+		.find((key): key is string => Boolean(key));
 
 	return {
 		pages,
@@ -359,5 +451,6 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 		jobs,
 		categories,
 		navigation: createNavigationFromPages(pages),
+		theme: resolveActiveTheme(colorSchemes, activeSchemeKey),
 	};
 };

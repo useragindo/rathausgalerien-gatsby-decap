@@ -23,6 +23,104 @@ editor:
   preview: false
 
 collections:
+  - name: "settings"
+    label: "Einstellungen"
+    editor:
+      preview: false
+    files:
+      - name: "theme"
+        label: "Farben"
+        file: "content/settings/theme.md"
+        fields:
+          - { label: "Type", name: "type", widget: "hidden", default: "settings" }
+          - { label: "Name", name: "name", widget: "hidden", default: "theme" }
+          - label: "Aktives Farbschema"
+            name: "active_scheme"
+            widget: relation
+            collection: "color-schemes"
+            valueField: "key"
+            displayFields:
+              - name
+            searchFields:
+              - name
+            hint: "Gilt für die gesamte Website. Die Auswahl kommt aus der Collection 'Farbschemas'."
+
+  - name: "color-schemes"
+    label: "Farbschemas"
+    label_singular: "Farbschema"
+    folder: "content/color-schemes"
+    identifier_field: key
+    summary: "{{name}}"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Type",
+          name: "type",
+          widget: "hidden",
+          default: "color_scheme",
+        }
+
+      - label: "Key"
+        name: "key"
+        widget: "string"
+        hint: "Eindeutiger Schlüssel und Dateiname, z. B. herbst."
+        pattern: ["^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
+
+      - label: "Name"
+        name: "name"
+        widget: "string"
+        hint: "Anzeigename in der Auswahl unter Einstellungen, z. B. Herbst."
+
+      - label: "Farben"
+        name: "colors"
+        widget: "object"
+        hint: "Diese sechs Farben gelten für das gesamte Frontend, sobald das Schema aktiv ist."
+        fields:
+          - {
+              label: "Hintergrund (bg)",
+              name: "bg",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+          - {
+              label: "Text (text)",
+              name: "text",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+          - {
+              label: "Farbe 1 (c1)",
+              name: "c1",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+          - {
+              label: "Farbe 2 (c2)",
+              name: "c2",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+          - {
+              label: "Farbe 3 (c3)",
+              name: "c3",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+          - {
+              label: "Farbe 4 (c4)",
+              name: "c4",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+            }
+
   - name: "pages"
     label: "Pages"
     label_singular: "Page"

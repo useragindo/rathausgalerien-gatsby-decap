@@ -1,10 +1,13 @@
 import * as React from "react";
 import { Footer } from "../components/footer/footer";
 import { Header } from "../components/header/header";
+import { ThemeStyle } from "../components/theme/theme-style";
+import type { SiteTheme } from "../lib/content/types";
 import type { NormalizedNavigationItem } from "../lib/navigation";
 
 type SiteLayoutProps = {
 	children: React.ReactNode;
+	theme?: SiteTheme | null;
 	mainNavigation?: NormalizedNavigationItem[];
 	utilityNavigation?: NormalizedNavigationItem[];
 	headerIconNavigation?: NormalizedNavigationItem[];
@@ -18,6 +21,7 @@ type SiteLayoutProps = {
 
 export const SiteLayout: React.FC<SiteLayoutProps> = ({
 	children,
+	theme,
 	mainNavigation = [],
 	utilityNavigation = [],
 	headerIconNavigation = [],
@@ -29,6 +33,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 	siteTitle = "RathausGalerien",
 }) => (
 	<div className="site-shell">
+		<ThemeStyle theme={theme} />
 		<a className="skip-link" href="#main-content">
 			Zum Inhalt springen
 		</a>

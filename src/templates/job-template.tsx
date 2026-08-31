@@ -8,6 +8,7 @@ import type {
 	LanguageLinks,
 	NormalizedJob,
 	SiteNavigationItem,
+	SiteTheme,
 } from "../lib/content/types";
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
@@ -24,6 +25,7 @@ import {
 type JobTemplateContext = {
 	job: NormalizedJob;
 	navigation: SiteNavigationItem[];
+	theme?: SiteTheme;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 };
@@ -156,7 +158,7 @@ const ApplicationIcon: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
-	const { job, navigation, languageLinks, socialLinks } = pageContext;
+	const { job, navigation, theme, languageLinks, socialLinks } = pageContext;
 	const { frontmatter } = job;
 	const languages = buildLanguageOptions(languageLinks);
 	const images = frontmatter.images ?? [];
@@ -169,6 +171,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 
 	return (
 		<SiteLayout
+			theme={theme}
 			mainNavigation={toNavigationItems(navigation, job.language, "main")}
 			footerNavigation={buildFooterNavigation(navigation, job.language)}
 			socialLinks={socialLinks}

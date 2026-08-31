@@ -49,9 +49,9 @@
 .location-plan__map {
 	position: relative;
 	overflow: auto;
-	border: 1px solid rgba(27, 57, 91, 0.12);
+	border: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
 	background: var(--color-blue-50);
-	box-shadow: 0 1.25rem 3rem rgba(27, 57, 91, 0.08);
+	box-shadow: 0 1.25rem 3rem color-mix(in srgb, var(--color-text) 8%, transparent);
 }
 
 .location-plan__svg {
@@ -99,7 +99,7 @@
 	pointer-events: none;
 	background: var(--color-blue-900);
 	color: white;
-	box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.18);
+	box-shadow: 0 1rem 2rem color-mix(in srgb, var(--color-black) 18%, transparent);
 }
 
 .location-plan__tooltip strong,
@@ -149,13 +149,13 @@
 }
 
 .location-plan__ivb .hfs_widgetAppContainer {
-	border: 2px dotted rgba(27, 57, 91, 0.24);
+	border: 2px dotted color-mix(in srgb, var(--color-text) 24%, transparent);
 	border-bottom: none;
 	padding: 0.5rem;
 }
 
 .location-plan__ivb .hfs_widgetIconBranding {
-	border: 2px dotted rgba(27, 57, 91, 0.24);
+	border: 2px dotted color-mix(in srgb, var(--color-text) 24%, transparent);
 	border-top: none;
 	padding: 0.5rem;
 }
@@ -237,7 +237,7 @@
 	align-items: center;
 	justify-content: center;
 	padding: var(--page-gutter);
-	background: rgba(0, 0, 0, 0.78);
+	background: color-mix(in srgb, var(--color-black) 78%, transparent);
 }
 
 .location-plan__lightbox-content {
@@ -245,7 +245,7 @@
 	max-width: min(72rem, 100%);
 	max-height: 92vh;
 	background: white;
-	box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.35);
+	box-shadow: 0 1.5rem 5rem color-mix(in srgb, var(--color-black) 35%, transparent);
 }
 
 .location-plan__lightbox-content img {

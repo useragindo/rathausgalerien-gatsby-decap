@@ -19,6 +19,7 @@ import type {
 	NormalizedLocation,
 	NormalizedPage,
 	SiteNavigationItem,
+	SiteTheme,
 } from "../lib/content/types";
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
@@ -38,6 +39,7 @@ type PageTemplateContext = {
 	locations: NormalizedLocation[];
 	jobs: NormalizedJob[];
 	categories: NormalizedCategory[];
+	theme?: SiteTheme;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 };
@@ -543,6 +545,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 		locations,
 		jobs,
 		categories,
+		theme,
 		languageLinks,
 		socialLinks,
 	} = pageContext;
@@ -557,6 +560,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 
 	return (
 		<SiteLayout
+			theme={theme}
 			mainNavigation={mainNavigation}
 			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}

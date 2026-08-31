@@ -49,11 +49,18 @@ export type ImportedContentBlock = {
 	tiles?: ImportedContentTile[] | null;
 };
 
+// A colour scheme is edited in the CMS, so the set of slots is content, not
+// code: the record carries whatever slots the scheme file defines (today bg,
+// text, c1 … c4).
+export type ImportedColorSlots = Record<string, string | null | undefined>;
+
 export type ImportedFrontmatter = {
 	locale?: LanguageCode | string | null;
 	key?: string | null;
 	template?: string | null;
-	type?: "page" | "location" | "job" | string | null;
+	type?: "page" | "location" | "job" | "color_scheme" | "settings" | string | null;
+	colors?: ImportedColorSlots | null;
+	active_scheme?: string | null;
 	heading?: string | null;
 	intro?: string | null;
 	funnel_url?: string | null;
@@ -160,6 +167,21 @@ export type NormalizedCategory = {
 	name: string;
 	slug: string;
 	frontmatter: ImportedFrontmatter;
+};
+
+export type NormalizedColorScheme = {
+	id: string;
+	key: string;
+	name: string;
+	// Slot name (bg, text, c1 …) to colour value, exactly as the CMS holds it.
+	colors: Record<string, string>;
+};
+
+// The colour scheme the CMS has activated for the whole site.
+export type SiteTheme = {
+	key: string;
+	name: string;
+	colors: Record<string, string>;
 };
 
 export type SiteNavigationItem = {

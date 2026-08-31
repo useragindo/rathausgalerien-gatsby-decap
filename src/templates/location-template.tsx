@@ -10,6 +10,7 @@ import type {
 	NormalizedCategory,
 	NormalizedLocation,
 	SiteNavigationItem,
+	SiteTheme,
 } from "../lib/content/types";
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
@@ -27,6 +28,7 @@ type LocationTemplateContext = {
 	location: NormalizedLocation;
 	navigation: SiteNavigationItem[];
 	categories: NormalizedCategory[];
+	theme?: SiteTheme;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 };
@@ -264,8 +266,14 @@ const PinIcon: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
-	const { location, navigation, categories, languageLinks, socialLinks } =
-		pageContext;
+	const {
+		location,
+		navigation,
+		categories,
+		theme,
+		languageLinks,
+		socialLinks,
+	} = pageContext;
 	const { frontmatter } = location;
 	const languages = buildLanguageOptions(languageLinks);
 	const images = frontmatter.images ?? [];
@@ -297,6 +305,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 
 	return (
 		<SiteLayout
+			theme={theme}
 			mainNavigation={toNavigationItems(navigation, location.language, "main")}
 			footerNavigation={buildFooterNavigation(navigation, location.language)}
 			socialLinks={socialLinks}

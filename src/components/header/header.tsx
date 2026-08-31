@@ -304,13 +304,9 @@ export const Header: React.FC<HeaderProps> = ({
 
 					{/* Logo */}
 					<a className="site-header__brand" href={homeUrl} aria-label={`${siteTitle} Startseite`}>
-						<img
-							className="site-header__logo"
-							src="/media/locations/_rathausgalerien.svg"
-							alt=""
-							width="400"
-							height="109"
-						/>
+						{/* Masked span, not an img: the logo is painted in the scheme's
+						    text colour (see .site-header__logo). */}
+						<span className="site-header__logo" aria-hidden="true" />
 						<span className="visually-hidden">{siteTitle}</span>
 					</a>
 

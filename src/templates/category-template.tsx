@@ -8,6 +8,7 @@ import type {
 	NormalizedCategory,
 	NormalizedLocation,
 	SiteNavigationItem,
+	SiteTheme,
 } from "../lib/content/types";
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
@@ -20,6 +21,7 @@ type CategoryTemplateContext = {
 	navigation: SiteNavigationItem[];
 	locations: NormalizedLocation[];
 	categories: NormalizedCategory[];
+	theme?: SiteTheme;
 	languageLinks: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 };
@@ -71,6 +73,7 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({ pageContext }) => {
 		navigation,
 		locations,
 		categories,
+		theme,
 		languageLinks,
 		socialLinks,
 	} = pageContext;
@@ -80,6 +83,7 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({ pageContext }) => {
 
 	return (
 		<SiteLayout
+			theme={theme}
 			mainNavigation={mainNavigation}
 			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}

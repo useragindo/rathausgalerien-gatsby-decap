@@ -24,8 +24,8 @@
 	   which stay closer to full size for legibility/tap targets. */
 	--header-scale: 0.32;
 	--header-icon-scale: 0.72;
-	background: rgba(209, 239, 255, 0.96);
-	box-shadow: 0 0.25rem 1.5rem rgba(34, 37, 78, 0.08);
+	background: color-mix(in srgb, var(--color-background) 96%, transparent);
+	box-shadow: 0 0.25rem 1.5rem color-mix(in srgb, var(--color-text) 8%, transparent);
 }
 
 /* ─── Inner container ─────────────────────────────────────────────── */
@@ -51,10 +51,18 @@
 	text-decoration: none;
 }
 
+/* The logo takes the scheme's text colour: the SVG is used as a mask and the
+ * element's own background provides the colour. The previous hue-rotate filter
+ * was computed for one fixed dark blue and could not follow a CMS scheme.
+ */
 .site-header__logo {
+	display: block;
 	width: calc(var(--header-logo-width) * var(--header-scale, 1));
-	height: auto;
-	filter: brightness(0) saturate(100%) invert(13%) sepia(28%) saturate(1688%) hue-rotate(210deg) brightness(91%) contrast(95%);
+	aspect-ratio: 400 / 109;
+	background: var(--color-text);
+	-webkit-mask: url("/media/locations/_rathausgalerien.svg") no-repeat center /
+		contain;
+	mask: url("/media/locations/_rathausgalerien.svg") no-repeat center / contain;
 	transition: width var(--transition-base);
 }
 
@@ -312,7 +320,7 @@
 	font-size: clamp(10rem, 20vw, 16rem);
 	font-weight: var(--font-weight-medium);
 	line-height: 1;
-	color: rgba(255, 255, 255, 0.25);
+	color: color-mix(in srgb, var(--color-white) 25%, transparent);
 	pointer-events: none;
 	user-select: none;
 }
@@ -341,7 +349,7 @@
 
 .site-header__menu-teaser--image {
 	aspect-ratio: 284 / 374;
-	background: #c8e8f5;
+	background: var(--color-blue-100);
 }
 
 .site-header__menu-teaser-placeholder {
@@ -359,7 +367,7 @@
 	margin-inline: auto;
 	margin-block-start: auto; /* push to bottom */
 	padding: clamp(1rem, 3vw, 1.5rem) clamp(1rem, 5vw, 115px) clamp(1.5rem, 4vw, 2.5rem);
-	border-top: 1px solid rgba(34, 37, 78, 0.12);
+	border-top: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
 }
 
 /* Social icons */

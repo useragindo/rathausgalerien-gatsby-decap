@@ -1,19 +1,25 @@
 :root {
 	color-scheme: light;
 
-	/* Figma design tokens — RathausGalerien 2026 */
-	--color-dunkelblau: #22254e;
-	--color-background: #d1efff;
-	--color-rosa: #ffa4cc;
-	--color-gelb: #ffbb33;
-	--color-lila: #b58ec1;
-	--color-blau: #7bd0e5;
+	/* Every colour comes from the CMS colour scheme (content/color-schemes/*.md)
+	 * as --scheme-bg, --scheme-text and --scheme-c1 … --scheme-cN. The hex
+	 * values below are only var() fallbacks for the case that no scheme is
+	 * delivered; they are not the source of truth. White and black stay fixed
+	 * neutrals — they are not slots of a scheme.
+	 */
+	--color-dunkelblau: var(--scheme-text, #22254e);
+	--color-background: var(--scheme-bg, #d1efff);
+	--color-blau: var(--scheme-c1, #7bd0e5);
+	--color-rosa: var(--scheme-c2, #ffa4cc);
+	--color-gelb: var(--scheme-c3, #ffbb33);
+	--color-lila: var(--scheme-c4, #b58ec1);
 	--color-white: #ffffff;
 	--color-black: #111111;
 
 	/* Legacy aliases kept for compatibility with existing components */
 	--color-blue-50: var(--color-background);
-	--color-blue-100: #c7e8f4;
+	/* 20 % lands closest to the former #c7e8f4 tint. */
+	--color-blue-100: color-mix(in srgb, var(--color-blau) 20%, var(--color-background));
 	--color-blue-300: var(--color-blau);
 	--color-blue-900: var(--color-dunkelblau);
 	--color-blue-950: var(--color-dunkelblau);
@@ -21,13 +27,13 @@
 	--color-lavender: var(--color-lila);
 	--color-yellow: var(--color-gelb);
 	--color-cyan: var(--color-blau);
-	--color-orange: #f5a623;
-	--color-cream: #f8f0e2;
+	--color-orange: var(--color-gelb);
+	--color-cream: var(--color-background);
 
 	/* Semantic colors */
 	--color-text: var(--color-dunkelblau);
-	--color-surface: rgba(255, 255, 255, 0.72);
-	--color-border: rgba(34, 37, 78, 0.22);
+	--color-surface: color-mix(in srgb, var(--color-white) 72%, transparent);
+	--color-border: color-mix(in srgb, var(--color-text) 22%, transparent);
 	--color-focus: var(--color-rosa);
 
 	/* Typography — Museo Sans Rounded is the Figma reference font.
@@ -77,6 +83,6 @@
 	--page-gutter: clamp(16px, 7.99vw, 115px); /* 115px at 1440px Figma margin */
 	--radius-sm: 0.35rem;
 	--radius-md: 0.75rem;
-	--shadow-soft: 0 1.5rem 4rem rgba(34, 37, 78, 0.12);
+	--shadow-soft: 0 1.5rem 4rem color-mix(in srgb, var(--color-text) 12%, transparent);
 	--transition-base: 180ms ease;
 }
