@@ -75,7 +75,9 @@ export type ImportedFrontmatter = {
 	active_scheme?: string | null;
 	heading?: string | null;
 	intro?: string | null;
-	date?: string | null;
+	// YAML parses an unquoted timestamp as a Date, so this is not always a
+	// string. Read it through `toDateString`.
+	date?: string | Date | null;
 	funnel_url?: string | null;
 	order?: number | null;
 	menu?: string | null;

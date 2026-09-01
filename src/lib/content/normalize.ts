@@ -35,9 +35,23 @@ const getPageTemplate = (
 ): string =>
 	trim(frontmatter.template) ?? KEY_TEMPLATE_FALLBACK[key] ?? "standard";
 
-export const trim = (value?: string | null): string | undefined => {
-	const trimmed = value?.trim();
+// Frontmatter comes from YAML, so a field is only a string by convention, not
+// by guarantee: an unquoted timestamp parses as a Date, `order: 300` as a
+// number. Anything non-string is treated as absent instead of throwing, because
+// a single CMS edit must not be able to abort the whole createPages run.
+export const trim = (value?: unknown): string | undefined => {
+	if (typeof value !== "string") return undefined;
+	const trimmed = value.trim();
 	return trimmed ? trimmed : undefined;
+};
+
+// Dates are the one field the CMS writes unquoted, which YAML hands over as a
+// Date. Normalized news dates stay ISO strings so downstream sorting and
+// formatting keep working.
+export const toDateString = (value?: unknown): string | undefined => {
+	if (value instanceof Date)
+		return Number.isNaN(value.getTime()) ? undefined : value.toISOString();
+	return trim(value);
 };
 
 // Resolves an explicit display value, falling back through later candidates
@@ -256,7 +270,7 @@ export const normalizeNews = (node: ImportedMdxNode): NormalizedNews | null => {
 		intro,
 		slug,
 		path: withLanguagePrefix(language, `news/${slug}`),
-		date: trim(frontmatter.date) ?? null,
+		date: toDateString(frontmatter.date) ?? null,
 		body: trim(node.body),
 		frontmatter,
 	};
