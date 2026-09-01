@@ -62,11 +62,20 @@ export type ImportedFrontmatter = {
 	locale?: LanguageCode | string | null;
 	key?: string | null;
 	template?: string | null;
-	type?: "page" | "location" | "job" | "color_scheme" | "settings" | string | null;
+	type?:
+		| "page"
+		| "location"
+		| "job"
+		| "news"
+		| "color_scheme"
+		| "settings"
+		| string
+		| null;
 	colors?: ImportedColorSlots | null;
 	active_scheme?: string | null;
 	heading?: string | null;
 	intro?: string | null;
+	date?: string | null;
 	funnel_url?: string | null;
 	order?: number | null;
 	menu?: string | null;
@@ -160,6 +169,20 @@ export type NormalizedJob = {
 	intro?: string;
 	slug: string;
 	path: string;
+	body?: string;
+	frontmatter: ImportedFrontmatter;
+};
+
+export type NormalizedNews = {
+	id: string;
+	language: LanguageCode;
+	i18nKey: string;
+	title: string;
+	heading: string;
+	intro?: string;
+	slug: string;
+	path: string;
+	date: string | null;
 	body?: string;
 	frontmatter: ImportedFrontmatter;
 };

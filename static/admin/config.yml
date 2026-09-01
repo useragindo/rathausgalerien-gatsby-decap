@@ -75,6 +75,7 @@ collections:
           - { label: "Gastronomie-Übersicht", value: "gastronomie" }
           - { label: "Lageplan", value: "lageplan" }
           - { label: "Jobs", value: "jobs" }
+          - { label: "News-Übersicht", value: "news_list" }
 
       - label: "Menü"
         name: "menu"
@@ -1025,6 +1026,118 @@ collections:
           - heading-two
           - bulleted-list
           - numbered-list
+
+  - name: "news"
+    label: "News"
+    label_singular: "News-Eintrag"
+    folder: "content/news"
+    media_folder: "/static/media/news"
+    public_folder: "/media/news"
+    path: "{{locale}}/{{slug}}"
+    identifier_field: uuid
+    summary: "{{heading}} ({{locale}})"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    view_filters:
+      - label: "Deutsch"
+        field: locale
+        pattern: "de"
+      - label: "English"
+        field: locale
+        pattern: "en"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - label: "Sprache"
+        name: "locale"
+        widget: "select"
+        default: "de"
+        options:
+          - { label: "Deutsch", value: "de" }
+          - { label: "English", value: "en" }
+
+      - { label: "Key", name: "key", widget: "hidden", default: "news" }
+      - { label: "Type", name: "type", widget: "hidden", default: "news" }
+      - { label: "UUID", name: "uuid", widget: "uuid" }
+
+      - { label: "Heading", name: "heading", widget: "string" }
+
+      - {
+          label: "Intro",
+          name: "intro",
+          widget: "text",
+          required: false,
+          hint: "Standard: SEO-Beschreibung",
+        }
+
+      - {
+          label: "Datum",
+          name: "date",
+          widget: "datetime",
+          required: false,
+        }
+
+      - label: "SEO"
+        name: "seo"
+        widget: object
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: false
+            hint: "Will use heading by default"
+          - label: "Description"
+            name: "description"
+            widget: "string"
+            required: false
+            hint: "Will use intro by default"
+          - label: "URL"
+            name: "url"
+            widget: "string"
+            required: false
+            hint: "Will use heading by default"
+            pattern: ["^$|^[a-z0-9-]+$", "Only a-z, 0-9, -"]
+          - label: "Image (OpenGraph/Twitter)"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Bild fuer Social-Shares."
+          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - label: "OG Type"
+            name: "ogType"
+            widget: "select"
+            default: "article"
+            required: false
+            options:
+              - { label: "Website", value: "website" }
+              - { label: "Article", value: "article" }
+          - label: "Twitter Card"
+            name: "twitterCard"
+            widget: "select"
+            default: "summary_large_image"
+            required: false
+            options:
+              - { label: "Summary Large Image", value: "summary_large_image" }
+              - { label: "Summary", value: "summary" }
+          - label: "noindex"
+            name: "noIndex"
+            widget: "boolean"
+            default: false
+            required: false
+            hint: "Verhindert Indexierung durch Suchmaschinen."
+
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
+
   - name: "blocks"
     label: "Blocks"
     label_singular: "Block"

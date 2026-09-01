@@ -44,7 +44,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 	}
 
 	const mdxNodes = getNodesByType("Mdx") as ImportedMdxNode[];
-	const { pages, locations, jobs, categories, navigation, theme } =
+	const { pages, locations, jobs, news, categories, navigation, theme } =
 		normalizeNodes(mdxNodes);
 	const usedPaths = new Map<string, number>();
 
@@ -62,6 +62,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				navigation,
 				locations,
 				jobs,
+				news,
 				categories,
 				theme,
 				languageLinks: pageLanguageLinks(page),
@@ -78,6 +79,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				location,
 				navigation,
 				categories,
+				news,
 				theme,
 				languageLinks: locationLanguageLinks(location),
 				socialLinks: socialLinksByLanguage[location.language],
@@ -92,6 +94,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 			context: {
 				job,
 				navigation,
+				news,
 				theme,
 				languageLinks: jobLanguageLinks(job),
 				socialLinks: socialLinksByLanguage[job.language],
@@ -128,6 +131,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				navigation,
 				locations,
 				categories,
+				news,
 				theme,
 				languageLinks,
 				socialLinks: socialLinksByLanguage[category.language],

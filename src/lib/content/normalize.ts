@@ -6,6 +6,7 @@ import type {
 	NormalizedColorScheme,
 	NormalizedJob,
 	NormalizedLocation,
+	NormalizedNews,
 	NormalizedPage,
 	SiteNavigationItem,
 	SiteTheme,
@@ -224,6 +225,43 @@ export const normalizeJob = (node: ImportedMdxNode): NormalizedJob | null => {
 	};
 };
 
+export const normalizeNews = (node: ImportedMdxNode): NormalizedNews | null => {
+	const frontmatter = node.frontmatter;
+
+	if (!frontmatter || frontmatter.type !== "news") {
+		return null;
+	}
+
+	const language = getLanguage(frontmatter);
+	const heading = deriveDisplay(
+		frontmatter.heading,
+		frontmatter.seo?.title,
+		node.id,
+	);
+	const intro =
+		deriveDisplay(frontmatter.intro, frontmatter.seo?.description) ||
+		undefined;
+	const slug =
+		trim(frontmatter.seo?.url) ??
+		trim(slugify(heading)) ??
+		getFileSlug(node) ??
+		node.id;
+
+	return {
+		id: node.id,
+		language,
+		i18nKey: getFileSlug(node) ?? slug,
+		title: heading,
+		heading,
+		intro,
+		slug,
+		path: withLanguagePrefix(language, `news/${slug}`),
+		date: trim(frontmatter.date) ?? null,
+		body: trim(node.body),
+		frontmatter,
+	};
+};
+
 export const normalizeCategory = (
 	node: ImportedMdxNode,
 ): NormalizedCategory | null => {
@@ -435,6 +473,9 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 	const jobs = nodes
 		.map(normalizeJob)
 		.filter((job): job is NormalizedJob => Boolean(job));
+	const news = nodes
+		.map(normalizeNews)
+		.filter((item): item is NormalizedNews => Boolean(item));
 	const categories = nodes
 		.map(normalizeCategory)
 		.filter((category): category is NormalizedCategory => Boolean(category));
@@ -449,6 +490,7 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 		pages,
 		locations,
 		jobs,
+		news,
 		categories,
 		navigation: createNavigationFromPages(pages),
 		theme: resolveActiveTheme(colorSchemes, activeSchemeKey),
