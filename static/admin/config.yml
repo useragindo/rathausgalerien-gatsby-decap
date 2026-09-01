@@ -1126,6 +1126,13 @@ collections:
             required: false
             hint: "Verhindert Indexierung durch Suchmaschinen."
 
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        required: false
+        hint: "Erstes Bild = großer Teaser oben. Zweites Bild = Foto neben dem Text. Weitere Bilder = Galerie."
+        field: { label: "Image", name: "image", widget: "image" }
+
       - label: "Content"
         name: "body"
         widget: "markdown"

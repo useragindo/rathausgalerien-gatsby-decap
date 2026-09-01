@@ -64,8 +64,8 @@ const getMarkdownImage = (content?: string): string | undefined => {
 	return imagePath.split(/\s+/)[0];
 };
 
-const getNewsImage = (news: NormalizedNews): string | undefined =>
-	trim(news.frontmatter.seo?.image) ?? getMarkdownImage(news.body);
+const getNewsFallbackImage = (news: NormalizedNews): string | undefined =>
+	trim(news.frontmatter.images?.[0]) ?? getMarkdownImage(news.body);
 
 const formatNewsDate = (date: string, language: LanguageCode): string => {
 	const parsed = new Date(date);
@@ -89,7 +89,7 @@ const resolveNewsSeo = (news: NormalizedNews): ResolvedSeo => {
 	const seo = news.frontmatter.seo;
 	const description = getNewsSeoDescription(news);
 	const title = trim(seo?.title) ?? news.title;
-	const image = trim(seo?.image) ?? getNewsImage(news);
+	const image = trim(seo?.image) ?? getNewsFallbackImage(news);
 	const imageAlt = trim(seo?.imageAlt) ?? trim(news.heading);
 	const ogType = trim(seo?.ogType) ?? DEFAULT_OG_TYPE;
 	const ogLocale = OG_LOCALE_BY_LANGUAGE[news.language] ?? OG_LOCALE_BY_LANGUAGE.de;
@@ -132,8 +132,10 @@ const getNewsIndexLabel = (news: NormalizedNews): string =>
 const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
 	const { news, navigation, theme, languageLinks, socialLinks } = pageContext;
 	const languages = buildLanguageOptions(languageLinks);
-	const image = getNewsImage(news);
-	const galleryImages = news.frontmatter.images ?? [];
+	const images = news.frontmatter.images ?? [];
+	const heroImage = images[0];
+	const aboutImage = images[1] ?? images[0];
+	const galleryImages = images.slice(2);
 	const date = news.date ? formatNewsDate(news.date, news.language) : undefined;
 
 	return (
@@ -154,31 +156,42 @@ const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
 				</a>
 
 				<header className="news-detail__hero">
-					{image ? (
-						<img src={image} alt="" loading="eager" />
+					{heroImage ? (
+						<img src={heroImage} alt="" loading="eager" />
 					) : (
-						<div className="news-detail__hero-placeholder">
-							<span>{news.heading}</span>
-						</div>
+						<div className="news-detail__hero-placeholder" />
 					)}
 				</header>
 
-				<section className="news-detail__about" aria-labelledby="news-detail-title">
-					<div className="news-detail__about-copy">
-						<h1 id="news-detail-title">{news.heading}</h1>
-						{date ? (
-							<div className="news-detail__meta-card">
-								<span>{date}</span>
+				<header className="page-hero">
+					<h1 className="page-hero__title">{news.heading}</h1>
+					{date ? <p className="news-detail__date">{date}</p> : null}
+					{news.intro ? (
+						<p className="page-hero__description">{news.intro}</p>
+					) : null}
+				</header>
+
+				{news.body || aboutImage ? (
+					<section
+						className={`news-detail__about${
+							aboutImage ? " news-detail__about--has-media" : ""
+						}`}
+						aria-label={news.heading}
+					>
+						<div className="news-detail__about-copy">
+							{news.body ? (
+								<div className="detail-rich-text">
+									<MarkdownContent content={news.body} />
+								</div>
+							) : null}
+						</div>
+						{aboutImage ? (
+							<div className="news-detail__about-media">
+								<img src={aboutImage} alt="" loading="lazy" />
 							</div>
 						) : null}
-						{news.intro ? <p className="news-detail__intro">{news.intro}</p> : null}
-						{news.body ? (
-							<div className="detail-rich-text">
-								<MarkdownContent content={news.body} />
-							</div>
-						) : null}
-					</div>
-				</section>
+					</section>
+				) : null}
 
 				{galleryImages.length ? (
 					<section

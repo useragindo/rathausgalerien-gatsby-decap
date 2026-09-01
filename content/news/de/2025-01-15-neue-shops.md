@@ -10,6 +10,9 @@ seo:
   title: Neue Shops in den RathausGalerien
   description: Gleich drei neue Geschäfte eröffnen diesen Frühling in den RathausGalerien.
   url: neue-shops
+images:
+  - /media/news/neue-shops-teaser.jpg
+  - /media/news/neue-shops-detail.jpg
 ---
 Wir freuen uns, gleich drei neue Geschäfte in den RathausGalerien willkommen zu heißen. Ab März erwarten Sie neue Angebote rund um Mode, Beauty und Lifestyle mitten im Zentrum von Innsbruck.
 
