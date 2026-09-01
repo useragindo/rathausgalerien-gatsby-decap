@@ -17,6 +17,7 @@ import type {
 	NormalizedCategory,
 	NormalizedJob,
 	NormalizedLocation,
+	NormalizedNews,
 	NormalizedPage,
 	SiteNavigationItem,
 	SiteTheme,
@@ -38,6 +39,7 @@ type PageTemplateContext = {
 	navigation: SiteNavigationItem[];
 	locations: NormalizedLocation[];
 	jobs: NormalizedJob[];
+	news: NormalizedNews[];
 	categories: NormalizedCategory[];
 	theme?: SiteTheme;
 	languageLinks?: LanguageLinks;
@@ -538,12 +540,98 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 	);
 };
 
+const getNewsImage = (news: NormalizedNews): string | undefined =>
+	trim(news.frontmatter.seo?.image) ?? getMarkdownImage(news.body);
+
+const formatNewsDate = (date: string, language: string): string | undefined => {
+	const parsed = new Date(date);
+
+	if (Number.isNaN(parsed.getTime())) {
+		return undefined;
+	}
+
+	return new Intl.DateTimeFormat(language, { dateStyle: "medium" }).format(
+		parsed,
+	);
+};
+
+const NewsList: React.FC<{ news: NormalizedNews[]; language: string }> = ({
+	news,
+	language,
+}) => {
+	const items = React.useMemo(
+		() =>
+			news
+				.filter((item) => item.language === language)
+				.sort((a, b) => {
+					if (!a.date && !b.date) return 0;
+					if (!a.date) return 1;
+					if (!b.date) return -1;
+					return b.date.localeCompare(a.date);
+				}),
+		[news, language],
+	);
+
+	if (!items.length) {
+		return null;
+	}
+
+	return (
+		<section
+			className="listing-section listing-section--news"
+			aria-labelledby="news-list-title"
+		>
+			<header className="listing-section__header">
+				<p className="listing-section__eyebrow">Aktuelles</p>
+				<h2 id="news-list-title">News</h2>
+			</header>
+			<ul className="listing-grid listing-grid--news">
+				{items.map((item) => {
+					const image = getNewsImage(item);
+					const date = item.date ? formatNewsDate(item.date, language) : undefined;
+
+					return (
+						<li
+							className="listing-card listing-card--news listing-card--has-media"
+							key={item.id}
+						>
+							<a className="listing-card__link" href={item.path}>
+								<span
+									className={`listing-card__media${
+										image ? "" : " listing-card__media--placeholder"
+									}`}
+								>
+									{image ? (
+										<img src={image} alt="" loading="lazy" />
+									) : (
+										<span aria-hidden="true" />
+									)}
+								</span>
+								<span className="listing-card__body">
+									{date ? (
+										<span className="news-card__date">{date}</span>
+									) : null}
+									<span className="listing-card__title">{item.heading}</span>
+									{item.intro ? (
+										<span className="listing-card__text">{item.intro}</span>
+									) : null}
+								</span>
+							</a>
+						</li>
+					);
+				})}
+			</ul>
+		</section>
+	);
+};
+
 const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 	const {
 		page,
 		navigation,
 		locations,
 		jobs,
+		news,
 		categories,
 		theme,
 		languageLinks,
@@ -618,6 +706,9 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			) : null}
 			{page.template === "jobs" ? (
 				<JobList jobs={jobs} language={page.language} />
+			) : null}
+			{page.template === "news_list" ? (
+				<NewsList news={news} language={page.language} />
 			) : null}
 		</SiteLayout>
 	);

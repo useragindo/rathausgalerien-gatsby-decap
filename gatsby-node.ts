@@ -14,6 +14,7 @@ import type {
 const pageTemplate = path.resolve("./src/templates/page-template.tsx");
 const locationTemplate = path.resolve("./src/templates/location-template.tsx");
 const jobTemplate = path.resolve("./src/templates/job-template.tsx");
+const newsTemplate = path.resolve("./src/templates/news-template.tsx");
 const categoryTemplate = path.resolve("./src/templates/category-template.tsx");
 
 const makeUniquePath = (
@@ -51,6 +52,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 	const pageLanguageLinks = buildLanguageLinks(pages);
 	const locationLanguageLinks = buildLanguageLinks(locations);
 	const jobLanguageLinks = buildLanguageLinks(jobs);
+	const newsLanguageLinks = buildLanguageLinks(news);
 	const socialLinksByLanguage = buildFooterSocialLinks(mdxNodes);
 
 	for (const page of pages) {
@@ -102,6 +104,20 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 		});
 	}
 
+	for (const item of news) {
+		actions.createPage({
+			path: makeUniquePath(item.path, usedPaths),
+			component: newsTemplate,
+			context: {
+				news: item,
+				navigation,
+				theme,
+				languageLinks: newsLanguageLinks(item),
+				socialLinks: socialLinksByLanguage[item.language],
+			},
+		});
+	}
+
 	const categoriesBySlug = new Map<string, NormalizedCategory[]>();
 	for (const category of categories) {
 		const list = categoriesBySlug.get(category.slug) ?? [];
@@ -140,6 +156,6 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 	}
 
 	reporter.info(
-		`Created ${pages.length} content pages, ${locations.length} location pages, ${jobs.length} job pages, ${categories.length} category pages.`,
+		`Created ${pages.length} content pages, ${locations.length} location pages, ${jobs.length} job pages, ${news.length} news pages, ${categories.length} category pages.`,
 	);
 };

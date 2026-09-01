@@ -1,5 +1,5 @@
 ---
-locale: de
+locale: en
 type: page
 key: news
 template: news_list
@@ -7,5 +7,5 @@ menu: main
 order: 300
 seo:
   title: News
-  description: Das ist die News Seite
+  description: The latest news from the RathausGalerien.
 ---
