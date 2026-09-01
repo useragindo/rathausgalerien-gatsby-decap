@@ -54,10 +54,12 @@ export const toDateString = (value?: unknown): string | undefined => {
 	return trim(value);
 };
 
-// Resolves an explicit display value, falling back through later candidates
-// until one is non-empty. Used to keep visible content (heading/intro)
-// independent of SEO metadata (seo.title/seo.description) while preserving
-// the previous behaviour when only SEO fields are set.
+// Resolves an explicit value, falling back through later candidates until one
+// is non-empty. Display fields (heading/intro) must never fall back to a
+// seo.* field: visible content has to stand on its own, so editing the SEO
+// title/description can't silently change what visitors see. The reverse is
+// fine and used deliberately (see normalizeLocation's seoTitle): SEO metadata
+// may fall back to a display value.
 export const deriveDisplay = (
 	explicit?: string | null,
 	...fallbacks: Array<string | null | undefined>
@@ -140,9 +142,8 @@ export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
 	const language = getLanguage(frontmatter);
 	const key = trim(frontmatter.key) ?? getFileSlug(node) ?? node.id;
 	const template = getPageTemplate(frontmatter, key);
-	const seoTitle = trim(frontmatter.seo?.title);
-	const seoDescription = trim(frontmatter.seo?.description);
-	const title = seoTitle ?? key;
+	const heading = deriveDisplay(frontmatter.heading, key);
+	const intro = trim(frontmatter.intro);
 	const slug = getPageSlug(node);
 
 	return {
@@ -151,10 +152,10 @@ export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
 		i18nKey: key,
 		key,
 		template,
-		title,
-		description: seoDescription,
-		heading: deriveDisplay(frontmatter.heading, seoTitle, key),
-		intro: deriveDisplay(frontmatter.intro, seoDescription) || undefined,
+		title: heading,
+		description: trim(frontmatter.seo?.description),
+		heading,
+		intro,
 		path: withLanguagePrefix(language, slug),
 		body: trim(node.body),
 		blocks: frontmatter.blocks ?? [],
@@ -178,12 +179,9 @@ export const normalizeLocation = (
 	const heading = deriveDisplay(
 		frontmatter.heading,
 		frontmatter.name,
-		frontmatter.seo?.title,
 		node.id,
 	);
-	const intro =
-		deriveDisplay(frontmatter.intro, frontmatter.seo?.description) ||
-		undefined;
+	const intro = trim(frontmatter.intro);
 	const seoTitle = deriveDisplay(frontmatter.seo?.title, heading);
 	const slug = trim(frontmatter.seo?.url) ?? slugify(heading);
 	const baseSlug = getLocationBaseSlug(frontmatter.group);
@@ -220,11 +218,7 @@ export const normalizeJob = (node: ImportedMdxNode): NormalizedJob | null => {
 	const title = titleParts.join(" – ") || trim(frontmatter.position) || "Job";
 	const slug = getFileSlug(node) ?? slugify(title);
 	const intro =
-		deriveDisplay(
-			frontmatter.intro,
-			frontmatter.seo?.description,
-			frontmatter.specification,
-		) || undefined;
+		deriveDisplay(frontmatter.intro, frontmatter.specification) || undefined;
 
 	return {
 		id: node.id,
@@ -247,14 +241,8 @@ export const normalizeNews = (node: ImportedMdxNode): NormalizedNews | null => {
 	}
 
 	const language = getLanguage(frontmatter);
-	const heading = deriveDisplay(
-		frontmatter.heading,
-		frontmatter.seo?.title,
-		node.id,
-	);
-	const intro =
-		deriveDisplay(frontmatter.intro, frontmatter.seo?.description) ||
-		undefined;
+	const heading = deriveDisplay(frontmatter.heading, node.id);
+	const intro = trim(frontmatter.intro);
 	const slug =
 		trim(frontmatter.seo?.url) ??
 		trim(slugify(heading)) ??
