@@ -32,5 +32,8 @@ contact:
   email: shop@shoeart.at
   phone: +43 512 563539
 viewId: shop-23
+intro: >-
+  Here you can find information about HÖGL in the shopping centre
+  RathausGalerien.
 ---
 With its lively tradition and the unique craftsmanship of HÖGL, the brand inspires customers all over the world. The range ranges from delicate ballerinas to extravagant pumps, from smart boots to elegant bridal shoes and offers the right shoe for everyone.

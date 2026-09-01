@@ -32,5 +32,8 @@ contact:
   phone: +43 512 57 08 88
   url: http://www.la-habana.at
 viewId: shop-36
+intro: >-
+  Here you can find information about La Habana in the shopping centre
+  RathausGalerien.
 ---
 Enjoy delicious coffee, cool drinks, a fresh beer and a good glass of wine. The friendly staff will also be happy to serve you a Caribbean cocktail or a well-kept rum with "good mood" music.

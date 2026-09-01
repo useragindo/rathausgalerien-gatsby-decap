@@ -24,5 +24,6 @@ contact:
   phone: 0512 574861
   url: ""
 viewId: shop-32
+intro: Let us surprise you!
 ---
 Let us surprise you!

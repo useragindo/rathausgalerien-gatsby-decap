@@ -31,5 +31,6 @@ contact:
   email: shop@shoeart.at
   phone: +43 512 563539
 viewId: shop-23
+intro: Hier finden Sie Informationen zu Högl in den Rathausgalerien.
 ---
 Durch gelebte Tradition und die einzigartige Handwerkskunst von HÖGL, begeister die Marke Kundinnen und Kunden weltweit. Das Sortiment reicht von zarten Ballerinas zu extravaganten Pumps, vom smarten Stiefel zu eleganten Brautschuhen und bietet den passenden Schuh für Jedermann.

@@ -32,5 +32,8 @@ contact:
   phone: +43 512 55 22 22
   url: https://www.pizza-pasta-magistrat.at
 viewId: shop-6
+intro: >-
+  Here you can find information about Cafe Bar Magistrat in the shopping centre
+  RathausGalerien.
 ---
 Life is beautiful! Meet, chat and enjoy fruity smoothies, frozen yoghurts, Italian coffee and a great atmosphere. After work: cocktails with the finest House Lounge music.

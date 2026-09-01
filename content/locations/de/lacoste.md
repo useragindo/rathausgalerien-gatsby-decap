@@ -33,5 +33,6 @@ contact:
   phone: +43 512 57 05 06
   url: https://www.lacoste.at
 viewId: shop-8
+intro: Hier finden Sie Informationen zu Lacoste in den RathausGalerien.
 ---
 LACOSTE - das Original - Polo, sowie ein umfangreiches Sortiment an Pullover, Hemden, Hosen und verschiedensten Accessoires für Damen und Herren finden Sie im LACOSTE Store.

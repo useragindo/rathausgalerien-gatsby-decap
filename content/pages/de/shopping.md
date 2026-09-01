@@ -14,5 +14,7 @@ blocks:
     date: ""
     header: Das ist der Header von Block1
     text: Das ist der Text von Block 1
+heading: Shopping
+intro: Willkommen in den Rathausgalerien
 ---
 Das ist der Inhalt der Seite, den befüllen wir später

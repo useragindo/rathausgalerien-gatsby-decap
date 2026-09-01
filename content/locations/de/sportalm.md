@@ -33,6 +33,7 @@ contact:
   phone: +43 512 56 09 77
   url: "https://www.sportalm.at "
 viewId: shop-31
+intro: Hier finden Sie Informationen zur Sportalm in den RathausGalerien.
 ---
 Sportalm ist eines der erfolgreichsten, international tätigen Textilunternehmen Österreichs mit Sitz in Kitzbühel. Seit fast 40 Jahren als Familienbetrieb der Familie Ehrlich geführt, wird seit 1996 auch in der eigenen Produktionsstätte in Bulgarien produziert.
 

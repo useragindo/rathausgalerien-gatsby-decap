@@ -31,5 +31,8 @@ contact:
   phone: +43 512 56 65 50
   url: 'http://www.360-grad.at'
 viewId: shop-14
+intro: >-
+  Here you can find information about Cafe 360° in the shopping centre
+  RathausGalerien.
 ---
 This is a place with special secrets. Where business people love to spend their free time and couples delight in the moment. Where there's peace in our hearts and freedom in our minds. Where all our dreams come true … except that these magical moments might last forever. It's a seventh heaven.

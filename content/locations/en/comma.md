@@ -32,5 +32,8 @@ contact:
   phone: +43 512 58 88 62
   url: ""
 viewId: shop-10
+intro: >-
+  Here you can find information about Betty Barclay in the shopping centre the
+  RathausGalerien
 ---
 BETTY BARCLAY represents the zeitgeist and lifestyle of modern women with passion for fashion and feminity.  It combines business and leisure. International trends, and fashionable designs – that's BETTY BARCLAY.

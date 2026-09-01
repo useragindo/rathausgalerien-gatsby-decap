@@ -33,6 +33,7 @@ contact:
   phone: +43 512 56 37 23
   url: https://www.napapijri.com
 viewId: shop-4
+intro: Hier finden Sie Informationen zu Napapijri in den RathausGalerien.
 ---
 Premium Lifestyle Sportswear von NAPAPIJRI ist zwischen lässigem Abenteuergeist und kosmopolitischem Feeling angesiedelt. Die internationale Marke zeichnet sich durch die exklusive Verschmelzung von sportlichem Stil und Premiumkleidung aus.
 

@@ -34,5 +34,8 @@ contact:
   phone: +43 512 56 78 88
   url: https://www.thai-li-ba.at
 viewId: shop-35
+intro: >-
+  Here you can find information about Thai-Li-Ba in the shopping centre
+  Rathausgalerien
 ---
 Exotic food based on original recipes from China's four major regional cuisines, and specialities from Thailand, Indonesia and Vietnam. Oriental spices, fresh ingredients and the delicious fragrances of fruit, prepared by our chefs from various regions of Asia ...

@@ -32,5 +32,8 @@ contact:
   phone: +43 512 58 76 06
   url: https://www.appelt.at
 viewId: shop-11
+intro: >-
+  Here you can find information about Appelt Juwelen in the shopping centre the
+  RathausGalerien.
 ---
 ….where your dreams come true! At Appelt Jewellers you'll find a wide range of sublime items in all price categories, from Ingo Appelt's magnificent hand-made Unikat collection to hand-wrought engagement rings to jewellery brands Palido, Annamaria Cammilli, Humphrey, Ernstes Design, Xenox, Engelsrufer or Les Georgettes! We also stock a varied range of watches by Meistersinger, Oris, Garmin, Raymond Weil, Seiko, Jacques Lemans, TW Steel als auch Daniel Wellington.

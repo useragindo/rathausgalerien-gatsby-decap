@@ -12,6 +12,8 @@ seo:
 teaser:
   image: /media/pages/thailiba_3.jpg
   title: Home of great taste.
+heading: Culinary
+intro: All restaurants and bars can be found here.
 ---
 Visitors to the RathausGalerien are also well catered for: the shopping center has four restaurants, four bars and a bakery. Thanks to their diverse culinary offerings and selection of different drinks, the bars and restaurants are great places to relax after shopping. Small snacks for breaks during the shopping tour are available in the bakery in the galleries, for example. Café 360 on the top floor of the galleries not only offers its guests delicious drinks, but also a stunning view over the city of Innsbruck.
 

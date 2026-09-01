@@ -32,6 +32,7 @@ contact:
   email: office@samsonite-innsbruck.at
   phone: " +43 660 5747802"
 viewId: shop-19
+intro: Samsonite
 ---
 Seit 1910 steht Samsonite für Qualität, Innovation und Stil – Eigenschaften, die in jedem unserer Produkte spürbar sind. Egal, ob Sie für den Alltag oder die nächste große Reise das perfekte Gepäckstück suchen: Lassen Sie sich von der Auswahl und der Expertise vor Ort begeistern. Unser gesamtes Team freut sich darauf, Sie persönlich zu beraten.
 

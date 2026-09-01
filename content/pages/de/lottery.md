@@ -56,6 +56,10 @@ form:
       label: "Ich akzeptiere die [Teilnahmebedingungen](/datenschutz)"
       type: CHECKBOX
       required: true
+heading: Gewinnspiel
+intro: >-
+  Mache mit bei unserem Gewinnspiel und gewinne 1 von 10 Tickets für das
+  Innsbruck Winter Dance Festival 2026!
 ---
 Mach mit bei unserem Gewinnspiel und sichere dir die Chance auf einen von 10 Gutscheinen für die RathausGalerien im Wert von jeweils 100 €!
 Fülle dazu einfach alle untenstehenden Felder aus.

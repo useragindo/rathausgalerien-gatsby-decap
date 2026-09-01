@@ -10,5 +10,7 @@ seo:
   title: Jobs
   url: jobs
 message: Momentan gibt es keine offenen Stellen in den Betrieben der RathausGalerien.
+heading: Jobs
+intro: Jobs
 ---
 

@@ -30,5 +30,6 @@ contact:
   phone: +43 512 56 65 50
   url: http://www.restaurant-lichtblick.at
 viewId: shop-26
+intro: Hier finden Sie Informationen zum Lichtblick in den RathausGalerien.
 ---
 Unter Tags das Cafe, abends das Restaurant! Ein entspannter Businesslunch oder ein von Kitchen Art Director Andreas Zeindlinger perfekt abgestimmtes Gourmetmenu - mittags wie abends - das ist die Vielfalt des Lichtblick. Hoch über den Dächern von Innsbruck.

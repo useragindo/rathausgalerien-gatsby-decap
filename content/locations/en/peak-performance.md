@@ -34,6 +34,7 @@ contact:
   phone: +43 512 55 98 95
   url: https://wutscher.com/
 viewId: shop-12
+intro: Here you can find information about sehen!wutscher in the RathausGalerien.
 ---
 sehen!wutscher: Your optician in Innsbruck 
 

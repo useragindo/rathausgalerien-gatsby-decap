@@ -29,6 +29,9 @@ contact:
   phone: "+43512571509"
   url: ""
 viewId: shop-9
+intro: >-
+  Here you can find information about Läderach in the shopping centre
+  RathausGalerien.
 ---
 The Swiss Alps are our home - the world is our guest. Discover where we come from. Why innovation is so important to us. And get to know the people behind Läderach.
 

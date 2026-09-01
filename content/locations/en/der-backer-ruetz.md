@@ -33,5 +33,8 @@ contact:
   phone: +43 512 57 36 72
   url: https://www.ruetz.at
 viewId: shop-14
+intro: >-
+  Here you can find information about Der Bäcker Ruetz in the shopping centre
+  RathausGalerien.
 ---
 Ruetz Bakery in the RathausGalerien is a great place to relax. It serves a wide range of coffee specialities, various breakfast options, freshly prepared snacks and, of course, the famous selection of freshly baked bread and pastries. A visit to Ruetz Bakery is always worthwhile!

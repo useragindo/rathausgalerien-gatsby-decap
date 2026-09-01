@@ -22,5 +22,6 @@ contact:
   phone: +43 512 57 56 570
   url: 'https://www.the-penz.com'
 viewId: shop-33
+intro: Hier finden Sie Informationen zu The Penz Hotel in den RathausGalerien.
 ---
 Sich wie zuhause fühlen. Wenn Sie mitten in der Stadt wohnen wollen, dann gibt es in Innsbruck nur ein Hotel für Sie: The Penz.

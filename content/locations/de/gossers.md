@@ -29,5 +29,6 @@ contact:
   phone: +43 512 57 26 29
   url: https://www.goessers.at
 viewId: shop-34
+intro: Hier finden Sie Informationen zu Gösser's in den RathausGalerien.
 ---
 Leben und genießen! Gepflegte Bierauswahl, große Cocktail- und Special Drinks Angebote, feine Hausmannkost ...

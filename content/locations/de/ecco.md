@@ -32,5 +32,6 @@ contact:
   phone: +43 512 563539
   url: ""
 viewId: shop-22
+intro: Hier finden Sie Informationen zu Ecco und Gabor in den RathausGalerien.
 ---
 ECCO und GABOR sind perfekt tragbare Schuhdesigns. Mit einem trendig-lockeren Styling und stoßdämpfenden Hightech-Materialien sorgt die skandinavische Marke ECCO für entspannte Auftritte und perfekte Passform. Für einen optimalen Tragekomfort sowie hochwertige Materialien in der Verarbeitung steht die Marke GABOR. Die Kollektionen reichen vom smarten Business-Schuh bis zum robusten Gore-Tex-Stiefel, vom coolen Sneaker bis zum extravaganten Golf-Schuh.

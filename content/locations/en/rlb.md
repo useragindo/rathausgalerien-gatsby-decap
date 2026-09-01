@@ -26,5 +26,8 @@ contact:
   phone: tel:+4351253050
   url: http://www.rlb-tirol.at/elba
 viewId: shop-13
+intro: >-
+  Here you can find information about RLB in the shopping centre
+  RathausGalerien.
 ---
 Raiffeisen Landesbank - Service Terminal

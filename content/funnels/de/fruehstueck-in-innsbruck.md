@@ -51,5 +51,7 @@ blocks:
 teaser:
   image: /media/funnels/generiertes-bild-1.png
   title: Innsbruck
+heading: Frühstück in Innsbruck
+intro: Wo kann man Frühstücken in Innsbruck
 ---
 Ob gemütliches Café, regionales Frühstück oder ein ausgiebiger Brunch – Innsbruck bietet für jeden Geschmack das passende Frühstück. Hier findest du unsere Empfehlungen für den perfekten Start in den Tag.

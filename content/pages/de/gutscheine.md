@@ -14,4 +14,6 @@ blocks:
     date: ""
     header: Gutscheine
     text: Hier finden Sie Gutscheine zum Verschenken oder selbst zu genießen.
+heading: Gutscheine
+intro: 'Gutscheine, Vouchers, Geschenke'
 ---

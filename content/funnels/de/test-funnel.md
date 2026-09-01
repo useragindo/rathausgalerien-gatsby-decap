@@ -11,5 +11,7 @@ blocks:
     date: ""
     header: Ein Block
     text: Hier ein Block
+heading: Test Funnel
+intro: Das ist einen ersten Tunnel
 ---
 Das ist ein Test Funnel

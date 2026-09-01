@@ -30,5 +30,8 @@ contact:
   phone: +43 512 56 65 50
   url: http://www.restaurant-lichtblick.at
 viewId: shop-26
+intro: >-
+  Here you can find information about Lichtblick in the shopping centre
+  RathausGalerien.
 ---
 During the day a café, in the evening a restaurant! A relaxed business lunch or a perfectly balanced gourmet menu created by Kitchen Art director Andreas Zeindlinger - both lunch times and evenings - that's the diversity of Lichtblick. High above the rooftops of Innsbruck.

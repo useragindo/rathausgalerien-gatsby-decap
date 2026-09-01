@@ -9,6 +9,8 @@ seo:
   description: All legal owner information can be found here.
   title: Imprint
   url: imprint
+heading: Imprint
+intro: All legal owner information can be found here.
 ---
 Responsible for the content:
 

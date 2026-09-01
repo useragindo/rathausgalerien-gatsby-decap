@@ -34,6 +34,7 @@ contact:
   phone: "+43512571509"
   url: ""
 viewId: shop-9
+intro: Hier finden Sie Informationen zu Läderach in den RathausGalerien.
 ---
 Die Schweizer Alpen sind unsere Heimat – die Welt ist unser Gast. Entdecken Sie, woher wir kommen. Warum uns Innovation so wichtig ist. Und lernen Sie die Menschen hinter Läderach kennen.
 

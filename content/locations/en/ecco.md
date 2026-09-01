@@ -33,5 +33,8 @@ contact:
   phone: +43 512 56 35 39
   url: ""
 viewId: shop-22
+intro: >-
+  Here you can find information about Ecco in the shopping centre
+  RathausGalerien.
 ---
 ECCO and GABOR are perfectly portable shoe designs. With a trendy style and shock-absorbing high-tech materials, the Scandinavian brand ECCO ensures relaxed appearances and perfect fit. The GABOR brand stands for optimum wearing comfort and high-quality materials in the workmanship. The collections range from smart business shoes to robust Gore Tex boots, from cool sneakers to extravagant golf shoes.

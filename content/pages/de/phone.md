@@ -9,4 +9,6 @@ seo:
   description: Alle Telefonnummern unserer Geschäfte finden Sie hier.
   title: Phone
   url: telefonnummern
+heading: Phone
+intro: Alle Telefonnummern unserer Geschäfte finden Sie hier.
 ---

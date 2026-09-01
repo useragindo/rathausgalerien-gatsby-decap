@@ -9,6 +9,8 @@ seo:
   description: An overview of the offerings at RathausGalerien.
   title: Service
   url: service
+heading: Service
+intro: An overview of the offerings at RathausGalerien.
 ---
 ## RATHAUSGARAGE (Town Hall Car Park)
 

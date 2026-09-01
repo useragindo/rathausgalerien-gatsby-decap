@@ -15,5 +15,6 @@ address: Gamsstadt Kitzbühel
 contact:
   phone: "33433434"
   email: markus.hasibeder@agindo.at
+intro: das ist die Gams
 ---
 Das ist der content für die Gams

@@ -30,5 +30,8 @@ contact:
   phone: +43 512 58 11 99
   url: https://www.daniels-haare.com
 viewId: shop-7
+intro: >-
+  Here you can find information about Daniel's Haare Hair Stylist in the
+  shopping centre RathausGalerien.
 ---
 It's important to us that you get everything you need and feel happy - without having to worry what everything's going to cost. At the end of the 1990s we developed the "All inclusive” price concept which makes the final price perfectly clear in advance.

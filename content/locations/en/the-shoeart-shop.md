@@ -34,5 +34,8 @@ contact:
   phone: +43 660 8518285
   url: ""
 viewId: shop-18
+intro: >-
+  Here you can find information about Intimissimi Uomo in the shopping centre
+  RathausGalerien.
 ---
 Intimissimi Uomo stands for sophisticated menswear that combines elegance, quality and comfort. For years, the brand has been known for its high-quality underwear, loungewear and swimwear, which accompany the modern man in every situation. From classic cuts to innovative designs, Intimissimi Uomo offers a versatile range of products that emphasize the personality and style of every man.

@@ -29,5 +29,6 @@ contact:
   email: manfred.egger1@chello.at
   phone: +43 512 58 29 27
 viewId: shop-2
+intro: Hier finden Sie Informationen zu Morawa in den RathausGalerien.
 ---
 Willkommen in der Welt der gedruckten Information. Die Firma MORAWA - Agentur Egger - bringt die Vielfalt der nationalen und internationalen Presse in die Innsbrucker Rathaus Galerien.

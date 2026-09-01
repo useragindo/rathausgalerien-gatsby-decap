@@ -33,5 +33,8 @@ contact:
   phone: +43 512 90 83 75
   url: https://www.rituals.com
 viewId: shop-21
+intro: >-
+  Here you can find information about Rituals in the shopping centre
+  RathausGalerien.
 ---
 Rituals helps you to relax and find luck and happiness in the small things. It's our passion to convert daily routines into meaningful rituals. That's our philosophy and the basis of all ideas. Treat yourself with a timeout and enjoy a bath with candle light and Rituals bathing oil.

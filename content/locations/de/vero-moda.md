@@ -30,5 +30,6 @@ contact:
   phone: +43 512 20 91 03
   url: ""
 viewId: shop-32
+intro: Kindermode
 ---
 Wir entwerfen fröhliche und bezahlbare Mode für Kinder, die wissen, was sie wollen. Wir sehen die Welt durch Kinderaugen und lassen uns von ihrer Unkompliziertheit inspirieren. Wir kreieren trendige Designs mit einem starken Fokus auf Denim, wobei Komfort, Sicherheit und Qualität immer an erster Stelle stehen. Unsere Kreativität hat ihre Wurzeln in der liebevollen Art von Kindern und wir kleiden Babys, Kinder und Teenager für jede Gelegenheit und immer mit Stil.

@@ -27,5 +27,6 @@ contact:
   phone: +43 512 53 60 10 01
   url: https://www.innsbruck.gv.at
 viewId: shop-25
+intro: Hier finden Sie Informationen zum Bürgerservice in den RathausGalerien.
 ---
 Das Bürgerservice ist zentral in den Rathausgalerien gelegen und über die Eingänge Maria-Theresien-Straße, Stainerstraße, Fallmerayerstraße oder die Rathaus-Garage für Sie bequem erreichbar.

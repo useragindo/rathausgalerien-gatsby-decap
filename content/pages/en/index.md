@@ -114,6 +114,10 @@ blocks:
       Perfect for those little shopping breaks in our venues and for the waiting
       times of fashionistas' men. Simply download the app, connect and the
       reading pleasure can begin!
+heading: Shopping in Innsbruck
+intro: >-
+  Are you looking for a shopping center in Innsbruck? The RathausGalerien offer
+  a unique shopping experience and a wide variety of stores. Visit us on site!
 ---
 # RathausGalerien: Your shopping center in Innsbruck
 

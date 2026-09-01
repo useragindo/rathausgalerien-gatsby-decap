@@ -9,6 +9,8 @@ seo:
   description: Alle gesetzlichen Inhaberangaben finden Sie hier!
   title: Impressum2
   url: impressum2
+heading: Impressum2
+intro: Alle gesetzlichen Inhaberangaben finden Sie hier!
 ---
 ## Für den Inhalt verantwortlich:
 

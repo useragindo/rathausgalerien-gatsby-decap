@@ -9,6 +9,8 @@ seo:
   description: Our opening times at a glance.
   title: Hours
   url: hours
+heading: Hours
+intro: Our opening times at a glance.
 ---
 **Müller:** 
 Mon - Fri 08.30 until 19.00 o'clock\

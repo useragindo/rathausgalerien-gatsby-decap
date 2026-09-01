@@ -35,6 +35,7 @@ contact:
   phone: +43 512 319373
   url: https://www.odlo.com
 viewId: shop-5
+intro: Hier finden Sie Informationen zu Odlo in den RathausGalerien.
 ---
 THERE'S MORE OUT THERE
 

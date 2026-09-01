@@ -31,6 +31,7 @@ contact:
   phone: +43 512 58 88 62
   url: ""
 viewId: shop-10
+intro: Hier finden Sie Informationen zu Betty Barclay in den RathausGalerien.
 ---
 BETTY BARCLAY repräsentiert den Zeitgeist und den Lebensstil moderner Frauen mit Spaß an Mode und Weiblichkeit und verbindet gekonnt Business und Freizeit. Internationale Trends, interpretiert zu zeitgemäßen, modischen Designs – das ist die Mode von BETTY BARCLAY. \
 Wir akzeptieren die Inntaler Geschenkgutscheine.

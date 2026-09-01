@@ -33,6 +33,7 @@ contact:
   phone: +43 512 56 78 88
   url: https://www.thai-li-ba.at
 viewId: shop-35
+intro: Hier finden Sie Informationen zu Thai-Li-Ba in den RathausGalerien.
 ---
 Exotische Speisen nach Original-Rezepten 
 

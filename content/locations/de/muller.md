@@ -31,5 +31,6 @@ contact:
   phone: +43 59 120 19 58
   url: https://www.mueller-drogerie.at
 viewId: shop-1
+intro: Hier finden Sie Informationen zu Müller in den RathausGalerien.
 ---
 Das Einkaufserlebnis! Auf 2 Ebenen bietet Müller eine erstklassige Auswahl in den Bereichen Drogerie/Parfumerie, Haushalts-, Spielwaren und Medien. Erleben Sie Markenqualität in angenehmer Atmosphäre. Das ist die Welt von Müller.

@@ -30,5 +30,8 @@ contact:
   phone: +43 512 57 26 29
   url: https://www.goessers.at
 viewId: shop-34
+intro: >-
+  Here you can find information about Gösser's in the shopping centre
+  RathausGalerien.
 ---
 Live and enjoy! A wide range of carefully chosen beers, great cocktails and special drinks and promotions, delightful home cooking ...

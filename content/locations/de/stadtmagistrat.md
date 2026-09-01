@@ -25,5 +25,6 @@ contact:
   email: post.buergerservice@innsbruck.gv.at
   phone: "tel:+43 512 5360 "
   url: https://www.innsbruck.gv.at/
+intro: Hier finden Sie alle Informationen zum Magistrat in den RathausGalerien.
 ---
 Die Verwaltung der Landeshauptstadt Innsbruck ist ein moderner Dienstleistungsbetrieb, der kompetent und wirtschaftlich für Sie arbeitet. Wir sind über die Eingänge Maria-Theresien-Straße, Stainerstraße, Fallmerayerstraße oder die Rathaus-Garage bequem für Sie erreichbar.

@@ -9,6 +9,8 @@ seo:
   description: Unsere Öffnungszeiten auf einen Blick.
   title: Hours
   url: oeffnungszeiten
+heading: Hours
+intro: Unsere Öffnungszeiten auf einen Blick.
 ---
 **Müller**
 Mo - Fr 08.30 bis 19.00 Uhr\

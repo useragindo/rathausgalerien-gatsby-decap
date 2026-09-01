@@ -14,4 +14,6 @@ blocks:
     date: ""
     header: Block 1 von FAQs
     text: Text 1 von FAQ
+heading: FAQS
+intro: Wir beantworten alle Fragen....
 ---

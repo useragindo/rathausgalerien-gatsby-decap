@@ -34,6 +34,9 @@ contact:
   phone: +43 512 89 00 45
   url: https://www.colmar.com/at/
 viewId: shop-3
+intro: >-
+  Here you can find information about Colmar in the shopping centre
+  Rathausgalerien
 ---
 Welcome to the city! 
 

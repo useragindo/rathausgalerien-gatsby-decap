@@ -35,6 +35,7 @@ contact:
   phone: +43 512 55 98 95
   url: https://wutscher.com/
 viewId: shop-12
+intro: Hier finden Sie Informationen zu sehen!wutscher in den RathausGalerien.
 ---
 sehen!wutscher: Dein Optiker in Innsbruck \
 \

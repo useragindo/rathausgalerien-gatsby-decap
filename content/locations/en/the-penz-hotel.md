@@ -24,5 +24,8 @@ contact:
   phone: +43 512 57 56 570
   url: 'https://www.the-penz.com'
 viewId: shop-33
+intro: >-
+  Here you can find information about The Penz Hotel in the shopping centre
+  RathausGalerien.
 ---
 Feel completely at home. If you want to stay in the heart of the city, then there's only one hotel in Innsbruck for you: The Penz.

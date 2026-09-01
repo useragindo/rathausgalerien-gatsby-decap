@@ -25,6 +25,9 @@ address: |-
 contact:
   email: info@rathausgalerien.at
   phone: tel:+43512574861
+intro: >-
+  Hier finden Sie alle Informationen zur Centerverwaltung in den
+  RathausGalerien.
 ---
 Außerhalb der Bürozeiten erreichen Sie uns unter folgender Mobilnummer.\
 Mobil: +43 - 699 - 10 01 66 87

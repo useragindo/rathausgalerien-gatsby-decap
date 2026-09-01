@@ -27,6 +27,7 @@ contact:
   phone: " +43 699 16 560 800"
   email: office@sphere.co.at
   url: https://www.sphere.co.at
+intro: sphere - architectural environments
 ---
 Sphere gives spaces a new meaning.\
 The company’s diverse production and service divisions in the construction and real estate sectors include the following areas: **Management** (administration and organization), **Architecture** (design and technical implementation), **Object** (development and trading of real estate), **Concept** (communication and research in the field of architecture), and **Production** (construction and realization of building projects).

@@ -34,6 +34,9 @@ contact:
   phone: +43 512 56 09 77
   url: https://www.sportalm.at
 viewId: shop-31
+intro: >-
+  Here you can find information about Sportalm in the shopping centre
+  Rathausgalerien
 ---
 Sportalm is one of the most successful international textile company based in Kitzbühel. Its history as a family business of the family Ehrlich goes back 40 years, while since 1996 Sportalm produces also in its own production facilities in Bulgaria. 
 

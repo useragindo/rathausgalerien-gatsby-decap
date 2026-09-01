@@ -38,4 +38,6 @@ traffic_information: >-
 
 
   Für eine schnelle und bequeme Anfahrt verwenden Sie Google Maps oder die Netzpläne der IVB.
+heading: Lageplan
+intro: Einen interaktiven Lageplan der Rathausgalerien finden Sie hier.
 ---

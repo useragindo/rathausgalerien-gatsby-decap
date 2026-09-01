@@ -33,6 +33,7 @@ contact:
   phone: +43 512 56 02 02
   url: https://www.butlers.com
 viewId: shop-24
+intro: Hier finden Sie Informationen zu Butlers in den RathausGalerien.
 ---
 FÜRS MITEINANDER\
 DESIGNED BY BUTLERS

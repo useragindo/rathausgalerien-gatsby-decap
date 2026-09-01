@@ -32,5 +32,6 @@ contact:
   phone: +43 512 90 83 75
   url: https://www.rituals.com
 viewId: shop-21
+intro: Hier finden Sie Informationen zu Rituals in den RathausGalerien.
 ---
 Rituals hilft Ihnen zu entspannen und das Glück in den kleinen Dingen zu finden. Es ist unsere Leidenschaft alltägliche Routinen in bedeutungsvolle Rituale zu verwandeln. Dies ist unsere Philosophie und die Basis aller Produktideen: Gönnen Sie sich eine Auszeit vom Alltag und genießen Sie ein Bad mit Kerzen und Öl, eine entspannende Tasse Tee oder eine Wellnessbehandlung im eigenen Zuhause.

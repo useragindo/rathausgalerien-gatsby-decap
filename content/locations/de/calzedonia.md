@@ -32,5 +32,6 @@ contact:
   phone: +43 512 57 95 03
   url: http://at.calzedonia.com
 viewId: shop-20
+intro: Hier finden Sie Informationen zu Calzedonia in den RathausGalerien.
 ---
 Seit 1986, der Gründung des Unternehmens, hat Calzedonia immer wieder bewiesen, dass es versteht, mit jeder Kollektion die neuesten Trends bei Strumpf- und Bademode für Damen, Herren und Kinder umzusetzen und dabei Qualität zu einem erschwinglichen Preis zu bieten. Der Schlüssel zum Erfolg, liegt dabei in der sorgfältigen Suche nach Stil und Design, in der Verarbeitung von modernsten Materialien und Geweben sowie Kollektionen, die tonangebend für Geschmack und Trend sind. Aufgrund genau dieser Merkmale können auch die anspruchsvollsten Wünsche der Kunden erfüllt werden.

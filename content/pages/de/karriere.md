@@ -14,5 +14,7 @@ blocks:
     date: ""
     header: Deine Karriere in den RHG
     text: Komm und mach mit.
+heading: Karriere
+intro: Jobs
 ---
 Wir suchen Dich!

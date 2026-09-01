@@ -27,5 +27,6 @@ contact:
   phone: +43 699 16 560 800
   email: office@sphere.co.at
   url: https://www.sphere.co.at
+intro: Hier finden Sie Informationen zu Sphere in den RathausGalerien.
 ---
 Sphere verleiht Räumen eine neue Bedeutung. Die unterschiedlichen Produktions- und Dienstleistungsbereiche des Unternehmens im Bau- und Immobilienwesen umfassen folgende Leistungen: **Management** (Verwaltung und Organisation), **Architectur** (Gestaltung und technische Umsetzung), **Object** (Entwicklung und Handel von Immobilien), **Concept** (Kommunikation und Forschung im Fachbereich Architektur) sowie **Production** (Herstellung und Realisierung von Bauprojekten).

@@ -28,5 +28,8 @@ contact:
   phone: +43 512 53 60 1001
   url: https://www.innsbruck.gv.at
 viewId: shop-25
+intro: >-
+  Here you can find information about Bürgerservice Innsbruck in the shopping
+  centre the RathausGalerien.
 ---
 The Bürgerservice is in the centre of the RathausGalerien and is easy to find via the entrances on Maria-Theresien-Strasse, Stainerstrasse, Fallmerayerstrasse or the Rathaus car park.

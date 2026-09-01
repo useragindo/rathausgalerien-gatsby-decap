@@ -34,5 +34,8 @@ contact:
   phone: +43 512 56 37 23
   url: https://www.napapijri.com
 viewId: shop-4
+intro: >-
+  Here you can find information about Napapijri in the shopping centre
+  RathausGalerien.
 ---
 Premium Lifestyle Sportswear by NAPAPIJRI combines an easy-going spirit of adventure and a sense of the cosmopolitan. The international brand makes it mark with the exclusive fusion of sporting style and premium clothing. Its Finnish name refers to the Arctic Circle and Napapijri has succeeded in translating the features of performance, adaptability and durability to a whole range of gentlemen's, ladies' and children's clothing.

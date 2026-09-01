@@ -32,5 +32,6 @@ contact:
   phone: +43 512 57 36 72
   url: https://www.ruetz.at
 viewId: shop-14
+intro: Hier finden Sie Informationen zum Bäcker Ruetz in den RathausGalerien.
 ---
 Der Bäcker Ruetz in den Rathausgalerien lädt zum Verweilen ein. Geboten wird ein breites Angebot an Kaffeespezialitäten, diversen Frühstücks-Variationen, frisch zubereiten Snacks und selbstverständlich die bekannte Auswahl an frisch gebackenen Broten und Gebäcken. Ein Besuch beim Bäcker Ruetz lohnt sich!

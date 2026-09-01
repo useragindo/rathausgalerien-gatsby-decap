@@ -34,5 +34,8 @@ contact:
   phone: +43 512 56 02 02
   url: https://www.butlers.com
 viewId: shop-24
+intro: >-
+  Here you can find information about Butlers in the shopping centre
+  RathausGalerien.
 ---
 Butlers If there's one place where everything should be exactly right, then it's at home. Where people enjoy their free time with family, friends or on their own, where they surround themselves with their favourite things. And where they give their creativity free rein: as they think, sort things out, cook ... For all these people there's Butlers. Good ideas to take away. Gifts for those who already have everything.

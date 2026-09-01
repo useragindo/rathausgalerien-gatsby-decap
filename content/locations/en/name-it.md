@@ -28,5 +28,6 @@ contact:
   phone: +43 512 20 91 03
   email: exaut101032@bestseller.com
 viewId: shop-32
+intro: Kindermode
 ---
 We design fun, affordable fashion for kids who know what they want. We see the world through children's eyes and are inspired by their simplicity. We create trendy designs with a strong focus on denim, always putting comfort, safety and quality first. Our creativity is rooted in the loving nature of children and we dress babies, children and teenagers for every occasion and always in style.

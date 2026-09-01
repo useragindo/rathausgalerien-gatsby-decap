@@ -9,6 +9,8 @@ seo:
   description: Die Rathausgalerien gehen sorgsam mit Ihrer Privatsphäre und Daten um.
   title: Datenschutz
   url: datenschutz
+heading: Datenschutz
+intro: Die Rathausgalerien gehen sorgsam mit Ihrer Privatsphäre und Daten um.
 ---
 ## Datenschutzerklärung
 

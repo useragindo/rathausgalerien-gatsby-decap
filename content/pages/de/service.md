@@ -9,6 +9,8 @@ seo:
   description: Ein Überblick über die Angebote in den RathausGalerien.
   title: Services
   url: services
+heading: Services
+intro: Ein Überblick über die Angebote in den RathausGalerien.
 ---
 ## RathausGarage
 

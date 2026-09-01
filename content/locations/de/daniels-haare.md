@@ -29,5 +29,6 @@ contact:
   phone: +43 512 58 11 99
   url: https://www.daniels-haare.com
 viewId: shop-7
+intro: Hier finden Sie Informationen zu Daniel's Haare in den RathausGalerien.
 ---
 Es ist uns wichtig, dass Sie alles bekommen was Sie brauchen, um sich wohl zu fühlen - ohne Angst haben zu müssen, was das denn alles kosten soll. Wir haben Ende der 90er Jahren das "Alles Inklusive" Preiskonzept entwickelt, bei dem schon vorher klar ist, was es nachher kostet.

@@ -34,5 +34,6 @@ contact:
   phone: tel:+43 512 312312
   url: https://stage12.at/bar/
 viewId: shop-37
+intro: Here you can find informations about Stage 12 in the RathausGalerien
 ---
 Cool design, great atmosphere and creative cocktails and drinks await you. The Stage 12 hotel bar is renowned for its style and atmosphere. Enjoy great seasonal signature drinks from the Stage 12 Bar team right in the centre of Innsbruck. In addition, there is fresh popcorn with different flavors.

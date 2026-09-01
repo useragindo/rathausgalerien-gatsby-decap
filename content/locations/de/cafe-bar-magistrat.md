@@ -30,5 +30,6 @@ contact:
   phone: +43 512 55 22 22
   url: https://www.pizza-pasta-magistrat.at
 viewId: shop-6
+intro: Hier finden Sie Informationen zum Cafe Magistrat in den RathausGalerien.
 ---
 Das Leben ist schön! Treffen und Unterhalten bei fruchtigen Smoothies, Frozen Joghurts, italienischem Kaffee und toller Stimmung. After Work: Cocktails bei feinster House & Lounge Musik.

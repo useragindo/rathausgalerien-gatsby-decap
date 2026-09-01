@@ -20,6 +20,7 @@ contact:
   email: parken@boe.co.at
   phone: 'tel:+43 676 848 802 266'
   url: 'https://www.boe-parking.at'
+intro: Hier finden Sie alle Informationen zur GalerienGarage.
 ---
 Zentral parken in unserer RathausGarage mit 350 kühlen Parkplätzen. \
 Einfahrtshöhe: 2,20 m, Frauenparkplätze im 1. UG lt. Hinweisschildern.

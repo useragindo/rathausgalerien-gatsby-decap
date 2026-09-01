@@ -14,4 +14,6 @@ blocks:
     date: ""
     header: "Die Rathausgalerien "
     text: Ein Ort mit Geschichte mitten in der Stadt
+heading: Die Galerien
+intro: Die Innsbrucker Rathausgalerien im Überblick
 ---

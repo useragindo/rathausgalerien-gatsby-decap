@@ -39,6 +39,8 @@ traffic_information: >-
 
   The quick and easy way to find us is by using Google Maps or the IVB’s network
   plans.
+heading: Location
+intro: An interactive location map of the RathausGalerien can be found here.
 ---
 The RathausGalerien are in the centre of Innsbruck in the historic Maria-Theresien Strasse and can be reached on foot, by bike, public transport or car.
 

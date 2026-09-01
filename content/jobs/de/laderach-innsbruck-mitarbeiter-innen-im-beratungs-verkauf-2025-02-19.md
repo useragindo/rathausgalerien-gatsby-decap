@@ -10,6 +10,7 @@ location: Läderach Innsbruck
 position: Mitarbeiter:innen im Beratungs-Verkauf
 specification: Voll- und Teilzeit - 25h-38,5 Wochenstunden
 images: []
+intro: 'Mitarbeiter:innen im Beratungs-Verkauf'
 ---
 **Mitarbeiter:innen im Beratungs-Verkauf**
 

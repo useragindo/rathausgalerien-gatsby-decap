@@ -32,5 +32,8 @@ contact:
   phone: +43 512 57 63 210
   url: https://www.mueller-drogerie.at
 viewId: shop-1
+intro: >-
+  Here you can find information about Müller in the shopping centre
+  RathausGalerien.
 ---
 The shopping experience! Across 2 floors Müller offers a first-class range of products from drugstore and perfumery to household items, from toys and games to media. Explore the range of quality brands and enjoy the pleasant atmosphere. This is the world of Müller.

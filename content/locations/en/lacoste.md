@@ -34,5 +34,8 @@ contact:
   phone: +43 512 57 05 06
   url: https://www.lacoste.at
 viewId: shop-8
+intro: >-
+  Here you can find information about Lacoste in the shopping centre
+  RathausGalerien.
 ---
 LACOSTE - the original - polo as well as a wide selection of pullovers, shirts, trousers and a great variety of accessories for ladies and gentlemen are to be found in the LACOSTE store.

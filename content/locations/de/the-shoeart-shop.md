@@ -34,5 +34,6 @@ contact:
   phone: +43 660 8518285
   url: ""
 viewId: shop-18
+intro: Hier finde Sie Informationen zu Intimissimi Uomo in den RathausGalerien.
 ---
 Intimissimi Uomo steht für anspruchsvolle Herrenmode, die Eleganz, Qualität und Komfort vereint. Seit Jahren ist die Marke bekannt für ihre hochwertige Unterwäsche, Loungewear und Bademode, die den modernen Mann in jeder Lebenslage begleiten. Von klassischen Schnitten bis hin zu innovativen Designs bietet Intimissimi Uomo eine vielseitige Palette an Produkten, die die Persönlichkeit und den Stil jedes Mannes unterstreichen.

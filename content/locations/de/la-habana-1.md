@@ -31,5 +31,6 @@ contact:
   phone: +43 512 57 08 88
   url: http://www.la-habana.at
 viewId: shop-36
+intro: Hier finden Sie Informationen zum La Habana in den RathausGalerien.
 ---
 Genießen Sie tagsüber köstlichen Kaffee, kühle Getränke, ein frisches Bier und ein gutes Glas Wein. Die freundliche Bedienung serviert Ihnen auch gerne einen karibischen Cocktail oder einen gepflegten Rum bei „guter Laune“ Musik.

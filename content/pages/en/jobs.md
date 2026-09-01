@@ -10,5 +10,7 @@ seo:
   title: Jobs
   url: jobs
 message:
+heading: Jobs
+intro: All job vacancies can be found here.
 ---
 Open jobs are only posted on the [german page](/jobs).
