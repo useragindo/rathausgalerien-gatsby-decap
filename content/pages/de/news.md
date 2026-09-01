@@ -6,6 +6,7 @@ template: news_list
 menu: main
 order: 300
 heading: Aktuelles
+intro: Das ist die News Seite 1
 seo:
   title: News
   description: Das ist die News Seite
