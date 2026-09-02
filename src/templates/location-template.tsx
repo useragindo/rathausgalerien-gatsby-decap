@@ -95,9 +95,8 @@ const resolveLocationSeo = (location: NormalizedLocation): ResolvedSeo => {
 	};
 };
 
-const getCleanLocationDescription = (
-	location: NormalizedLocation,
-): string | undefined => location.intro?.trim() || undefined;
+const getLocationIntro = (location: NormalizedLocation): string | undefined =>
+	location.intro?.trim() || undefined;
 
 const stripMarkdownText = (value: string): string =>
 	value
@@ -131,7 +130,10 @@ const getBodyExcerpt = (body?: string, maxLength = 155): string | undefined => {
 };
 
 const getLocationSeoDescription = (location: NormalizedLocation): string =>
-	getCleanLocationDescription(location) ?? getBodyExcerpt(location.body) ?? "";
+	trim(location.frontmatter.seo?.description) ??
+	getLocationIntro(location) ??
+	getBodyExcerpt(location.body) ??
+	"";
 
 const getLocationFallbackCategory = (location: NormalizedLocation): string =>
 	location.group === "culinary" ? "Genuss" : "Shop";
@@ -273,7 +275,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 		location.language,
 		getLocationFallbackCategory(location),
 	);
-	const cleanDescription = getCleanLocationDescription(location);
+	const locationIntro = getLocationIntro(location);
 	const addressLines = getAddressLines(frontmatter.address);
 	const websiteUrl = getExternalUrl(frontmatter.contact?.url);
 	const hasOpeningHours = Boolean(frontmatter.hours?.length);
@@ -283,7 +285,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 		frontmatter.contact?.phone ||
 		websiteUrl,
 	);
-	const bodyContent = location.body ?? cleanDescription;
+	const bodyContent = location.body ?? locationIntro;
 	const infoTileExcerpt = getBodyExcerpt(bodyContent, 112);
 	const infoCategoryTitle = getLocationInfoCategoryTitle(
 		location,
