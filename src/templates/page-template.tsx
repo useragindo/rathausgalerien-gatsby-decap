@@ -159,17 +159,9 @@ const getFirstBodyParagraph = (body?: string): string | undefined => {
 
 const getLocationCardText = (location: NormalizedLocation): string => {
 	const bodyText = getFirstBodyParagraph(location.body);
-	const description = location.description
-		? stripMarkdown(location.description)
-		: undefined;
-	const cleanedDescription = description?.replace(
-		/^Hier finden Sie Informationen zu .+? in den RathausGalerien\.?$/i,
-		"",
-	);
+	const intro = location.intro ? stripMarkdown(location.intro) : undefined;
 	const text =
-		bodyText ||
-		cleanedDescription ||
-		`${location.title} in den RathausGalerien.`;
+		bodyText || intro || `${location.title} in den RathausGalerien.`;
 
 	return truncateText(text);
 };

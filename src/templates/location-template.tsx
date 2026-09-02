@@ -95,22 +95,9 @@ const resolveLocationSeo = (location: NormalizedLocation): ResolvedSeo => {
 	};
 };
 
-const isGenericLocationDescription = (description: string): boolean =>
-	/^Hier finden Sie Informationen zu .+? in den RathausGalerien\.?$/i.test(
-		description.trim(),
-	);
-
 const getCleanLocationDescription = (
 	location: NormalizedLocation,
-): string | undefined => {
-	const description = location.description?.trim();
-
-	if (!description || isGenericLocationDescription(description)) {
-		return undefined;
-	}
-
-	return description;
-};
+): string | undefined => location.intro?.trim() || undefined;
 
 const stripMarkdownText = (value: string): string =>
 	value
