@@ -82,7 +82,7 @@ const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => {
 	const funnelUrl = trim(page.frontmatter.funnel_url);
 	const canonicalUrl = funnelUrl ?? page.path;
 	const title = trim(seo?.title) ?? page.title;
-	const description = trim(seo?.description) ?? "";
+	const description = trim(seo?.description) ?? page.description ?? "";
 	const image =
 		trim(seo?.image) ??
 		trim(page.frontmatter.teaser?.image) ??

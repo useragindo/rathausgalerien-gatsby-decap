@@ -133,34 +133,43 @@ const getPageSlug = (node: ImportedMdxNode): string | undefined => {
 };
 
 export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
-	const frontmatter = node.frontmatter;
+  const frontmatter = node.frontmatter;
 
-	if (!frontmatter || frontmatter.type !== "page") {
-		return null;
-	}
+  if (!frontmatter || frontmatter.type !== "page") {
+    return null;
+  }
 
-	const language = getLanguage(frontmatter);
-	const key = trim(frontmatter.key) ?? getFileSlug(node) ?? node.id;
-	const template = getPageTemplate(frontmatter, key);
-	const heading = deriveDisplay(frontmatter.heading, key);
-	const intro = trim(frontmatter.intro);
-	const slug = getPageSlug(node);
+  const language = getLanguage(frontmatter);
+  const key = trim(frontmatter.key) ?? getFileSlug(node) ?? node.id;
+  const template = getPageTemplate(frontmatter, key);
+  const heading = deriveDisplay(frontmatter.heading, key);
+  const intro = trim(frontmatter.intro);
 
-	return {
-		id: node.id,
-		language,
-		i18nKey: key,
-		key,
-		template,
-		title: heading,
-		description: trim(frontmatter.seo?.description),
-		heading,
-		intro,
-		path: withLanguagePrefix(language, slug),
-		body: trim(node.body),
-		blocks: frontmatter.blocks ?? [],
-		frontmatter,
-	};
+  // SEO-description: reines SEO-Feld. Nur wenn seo.description leer ist,
+  // wird auf Heading und Intro zurückgefallen (nie umgekehrt).
+  const description = deriveDisplay(
+    trim(frontmatter.seo?.description),
+    heading,
+    intro,
+  );
+
+  const slug = getPageSlug(node);
+
+  return {
+    id: node.id,
+    language,
+    i18nKey: key,
+    key,
+    template,
+    title: heading,
+    description: trim(description),
+    heading,
+    intro,
+    path: withLanguagePrefix(language, slug),
+    body: trim(node.body),
+    blocks: frontmatter.blocks ?? [],
+    frontmatter,
+  };
 };
 
 const getLocationBaseSlug = (group?: string | null): string =>

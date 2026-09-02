@@ -102,7 +102,7 @@ collections:
           name: "heading",
           widget: "string",
           required: false,
-          hint: "Sichtbarer Titel der Seite (H1). Leer lassen, um den SEO-Titel zu übernehmen.",
+          hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt.",
         }
 
       - {
@@ -110,7 +110,7 @@ collections:
           name: "intro",
           widget: "text",
           required: false,
-          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um die SEO-Description zu übernehmen.",
+          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description).",
         }
 
       - label: "SEO"
@@ -118,7 +118,12 @@ collections:
         widget: object
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "string" }
+          - {
+              label: "Description",
+              name: "description",
+              widget: "string",
+              hint: "Reines SEO-Feld. Leer lassen, um Heading und Intro zu übernehmen.",
+            }
           - label: "URL"
             name: "url"
             widget: "string"
@@ -428,7 +433,7 @@ collections:
           name: "heading",
           widget: "string",
           required: false,
-          hint: "Sichtbarer Titel der Seite (H1). Leer lassen, um den SEO-Titel zu übernehmen.",
+          hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt.",
         }
 
       - {
@@ -436,7 +441,7 @@ collections:
           name: "intro",
           widget: "text",
           required: false,
-          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um die SEO-Description zu übernehmen.",
+          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description).",
         }
 
       - label: "SEO"
@@ -444,7 +449,12 @@ collections:
         widget: object
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "string" }
+          - {
+              label: "Description",
+              name: "description",
+              widget: "string",
+              hint: "Reines SEO-Feld. Leer lassen, um Heading und Intro zu übernehmen.",
+            }
           - label: "Image (OpenGraph/Twitter)"
             name: "image"
             widget: "image"
@@ -952,7 +962,7 @@ collections:
           name: "intro",
           widget: "text",
           required: false,
-          hint: "Standard: SEO-Beschreibung",
+          hint: "Standard: Specification",
         }
 
       - label: "SEO"
@@ -1067,7 +1077,7 @@ collections:
           name: "intro",
           widget: "text",
           required: false,
-          hint: "Standard: SEO-Beschreibung",
+          hint: "Sichtbare Einleitung. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description).",
         }
 
       - {
