@@ -9,7 +9,7 @@ import {
 	resolveCategories,
 	resolveCategoryLabels,
 } from "../lib/content/categories";
-import { MarkdownContent } from "../lib/content/markdown";
+import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
 import { trim } from "../lib/content/normalize";
 import type {
 	LanguageCode,
@@ -458,12 +458,12 @@ const HomepageIntro: React.FC<{
 			) : null}
 			<div className="home-intro__card">
 				<ShoppingBagIcon />
-				<h1 id="home-intro-title">{page.heading}</h1>
+				<h1 id="home-intro-title">{renderMultiline(page.heading)}</h1>
 				<p>{countLabel}</p>
 				<p>Mitten in Innsbruck</p>
 			</div>
 			{page.intro ? (
-				<p className="home-intro__description">{page.intro}</p>
+				<p className="home-intro__description">{renderMultiline(page.intro)}</p>
 			) : null}
 		</section>
 	);
@@ -603,9 +603,9 @@ const NewsList: React.FC<{ news: NormalizedNews[]; language: string }> = ({
 									{date ? (
 										<span className="news-card__date">{date}</span>
 									) : null}
-									<span className="listing-card__title">{item.heading}</span>
+									<span className="listing-card__title">{renderMultiline(item.heading)}</span>
 									{item.intro ? (
-										<span className="listing-card__text">{item.intro}</span>
+										<span className="listing-card__text">{renderMultiline(item.intro)}</span>
 									) : null}
 								</span>
 							</a>
@@ -651,9 +651,9 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			<article className={pageClassName}>
 				{!isHomepage ? (
 					<header className="page-hero">
-						<h1 className="page-hero__title">{page.heading}</h1>
+						<h1 className="page-hero__title">{renderMultiline(page.heading)}</h1>
 						{page.intro ? (
-							<p className="page-hero__description">{page.intro}</p>
+							<p className="page-hero__description">{renderMultiline(page.intro)}</p>
 						) : null}
 					</header>
 				) : null}

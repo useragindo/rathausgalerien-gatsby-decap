@@ -2,7 +2,7 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
-import { MarkdownContent } from "../lib/content/markdown";
+import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
 import { trim } from "../lib/content/normalize";
 import type {
 	LanguageCode,
@@ -164,10 +164,10 @@ const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
 				</header>
 
 				<header className="page-hero">
-					<h1 className="page-hero__title">{news.heading}</h1>
+					<h1 className="page-hero__title">{renderMultiline(news.heading)}</h1>
 					{date ? <p className="news-detail__date">{date}</p> : null}
 					{news.intro ? (
-						<p className="page-hero__description">{news.intro}</p>
+						<p className="page-hero__description">{renderMultiline(news.intro)}</p>
 					) : null}
 				</header>
 

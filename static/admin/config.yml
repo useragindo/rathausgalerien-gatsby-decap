@@ -100,9 +100,9 @@ collections:
       - {
           label: "Heading",
           name: "heading",
-          widget: "string",
+          widget: "text",
           required: false,
-          hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt.",
+          hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt. Für einen manuellen Zeilenumbruch Enter drücken.",
         }
 
       - {
@@ -110,7 +110,7 @@ collections:
           name: "intro",
           widget: "text",
           required: false,
-          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description).",
+          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
         }
 
       - label: "SEO"
@@ -431,9 +431,9 @@ collections:
       - {
           label: "Heading",
           name: "heading",
-          widget: "string",
+          widget: "text",
           required: false,
-          hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt.",
+          hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt. Für einen manuellen Zeilenumbruch Enter drücken.",
         }
 
       - {
@@ -441,7 +441,7 @@ collections:
           name: "intro",
           widget: "text",
           required: false,
-          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description).",
+          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
         }
 
       - label: "SEO"
@@ -775,12 +775,18 @@ collections:
       - {
           label: "Heading",
           name: "heading",
-          widget: "string",
+          widget: "text",
           required: false,
-          hint: "Standard: Name",
+          hint: "Standard: Name. Für einen manuellen Zeilenumbruch Enter drücken.",
         }
 
-      - { label: "Intro", name: "intro", widget: "text", required: false }
+      - {
+          label: "Intro",
+          name: "intro",
+          widget: "text",
+          required: false,
+          hint: "Für einen manuellen Zeilenumbruch Enter drücken.",
+        }
 
       - label: "SEO"
         name: "seo"
@@ -952,9 +958,9 @@ collections:
       - {
           label: "Heading",
           name: "heading",
-          widget: "string",
+          widget: "text",
           required: false,
-          hint: "Standard: Location – Position",
+          hint: "Standard: Location – Position. Für einen manuellen Zeilenumbruch Enter drücken.",
         }
 
       - {
@@ -962,7 +968,7 @@ collections:
           name: "intro",
           widget: "text",
           required: false,
-          hint: "Standard: Specification",
+          hint: "Standard: Specification. Für einen manuellen Zeilenumbruch Enter drücken.",
         }
 
       - label: "SEO"
@@ -1070,14 +1076,19 @@ collections:
       - { label: "Type", name: "type", widget: "hidden", default: "news" }
       - { label: "UUID", name: "uuid", widget: "uuid" }
 
-      - { label: "Heading", name: "heading", widget: "string" }
+      - {
+          label: "Heading",
+          name: "heading",
+          widget: "text",
+          hint: "Für einen manuellen Zeilenumbruch Enter drücken.",
+        }
 
       - {
           label: "Intro",
           name: "intro",
           widget: "text",
           required: false,
-          hint: "Sichtbare Einleitung. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description).",
+          hint: "Sichtbare Einleitung. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
         }
 
       - {

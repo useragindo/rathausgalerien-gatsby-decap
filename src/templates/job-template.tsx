@@ -2,7 +2,7 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
-import { MarkdownContent } from "../lib/content/markdown";
+import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
 import { trim } from "../lib/content/normalize";
 import type {
 	LanguageLinks,
@@ -218,7 +218,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 						</div>
 						<h2>{position}</h2>
 						<div className="job-detail__info-copy">
-							{intro ? <p>{intro}</p> : null}
+							{intro ? <p>{renderMultiline(intro)}</p> : null}
 						</div>
 					</div>
 

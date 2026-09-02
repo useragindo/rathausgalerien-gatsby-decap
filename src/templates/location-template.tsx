@@ -3,7 +3,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
 import { resolveCategoryLabels } from "../lib/content/categories";
-import { MarkdownContent } from "../lib/content/markdown";
+import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
 import { trim } from "../lib/content/normalize";
 import type {
 	LanguageLinks,
@@ -315,7 +315,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 					) : (
 						<div className="location-detail__hero-placeholder" />
 					)}
-					<h1 className="visually-hidden">{location.heading}</h1>
+					<h1 className="visually-hidden">{renderMultiline(location.heading)}</h1>
 				</header>
 
 				<section
@@ -327,7 +327,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 							{frontmatter.logo ? (
 								<img src={frontmatter.logo} alt={`${location.title} Logo`} />
 							) : (
-								<h2>{location.heading}</h2>
+								<h2>{renderMultiline(location.heading)}</h2>
 							)}
 						</div>
 						<p className="location-detail__category-title">
@@ -436,7 +436,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 						aria-labelledby="location-about-title"
 					>
 						<div className="location-detail__about-copy">
-							<h2 id="location-about-title">{location.heading}</h2>
+							<h2 id="location-about-title">{renderMultiline(location.heading)}</h2>
 							<div className="detail-rich-text">
 								<MarkdownContent content={bodyContent} />
 							</div>

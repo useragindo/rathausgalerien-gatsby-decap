@@ -12,7 +12,7 @@ import type {
 	SocialTeaserBlock,
 	TeaserGridBlock,
 } from "../../lib/cms";
-import { MarkdownContent } from "../../lib/content/markdown";
+import { MarkdownContent, renderMultiline } from "../../lib/content/markdown";
 import type { LanguageCode } from "../../lib/content/types";
 import type {
 	ImportedContentBlock,
@@ -63,14 +63,6 @@ const text = (value?: string | null): string | undefined => {
 	const trimmed = value?.trim();
 	return trimmed ? trimmed : undefined;
 };
-
-const renderMultiline = (value: string): React.ReactNode =>
-	value.split("\n").map((line, index) => (
-		<React.Fragment key={index}>
-			{index > 0 ? <br /> : null}
-			{line}
-		</React.Fragment>
-	));
 
 const isImportedBlockLayout = (value?: string | null): value is ImportedBlockLayout =>
 	Boolean(

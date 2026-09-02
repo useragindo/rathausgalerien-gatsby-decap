@@ -132,6 +132,16 @@ const renderParagraph = (paragraph: string, index: number): React.ReactNode => {
 	return <p key={index}>{renderInline(cleaned)}</p>;
 };
 
+// CMS text fields (heading, intro) are plain strings, not markdown, but still
+// need to preserve manual line breaks the editor typed with Enter.
+export const renderMultiline = (value: string): React.ReactNode =>
+	value.split("\n").map((line, index) => (
+		<React.Fragment key={index}>
+			{index > 0 ? <br /> : null}
+			{line}
+		</React.Fragment>
+	));
+
 export const MarkdownContent: React.FC<{ content?: string | null }> = ({
 	content,
 }) => {
