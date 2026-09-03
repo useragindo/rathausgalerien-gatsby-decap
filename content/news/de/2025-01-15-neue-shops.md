@@ -7,7 +7,7 @@ heading: MADE IN INNSBRUCK
 intro: Aus 380 Teilnehmerinnen und Teilnehmern wurden elf Gesichter für unsere
   Frühjahrskampagne ausgewählt. Geshootet wurde mitten in den Galerien – unter
   dem Motto „Galerien Wunderland“ und mit Mode aus den RathausGalerien.
-date: 2025-01-15T09:00:00.000Z
+date: ""
 seo:
   title: Neue Shops in den RathausGalerien
   description: Gleich drei neue Geschäfte eröffnen diesen Frühling in den RathausGalerien.
