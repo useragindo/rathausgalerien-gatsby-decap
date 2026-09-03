@@ -3,7 +3,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { ContentBlockRenderer } from "../components/content-blocks";
 import { LocationPlan } from "../components/location-plan";
 import { Seo } from "../components/seo";
-import { ServiceAZList, ServiceTiles } from "../components/services";
+import { ServiceTiles } from "../components/services";
 import { SiteLayout } from "../layouts";
 import {
 	normalizeCategoryKey,
@@ -732,18 +732,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 				<NewsList news={news} language={page.language} />
 			) : null}
 			{isServicesPage ? (
-				<>
-					<ServiceTiles services={services} language={page.language} />
-					<section
-						className="listing-section listing-section--services"
-						aria-labelledby="services-az-title"
-					>
-						<header className="listing-section__header">
-							<h2 id="services-az-title">Services von A bis Z</h2>
-						</header>
-						<ServiceAZList services={services} language={page.language} />
-					</section>
-				</>
+				<ServiceTiles services={services} language={page.language} />
 			) : null}
 		</SiteLayout>
 	);
