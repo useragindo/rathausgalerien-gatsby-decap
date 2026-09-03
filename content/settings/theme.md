@@ -1,5 +1,5 @@
 ---
 type: settings
 name: theme
-active_scheme: standard
+active_scheme: herbst
 ---
