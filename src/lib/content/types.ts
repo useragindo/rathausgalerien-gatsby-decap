@@ -76,6 +76,8 @@ export type ImportedFrontmatter = {
 	active_scheme?: string | null;
 	heading?: string | null;
 	intro?: string | null;
+	az_heading?: string | null;
+	az_intro?: string | null;
 	// YAML parses an unquoted timestamp as a Date, so this is not always a
 	// string. Read it through `toDateString`.
 	date?: string | Date | null;
@@ -147,6 +149,8 @@ export type NormalizedPage = {
 	description?: string;
 	heading: string;
 	intro?: string;
+	azHeading?: string;
+	azIntro?: string;
 	path: string;
 	body?: string;
 	blocks: ImportedContentBlock[];

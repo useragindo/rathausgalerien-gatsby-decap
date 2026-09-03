@@ -734,7 +734,22 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			{isServicesPage ? (
 				<>
 					<ServiceTiles services={services} language={page.language} />
-					<ServiceAZList services={services} language={page.language} />
+					<section
+						className="listing-section listing-section--services"
+						aria-labelledby="services-az-title"
+					>
+						{page.azHeading ? (
+							<header className="listing-section__header">
+								<h2 id="services-az-title">{renderMultiline(page.azHeading)}</h2>
+								{page.azIntro ? (
+									<p className="listing-section__intro">
+										{renderMultiline(page.azIntro)}
+									</p>
+								) : null}
+							</header>
+						) : null}
+						<ServiceAZList services={services} language={page.language} />
+					</section>
 				</>
 			) : null}
 		</SiteLayout>

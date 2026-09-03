@@ -868,7 +868,23 @@ collections:
           name: "intro",
           widget: "text",
           required: false,
-          hint: "Für einen manuellen Zeilenumbruch Enter drücken.",
+          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
+        }
+
+      - {
+          label: "A-Z Heading",
+          name: "az_heading",
+          widget: "text",
+          required: false,
+          hint: "Überschrift über der alphabetischen Service-Liste (z. B. 'Services von A bis Z'). Wird nur auf Seiten mit template=services angezeigt. Für Zeilenumbrüche Enter drücken.",
+        }
+
+      - {
+          label: "A-Z Intro",
+          name: "az_intro",
+          widget: "text",
+          required: false,
+          hint: "Einleitungstext unter der A-Z-Heading (nur auf Services-Seiten). Leer lassen, um nichts anzuzeigen. Für Zeilenumbrüche Enter drücken.",
         }
 
       - label: "SEO"

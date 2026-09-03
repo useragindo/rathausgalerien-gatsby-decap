@@ -168,6 +168,8 @@ export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
     description: trim(description),
     heading,
     intro,
+    azHeading: trim(frontmatter.az_heading),
+    azIntro: trim(frontmatter.az_intro),
     path: withLanguagePrefix(language, slug),
     body: trim(node.body),
     blocks: frontmatter.blocks ?? [],
