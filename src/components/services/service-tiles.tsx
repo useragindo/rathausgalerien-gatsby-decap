@@ -14,8 +14,7 @@ export const ServiceTiles: React.FC<ServiceTilesProps> = ({
 	language,
 }) => {
 	const items = services.filter(
-		(service) =>
-			service.language === language && service.tile && Boolean(service.icon),
+		(service) => service.language === language && service.tile,
 	);
 
 	if (!items.length) {
@@ -30,12 +29,19 @@ export const ServiceTiles: React.FC<ServiceTilesProps> = ({
 			<ul className="service-tiles__grid">
 				{items.map((service) => (
 					<li className="service-tile" key={service.id}>
-						<img
-							className="service-tile__icon"
-							src={service.icon}
-							alt=""
-							loading="lazy"
-						/>
+						{service.icon ? (
+							<img
+								className="service-tile__icon"
+								src={service.icon}
+								alt=""
+								loading="lazy"
+							/>
+						) : (
+							<div
+								className="service-tile__icon service-tile__icon--placeholder"
+								aria-hidden="true"
+							/>
+						)}
 						<span className="service-tile__label">{service.name}</span>
 					</li>
 				))}

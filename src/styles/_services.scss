@@ -37,6 +37,13 @@
 .service-tile__icon {
 	width: clamp(1.75rem, 4vw, 3rem);
 	height: clamp(1.75rem, 4vw, 3rem);
+	object-fit: contain;
+}
+
+.service-tile__icon--placeholder {
+	border: 1px dashed color-mix(in srgb, var(--color-blue-900) 40%, transparent);
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--color-blue-300) 60%, white);
 }
 
 .service-tile__label {
