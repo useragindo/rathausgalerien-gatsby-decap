@@ -11,23 +11,8 @@ type ServiceTilesProps = {
 	language: LanguageCode;
 };
 
-// Hex fallbacks mirror the standard scheme in content/color-schemes/standard.md.
-// They live inside `var(...)` so a tile stays visible even when the active
-// scheme has not (yet) injected the corresponding `--scheme-*` custom
-// property — for example during the brief window between an editor switching
-// schemes and the next rebuild, or when a tile references a slot the active
-// scheme does not define.
-const SCHEME_FALLBACKS: Record<ServiceTileColor, string> = {
-	bg: "#d1efff",
-	text: "#22254e",
-	c1: "#7bd0e5",
-	c2: "#ffa4cc",
-	c3: "#ffbb33",
-	c4: "#b58ec1",
-};
-
 const getColorValue = (slot: ServiceTileColor | ServiceTileTextColor): string =>
-	`var(--scheme-${slot}, ${SCHEME_FALLBACKS[slot]})`;
+	`var(--scheme-${slot})`;
 
 const getTileStyle = (
 	background: ServiceTileColor,
