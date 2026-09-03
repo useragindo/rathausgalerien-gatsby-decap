@@ -45,7 +45,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 	}
 
 	const mdxNodes = getNodesByType("Mdx") as ImportedMdxNode[];
-	const { pages, locations, jobs, news, categories, navigation, theme } =
+	const { pages, locations, jobs, news, categories, services, navigation, theme } =
 		normalizeNodes(mdxNodes);
 	const usedPaths = new Map<string, number>();
 
@@ -66,6 +66,10 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				jobs,
 				news,
 				categories,
+				// Only the services page renders this; every other page gets an
+				// empty array so its page-data.json doesn't carry a dead copy of
+				// the full services collection.
+				services: page.template === "services" ? services : [],
 				theme,
 				languageLinks: pageLanguageLinks(page),
 				socialLinks: socialLinksByLanguage[page.language],

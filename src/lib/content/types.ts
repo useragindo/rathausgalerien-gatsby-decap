@@ -67,6 +67,7 @@ export type ImportedFrontmatter = {
 		| "location"
 		| "job"
 		| "news"
+		| "service"
 		| "color_scheme"
 		| "settings"
 		| string
@@ -104,6 +105,9 @@ export type ImportedFrontmatter = {
 	group?: "brand" | "culinary" | string | null;
 	categories?: string[] | null;
 	logo?: string | null;
+	icon?: string | null;
+	description?: string | null;
+	tile?: boolean | null;
 	images?: string[] | null;
 	hours?: Array<{
 		date?: string | null;
@@ -195,6 +199,17 @@ export type NormalizedCategory = {
 	uuid: string;
 	name: string;
 	slug: string;
+	frontmatter: ImportedFrontmatter;
+};
+
+export type NormalizedService = {
+	id: string;
+	language: LanguageCode;
+	uuid: string;
+	name: string;
+	icon?: string;
+	description?: string;
+	tile: boolean;
 	frontmatter: ImportedFrontmatter;
 };
 

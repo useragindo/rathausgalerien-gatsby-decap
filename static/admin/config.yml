@@ -76,6 +76,7 @@ collections:
           - { label: "Lageplan", value: "lageplan" }
           - { label: "Jobs", value: "jobs" }
           - { label: "News-Übersicht", value: "news_list" }
+          - { label: "Services-Übersicht", value: "services" }
 
       - label: "Menü"
         name: "menu"
@@ -739,6 +740,60 @@ collections:
       - { label: "UUID", name: "uuid", widget: "uuid" }
 
       - { label: "Name", name: "name", widget: "string" }
+
+  - name: "services"
+    label: "Services"
+    label_singular: "Service"
+    folder: "content/services"
+    media_folder: "/static/media/services"
+    public_folder: "/media/services"
+    path: "{{locale}}/{{slug}}"
+    identifier_field: name
+    summary: "{{name}} ({{locale}})"
+    view_filters:
+      - label: "Deutsch"
+        field: locale
+        pattern: "de"
+      - label: "English"
+        field: locale
+        pattern: "en"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - label: "Sprache"
+        name: "locale"
+        widget: "select"
+        default: "de"
+        options:
+          - { label: "Deutsch", value: "de" }
+          - { label: "English", value: "en" }
+
+      - { label: "Key", name: "key", widget: "hidden", default: "service" }
+      - { label: "Type", name: "type", widget: "hidden", default: "service" }
+      - { label: "UUID", name: "uuid", widget: "uuid" }
+
+      - { label: "Name", name: "name", widget: "string" }
+
+      - label: "Icon"
+        name: "icon"
+        widget: "image"
+        required: false
+        hint: "Nur nötig, wenn 'Als Kachel anzeigen' aktiviert ist. Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+        pattern: ["(?:.+)\\.svg$", "Must be a SVG file"]
+
+      - label: "Beschreibung"
+        name: "description"
+        widget: "text"
+        required: false
+        hint: "Kurzbeschreibung, wird in der Liste 'Services von A bis Z' angezeigt. Für einen manuellen Zeilenumbruch Enter drücken."
+
+      - label: "Als Kachel anzeigen"
+        name: "tile"
+        widget: "boolean"
+        default: false
+        required: false
+        hint: "Zeigt diesen Service zusätzlich als Kachel oben auf der Services-Seite. Unabhängig davon erscheint der Eintrag immer in der A-Z-Liste."
 
   - name: "locations"
     label: "Locations"

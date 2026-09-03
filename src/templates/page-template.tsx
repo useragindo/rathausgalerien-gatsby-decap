@@ -3,6 +3,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { ContentBlockRenderer } from "../components/content-blocks";
 import { LocationPlan } from "../components/location-plan";
 import { Seo } from "../components/seo";
+import { ServiceAZList, ServiceTiles } from "../components/services";
 import { SiteLayout } from "../layouts";
 import {
 	normalizeCategoryKey,
@@ -19,6 +20,7 @@ import type {
 	NormalizedLocation,
 	NormalizedNews,
 	NormalizedPage,
+	NormalizedService,
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
@@ -41,6 +43,7 @@ type PageTemplateContext = {
 	jobs: NormalizedJob[];
 	news: NormalizedNews[];
 	categories: NormalizedCategory[];
+	services: NormalizedService[];
 	theme?: SiteTheme;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
@@ -441,12 +444,15 @@ const ShoppingBagIcon: React.FC = () => (
 const HomepageIntro: React.FC<{
 	page: NormalizedPage;
 	locations: NormalizedLocation[];
-}> = ({ page, locations }) => {
+	showShopCount?: boolean;
+}> = ({ page, locations, showShopCount = true }) => {
 	const image = getHomepageIntroImage(page);
-	const shopCount = locations.filter(
-		(location) =>
-			location.language === page.language && location.group === "brand",
-	).length;
+	const shopCount = showShopCount
+		? locations.filter(
+				(location) =>
+					location.language === page.language && location.group === "brand",
+			).length
+		: 0;
 	const countLabel = shopCount > 0 ? `${shopCount} Shops` : "Shops";
 
 	return (
@@ -459,8 +465,12 @@ const HomepageIntro: React.FC<{
 			<div className="home-intro__card">
 				<ShoppingBagIcon />
 				<h1 id="home-intro-title">{renderMultiline(page.heading)}</h1>
-				<p>{countLabel}</p>
-				<p>Mitten in Innsbruck</p>
+				{showShopCount ? (
+					<>
+						<p>{countLabel}</p>
+						<p>Mitten in Innsbruck</p>
+					</>
+				) : null}
 			</div>
 			{page.intro ? (
 				<p className="home-intro__description">{renderMultiline(page.intro)}</p>
@@ -625,6 +635,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 		jobs,
 		news,
 		categories,
+		services,
 		theme,
 		languageLinks,
 		socialLinks,
@@ -636,7 +647,11 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 	// Keep the key-based CSS hook (`.page--index`, `.page--locations`, …) stable.
 	const pageClassName = `page page--${page.key}`;
 	const isHomepage = page.template === "home" || page.template === "funnel";
+	const isServicesPage = page.template === "services";
 	const isLocationPlan = page.template === "lageplan";
+	// Homepage and Services both use the image+badge teaser instead of the
+	// plain page-hero header, so the two never render at the same time.
+	const showTeaser = isHomepage || isServicesPage;
 
 	return (
 		<SiteLayout
@@ -647,9 +662,15 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			languages={languages}
 			siteTitle="RathausGalerien"
 		>
-			{isHomepage ? <HomepageIntro page={page} locations={locations} /> : null}
+			{showTeaser ? (
+				<HomepageIntro
+					page={page}
+					locations={locations}
+					showShopCount={isHomepage}
+				/>
+			) : null}
 			<article className={pageClassName}>
-				{!isHomepage ? (
+				{!showTeaser ? (
 					<header className="page-hero">
 						<h1 className="page-hero__title">{renderMultiline(page.heading)}</h1>
 						{page.intro ? (
@@ -701,6 +722,20 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			) : null}
 			{page.template === "news_list" ? (
 				<NewsList news={news} language={page.language} />
+			) : null}
+			{isServicesPage ? (
+				<>
+					<ServiceTiles services={services} language={page.language} />
+					<section
+						className="listing-section listing-section--services"
+						aria-labelledby="services-az-title"
+					>
+						<header className="listing-section__header">
+							<h2 id="services-az-title">Services von A bis Z</h2>
+						</header>
+						<ServiceAZList services={services} language={page.language} />
+					</section>
+				</>
 			) : null}
 		</SiteLayout>
 	);

@@ -8,6 +8,7 @@ import type {
 	NormalizedLocation,
 	NormalizedNews,
 	NormalizedPage,
+	NormalizedService,
 	SiteNavigationItem,
 	SiteTheme,
 } from "./types";
@@ -300,6 +301,35 @@ export const normalizeCategory = (
 	};
 };
 
+export const normalizeService = (
+	node: ImportedMdxNode,
+): NormalizedService | null => {
+	const frontmatter = node.frontmatter;
+
+	if (!frontmatter || frontmatter.type !== "service") {
+		return null;
+	}
+
+	const language = getLanguage(frontmatter);
+	const uuid = trim(frontmatter.uuid);
+	const name = trim(frontmatter.name);
+
+	if (!uuid || !name) {
+		return null;
+	}
+
+	return {
+		id: node.id,
+		language,
+		uuid,
+		name,
+		icon: trim(frontmatter.icon),
+		description: trim(frontmatter.description),
+		tile: Boolean(frontmatter.tile),
+		frontmatter,
+	};
+};
+
 // Slot names become CSS custom properties, so only characters that are safe
 // inside a custom property name are accepted. Which slots exist is the CMS's
 // business, not this module's.
@@ -490,6 +520,9 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 	const categories = nodes
 		.map(normalizeCategory)
 		.filter((category): category is NormalizedCategory => Boolean(category));
+	const services = nodes
+		.map(normalizeService)
+		.filter((service): service is NormalizedService => Boolean(service));
 	const colorSchemes = nodes
 		.map(normalizeColorScheme)
 		.filter((scheme): scheme is NormalizedColorScheme => Boolean(scheme));
@@ -503,6 +536,7 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 		jobs,
 		news,
 		categories,
+		services,
 		navigation: createNavigationFromPages(pages),
 		theme: resolveActiveTheme(colorSchemes, activeSchemeKey),
 	};
