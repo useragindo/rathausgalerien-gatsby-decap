@@ -429,7 +429,15 @@ const getHomepageIntroImage = (page: NormalizedPage): string | undefined => {
 		image.image?.includes("eingang"),
 	);
 
-	return entranceImage?.image ?? images[0]?.image ?? undefined;
+	const blockImage = entranceImage?.image ?? images[0]?.image;
+
+	if (blockImage) {
+		return blockImage;
+	}
+
+	const teaserImage = trim(page.frontmatter.teaser?.image);
+
+	return teaserImage || undefined;
 };
 
 const ShoppingBagIcon: React.FC = () => (
