@@ -13,9 +13,8 @@ seo:
   description: Gleich drei neue Geschäfte eröffnen diesen Frühling in den RathausGalerien.
   url: neue-shops
 images:
-  - /media/news/neue-shops-teaser.jpg
+  - /media/news/rhg_gastro_24_danielzangerl-_128.jpg
   - /media/news/neue-shops-detail.jpg
-  - /media/news/rathausgalerien_so25_danielzangerl-_229_web.jpg
 ---
 News | 2. MÄRZ 2026
 
