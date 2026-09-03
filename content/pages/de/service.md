@@ -1,17 +1,24 @@
 ---
-locale: de
-type: page
-key: services
 template: services
-menu: main
-order: 400
 heading: |-
   UNSERE
   SERVICES
   FÜR SIE
+blocks:
+  - layout: grid-4
+    color_token: ""
+    reversed: false
+    date: ""
+    header: Mein Blog
+    teaserText: Mein Blog
+az_intro: "Mit folgenden Services wird Ihr Aufenthalt in den RathausGalerien
+  noch angenehmer und entspannter:"
+locale: de
+type: page
+key: services
+menu: main
+order: 400
 intro: Ein Überblick über die Angebote in den RathausGalerien.
-az_heading: Services von A bis Z
-az_intro: "Mit folgenden Services wird Ihr Aufenthalt in den RathausGalerien noch angenehmer und entspannter:"
 seo:
   description: Ein Überblick über die Angebote in den RathausGalerien.
   title: Services
@@ -19,4 +26,5 @@ seo:
 teaser:
   image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_04.jpg
   title: ""
+az_heading: Services von A bis Z
 ---
