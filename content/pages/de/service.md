@@ -27,8 +27,7 @@ blocks:
     tiles:
       - color_token: ""
         text: Das der Text für meine 1. Kachel
-        images:
-          - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
+        images: []
       - color_token: ""
         images:
           - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_01.jpg
