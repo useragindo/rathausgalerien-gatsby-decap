@@ -8,4 +8,6 @@ icon: /media/services/brands_icon.svg
 description: Zentral-Apotheke in der Anichstraße 2a, St. Anna-Apotheke in der
   Maria-Theresien-Straße 4.
 tile: true
+tile_color: c3
+tile_text_color: bg
 ---
