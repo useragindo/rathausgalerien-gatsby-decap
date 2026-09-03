@@ -108,6 +108,7 @@ export type ImportedFrontmatter = {
 	icon?: string | null;
 	description?: string | null;
 	tile?: boolean | null;
+	tile_color?: string | null;
 	images?: string[] | null;
 	hours?: Array<{
 		date?: string | null;
@@ -202,6 +203,8 @@ export type NormalizedCategory = {
 	frontmatter: ImportedFrontmatter;
 };
 
+export type ServiceTileColor = "default" | "c1" | "c2" | "c3" | "c4";
+
 export type NormalizedService = {
 	id: string;
 	language: LanguageCode;
@@ -210,6 +213,7 @@ export type NormalizedService = {
 	icon?: string;
 	description?: string;
 	tile: boolean;
+	tileColor: ServiceTileColor;
 	frontmatter: ImportedFrontmatter;
 };
 

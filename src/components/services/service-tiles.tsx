@@ -1,9 +1,26 @@
 import * as React from "react";
-import type { LanguageCode, NormalizedService } from "../../lib/content/types";
+import type {
+	LanguageCode,
+	NormalizedService,
+	ServiceTileColor,
+} from "../../lib/content/types";
 
 type ServiceTilesProps = {
 	services: NormalizedService[];
 	language: LanguageCode;
+};
+
+const getTileStyle = (
+	color: ServiceTileColor,
+): React.CSSProperties | undefined => {
+	if (color === "default") {
+		return undefined;
+	}
+
+	return {
+		background: `var(--scheme-${color})`,
+		color: `var(--scheme-${color}-on)`,
+	};
 };
 
 // Unlike the generic grid-4 content block (capped at 4 tiles by design), this
@@ -28,7 +45,11 @@ export const ServiceTiles: React.FC<ServiceTilesProps> = ({
 		<section className="service-tiles" aria-label="Services">
 			<ul className="service-tiles__grid">
 				{items.map((service) => (
-					<li className="service-tile" key={service.id}>
+					<li
+						className="service-tile"
+						key={service.id}
+						style={getTileStyle(service.tileColor)}
+					>
 						{service.icon ? (
 							<img
 								className="service-tile__icon"

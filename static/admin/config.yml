@@ -795,6 +795,19 @@ collections:
         required: false
         hint: "Zeigt diesen Service zusätzlich als Kachel oben auf der Services-Seite. Unabhängig davon erscheint der Eintrag immer in der A-Z-Liste."
 
+      - label: "Kachel-Hintergrund"
+        name: "tile_color"
+        widget: "select"
+        default: "default"
+        required: false
+        hint: "Hintergrundfarbe der Kachel aus dem aktiven Farbschema. Nur sichtbar, wenn 'Als Kachel anzeigen' aktiviert ist."
+        options:
+          - { label: "Standard (blau)", value: "default" }
+          - { label: "Akzent 1 (c1)", value: "c1" }
+          - { label: "Akzent 2 (c2)", value: "c2" }
+          - { label: "Akzent 3 (c3)", value: "c3" }
+          - { label: "Akzent 4 (c4)", value: "c4" }
+
   - name: "locations"
     label: "Locations"
     label_singular: "Location"
