@@ -5,7 +5,10 @@ key: services
 template: services
 menu: main
 order: 400
-heading: SERVICES VON A BIS Z
+heading: |-
+  UNSERE
+  SERVICES
+  FÜR SIE
 intro: Ein Überblick über die Angebote in den RathausGalerien.
 seo:
   description: Ein Überblick über die Angebote in den RathausGalerien.
