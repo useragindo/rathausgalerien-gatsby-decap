@@ -798,15 +798,16 @@ collections:
       - label: "Kachel-Hintergrund"
         name: "tile_color"
         widget: "select"
-        default: "default"
+        default: "c1"
         required: false
-        hint: "Hintergrundfarbe der Kachel aus dem aktiven Farbschema. Nur sichtbar, wenn 'Als Kachel anzeigen' aktiviert ist."
+        hint: "Hintergrundfarbe der Kachel aus dem aktiven Farbschema. Nur sichtbar, wenn 'Als Kachel anzeigen' aktiviert ist. Folgt automatisch dem aktiven Schema (Einstellungen → Farben)."
         options:
-          - { label: "Standard (blau)", value: "default" }
-          - { label: "Akzent 1 (c1)", value: "c1" }
-          - { label: "Akzent 2 (c2)", value: "c2" }
-          - { label: "Akzent 3 (c3)", value: "c3" }
-          - { label: "Akzent 4 (c4)", value: "c4" }
+          - { label: "Hintergrund (bg)", value: "bg" }
+          - { label: "Text (text)", value: "text" }
+          - { label: "Farbe 1 (c1)", value: "c1" }
+          - { label: "Farbe 2 (c2)", value: "c2" }
+          - { label: "Farbe 3 (c3)", value: "c3" }
+          - { label: "Farbe 4 (c4)", value: "c4" }
 
   - name: "locations"
     label: "Locations"

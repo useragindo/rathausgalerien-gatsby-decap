@@ -303,18 +303,21 @@ export const normalizeCategory = (
 };
 
 const SERVICE_TILE_COLOR_VALUES: readonly ServiceTileColor[] = [
-	"default",
+	"bg",
+	"text",
 	"c1",
 	"c2",
 	"c3",
 	"c4",
 ];
 
+const DEFAULT_SERVICE_TILE_COLOR: ServiceTileColor = "c1";
+
 const normalizeServiceTileColor = (value?: unknown): ServiceTileColor => {
 	const candidate = trim(value) as ServiceTileColor | undefined;
 	return SERVICE_TILE_COLOR_VALUES.includes(candidate as ServiceTileColor)
 		? (candidate as ServiceTileColor)
-		: "default";
+		: DEFAULT_SERVICE_TILE_COLOR;
 };
 
 export const normalizeService = (

@@ -10,18 +10,10 @@ type ServiceTilesProps = {
 	language: LanguageCode;
 };
 
-const getTileStyle = (
-	color: ServiceTileColor,
-): React.CSSProperties | undefined => {
-	if (color === "default") {
-		return undefined;
-	}
-
-	return {
-		background: `var(--scheme-${color})`,
-		color: `var(--scheme-${color}-on)`,
-	};
-};
+const getTileStyle = (color: ServiceTileColor): React.CSSProperties => ({
+	background: `var(--scheme-${color})`,
+	color: `var(--scheme-${color}-on)`,
+});
 
 // Unlike the generic grid-4 content block (capped at 4 tiles by design), this
 // grid shows every service the editor flagged for it, wrapping into as many
