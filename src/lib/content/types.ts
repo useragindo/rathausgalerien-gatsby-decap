@@ -204,8 +204,14 @@ export type NormalizedCategory = {
 	frontmatter: ImportedFrontmatter;
 };
 
-export type ServiceTileColor = "c1" | "c2" | "c3" | "c4";
-export type ServiceTileTextColor = "on" | "c1" | "c2" | "c3" | "c4" | "white" | "dark";
+export type ServiceTileColor = "bg" | "text" | "c1" | "c2" | "c3" | "c4";
+export type ServiceTileTextColor =
+	| "bg"
+	| "text"
+	| "c1"
+	| "c2"
+	| "c3"
+	| "c4";
 
 export type NormalizedService = {
 	id: string;

@@ -11,51 +11,30 @@ type ServiceTilesProps = {
 	language: LanguageCode;
 };
 
-// Same hex values the standard scheme carries in `colors`. They act as
-// fallbacks inside `var(...)` so a tile stays visible even when the active
+// Hex fallbacks mirror the standard scheme in content/color-schemes/standard.md.
+// They live inside `var(...)` so a tile stays visible even when the active
 // scheme has not (yet) injected the corresponding `--scheme-*` custom
 // property — for example during the brief window between an editor switching
 // schemes and the next rebuild, or when a tile references a slot the active
-// scheme doesn't define.
+// scheme does not define.
 const SCHEME_FALLBACKS: Record<ServiceTileColor, string> = {
+	bg: "#d1efff",
+	text: "#22254e",
 	c1: "#7bd0e5",
 	c2: "#ffa4cc",
 	c3: "#ffbb33",
 	c4: "#b58ec1",
 };
 
-const SCHEME_ON_FALLBACKS: Record<ServiceTileColor, string> = {
-	c1: "#22254e",
-	c2: "#22254e",
-	c3: "#22254e",
-	c4: "#ffffff",
-};
-
-const getBackgroundValue = (color: ServiceTileColor): string =>
-	`var(--scheme-${color}, ${SCHEME_FALLBACKS[color]})`;
-
-const resolveTextColor = (
-	background: ServiceTileColor,
-	text: ServiceTileTextColor,
-): string => {
-	if (text === "on") {
-		return `var(--scheme-${background}-on, ${SCHEME_ON_FALLBACKS[background]})`;
-	}
-	if (text === "white") {
-		return "#ffffff";
-	}
-	if (text === "dark") {
-		return "#22254e";
-	}
-	return `var(--scheme-${text}, ${SCHEME_FALLBACKS[text]})`;
-};
+const getColorValue = (slot: ServiceTileColor | ServiceTileTextColor): string =>
+	`var(--scheme-${slot}, ${SCHEME_FALLBACKS[slot]})`;
 
 const getTileStyle = (
 	background: ServiceTileColor,
 	text: ServiceTileTextColor,
 ): React.CSSProperties => ({
-	background: getBackgroundValue(background),
-	color: resolveTextColor(background, text),
+	background: getColorValue(background),
+	color: getColorValue(text),
 });
 
 // Unlike the generic grid-4 content block (capped at 4 tiles by design), this

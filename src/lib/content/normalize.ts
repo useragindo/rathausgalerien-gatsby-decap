@@ -304,6 +304,8 @@ export const normalizeCategory = (
 };
 
 const SERVICE_TILE_COLOR_VALUES: readonly ServiceTileColor[] = [
+	"bg",
+	"text",
 	"c1",
 	"c2",
 	"c3",
@@ -311,17 +313,16 @@ const SERVICE_TILE_COLOR_VALUES: readonly ServiceTileColor[] = [
 ];
 
 const SERVICE_TILE_TEXT_COLOR_VALUES: readonly ServiceTileTextColor[] = [
-	"on",
+	"bg",
+	"text",
 	"c1",
 	"c2",
 	"c3",
 	"c4",
-	"white",
-	"dark",
 ];
 
 const DEFAULT_SERVICE_TILE_COLOR: ServiceTileColor = "c1";
-const DEFAULT_SERVICE_TILE_TEXT_COLOR: ServiceTileTextColor = "on";
+const DEFAULT_SERVICE_TILE_TEXT_COLOR: ServiceTileTextColor = "text";
 
 const normalizeServiceTileColor = (value?: unknown): ServiceTileColor => {
 	const candidate = trim(value) as ServiceTileColor | undefined;

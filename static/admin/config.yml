@@ -800,8 +800,10 @@ collections:
         widget: "select"
         default: "c1"
         required: false
-        hint: "Hintergrundfarbe der Kachel aus dem aktiven Farbschema. Nur sichtbar, wenn 'Als Kachel anzeigen' aktiviert ist. Folgt automatisch dem aktiven Schema (Einstellungen → Farben)."
+        hint: "Slot aus dem aktiven Farbschema (Einstellungen → Farben). Folgt automatisch dem Schema-Wechsel."
         options:
+          - { label: "Hintergrund (bg)", value: "bg" }
+          - { label: "Text (text)", value: "text" }
           - { label: "Farbe 1 (c1)", value: "c1" }
           - { label: "Farbe 2 (c2)", value: "c2" }
           - { label: "Farbe 3 (c3)", value: "c3" }
@@ -810,17 +812,16 @@ collections:
       - label: "Kachel-Textfarbe"
         name: "tile_text_color"
         widget: "select"
-        default: "on"
+        default: "text"
         required: false
-        hint: "Textfarbe (Name und Icon) auf der Kachel. 'Schema-Kontrast (on)' wählt automatisch die zum Hintergrund passende Kontrastfarbe des aktiven Schemas."
+        hint: "Slot aus dem aktiven Farbschema (Einstellungen → Farben). Folgt automatisch dem Schema-Wechsel."
         options:
-          - { label: "Schema-Kontrast (on)", value: "on" }
+          - { label: "Hintergrund (bg)", value: "bg" }
+          - { label: "Text (text)", value: "text" }
           - { label: "Farbe 1 (c1)", value: "c1" }
           - { label: "Farbe 2 (c2)", value: "c2" }
           - { label: "Farbe 3 (c3)", value: "c3" }
           - { label: "Farbe 4 (c4)", value: "c4" }
-          - { label: "Weiß", value: "white" }
-          - { label: "Dunkelblau", value: "dark" }
 
   - name: "locations"
     label: "Locations"
