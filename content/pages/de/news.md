@@ -15,4 +15,5 @@ seo:
   description: Das ist die News Seite
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_229_web.jpg
+  title: NEUES AUS DEN GALERIEN
 ---
