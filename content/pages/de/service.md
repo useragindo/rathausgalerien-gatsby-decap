@@ -4,13 +4,7 @@ heading: |-
   UNSERE
   SERVICES
   FÜR SIE
-blocks:
-  - layout: grid-4
-    color_token: ""
-    reversed: false
-    date: ""
-    header: Mein Blog
-    teaserText: Mein Blog
+blocks: []
 az_intro: "Mit folgenden Services wird Ihr Aufenthalt in den RathausGalerien
   noch angenehmer und entspannter:"
 locale: de
