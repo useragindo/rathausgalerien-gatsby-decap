@@ -3,7 +3,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { ContentBlockRenderer } from "../components/content-blocks";
 import { LocationPlan } from "../components/location-plan";
 import { Seo } from "../components/seo";
-import { ServiceTiles } from "../components/services";
+import { ServiceAZList, ServiceTiles } from "../components/services";
 import { SiteLayout } from "../layouts";
 import {
 	normalizeCategoryKey,
@@ -732,7 +732,10 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 				<NewsList news={news} language={page.language} />
 			) : null}
 			{isServicesPage ? (
-				<ServiceTiles services={services} language={page.language} />
+				<>
+					<ServiceTiles services={services} language={page.language} />
+					<ServiceAZList services={services} language={page.language} />
+				</>
 			) : null}
 		</SiteLayout>
 	);
