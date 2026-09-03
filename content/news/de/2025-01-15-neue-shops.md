@@ -18,14 +18,11 @@ images:
 ---
 News | 2. MÄRZ 2026
 
-**Kreative Vorbereitung als Auftakt**
-
+**Kreative Vorbereitung als Auftakt**\
 Vor jedem Shooting beginnt die kreative Vorbereitung: Gemeinsam wählt das Team aus den aktuellen Kollektionen mit den Shops sorgfältig Mode und Looks aus, die Trends aufgreifen und die Vielfalt der Galerien widerspiegeln.
 
-**Frühjahrskampagne „Galerien Wunderland“**
-
+**Frühjahrskampagne „Galerien Wunderland“**\
 Mitten in den RathausGalerien wurde dann die diesjährige Frühjahrskampagne unter dem Motto „Galerien Wunderland“ schließlich umgesetzt. In einer blühenden Kulisse präsentierten die elf ausgewählten Models die neue Frühlingsmode – umgeben von floralen Akzenten und frischen Farben.
 
-**Florale Highlights und starke Bildsprache**
-
+**Florale Highlights und starke Bildsprache**\
 Ein besonderes Highlight war der eigens gestaltete Blumenschmuck des Keyvisuals, der auch bei Passantinnen und Passanten für Staunen sorgte. Fotografiert wurde erneut von der Münchner Modefotografin Bela Raba, die gemeinsam mit ihrem Team das Zusammenspiel aus Mode und Blumen in ausdrucksstarken Bildern festhielt.
