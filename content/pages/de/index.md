@@ -14,7 +14,7 @@ seo:
 blocks:
   - layout: grid-4
     date: ""
-    header: fashion, food, & lifestyle
+    header: fashion, food, & lifestyle 01
     text: |-
       RathausGalerien: Das Herz der Stadt! 
 
