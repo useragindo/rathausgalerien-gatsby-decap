@@ -26,6 +26,12 @@
 	text-transform: uppercase;
 }
 
+.listing-section--services .listing-section__header h2 {
+	font-size: var(--font-size-h2);
+	font-weight: 700;
+	letter-spacing: 0.04em;
+}
+
 .listing-section__header p:last-child {
 	font-size: var(--font-size-md);
 }
