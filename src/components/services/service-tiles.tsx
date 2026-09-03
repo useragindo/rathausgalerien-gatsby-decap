@@ -30,9 +30,10 @@ export const ServiceTiles: React.FC<ServiceTilesProps> = ({
 	services,
 	language,
 }) => {
-	const items = services.filter(
-		(service) => service.language === language && service.tile,
-	);
+	const items = services
+		.filter((service) => service.language === language && service.tile)
+		.slice()
+		.sort((a, b) => a.name.localeCompare(b.name, language));
 
 	if (!items.length) {
 		return null;
@@ -57,12 +58,7 @@ export const ServiceTiles: React.FC<ServiceTilesProps> = ({
 								alt=""
 								loading="lazy"
 							/>
-						) : (
-							<div
-								className="service-tile__icon service-tile__icon--placeholder"
-								aria-hidden="true"
-							/>
-						)}
+						) : null}
 						<span className="service-tile__label">{service.name}</span>
 					</li>
 				))}
