@@ -10,6 +10,7 @@ import type {
 	NormalizedPage,
 	NormalizedService,
 	ServiceTileColor,
+	ServiceTileTextColor,
 	SiteNavigationItem,
 	SiteTheme,
 } from "./types";
@@ -303,21 +304,41 @@ export const normalizeCategory = (
 };
 
 const SERVICE_TILE_COLOR_VALUES: readonly ServiceTileColor[] = [
-	"bg",
-	"text",
 	"c1",
 	"c2",
 	"c3",
 	"c4",
 ];
 
+const SERVICE_TILE_TEXT_COLOR_VALUES: readonly ServiceTileTextColor[] = [
+	"on",
+	"c1",
+	"c2",
+	"c3",
+	"c4",
+	"white",
+	"dark",
+];
+
 const DEFAULT_SERVICE_TILE_COLOR: ServiceTileColor = "c1";
+const DEFAULT_SERVICE_TILE_TEXT_COLOR: ServiceTileTextColor = "on";
 
 const normalizeServiceTileColor = (value?: unknown): ServiceTileColor => {
 	const candidate = trim(value) as ServiceTileColor | undefined;
 	return SERVICE_TILE_COLOR_VALUES.includes(candidate as ServiceTileColor)
 		? (candidate as ServiceTileColor)
 		: DEFAULT_SERVICE_TILE_COLOR;
+};
+
+const normalizeServiceTileTextColor = (
+	value?: unknown,
+): ServiceTileTextColor => {
+	const candidate = trim(value) as ServiceTileTextColor | undefined;
+	return SERVICE_TILE_TEXT_COLOR_VALUES.includes(
+		candidate as ServiceTileTextColor,
+	)
+		? (candidate as ServiceTileTextColor)
+		: DEFAULT_SERVICE_TILE_TEXT_COLOR;
 };
 
 export const normalizeService = (
@@ -346,6 +367,7 @@ export const normalizeService = (
 		description: trim(frontmatter.description),
 		tile: Boolean(frontmatter.tile),
 		tileColor: normalizeServiceTileColor(frontmatter.tile_color),
+		tileTextColor: normalizeServiceTileTextColor(frontmatter.tile_text_color),
 		frontmatter,
 	};
 };

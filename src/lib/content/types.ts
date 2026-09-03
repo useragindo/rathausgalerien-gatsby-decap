@@ -109,6 +109,7 @@ export type ImportedFrontmatter = {
 	description?: string | null;
 	tile?: boolean | null;
 	tile_color?: string | null;
+	tile_text_color?: string | null;
 	images?: string[] | null;
 	hours?: Array<{
 		date?: string | null;
@@ -203,7 +204,8 @@ export type NormalizedCategory = {
 	frontmatter: ImportedFrontmatter;
 };
 
-export type ServiceTileColor = "bg" | "text" | "c1" | "c2" | "c3" | "c4";
+export type ServiceTileColor = "c1" | "c2" | "c3" | "c4";
+export type ServiceTileTextColor = "on" | "c1" | "c2" | "c3" | "c4" | "white" | "dark";
 
 export type NormalizedService = {
 	id: string;
@@ -214,6 +216,7 @@ export type NormalizedService = {
 	description?: string;
 	tile: boolean;
 	tileColor: ServiceTileColor;
+	tileTextColor: ServiceTileTextColor;
 	frontmatter: ImportedFrontmatter;
 };
 
