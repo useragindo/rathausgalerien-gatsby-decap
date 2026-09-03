@@ -11,7 +11,7 @@ heading: |-
   FÜR SIE
 intro: Ein Überblick über die Angebote in den RathausGalerien.
 az_heading: Services von A bis Z
-az_intro: Mit folgenden Services wird Ihr Aufenthalt in den RathausGalerien noch angenehmer und entspannter:
+az_intro: "Mit folgenden Services wird Ihr Aufenthalt in den RathausGalerien noch angenehmer und entspannter:"
 seo:
   description: Ein Überblick über die Angebote in den RathausGalerien.
   title: Services
