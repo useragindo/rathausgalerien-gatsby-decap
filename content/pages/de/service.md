@@ -20,7 +20,7 @@ blocks:
       Magazinbeiträge, Interviews, Trends und Insights aus den RathausGalerien
       finden Sie laufend hier auf der News-Seite und auf Instagram unter
       @rathausgalerien.
-  - layout: grid-4
+  - layout: columns
     color_token: ""
     reversed: false
     date: ""
@@ -29,6 +29,11 @@ blocks:
         text: Das der Text für meine 1. Kachel
         images:
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
+      - color_token: ""
+        images:
+          - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_01.jpg
+    header: Testheader
+    teaserText: das ist der Anrisstext vom Testheader
 az_intro: "Mit folgenden Services wird Ihr Aufenthalt in den RathausGalerien
   noch angenehmer und entspannter:"
 seo:
