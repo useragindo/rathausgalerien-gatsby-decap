@@ -28,6 +28,19 @@ const readOptions = (props) => {
 	return [];
 };
 
+const isRelevantEntry = (entry) => {
+	if (!entry) return false;
+	const collectionRaw =
+		typeof entry.get === "function" ? entry.get("collection") : entry.collection;
+	const collectionName =
+		typeof collectionRaw === "string"
+			? collectionRaw
+			: collectionRaw && typeof collectionRaw.get === "function"
+				? collectionRaw.get("name")
+				: null;
+	return collectionName === "settings" || collectionName === "color-schemes";
+};
+
 const STYLE_ID = "color-token-select-styles";
 
 const injectStyles = () => {
@@ -124,16 +137,56 @@ class ColorTokenSelect extends Component {
 	};
 
 	containerRef = createRef();
+	_isMounted = false;
 
 	componentDidMount() {
+		this._isMounted = true;
 		injectStyles();
 		document.addEventListener("mousedown", this._handleClickOutside);
 		this._loadSchemeColors();
+		this._registerSchemeListener();
 	}
 
 	componentWillUnmount() {
+		this._isMounted = false;
 		document.removeEventListener("mousedown", this._handleClickOutside);
+		this._unregisterSchemeListener();
 	}
+
+	_registerSchemeListener = () => {
+		if (typeof CMS.registerEventListener !== "function") return;
+		this._schemeListener = ({ entry } = {}) => {
+			if (isRelevantEntry(entry)) {
+				this._loadSchemeColors();
+			}
+		};
+		try {
+			CMS.registerEventListener({
+				name: "postSave",
+				handler: this._schemeListener,
+			});
+		} catch {
+			// Event API missing or invalid name — silently fall back to mount-time
+			// load only.
+		}
+	};
+
+	_unregisterSchemeListener = () => {
+		if (
+			typeof CMS.removeEventListener === "function" &&
+			this._schemeListener
+		) {
+			try {
+				CMS.removeEventListener({
+					name: "postSave",
+					handler: this._schemeListener,
+				});
+			} catch {
+				// ignore
+			}
+		}
+		this._schemeListener = null;
+	};
 
 	_handleClickOutside = (event) => {
 		if (
@@ -166,7 +219,7 @@ class ColorTokenSelect extends Component {
 						map[slot] = value.trim();
 					}
 				}
-				if (Object.keys(map).length > 0) {
+				if (Object.keys(map).length > 0 && this._isMounted) {
 					this.setState({ schemeColors: map });
 				}
 			}
