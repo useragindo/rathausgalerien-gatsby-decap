@@ -110,7 +110,7 @@ Names, start commands, install commands, and live status are managed by PandaOS 
 To run a server: read its install + start command from `devserver_list`, run the install command first if dependencies are missing, then the start command. The server URL is `http://localhost:<port>` using the port from `devserver_list`.
 
 ## Browser Tools
-This project has the **PandaOS embedded browser** enabled (`pandaos-browser` MCP). When multiple browser MCPs are available (e.g. `chrome-devtools`, `playwright`), **always prefer `pandaos-browser` tools** (`browser_navigate`, `browser_click`, `browser_screenshot`, etc.) over external browser tools. The embedded browser runs inside PandaOS without opening an external window.
+This project has the **PandaOS embedded browser** enabled (any `mcp__pandaos-browser*` server). When multiple browser MCPs are available (e.g. `chrome-devtools`, `playwright`), **always prefer the PandaOS browser tools** (`browser_navigate`, `browser_click`, `browser_screenshot`, etc.) over external browser tools. The embedded browser runs inside PandaOS without opening an external window.
 
 ## Generative Interfaces
 
@@ -141,7 +141,7 @@ Gather direction first via `generative_ui` (or a plain question), then build wit
 When the user needs a setup step (set a config value, add an API token, connect an integration), do NOT describe manual steps in prose. Follow this ladder, top rung first:
 
 1. **Act directly** — if the setting is agent-writable and non-secret, change it yourself (`creds_write_var` for env vars with `full` access, config edits, etc.) and confirm what you changed.
-2. **Deep-link** — if you cannot (or should not) change it yourself, send the user to the EXACT page: call `pandaos_get_navigation_links` and pick the most specific link (sub-tab/focus link over tab, tab over general — never link a broader page when a narrower one exists). Never invent links. Name the location in words alongside the button (e.g. "under Settings → Appearance"), and if a tool would let you make the change, offer to do it for the user. Key targets: `pandaos://settings/{tab}#{settingId}` (scrolls to + highlights the exact setting — the tool lists one link per setting), `pandaos://settings/{tab}`, `pandaos://credentials` (Credentials Manager side-panel, append the env file path to preselect it), `pandaos://integrations` (apps + MCP servers).
+2. **Deep-link** — if you cannot (or should not) change it yourself, send the user to the EXACT page: call `pandaos_get_navigation_links` and pick the most specific link (sub-tab/focus link over tab, tab over general — never link a broader page when a narrower one exists). Never invent links. Name the location in words alongside the button (e.g. "under Settings → Appearance"), and if a tool would let you make the change, offer to do it for the user. Key targets: `pandaos://settings/{tab}#{settingId}` (scrolls to + highlights the exact setting — the tool lists one link per setting), `pandaos://settings/{tab}`, `pandaos://credentials` (Credentials Manager side-panel, append the env file path to preselect it), `pandaos://integrations` (apps + MCP servers), `pandaos://design/{designId}` (opens the Design canvas on that design — use the id a design tool returned, never a guessed one).
 3. **Inline form** — for multi-field **non-secret** input, use `generative_ui` `short_form`.
 4. **Prose** — last resort only, when no link or tool covers it.
 
@@ -159,7 +159,7 @@ The following apps are authenticated and have MCP tools available. Use `ToolSear
 - **Git** (`git`) - 14 tools
 - **Docker** (`docker`) - 48 tools
 - **credentials** (`credentials`) - 6 tools
-- **design** (`design`) - 15 tools
+- **design** (`design`) - 16 tools
 - **automations** (`automations`) - 8 tools
 - **documents** (`documents`) - 1 tools
 - **agent-signals** (`agent-signals`) - 2 tools
@@ -173,6 +173,7 @@ The following apps are authenticated and have MCP tools available. Use `ToolSear
 - **pandaos-ui** (`pandaos-ui`) - 1 tools
 - **devserver** (`devserver`) - 3 tools
 - **worktrees** (`worktrees`) - 1 tools
+- **feedback** (`feedback`) - 1 tools
 
 ## Tracked Work
 
@@ -237,7 +238,7 @@ ad-hoc planner -> designer -> builder sequence yourself, and do not invent an or
 - Trivial work (a typo, a one-line fix, a question) starts no tracked work and needs no
   member at all. Answer it.
 
-### On-Demand Team Members (Personas — NOT Sub-Agents)
+### On-Demand Team Members (Personas, NOT Subagents)
 
 > **These are personas, not separate agents.** Read their instruction file and **adopt their role inline** in this conversation. Do NOT dispatch them with spawn_team_member, and do NOT spawn a collab subagent (spawnAgent) for them.
 
