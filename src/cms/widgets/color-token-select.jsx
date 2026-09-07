@@ -41,6 +41,49 @@ const isRelevantEntry = (entry) => {
 	return collectionName === "settings" || collectionName === "color-schemes";
 };
 
+const readValue = (container, key) => {
+	if (!container) return undefined;
+	if (typeof container.get === "function") {
+		const v = container.get(key);
+		if (ImMap.isMap(v) || ImList.isList(v)) return v.toJS();
+		return v;
+	}
+	return container[key];
+};
+
+const readActiveScheme = (result) => {
+	if (!result) return null;
+	const entry = result.entry || result;
+	const data = readValue(entry, "data");
+	const raw = readValue(data, "active_scheme");
+	return typeof raw === "string" && raw.trim() ? raw.trim() : null;
+};
+
+const readEntryData = (result) => {
+	if (!result) return null;
+	const entry = result.entry || result;
+	return readValue(entry, "data");
+};
+
+const readColors = (data) => {
+	if (!data) return null;
+	const raw = readValue(data, "colors");
+	if (!raw || typeof raw !== "object") return null;
+	const map = {};
+	for (const [slot, value] of Object.entries(raw)) {
+		if (typeof value === "string" && value.trim()) {
+			map[slot] = value.trim();
+		}
+	}
+	return Object.keys(map).length > 0 ? map : null;
+};
+
+const readName = (data) => {
+	if (!data) return null;
+	const raw = readValue(data, "name");
+	return typeof raw === "string" && raw.trim() ? raw.trim() : null;
+};
+
 const STYLE_ID = "color-token-select-styles";
 
 const injectStyles = () => {
@@ -237,34 +280,53 @@ class ColorTokenSelect extends Component {
 		try {
 			const backend =
 				typeof CMS.getBackend === "function" ? CMS.getBackend() : null;
-			if (!backend || typeof backend.getEntry !== "function") return;
+			if (!backend || typeof backend.getEntry !== "function") {
+				if (typeof console !== "undefined") {
+					console.warn(
+						"[color-token-select] no backend available; falling back to config swatches",
+					);
+				}
+				return;
+			}
 
 			const themeResult = await backend.getEntry("settings", "theme");
-			const activeScheme = themeResult?.entry?.data?.active_scheme;
-			if (!activeScheme) return;
+			const activeScheme = readActiveScheme(themeResult);
+			if (!activeScheme) {
+				if (typeof console !== "undefined") {
+					console.warn(
+						"[color-token-select] settings/theme has no active_scheme; got:",
+						themeResult,
+					);
+				}
+				return;
+			}
 
 			const schemeResult = await backend.getEntry(
 				"color-schemes",
 				activeScheme,
 			);
-			const data = schemeResult?.entry?.data;
-			const colors = data?.colors;
-			if (colors && typeof colors === "object") {
-				const map = {};
-				for (const [slot, value] of Object.entries(colors)) {
-					if (typeof value === "string" && value.trim()) {
-						map[slot] = value.trim();
-					}
+			const data = readEntryData(schemeResult);
+			const colors = readColors(data);
+			if (!colors) {
+				if (typeof console !== "undefined") {
+					console.warn(
+						"[color-token-select] scheme entry has no colors; got:",
+						schemeResult,
+					);
 				}
-				if (this._isMounted) {
-					this.setState({
-						schemeColors: map,
-						schemeName: data?.name || activeScheme,
-					});
-				}
+				return;
 			}
-		} catch {
-			// Silent fallback to the config-supplied swatch colors.
+
+			if (this._isMounted) {
+				this.setState({
+					schemeColors: colors,
+					schemeName: readName(data) || activeScheme,
+				});
+			}
+		} catch (err) {
+			if (typeof console !== "undefined") {
+				console.warn("[color-token-select] load failed:", err);
+			}
 		}
 	};
 
