@@ -44,6 +44,6 @@ teaser:
     UNSERE
     SERVICES
     FÜR SIE
-  icon: /media/pages/auto_icon.svg
+  icon: /media/pages/rhg-logo-klein.svg
 az_heading: Services von A bis Z
 ---
