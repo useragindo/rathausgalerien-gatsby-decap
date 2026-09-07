@@ -908,39 +908,39 @@ collections:
 
       - label: "Kachel-Hintergrund"
         name: "tile_color"
-        widget: "select"
+        widget: "color-token-select"
         default: "c1"
         required: false
         hint: "Slot aus dem aktiven Farbschema (Einstellungen → Farben). Folgt automatisch dem Schema-Wechsel."
         options:
-          - { label: "Hintergrund (bg)", value: "bg" }
-          - { label: "Text (text)", value: "text" }
-          - { label: "Farbe 1 (c1)", value: "c1" }
-          - { label: "Farbe 2 (c2)", value: "c2" }
-          - { label: "Farbe 3 (c3)", value: "c3" }
-          - { label: "Farbe 4 (c4)", value: "c4" }
-          - { label: "Farbe 5 (c5)", value: "c5" }
-          - { label: "Farbe 6 (c6)", value: "c6" }
-          - { label: "Schwarz", value: "schwarz" }
-          - { label: "Weiß", value: "weiss" }
+          - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+          - { label: "Text (text)", value: "text", color: "#22254e" }
+          - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+          - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+          - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+          - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+          - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+          - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+          - { label: "Schwarz", value: "schwarz", color: "#111111" }
+          - { label: "Weiß", value: "weiss", color: "#ffffff" }
 
       - label: "Kachel-Textfarbe"
         name: "tile_text_color"
-        widget: "select"
+        widget: "color-token-select"
         default: "text"
         required: false
         hint: "Slot aus dem aktiven Farbschema (Einstellungen → Farben). Folgt automatisch dem Schema-Wechsel."
         options:
-          - { label: "Hintergrund (bg)", value: "bg" }
-          - { label: "Text (text)", value: "text" }
-          - { label: "Farbe 1 (c1)", value: "c1" }
-          - { label: "Farbe 2 (c2)", value: "c2" }
-          - { label: "Farbe 3 (c3)", value: "c3" }
-          - { label: "Farbe 4 (c4)", value: "c4" }
-          - { label: "Farbe 5 (c5)", value: "c5" }
-          - { label: "Farbe 6 (c6)", value: "c6" }
-          - { label: "Schwarz", value: "schwarz" }
-          - { label: "Weiß", value: "weiss" }
+          - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+          - { label: "Text (text)", value: "text", color: "#22254e" }
+          - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+          - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+          - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+          - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+          - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+          - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+          - { label: "Schwarz", value: "schwarz", color: "#111111" }
+          - { label: "Weiß", value: "weiss", color: "#ffffff" }
 
   - name: "locations"
     label: "Locations"
