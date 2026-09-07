@@ -368,7 +368,6 @@ export const LocationList: React.FC<LocationListProps> = ({
 						<li
 							className="listing-card listing-card--has-media"
 							key={`${location.id}-${categoryKey}`}
-							style={cardStyle}
 						>
 							<a className="listing-card__link" href={location.path}>
 								<span
@@ -382,7 +381,7 @@ export const LocationList: React.FC<LocationListProps> = ({
 										<span>{categoryLabel}</span>
 									)}
 								</span>
-								<span className="listing-card__body">
+								<span className="listing-card__body" style={cardStyle}>
 									<span className="listing-card__meta">{categoryLabel}</span>
 									{logo ? (
 										<span className="listing-card__logo">
@@ -530,7 +529,6 @@ const JobList: React.FC<{
 						<li
 							className="listing-card listing-card--job listing-card--has-media"
 							key={job.id}
-							style={cardStyle}
 						>
 							<a className="listing-card__link" href={job.path}>
 								<span
@@ -544,7 +542,7 @@ const JobList: React.FC<{
 										<span aria-hidden="true" />
 									)}
 								</span>
-								<span className="listing-card__body">
+								<span className="listing-card__body" style={cardStyle}>
 									{job.frontmatter.location ? (
 										<span className="listing-card__meta">
 											{job.frontmatter.location}
@@ -628,7 +626,6 @@ const NewsList: React.FC<{
 						<li
 							className="listing-card listing-card--news listing-card--has-media"
 							key={item.id}
-							style={cardStyle}
 						>
 							<a className="listing-card__link" href={item.path}>
 								<span
@@ -642,7 +639,7 @@ const NewsList: React.FC<{
 										<span aria-hidden="true" />
 									)}
 								</span>
-								<span className="listing-card__body">
+								<span className="listing-card__body" style={cardStyle}>
 									{date ? (
 										<span className="news-card__date">{date}</span>
 									) : null}
@@ -760,7 +757,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			) : null}
 			{isServicesPage ? (
 				<>
-					<ServiceTiles services={services} language={page.language} />
+					<ServiceTiles services={services} language={page.language} theme={theme} />
 					<section
 						className="listing-section listing-section--services"
 						aria-labelledby="services-az-title"
