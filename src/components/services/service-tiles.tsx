@@ -1,33 +1,16 @@
 import * as React from "react";
 import type {
-	ColorToken,
 	LanguageCode,
 	NormalizedService,
+	SiteTheme,
 } from "../../lib/content/types";
+import { resolveColorPairStyle } from "../../lib/content/color-tokens";
 
 type ServiceTilesProps = {
 	services: NormalizedService[];
 	language: LanguageCode;
+	theme?: SiteTheme | null;
 };
-
-// Schwarz/Weiß are fixed neutrals, not scheme slots (see color-tokens.ts) —
-// everything else is a `var(--scheme-<slot>)` that changes with the active
-// colour scheme.
-const NEUTRAL_VAR_BY_TOKEN: Partial<Record<ColorToken, string>> = {
-	schwarz: "var(--color-black)",
-	weiss: "var(--color-white)",
-};
-
-const getColorValue = (slot: ColorToken): string =>
-	NEUTRAL_VAR_BY_TOKEN[slot] ?? `var(--scheme-${slot})`;
-
-const getTileStyle = (
-	background: ColorToken,
-	text: ColorToken,
-): React.CSSProperties => ({
-	background: getColorValue(background),
-	color: getColorValue(text),
-});
 
 // Unlike the generic grid-4 content block (capped at 4 tiles by design), this
 // grid shows every service the editor flagged for it, wrapping into as many
@@ -35,6 +18,7 @@ const getTileStyle = (
 export const ServiceTiles: React.FC<ServiceTilesProps> = ({
 	services,
 	language,
+	theme,
 }) => {
 	const items = services
 		.filter((service) => service.language === language && service.tile)
@@ -55,7 +39,11 @@ export const ServiceTiles: React.FC<ServiceTilesProps> = ({
 					<li
 						className="service-tile"
 						key={service.id}
-						style={getTileStyle(service.tileColor, service.tileTextColor)}
+						style={resolveColorPairStyle(
+							service.tileTextColor,
+							service.tileColor,
+							theme,
+						)}
 					>
 						{service.icon ? (
 							<img
