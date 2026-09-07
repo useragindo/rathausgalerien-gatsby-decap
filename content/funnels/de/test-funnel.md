@@ -13,5 +13,9 @@ blocks:
     text: Hier ein Block
 heading: Test Funnel
 intro: Das ist einen ersten Tunnel
+teaser:
+  image: ~
+  title: Test Funnel
+  icon: ~
 ---
 Das ist ein Test Funnel

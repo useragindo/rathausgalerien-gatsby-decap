@@ -376,13 +376,24 @@ collections:
         required: false
         hint: "Nur für die Templates 'Shops-Übersicht' / 'Gastronomie-Übersicht'."
         fields:
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - 
+          - label: "Title"
+            name: "title"
+            widget: "text"
+            required: false
+            hint: "Für einen manuellen Zeilenumbruch Enter drücken."
+          -
             label: "Image"
             name: "image"
             widget: "image"
             required: false
             hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+          -
+            label: "Icon"
+            name: "icon"
+            widget: "image"
+            required: false
+            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner). Wenn leer, wird das Standard-Einkaufstaschen-Icon verwendet."
+            pattern: ["(?:.+)\\.svg$", "Must be a SVG file"]
 
       - label: "Photos"
         name: "photos"
@@ -737,13 +748,24 @@ collections:
         widget: object
         required: false
         fields:
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - 
+          - label: "Title"
+            name: "title"
+            widget: "text"
+            required: false
+            hint: "Für einen manuellen Zeilenumbruch Enter drücken."
+          -
             label: "Image"
             name: "image"
             widget: "image"
             required: false
             hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+          -
+            label: "Icon"
+            name: "icon"
+            widget: "image"
+            required: false
+            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner). Wenn leer, wird das Standard-Einkaufstaschen-Icon verwendet."
+            pattern: ["(?:.+)\\.svg$", "Must be a SVG file"]
 
       - label: "Photos"
         name: "photos"

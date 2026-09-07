@@ -40,6 +40,10 @@ seo:
   ogType: article
 teaser:
   image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_04.jpg
-  title: UNSERE SERVICES FÜR SIE
+  title: |-
+    UNSERE
+    SERVICES
+    FÜR SIE
+  icon: /media/pages/auto_icon.svg
 az_heading: Services von A bis Z
 ---

@@ -425,29 +425,6 @@ const getMarkdownImage = (content?: string): string | undefined => {
 	return imagePath.split(/\s+/)[0];
 };
 
-const getHomepageIntroImage = (page: NormalizedPage): string | undefined => {
-	const bodyImage = getMarkdownImage(page.body);
-
-	if (bodyImage) {
-		return bodyImage;
-	}
-
-	const images = page.blocks.flatMap((block) => block.images ?? []);
-	const entranceImage = images.find((image) =>
-		image.image?.includes("eingang"),
-	);
-
-	const blockImage = entranceImage?.image ?? images[0]?.image;
-
-	if (blockImage) {
-		return blockImage;
-	}
-
-	const teaserImage = trim(page.frontmatter.teaser?.image);
-
-	return teaserImage || undefined;
-};
-
 const ShoppingBagIcon: React.FC = () => (
 	<img
 		src="/icons/shopping-bag.svg"
@@ -462,7 +439,9 @@ const HomepageIntro: React.FC<{
 	locations: NormalizedLocation[];
 	showShopCount?: boolean;
 }> = ({ page, locations, showShopCount = true }) => {
-	const image = getHomepageIntroImage(page);
+	const image = trim(page.frontmatter.teaser?.image);
+	const teaserTitle = trim(page.frontmatter.teaser?.title) ?? "";
+	const teaserIcon = trim(page.frontmatter.teaser?.icon);
 	const shopCount = showShopCount
 		? locations.filter(
 				(location) =>
@@ -479,8 +458,12 @@ const HomepageIntro: React.FC<{
 				</div>
 			) : null}
 			<div className="home-intro__card">
-				<ShoppingBagIcon />
-				<h1 id="home-intro-title">{renderMultiline(page.heading)}</h1>
+				{teaserIcon ? (
+					<img src={teaserIcon} alt="" aria-hidden="true" loading="eager" />
+				) : (
+					<ShoppingBagIcon />
+				)}
+				<h1 id="home-intro-title">{renderMultiline(teaserTitle)}</h1>
 				{showShopCount ? (
 					<>
 						<p>{countLabel}</p>

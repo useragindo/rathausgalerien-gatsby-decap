@@ -99,6 +99,7 @@ export type ImportedFrontmatter = {
 	teaser?: {
 		image?: string | null;
 		title?: string | null;
+		icon?: string | null;
 	} | null;
 	message?: string | null;
 	social_media?: Array<{

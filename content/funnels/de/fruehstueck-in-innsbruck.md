@@ -50,7 +50,8 @@ blocks:
       entdecke, was die Rathausgalerien so besonders macht.
 teaser:
   image: /media/funnels/generiertes-bild-1.png
-  title: Innsbruck
+  title: Frühstück in Innsbruck
+  icon: ~
 heading: Frühstück in Innsbruck
 intro: Wo kann man Frühstücken in Innsbruck
 ---

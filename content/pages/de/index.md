@@ -6,6 +6,10 @@ template: home
 order: 1
 heading: Shopping1
 intro: Test1
+teaser:
+  image: /media/pages/dsc_1672_bearb.jpg
+  title: Shopping1
+  icon: ~
 seo:
   description: Suchen Sie ein Shoppingcenter in Innsbruck? Die RathausGalerien
     bieten ein einzigartiges Einkaufserlebnis und vielfältige Shops. Besuchen

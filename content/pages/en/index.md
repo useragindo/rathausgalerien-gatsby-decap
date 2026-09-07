@@ -118,6 +118,10 @@ heading: Shopping in Innsbruck
 intro: >-
   Are you looking for a shopping center in Innsbruck? The RathausGalerien offer
   a unique shopping experience and a wide variety of stores. Visit us on site!
+teaser:
+  image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
+  title: Shopping in Innsbruck
+  icon: ~
 ---
 # RathausGalerien: Your shopping center in Innsbruck
 
