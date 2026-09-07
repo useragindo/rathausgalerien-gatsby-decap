@@ -197,8 +197,8 @@ collections:
             options:
               - { label: "4er Grid", value: "grid-4" }
               - { label: "Text + Bild (2 Spalten)", value: "columns" }
-          - label: "Farbe (aus dem Farbschema)"
-            name: "color_token"
+          - label: "Textfarbe"
+            name: "text_color"
             widget: "color-token-select"
             required: false
             default: ""
@@ -210,7 +210,29 @@ collections:
               - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
               - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
               - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-            hint: "Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
+              - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+              - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+              - { label: "Schwarz", value: "schwarz", color: "#111111" }
+              - { label: "Weiß", value: "weiss", color: "#ffffff" }
+            hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+          - label: "Hintergrundfarbe"
+            name: "background_color"
+            widget: "color-token-select"
+            required: false
+            default: ""
+            options:
+              - { label: "– keine –", value: "" }
+              - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+              - { label: "Text (text)", value: "text", color: "#22254e" }
+              - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+              - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+              - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+              - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+              - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+              - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+              - { label: "Schwarz", value: "schwarz", color: "#111111" }
+              - { label: "Weiß", value: "weiss", color: "#ffffff" }
+            hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
           - label: "Umgekehrt (Bild links, Text rechts)"
             name: "reversed"
             widget: boolean
@@ -280,8 +302,8 @@ collections:
                 widget: string
                 required: false
                 hint: "Optionaler Link, der statt der Kategorie verwendet wird."
-              - label: "Farbe (aus dem Farbschema)"
-                name: "color_token"
+              - label: "Textfarbe"
+                name: "text_color"
                 widget: "color-token-select"
                 required: false
                 default: ""
@@ -293,14 +315,29 @@ collections:
                   - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
                   - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
                   - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-                hint: "Nur für Text-Kacheln. Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
+                  - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+                  - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+                  - { label: "Schwarz", value: "schwarz", color: "#111111" }
+                  - { label: "Weiß", value: "weiss", color: "#ffffff" }
+                hint: "Nur für Text-Kacheln. Textfarbe aus dem aktiven Schema oder Schwarz/Weiß."
               - label: "Hintergrundfarbe"
-                name: "backgroundColor"
-                widget: color
+                name: "background_color"
+                widget: "color-token-select"
                 required: false
-                allowInput: true
-                enableAlpha: false
-                hint: "Nur für Text-Kacheln. Wird ignoriert, wenn oben eine Schema-Farbe gewählt ist. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
+                default: ""
+                options:
+                  - { label: "– keine –", value: "" }
+                  - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+                  - { label: "Text (text)", value: "text", color: "#22254e" }
+                  - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+                  - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+                  - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+                  - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+                  - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+                  - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+                  - { label: "Schwarz", value: "schwarz", color: "#111111" }
+                  - { label: "Weiß", value: "weiss", color: "#ffffff" }
+                hint: "Nur für Text-Kacheln. Hintergrundfarbe aus dem aktiven Schema oder Schwarz/Weiß. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
               - label: "Icons"
                 name: "icons"
                 widget: "list"
@@ -521,8 +558,8 @@ collections:
             options:
               - { label: "4er Grid", value: "grid-4" }
               - { label: "Text + Bild (2 Spalten)", value: "columns" }
-          - label: "Farbe (aus dem Farbschema)"
-            name: "color_token"
+          - label: "Textfarbe"
+            name: "text_color"
             widget: "color-token-select"
             required: false
             default: ""
@@ -534,7 +571,29 @@ collections:
               - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
               - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
               - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-            hint: "Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
+              - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+              - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+              - { label: "Schwarz", value: "schwarz", color: "#111111" }
+              - { label: "Weiß", value: "weiss", color: "#ffffff" }
+            hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+          - label: "Hintergrundfarbe"
+            name: "background_color"
+            widget: "color-token-select"
+            required: false
+            default: ""
+            options:
+              - { label: "– keine –", value: "" }
+              - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+              - { label: "Text (text)", value: "text", color: "#22254e" }
+              - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+              - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+              - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+              - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+              - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+              - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+              - { label: "Schwarz", value: "schwarz", color: "#111111" }
+              - { label: "Weiß", value: "weiss", color: "#ffffff" }
+            hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
           - label: "Umgekehrt (Bild links, Text rechts)"
             name: "reversed"
             widget: boolean
@@ -604,8 +663,8 @@ collections:
                 widget: string
                 required: false
                 hint: "Optionaler Link, der statt der Kategorie verwendet wird."
-              - label: "Farbe (aus dem Farbschema)"
-                name: "color_token"
+              - label: "Textfarbe"
+                name: "text_color"
                 widget: "color-token-select"
                 required: false
                 default: ""
@@ -617,14 +676,29 @@ collections:
                   - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
                   - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
                   - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-                hint: "Nur für Text-Kacheln. Farbe aus dem aktiven Schema (siehe Einstellungen). Überschreibt die Hintergrundfarbe."
+                  - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+                  - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+                  - { label: "Schwarz", value: "schwarz", color: "#111111" }
+                  - { label: "Weiß", value: "weiss", color: "#ffffff" }
+                hint: "Nur für Text-Kacheln. Textfarbe aus dem aktiven Schema oder Schwarz/Weiß."
               - label: "Hintergrundfarbe"
-                name: "backgroundColor"
-                widget: color
+                name: "background_color"
+                widget: "color-token-select"
                 required: false
-                allowInput: true
-                enableAlpha: false
-                hint: "Nur für Text-Kacheln. Wird ignoriert, wenn oben eine Schema-Farbe gewählt ist. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
+                default: ""
+                options:
+                  - { label: "– keine –", value: "" }
+                  - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+                  - { label: "Text (text)", value: "text", color: "#22254e" }
+                  - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+                  - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+                  - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+                  - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+                  - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+                  - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+                  - { label: "Schwarz", value: "schwarz", color: "#111111" }
+                  - { label: "Weiß", value: "weiss", color: "#ffffff" }
+                hint: "Nur für Text-Kacheln. Hintergrundfarbe aus dem aktiven Schema oder Schwarz/Weiß. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
               - label: "Icons"
                 name: "icons"
                 widget: "list"
@@ -741,6 +815,43 @@ collections:
 
       - { label: "Name", name: "name", widget: "string" }
 
+      - label: "Textfarbe"
+        name: "text_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+        - { label: "– keine –", value: "" }
+        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+        - { label: "Text (text)", value: "text", color: "#22254e" }
+        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+        - { label: "Schwarz", value: "schwarz", color: "#111111" }
+        - { label: "Weiß", value: "weiss", color: "#ffffff" }
+        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+      - label: "Hintergrundfarbe"
+        name: "background_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+        - { label: "– keine –", value: "" }
+        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+        - { label: "Text (text)", value: "text", color: "#22254e" }
+        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+        - { label: "Schwarz", value: "schwarz", color: "#111111" }
+        - { label: "Weiß", value: "weiss", color: "#ffffff" }
+        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+
   - name: "services"
     label: "Services"
     label_singular: "Service"
@@ -808,6 +919,10 @@ collections:
           - { label: "Farbe 2 (c2)", value: "c2" }
           - { label: "Farbe 3 (c3)", value: "c3" }
           - { label: "Farbe 4 (c4)", value: "c4" }
+          - { label: "Farbe 5 (c5)", value: "c5" }
+          - { label: "Farbe 6 (c6)", value: "c6" }
+          - { label: "Schwarz", value: "schwarz" }
+          - { label: "Weiß", value: "weiss" }
 
       - label: "Kachel-Textfarbe"
         name: "tile_text_color"
@@ -822,6 +937,10 @@ collections:
           - { label: "Farbe 2 (c2)", value: "c2" }
           - { label: "Farbe 3 (c3)", value: "c3" }
           - { label: "Farbe 4 (c4)", value: "c4" }
+          - { label: "Farbe 5 (c5)", value: "c5" }
+          - { label: "Farbe 6 (c6)", value: "c6" }
+          - { label: "Schwarz", value: "schwarz" }
+          - { label: "Weiß", value: "weiss" }
 
   - name: "locations"
     label: "Locations"
@@ -1021,6 +1140,43 @@ collections:
         hint: "The ID of the shop on the 'Location' site's view."
         pattern: ["shop-(?:[a-z0-9-])", "Must be something like f.e. 'shop-1'."]
 
+      - label: "Textfarbe"
+        name: "text_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+        - { label: "– keine –", value: "" }
+        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+        - { label: "Text (text)", value: "text", color: "#22254e" }
+        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+        - { label: "Schwarz", value: "schwarz", color: "#111111" }
+        - { label: "Weiß", value: "weiss", color: "#ffffff" }
+        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+      - label: "Hintergrundfarbe"
+        name: "background_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+        - { label: "– keine –", value: "" }
+        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+        - { label: "Text (text)", value: "text", color: "#22254e" }
+        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+        - { label: "Schwarz", value: "schwarz", color: "#111111" }
+        - { label: "Weiß", value: "weiss", color: "#ffffff" }
+        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+
   - name: "jobs"
     label: "Jobs"
     label_singular: "Job"
@@ -1141,6 +1297,43 @@ collections:
           - heading-two
           - bulleted-list
           - numbered-list
+
+      - label: "Textfarbe"
+        name: "text_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+        - { label: "– keine –", value: "" }
+        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+        - { label: "Text (text)", value: "text", color: "#22254e" }
+        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+        - { label: "Schwarz", value: "schwarz", color: "#111111" }
+        - { label: "Weiß", value: "weiss", color: "#ffffff" }
+        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+      - label: "Hintergrundfarbe"
+        name: "background_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+        - { label: "– keine –", value: "" }
+        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+        - { label: "Text (text)", value: "text", color: "#22254e" }
+        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+        - { label: "Schwarz", value: "schwarz", color: "#111111" }
+        - { label: "Weiß", value: "weiss", color: "#ffffff" }
+        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
 
   - name: "news"
     label: "News"
@@ -1265,6 +1458,43 @@ collections:
           - bulleted-list
           - numbered-list
 
+      - label: "Textfarbe"
+        name: "text_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+        - { label: "– keine –", value: "" }
+        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+        - { label: "Text (text)", value: "text", color: "#22254e" }
+        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+        - { label: "Schwarz", value: "schwarz", color: "#111111" }
+        - { label: "Weiß", value: "weiss", color: "#ffffff" }
+        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+      - label: "Hintergrundfarbe"
+        name: "background_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+        - { label: "– keine –", value: "" }
+        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
+        - { label: "Text (text)", value: "text", color: "#22254e" }
+        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
+        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
+        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
+        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
+        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
+        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
+        - { label: "Schwarz", value: "schwarz", color: "#111111" }
+        - { label: "Weiß", value: "weiss", color: "#ffffff" }
+        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+
   - name: "blocks"
     label: "Blocks"
     label_singular: "Block"
@@ -1382,7 +1612,7 @@ collections:
       - label: "Farben"
         name: "colors"
         widget: "object"
-        hint: "Diese sechs Farben gelten für das gesamte Frontend, sobald das Schema aktiv ist."
+        hint: "Diese acht Farben gelten für das gesamte Frontend, sobald das Schema aktiv ist."
         fields:
           - {
               label: "Hintergrund (bg)",
@@ -1425,6 +1655,22 @@ collections:
               widget: "color",
               allowInput: true,
               enableAlpha: false,
+            }
+          - {
+              label: "Farbe 5 (c5)",
+              name: "c5",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+              default: "#99cccd",
+            }
+          - {
+              label: "Farbe 6 (c6)",
+              name: "c6",
+              widget: "color",
+              allowInput: true,
+              enableAlpha: false,
+              default: "#8eb8c7",
             }
 
   - name: "settings"

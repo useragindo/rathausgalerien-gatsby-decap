@@ -9,4 +9,6 @@ colors:
   c2: "#ffa4cc"
   c3: "#ffbb33"
   c4: "#b58ec1"
+  c5: "#99cccd"
+  c6: "#8eb8c7"
 ---

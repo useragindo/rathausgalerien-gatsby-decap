@@ -1,9 +1,8 @@
 import * as React from "react";
 import type {
+	ColorToken,
 	LanguageCode,
 	NormalizedService,
-	ServiceTileColor,
-	ServiceTileTextColor,
 } from "../../lib/content/types";
 
 type ServiceTilesProps = {
@@ -11,12 +10,20 @@ type ServiceTilesProps = {
 	language: LanguageCode;
 };
 
-const getColorValue = (slot: ServiceTileColor | ServiceTileTextColor): string =>
-	`var(--scheme-${slot})`;
+// Schwarz/Weiß are fixed neutrals, not scheme slots (see color-tokens.ts) —
+// everything else is a `var(--scheme-<slot>)` that changes with the active
+// colour scheme.
+const NEUTRAL_VAR_BY_TOKEN: Partial<Record<ColorToken, string>> = {
+	schwarz: "var(--color-black)",
+	weiss: "var(--color-white)",
+};
+
+const getColorValue = (slot: ColorToken): string =>
+	NEUTRAL_VAR_BY_TOKEN[slot] ?? `var(--scheme-${slot})`;
 
 const getTileStyle = (
-	background: ServiceTileColor,
-	text: ServiceTileTextColor,
+	background: ColorToken,
+	text: ColorToken,
 ): React.CSSProperties => ({
 	background: getColorValue(background),
 	color: getColorValue(text),

@@ -12,7 +12,6 @@ heading: |-
 intro: Ein Überblick über die Angebote in den RathausGalerien.
 blocks:
   - layout: grid-4
-    color_token: ""
     reversed: false
     date: ""
     header: IMMER UP TO DATE
@@ -21,7 +20,6 @@ blocks:
       finden Sie laufend hier auf der News-Seite und auf Instagram unter
       @rathausgalerien.
   - layout: grid-4
-    color_token: ""
     reversed: false
     date: ""
     tiles:

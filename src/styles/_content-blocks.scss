@@ -440,7 +440,7 @@
 /* ─── Farb-Rotation der Content-Kacheln auf der Index-Seite ───────────
    Direkt an die Schema-Slots gebunden statt an den --color-*-Alias, damit ein
    c1..c4 im aktiven Schema auch die automatische Abwechslung führt. Ein Tile
-   mit color_token oder backgroundColor trägt bereits ein Inline-Style, das
+   mit text_color/background_color oder backgroundColor trägt bereits ein Inline-Style, das
    jede Klassenregel unabhängig von deren Reihenfolge überschreibt — die
    Rotation greift also automatisch nur, wenn keins von beiden gesetzt ist. */
 .page--index .content-block--index-1 .content-block__tile--content,

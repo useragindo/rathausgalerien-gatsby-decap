@@ -1,4 +1,6 @@
+import { COLOR_TOKENS } from "./color-tokens";
 import type {
+	ColorToken,
 	ImportedFrontmatter,
 	ImportedMdxNode,
 	LanguageCode,
@@ -9,8 +11,6 @@ import type {
 	NormalizedNews,
 	NormalizedPage,
 	NormalizedService,
-	ServiceTileColor,
-	ServiceTileTextColor,
 	SiteNavigationItem,
 	SiteTheme,
 } from "./types";
@@ -177,6 +177,21 @@ export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
   };
 };
 
+const COLOR_TOKEN_VALUES: readonly ColorToken[] = COLOR_TOKENS.map(
+	(token) => token.value,
+);
+
+// A listing card or category tile with no colour chosen stays unstyled and
+// falls back to its existing look — so this returns undefined instead of a
+// default token (unlike the service tile colours, which always show some
+// colour, default c1/text).
+const normalizeOptionalColorToken = (value?: unknown): ColorToken | undefined => {
+	const candidate = trim(value) as ColorToken | undefined;
+	return candidate && COLOR_TOKEN_VALUES.includes(candidate)
+		? candidate
+		: undefined;
+};
+
 const getLocationBaseSlug = (group?: string | null): string =>
 	group === "culinary" ? "gastronomie" : "shops";
 
@@ -213,6 +228,8 @@ export const normalizeLocation = (
 		path: withLanguagePrefix(language, `${baseSlug}/${slug}`),
 		group: trim(frontmatter.group) ?? "brand",
 		body: trim(node.body),
+		textColor: normalizeOptionalColorToken(frontmatter.text_color),
+		backgroundColor: normalizeOptionalColorToken(frontmatter.background_color),
 		frontmatter,
 	};
 };
@@ -243,6 +260,8 @@ export const normalizeJob = (node: ImportedMdxNode): NormalizedJob | null => {
 		slug,
 		path: withLanguagePrefix(language, `jobs/${slug}`),
 		body: trim(node.body),
+		textColor: normalizeOptionalColorToken(frontmatter.text_color),
+		backgroundColor: normalizeOptionalColorToken(frontmatter.background_color),
 		frontmatter,
 	};
 };
@@ -274,6 +293,8 @@ export const normalizeNews = (node: ImportedMdxNode): NormalizedNews | null => {
 		path: withLanguagePrefix(language, `news/${slug}`),
 		date: toDateString(frontmatter.date) ?? null,
 		body: trim(node.body),
+		textColor: normalizeOptionalColorToken(frontmatter.text_color),
+		backgroundColor: normalizeOptionalColorToken(frontmatter.background_color),
 		frontmatter,
 	};
 };
@@ -301,48 +322,20 @@ export const normalizeCategory = (
 		uuid,
 		name,
 		slug: getFileSlug(node) ?? slugify(name),
+		textColor: normalizeOptionalColorToken(frontmatter.text_color),
+		backgroundColor: normalizeOptionalColorToken(frontmatter.background_color),
 		frontmatter,
 	};
 };
 
-const SERVICE_TILE_COLOR_VALUES: readonly ServiceTileColor[] = [
-	"bg",
-	"text",
-	"c1",
-	"c2",
-	"c3",
-	"c4",
-];
+const DEFAULT_SERVICE_TILE_COLOR: ColorToken = "c1";
+const DEFAULT_SERVICE_TILE_TEXT_COLOR: ColorToken = "text";
 
-const SERVICE_TILE_TEXT_COLOR_VALUES: readonly ServiceTileTextColor[] = [
-	"bg",
-	"text",
-	"c1",
-	"c2",
-	"c3",
-	"c4",
-];
+const normalizeServiceTileColor = (value?: unknown): ColorToken =>
+	normalizeOptionalColorToken(value) ?? DEFAULT_SERVICE_TILE_COLOR;
 
-const DEFAULT_SERVICE_TILE_COLOR: ServiceTileColor = "c1";
-const DEFAULT_SERVICE_TILE_TEXT_COLOR: ServiceTileTextColor = "text";
-
-const normalizeServiceTileColor = (value?: unknown): ServiceTileColor => {
-	const candidate = trim(value) as ServiceTileColor | undefined;
-	return SERVICE_TILE_COLOR_VALUES.includes(candidate as ServiceTileColor)
-		? (candidate as ServiceTileColor)
-		: DEFAULT_SERVICE_TILE_COLOR;
-};
-
-const normalizeServiceTileTextColor = (
-	value?: unknown,
-): ServiceTileTextColor => {
-	const candidate = trim(value) as ServiceTileTextColor | undefined;
-	return SERVICE_TILE_TEXT_COLOR_VALUES.includes(
-		candidate as ServiceTileTextColor,
-	)
-		? (candidate as ServiceTileTextColor)
-		: DEFAULT_SERVICE_TILE_TEXT_COLOR;
-};
+const normalizeServiceTileTextColor = (value?: unknown): ColorToken =>
+	normalizeOptionalColorToken(value) ?? DEFAULT_SERVICE_TILE_TEXT_COLOR;
 
 export const normalizeService = (
 	node: ImportedMdxNode,

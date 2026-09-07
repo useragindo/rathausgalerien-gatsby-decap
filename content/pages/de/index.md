@@ -37,8 +37,8 @@ blocks:
           - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_01.jpg
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
           - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_01.jpg
-        backgroundColor: "#ffa4cc"
-        color_token: c2
+        background_color: c2
+        text_color: text
       - text: |-
           ## DAS NEUE
 
@@ -62,13 +62,12 @@ blocks:
       gastronomischen Angeboten.
     tiles:
       - text: Leckeres Essen für alle
-        backgroundColor: ""
         category: ""
         link: /genuss
-        color_token: c2
+        background_color: c2
+        text_color: text
       - images:
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
-    color_token: ""
   - date: ""
     layout: columns
     header: WEEKEND PARKING.
@@ -80,10 +79,10 @@ blocks:
           340 Parkplätze
 
           8 E-Lade Plätze
-        backgroundColor: ""
         icons:
           - icon: /media/pages/icon-car.svg
-        color_token: c3
+        background_color: c3
+        text_color: text
       - images:
           - image: /media/pages/rhg_parken_01.png
   - date: ""

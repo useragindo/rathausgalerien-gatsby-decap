@@ -10,6 +10,7 @@ import {
 	resolveCategories,
 	resolveCategoryLabels,
 } from "../lib/content/categories";
+import { resolveColorPairStyle } from "../lib/content/color-tokens";
 import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
 import { trim } from "../lib/content/normalize";
 import type {
@@ -238,6 +239,7 @@ type LocationListProps = {
 	group: "brand" | "culinary";
 	showHeader?: boolean;
 	categoryUuid?: string;
+	theme?: SiteTheme | null;
 };
 
 export const LocationList: React.FC<LocationListProps> = ({
@@ -247,6 +249,7 @@ export const LocationList: React.FC<LocationListProps> = ({
 	group,
 	showHeader = true,
 	categoryUuid,
+	theme,
 }) => {
 	const items = React.useMemo(
 		() =>
@@ -355,11 +358,17 @@ export const LocationList: React.FC<LocationListProps> = ({
 				{visibleItems.map(({ location, categoryLabel, categoryKey }) => {
 					const image = getLocationImage(location);
 					const logo = location.frontmatter.logo;
+					const cardStyle = resolveColorPairStyle(
+						location.textColor,
+						location.backgroundColor,
+						theme,
+					);
 
 					return (
 						<li
 							className="listing-card listing-card--has-media"
 							key={`${location.id}-${categoryKey}`}
+							style={cardStyle}
 						>
 							<a className="listing-card__link" href={location.path}>
 								<span
@@ -487,10 +496,11 @@ const HomepageIntro: React.FC<{
 	);
 };
 
-const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
-	jobs,
-	language,
-}) => {
+const JobList: React.FC<{
+	jobs: NormalizedJob[];
+	language: string;
+	theme?: SiteTheme | null;
+}> = ({ jobs, language, theme }) => {
 	const items = jobs.filter((job) => job.language === language);
 
 	if (!items.length) {
@@ -510,11 +520,17 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 			<ul className="listing-grid listing-grid--jobs">
 				{items.map((job) => {
 					const image = job.frontmatter.images?.[0];
+					const cardStyle = resolveColorPairStyle(
+						job.textColor,
+						job.backgroundColor,
+						theme,
+					);
 
 					return (
 						<li
 							className="listing-card listing-card--job listing-card--has-media"
 							key={job.id}
+							style={cardStyle}
 						>
 							<a className="listing-card__link" href={job.path}>
 								<span
@@ -567,10 +583,11 @@ const formatNewsDate = (date: string, language: string): string | undefined => {
 	);
 };
 
-const NewsList: React.FC<{ news: NormalizedNews[]; language: string }> = ({
-	news,
-	language,
-}) => {
+const NewsList: React.FC<{
+	news: NormalizedNews[];
+	language: string;
+	theme?: SiteTheme | null;
+}> = ({ news, language, theme }) => {
 	const items = React.useMemo(
 		() =>
 			news
@@ -601,11 +618,17 @@ const NewsList: React.FC<{ news: NormalizedNews[]; language: string }> = ({
 				{items.map((item) => {
 					const image = getNewsImage(item);
 					const date = item.date ? formatNewsDate(item.date, language) : undefined;
+					const cardStyle = resolveColorPairStyle(
+						item.textColor,
+						item.backgroundColor,
+						theme,
+					);
 
 					return (
 						<li
 							className="listing-card listing-card--news listing-card--has-media"
 							key={item.id}
+							style={cardStyle}
 						>
 							<a className="listing-card__link" href={item.path}>
 								<span
@@ -716,6 +739,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 					language={page.language}
 					group="brand"
 					showHeader={false}
+					theme={theme}
 				/>
 			) : null}
 			{page.template === "gastronomie" ? (
@@ -725,13 +749,14 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 					language={page.language}
 					group="culinary"
 					showHeader={false}
+					theme={theme}
 				/>
 			) : null}
 			{page.template === "jobs" ? (
-				<JobList jobs={jobs} language={page.language} />
+				<JobList jobs={jobs} language={page.language} theme={theme} />
 			) : null}
 			{page.template === "news_list" ? (
-				<NewsList news={news} language={page.language} />
+				<NewsList news={news} language={page.language} theme={theme} />
 			) : null}
 			{isServicesPage ? (
 				<>

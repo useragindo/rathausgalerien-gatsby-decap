@@ -12,6 +12,7 @@ import type {
 	SocialTeaserBlock,
 	TeaserGridBlock,
 } from "../../lib/cms";
+import { resolveColorPairStyle } from "../../lib/content/color-tokens";
 import { MarkdownContent, renderMultiline } from "../../lib/content/markdown";
 import type { LanguageCode } from "../../lib/content/types";
 import type {
@@ -29,26 +30,6 @@ type ContentBlockRendererProps = {
 	language?: LanguageCode;
 	categories?: NormalizedCategory[] | null;
 	theme?: SiteTheme | null;
-};
-
-// A colour token (bg, text, c1 … c4) always takes priority over a free hex
-// value. Resolved against the theme's own slots — a token the active scheme
-// doesn't carry is ignored rather than emitting a variable that resolves to
-// nothing.
-const resolveColorTokenStyle = (
-	token: string | null | undefined,
-	theme: SiteTheme | null | undefined,
-): React.CSSProperties | undefined => {
-	const slot = text(token);
-
-	if (!slot || !theme?.colors[slot]) {
-		return undefined;
-	}
-
-	return {
-		background: `var(--scheme-${slot})`,
-		color: `var(--scheme-${slot}-on)`,
-	};
 };
 
 type ImportedBlockLayout =
@@ -456,7 +437,7 @@ const TileBox: React.FC<{
 	const backgroundColor = variant === "content" ? text(tile.backgroundColor) : undefined;
 	const style =
 		variant === "content"
-			? resolveColorTokenStyle(tile.color_token, theme) ??
+			? resolveColorPairStyle(tile.text_color, tile.background_color, theme) ??
 				(backgroundColor ? { backgroundColor } : undefined)
 			: undefined;
 	const { heroIcon, listIcons } =
@@ -588,7 +569,7 @@ const ImportedBlock: React.FC<{
 
 	const contentBackgroundColor = text(block.backgroundColor);
 	const contentTileStyle =
-		resolveColorTokenStyle(block.color_token, theme) ??
+		resolveColorPairStyle(block.text_color, block.background_color, theme) ??
 		(contentBackgroundColor ? { backgroundColor: contentBackgroundColor } : undefined);
 
 	const contentTile = (

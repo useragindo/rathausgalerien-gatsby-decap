@@ -32,10 +32,13 @@ export type ImportedContentTile = {
 	images?: ImportedImage[] | null;
 	category?: string | null;
 	link?: string | null;
+	// Legacy free hex, kept read-only for content authored before the
+	// predefined colour tokens existed. No CMS field writes this anymore.
 	backgroundColor?: string | null;
-	// Slot of the active colour scheme (bg, text, c1 … c4). Takes priority over
-	// backgroundColor when set.
-	color_token?: string | null;
+	// Slots of the active colour scheme (bg, text, c1 … c6) or a fixed
+	// neutral (schwarz, weiss). Takes priority over backgroundColor when set.
+	text_color?: string | null;
+	background_color?: string | null;
 	icons?: ImportedIcon[] | null;
 };
 
@@ -45,7 +48,8 @@ export type ImportedContentBlock = {
 	teaserText?: string | null;
 	text?: string | null;
 	backgroundColor?: string | null;
-	color_token?: string | null;
+	text_color?: string | null;
+	background_color?: string | null;
 	reversed?: boolean | null;
 	date?: string | null;
 	images?: ImportedImage[] | null;
@@ -112,6 +116,10 @@ export type ImportedFrontmatter = {
 	tile?: boolean | null;
 	tile_color?: string | null;
 	tile_text_color?: string | null;
+	// Predefined text/background colour for listing cards (news, jobs,
+	// locations) and category tiles. See color-tokens.ts.
+	text_color?: string | null;
+	background_color?: string | null;
 	images?: string[] | null;
 	hours?: Array<{
 		date?: string | null;
@@ -170,6 +178,8 @@ export type NormalizedLocation = {
 	path: string;
 	group: string;
 	body?: string;
+	textColor?: ColorToken;
+	backgroundColor?: ColorToken;
 	frontmatter: ImportedFrontmatter;
 };
 
@@ -182,6 +192,8 @@ export type NormalizedJob = {
 	slug: string;
 	path: string;
 	body?: string;
+	textColor?: ColorToken;
+	backgroundColor?: ColorToken;
 	frontmatter: ImportedFrontmatter;
 };
 
@@ -196,6 +208,8 @@ export type NormalizedNews = {
 	path: string;
 	date: string | null;
 	body?: string;
+	textColor?: ColorToken;
+	backgroundColor?: ColorToken;
 	frontmatter: ImportedFrontmatter;
 };
 
@@ -205,17 +219,25 @@ export type NormalizedCategory = {
 	uuid: string;
 	name: string;
 	slug: string;
+	textColor?: ColorToken;
+	backgroundColor?: ColorToken;
 	frontmatter: ImportedFrontmatter;
 };
 
-export type ServiceTileColor = "bg" | "text" | "c1" | "c2" | "c3" | "c4";
-export type ServiceTileTextColor =
+// The ten predefined colours an editor can pick for text/background: six
+// scheme slots (change with the active colour scheme) plus two fixed
+// neutrals. See src/lib/content/color-tokens.ts for the resolver.
+export type ColorToken =
 	| "bg"
 	| "text"
 	| "c1"
 	| "c2"
 	| "c3"
-	| "c4";
+	| "c4"
+	| "c5"
+	| "c6"
+	| "schwarz"
+	| "weiss";
 
 export type NormalizedService = {
 	id: string;
@@ -225,8 +247,8 @@ export type NormalizedService = {
 	icon?: string;
 	description?: string;
 	tile: boolean;
-	tileColor: ServiceTileColor;
-	tileTextColor: ServiceTileTextColor;
+	tileColor: ColorToken;
+	tileTextColor: ColorToken;
 	frontmatter: ImportedFrontmatter;
 };
 

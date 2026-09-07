@@ -101,6 +101,7 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({ pageContext }) => {
 					group="brand"
 					showHeader={false}
 					categoryUuid={category.uuid}
+					theme={theme}
 				/>
 				<LocationList
 					locations={locations}
@@ -109,6 +110,7 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({ pageContext }) => {
 					group="culinary"
 					showHeader={false}
 					categoryUuid={category.uuid}
+					theme={theme}
 				/>
 			</article>
 		</SiteLayout>
