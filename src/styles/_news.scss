@@ -73,7 +73,7 @@
 .news-detail__about {
 	display: grid;
 	gap: clamp(var(--space-sm), 3vw, var(--space-md));
-	align-items: center;
+	align-items: stretch;
 	width: min(100% - (var(--space-sm) * 2), 62rem);
 	margin: clamp(var(--space-lg), 6vw, var(--space-xl)) auto;
 }
