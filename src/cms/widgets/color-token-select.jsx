@@ -217,6 +217,8 @@ class ColorTokenSelect extends Component {
 
 	containerRef = createRef();
 	_isMounted = false;
+	_hasWarnedNoBackend = false;
+	_retryTimer = null;
 
 	componentDidMount() {
 		this._isMounted = true;
@@ -224,13 +226,43 @@ class ColorTokenSelect extends Component {
 		document.addEventListener("mousedown", this._handleClickOutside);
 		this._loadSchemeColors();
 		this._registerSchemeListener();
+		this._scheduleRetryIfMissing();
 	}
 
 	componentWillUnmount() {
 		this._isMounted = false;
 		document.removeEventListener("mousedown", this._handleClickOutside);
 		this._unregisterSchemeListener();
+		this._clearRetry();
 	}
+
+	_clearRetry = () => {
+		if (this._retryTimer) {
+			clearTimeout(this._retryTimer);
+			this._retryTimer = null;
+		}
+	};
+
+	_scheduleRetryIfMissing = () => {
+		if (this._retryTimer) return;
+		const delays = [800, 2000, 5000, 10000];
+		let i = 0;
+		const tick = () => {
+			if (!this._isMounted) return;
+			if (this.state.schemeColors && this.state.schemeName) {
+				this._retryTimer = null;
+				return;
+			}
+			this._loadSchemeColors();
+			if (i < delays.length) {
+				this._retryTimer = setTimeout(tick, delays[i++]);
+			} else {
+				this._retryTimer = null;
+			}
+		};
+		this._retryTimer = setTimeout(tick, delays[0]);
+		i = 1;
+	};
 
 	_registerSchemeListener = () => {
 		if (typeof CMS.registerEventListener !== "function") return;
@@ -281,10 +313,11 @@ class ColorTokenSelect extends Component {
 			const backend =
 				typeof CMS.getBackend === "function" ? CMS.getBackend() : null;
 			if (!backend || typeof backend.getEntry !== "function") {
-				if (typeof console !== "undefined") {
+				if (!this._hasWarnedNoBackend && typeof console !== "undefined") {
 					console.warn(
-						"[color-token-select] no backend available; falling back to config swatches",
+						"[color-token-select] no backend available yet; will retry until the proxy is ready or until you log in.",
 					);
+					this._hasWarnedNoBackend = true;
 				}
 				return;
 			}
@@ -318,6 +351,8 @@ class ColorTokenSelect extends Component {
 			}
 
 			if (this._isMounted) {
+				this._hasWarnedNoBackend = false;
+				this._clearRetry();
 				this.setState({
 					schemeColors: colors,
 					schemeName: readName(data) || activeScheme,
@@ -331,7 +366,15 @@ class ColorTokenSelect extends Component {
 	};
 
 	_toggleOpen = () => {
-		this.setState((s) => ({ isOpen: !s.isOpen }));
+		this.setState(
+			(s) => ({ isOpen: !s.isOpen }),
+			() => {
+				if (this.state.isOpen && (!this.state.schemeColors || !this.state.schemeName)) {
+					this._loadSchemeColors();
+					this._scheduleRetryIfMissing();
+				}
+			},
+		);
 	};
 
 	_select = (option) => {
