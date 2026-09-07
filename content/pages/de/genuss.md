@@ -4,6 +4,7 @@ type: page
 key: genuss
 template: gastronomie
 menu: main
+menu_label: Kulinarik
 order: 200
 heading: Kulinarik in den Galerien 123
 intro: |-

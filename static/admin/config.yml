@@ -90,6 +90,14 @@ collections:
           - { label: "Sonstiges (Footer)", value: "misc" }
 
       - {
+          label: "Menü-Bezeichnung",
+          name: "menu_label",
+          widget: "string",
+          required: false,
+          hint: "Anzeigename im Menü. Leer lassen, um den Seitentitel zu verwenden.",
+        }
+
+      - {
           label: "Reihenfolge",
           name: "order",
           widget: "number",
@@ -471,6 +479,14 @@ collections:
         widget: "string"
         hint: "Eindeutiger Schlüssel und Dateiname."
         pattern: ["^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
+
+      - {
+          label: "Menü-Bezeichnung",
+          name: "menu_label",
+          widget: "string",
+          required: false,
+          hint: "Anzeigename im Menü, falls der Funnel in der Navigation erscheint. Leer lassen, um den Seitentitel zu verwenden.",
+        }
 
       - label: "Funnel URL"
         name: "funnel_url"

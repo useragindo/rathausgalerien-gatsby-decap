@@ -459,7 +459,7 @@ export const createNavigationFromPages = (
 		.filter((page) => trim(page.frontmatter.menu))
 		.map((page) => ({
 			key: page.key,
-			label: page.title,
+			label: trim(page.frontmatter.menu_label) ?? page.title,
 			url: page.path,
 			language: page.language,
 			order: page.frontmatter.order ?? 999,

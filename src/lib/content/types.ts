@@ -88,6 +88,8 @@ export type ImportedFrontmatter = {
 	funnel_url?: string | null;
 	order?: number | null;
 	menu?: string | null;
+	// Anzeigename im Menü; falls leer wird der Seitentitel verwendet.
+	menu_label?: string | null;
 	seo?: ImportedSeo | null;
 	blocks?: ImportedContentBlock[] | null;
 	photos?: Array<{
