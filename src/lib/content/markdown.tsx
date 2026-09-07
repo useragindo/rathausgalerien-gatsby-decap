@@ -92,7 +92,7 @@ const renderInline = (text: string): React.ReactNode[] => {
 };
 
 const renderParagraph = (paragraph: string, index: number): React.ReactNode => {
-	const cleaned = normalizeInlineText(paragraph).replace(/\\\n/g, "\n").trim();
+	const cleaned = normalizeInlineText(paragraph).trim();
 
 	if (/^(-\s*){3,}$/.test(cleaned) || /^([*_]\s*){3,}$/.test(cleaned)) {
 		return <hr key={index} />;
@@ -129,7 +129,18 @@ const renderParagraph = (paragraph: string, index: number): React.ReactNode => {
 		);
 	}
 
-	return <p key={index}>{renderInline(cleaned)}</p>;
+	const lines = cleaned.split(/\\\n/).map((line) => line.trim());
+
+	return (
+		<p key={index}>
+			{lines.map((line, lineIndex) => (
+				<React.Fragment key={lineIndex}>
+					{lineIndex > 0 ? <br /> : null}
+					{renderInline(line)}
+				</React.Fragment>
+			))}
+		</p>
+	);
 };
 
 // CMS text fields (heading, intro) are plain strings, not markdown, but still
