@@ -217,8 +217,6 @@ class ColorTokenSelect extends Component {
 
 	containerRef = createRef();
 	_isMounted = false;
-	_hasWarnedNoBackend = false;
-	_retryTimer = null;
 
 	componentDidMount() {
 		this._isMounted = true;
@@ -226,43 +224,13 @@ class ColorTokenSelect extends Component {
 		document.addEventListener("mousedown", this._handleClickOutside);
 		this._loadSchemeColors();
 		this._registerSchemeListener();
-		this._scheduleRetryIfMissing();
 	}
 
 	componentWillUnmount() {
 		this._isMounted = false;
 		document.removeEventListener("mousedown", this._handleClickOutside);
 		this._unregisterSchemeListener();
-		this._clearRetry();
 	}
-
-	_clearRetry = () => {
-		if (this._retryTimer) {
-			clearTimeout(this._retryTimer);
-			this._retryTimer = null;
-		}
-	};
-
-	_scheduleRetryIfMissing = () => {
-		if (this._retryTimer) return;
-		const delays = [800, 2000, 5000, 10000];
-		let i = 0;
-		const tick = () => {
-			if (!this._isMounted) return;
-			if (this.state.schemeColors && this.state.schemeName) {
-				this._retryTimer = null;
-				return;
-			}
-			this._loadSchemeColors();
-			if (i < delays.length) {
-				this._retryTimer = setTimeout(tick, delays[i++]);
-			} else {
-				this._retryTimer = null;
-			}
-		};
-		this._retryTimer = setTimeout(tick, delays[0]);
-		i = 1;
-	};
 
 	_registerSchemeListener = () => {
 		if (typeof CMS.registerEventListener !== "function") return;
@@ -309,20 +277,18 @@ class ColorTokenSelect extends Component {
 	};
 
 	_loadSchemeColors = async () => {
-		try {
-			const backend =
-				typeof CMS.getBackend === "function" ? CMS.getBackend() : null;
-			if (!backend || typeof backend.getEntry !== "function") {
-				if (!this._hasWarnedNoBackend && typeof console !== "undefined") {
-					console.warn(
-						"[color-token-select] no backend available yet; will retry until the proxy is ready or until you log in.",
-					);
-					this._hasWarnedNoBackend = true;
-				}
-				return;
+		const { loadEntry } = this.props;
+		if (typeof loadEntry !== "function") {
+			if (typeof console !== "undefined") {
+				console.warn(
+					"[color-token-select] no loadEntry prop available; the CMS core may be outdated.",
+				);
 			}
+			return;
+		}
 
-			const themeResult = await backend.getEntry("settings", "theme");
+		try {
+			const themeResult = await loadEntry("settings", "theme");
 			const activeScheme = readActiveScheme(themeResult);
 			if (!activeScheme) {
 				if (typeof console !== "undefined") {
@@ -331,13 +297,13 @@ class ColorTokenSelect extends Component {
 						themeResult,
 					);
 				}
+				if (this._isMounted) {
+					this.setState({ schemeColors: null, schemeName: null });
+				}
 				return;
 			}
 
-			const schemeResult = await backend.getEntry(
-				"color-schemes",
-				activeScheme,
-			);
+			const schemeResult = await loadEntry("color-schemes", activeScheme);
 			const data = readEntryData(schemeResult);
 			const colors = readColors(data);
 			if (!colors) {
@@ -347,12 +313,13 @@ class ColorTokenSelect extends Component {
 						schemeResult,
 					);
 				}
+				if (this._isMounted) {
+					this.setState({ schemeColors: null, schemeName: null });
+				}
 				return;
 			}
 
 			if (this._isMounted) {
-				this._hasWarnedNoBackend = false;
-				this._clearRetry();
 				this.setState({
 					schemeColors: colors,
 					schemeName: readName(data) || activeScheme,
@@ -371,7 +338,6 @@ class ColorTokenSelect extends Component {
 			() => {
 				if (this.state.isOpen && (!this.state.schemeColors || !this.state.schemeName)) {
 					this._loadSchemeColors();
-					this._scheduleRetryIfMissing();
 				}
 			},
 		);
