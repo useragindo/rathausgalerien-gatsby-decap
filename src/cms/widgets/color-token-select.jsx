@@ -1,5 +1,32 @@
 import React, { Component, createRef } from "react";
+import { Map as ImMap, List as ImList } from "immutable";
 import CMS from "decap-cms-app";
+
+const toOption = (raw) => {
+	if (typeof raw === "string") {
+		return { label: raw, value: raw };
+	}
+	if (ImMap.isMap(raw)) {
+		return raw.toJS();
+	}
+	return raw;
+};
+
+const readOptions = (props) => {
+	if (Array.isArray(props.options) && props.options.length > 0) {
+		return props.options;
+	}
+	if (props.field && typeof props.field.get === "function") {
+		const fieldOptions = props.field.get("options");
+		if (ImList.isList(fieldOptions)) {
+			return fieldOptions.map(toOption).toArray();
+		}
+		if (Array.isArray(fieldOptions)) {
+			return fieldOptions.map(toOption);
+		}
+	}
+	return [];
+};
 
 const STYLE_ID = "color-token-select-styles";
 
@@ -170,8 +197,9 @@ class ColorTokenSelect extends Component {
 	};
 
 	render() {
-		const { value, options = [], className } = this.props;
+		const { value, className } = this.props;
 		const { isOpen } = this.state;
+		const options = readOptions(this.props);
 		const selected =
 			options.find((o) => o.value === value) ?? options[0];
 
