@@ -80,7 +80,7 @@
 	max-width: 14ch;
 	margin-inline: auto;
 	font-size: clamp(2.35rem, 7vw, 5rem);
-	font-weight: 300;
+	font-weight: 200;
 	letter-spacing: clamp(0.14em, 1vw, 0.24em);
 }
 
@@ -89,6 +89,7 @@
 	margin-inline: auto;
 	margin-block-start: var(--space-sm);
 	font-size: clamp(1.05rem, 2vw, 1.45rem);
+	font-weight: 200;
 	line-height: 1.45;
 }
 
