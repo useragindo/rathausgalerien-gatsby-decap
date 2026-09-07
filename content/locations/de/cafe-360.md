@@ -1,8 +1,9 @@
 ---
+locale: de
 key: location
 type: location
-locale: de
 uuid: e10b967b-38cb-472f-bb24-9d168db97444
+intro: Hier finden Sie Informationen zum Cafe 360° in den RathausGalerien.
 seo:
   description: Hier finden Sie Informationen zum Cafe 360° in den RathausGalerien.
   title: Cafe 360°
@@ -29,6 +30,7 @@ contact:
   phone: +43 512 56 65 50
   url: http://www.360-grad.at
 viewId: shop-14
-intro: Hier finden Sie Informationen zum Cafe 360° in den RathausGalerien.
+text_color: bg
+background_color: c1
 ---
 Es ist ein Ort mit besonderen Geheimnissen. Dort wo Geschäftsleute ihre schönste Arbeitzeit verbringen und Verliebte den Moment voll auskosten. Dort wo Frieden in unserem Herzen und Freiheit in unseren Köpfen entsteht. Dort wo keine Wünsche ausbleiben, außer das diese bezaubernden Augenblicke für immer anhalten mögen. Es ist der 7. Himmel.
