@@ -35,6 +35,7 @@ type ContentBlockRendererProps = {
 type ImportedBlockLayout =
 	| "grid-4"
 	| "columns"
+	| "centered"
 	| "image-left"
 	| "text-left"
 	| "slider-left"
@@ -51,6 +52,7 @@ const isImportedBlockLayout = (value?: string | null): value is ImportedBlockLay
 			[
 				"grid-4",
 				"columns",
+				"centered",
 				"image-left",
 				"text-left",
 				"slider-left",
@@ -485,11 +487,14 @@ const TileGrid: React.FC<{
 	// "reversed" is set, matching the legacy text/images rendering below. This
 	// has no effect on grid-4, which always keeps the tiles' authored order.
 	reverseTwoColumn?: boolean;
+	// Caps how many tiles are shown (default 4). "centered" uses 2, for its
+	// halved grid-4.
+	maxTiles?: number;
 	theme?: SiteTheme | null;
-}> = ({ tiles, categories, language, reverseTwoColumn, theme }) => {
+}> = ({ tiles, categories, language, reverseTwoColumn, maxTiles = 4, theme }) => {
 	const items: { variant: "content" | "media"; tile: ImportedContentTile; link?: string; key: string }[] = [];
 
-	for (const tile of tiles.slice(0, 4)) {
+	for (const tile of tiles.slice(0, maxTiles)) {
 		if (!hasTileContent(tile)) {
 			continue;
 		}
@@ -516,7 +521,7 @@ const TileGrid: React.FC<{
 
 	return (
 		<>
-			{orderedItems.slice(0, 4).map(({ variant, tile, link, key }) => (
+			{orderedItems.slice(0, maxTiles).map(({ variant, tile, link, key }) => (
 				<TileBox key={key} variant={variant} tile={tile} link={link} theme={theme} />
 			))}
 		</>
@@ -536,6 +541,7 @@ const ImportedBlock: React.FC<{
 	const layout = getImportedBlockLayout(block, index);
 	const isSliderLayout = layout === "slider-left" || layout === "slider-right";
 	const isGridLayout = layout === "grid-4";
+	const isCenteredLayout = layout === "centered";
 	// For 2-column layouts (columns + legacy image-left / text-left / slider-*), show all
 	// images as a slider when multiple images are present; for grid-4, show first 3 as static tiles
 	const isTwoColumnLayout =
@@ -638,7 +644,8 @@ const ImportedBlock: React.FC<{
 						tiles={block.tiles ?? []}
 						categories={categories}
 						language={language}
-						reverseTwoColumn={isTwoColumnLayout && isReversed}
+						reverseTwoColumn={(isTwoColumnLayout || isCenteredLayout) && isReversed}
+						maxTiles={isCenteredLayout ? 2 : 4}
 						theme={theme}
 					/>
 				) : isReversed ? (

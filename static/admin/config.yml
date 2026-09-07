@@ -197,6 +197,7 @@ collections:
             options:
               - { label: "4er Grid", value: "grid-4" }
               - { label: "Text + Bild (2 Spalten)", value: "columns" }
+              - { label: "Box zentriert", value: "centered" }
           - label: "Textfarbe"
             name: "text_color"
             widget: "color-token-select"
@@ -238,7 +239,7 @@ collections:
             widget: boolean
             default: false
             required: false
-            hint: "Nur für 'Text + Bild (2 Spalten)'. Standard: Text links, Bild rechts."
+            hint: "Nur für 'Text + Bild (2 Spalten)' und 'Box zentriert'. Standard: Text links, Bild rechts."
           - label: "Images"
             name: "images"
             widget: list
@@ -257,7 +258,7 @@ collections:
             widget: list
             required: false
             max: 4
-            hint: "Bis zu 4 Kacheln in Anzeige-Reihenfolge (z. B. Text, Bild, Text, Bild). Pro Kachel entweder Text ODER Bilder ausfüllen."
+            hint: "Bis zu 4 Kacheln in Anzeige-Reihenfolge (z. B. Text, Bild, Text, Bild). Pro Kachel entweder Text ODER Bilder ausfüllen. Bei Layout 'Box zentriert' werden nur die ersten 2 Kacheln angezeigt."
             fields:
               - label: "Text"
                 name: "text"
@@ -558,6 +559,7 @@ collections:
             options:
               - { label: "4er Grid", value: "grid-4" }
               - { label: "Text + Bild (2 Spalten)", value: "columns" }
+              - { label: "Box zentriert", value: "centered" }
           - label: "Textfarbe"
             name: "text_color"
             widget: "color-token-select"
@@ -599,7 +601,7 @@ collections:
             widget: boolean
             default: false
             required: false
-            hint: "Nur für 'Text + Bild (2 Spalten)'. Standard: Text links, Bild rechts."
+            hint: "Nur für 'Text + Bild (2 Spalten)' und 'Box zentriert'. Standard: Text links, Bild rechts."
           - label: "Images"
             name: "images"
             widget: list
@@ -618,7 +620,7 @@ collections:
             widget: list
             required: false
             max: 4
-            hint: "Bis zu 4 Kacheln in Anzeige-Reihenfolge (z. B. Text, Bild, Text, Bild). Pro Kachel entweder Text ODER Bilder ausfüllen."
+            hint: "Bis zu 4 Kacheln in Anzeige-Reihenfolge (z. B. Text, Bild, Text, Bild). Pro Kachel entweder Text ODER Bilder ausfüllen. Bei Layout 'Box zentriert' werden nur die ersten 2 Kacheln angezeigt."
             fields:
               - label: "Text"
                 name: "text"

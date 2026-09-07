@@ -1,12 +1,14 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Content Blocks — Figma-Design 2026
-   Vier Layout-Typen (Figma-Maße bei 1440px, Content-Breite 1211px, Gap 25px):
+   Fünf Layout-Typen (Figma-Maße bei 1440px, Content-Breite 1211px, Gap 25px):
      1. grid-4      — 4 Kacheln in einer Reihe, je 284px breit
                       Kachel 1+3 = 284×284, Kachel 2+4 = 284×374
      2. image-left  — Bild 691×520 links | Content 520×520 rechts, kein Gap
      3. text-left   — Content 520×520 links | Bild 691×520 rechts, kein Gap
      4. slider-left — Slider 691×520 links | Content 520×520 rechts, kein Gap
         slider-right — Content links | Slider rechts (gleiche Maße)
+     5. centered    — halbiertes grid-4: 2 Kacheln, zentriert, halbe
+                      Content-Breite, beide Kacheln quadratisch (1:1)
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ─── Basis-Block ──────────────────────────────────────────────────────── */
@@ -159,6 +161,28 @@
 
 .content-block--grid-4 .content-block__tile--media {
 	aspect-ratio: 284 / 374;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Layout Typ 5: centered
+   Halbiertes grid-4: nur 2 Kacheln, zentriert auf halber Content-Breite.
+   Beide Kacheln quadratisch (1:1), unabhängig vom grid-4-Seitenverhältnis.
+   Bleibt auf allen Breakpoints 2-spaltig (keine 4-Spalten-Variante wie
+   grid-4 ab 44rem).
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.content-block--centered .content-block__body {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	max-width: calc(var(--container-content) / 2);
+}
+
+.content-block--centered .content-block__tile--content {
+	aspect-ratio: 1;
+}
+
+.content-block--centered .content-block__tile--media {
+	aspect-ratio: 1;
 }
 
 
