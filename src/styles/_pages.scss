@@ -77,11 +77,10 @@
 }
 
 .page-hero__title {
-	max-width: 14ch;
 	margin-inline: auto;
 	font-size: clamp(2.35rem, 7vw, 5rem);
 	font-weight: 200;
-	letter-spacing: clamp(0.14em, 1vw, 0.24em);
+	letter-spacing: clamp(0.1em, 1vw, 0.13em);
 }
 
 .page-hero__description {
