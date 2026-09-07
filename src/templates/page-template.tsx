@@ -551,7 +551,9 @@ const JobList: React.FC<{ jobs: NormalizedJob[]; language: string }> = ({
 };
 
 const getNewsImage = (news: NormalizedNews): string | undefined =>
-	trim(news.frontmatter.seo?.image) ?? getMarkdownImage(news.body);
+	trim(news.frontmatter.seo?.image) ??
+	trim(news.frontmatter.images?.[0]) ??
+	getMarkdownImage(news.body);
 
 const formatNewsDate = (date: string, language: string): string | undefined => {
 	const parsed = new Date(date);
