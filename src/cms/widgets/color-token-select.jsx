@@ -138,6 +138,11 @@ const injectStyles = () => {
 			padding: 6px 12px;
 			text-transform: uppercase;
 		}
+		.color-token-select__header.is-empty {
+			background: #fff7e6;
+			border-bottom-color: #f0d9a8;
+			color: #8a6d3b;
+		}
 		.color-token-select__header-dot {
 			background: var(--header-color, #c5d2dd);
 			border: 1px solid rgba(0, 0, 0, 0.12);
@@ -146,6 +151,15 @@ const injectStyles = () => {
 			height: 10px;
 			margin-right: 8px;
 			width: 10px;
+		}
+		.color-token-select__header.is-empty .color-token-select__header-dot {
+			background: repeating-linear-gradient(
+				45deg,
+				#d9c089 0,
+				#d9c089 3px,
+				#fff7e6 3px,
+				#fff7e6 6px
+			);
 		}
 	`;
 	document.head.appendChild(style);
@@ -283,8 +297,10 @@ class ColorTokenSelect extends Component {
 			options.find((o) => o.value === value) ?? options[0];
 
 		const selectedColor = selected ? this._resolveColor(selected) : null;
-		const headerDotColor =
-			schemeColors && (schemeColors.bg || schemeColors.c1) || null;
+		const schemeLoaded = Boolean(schemeName && schemeColors);
+		const headerDotColor = schemeLoaded
+			? schemeColors.bg || schemeColors.c1 || null
+			: null;
 
 		return (
 			<div
@@ -318,7 +334,12 @@ class ColorTokenSelect extends Component {
 				{isOpen ? (
 					<ul className="color-token-select__menu" role="listbox">
 						<li
-							className="color-token-select__header"
+							className={[
+								"color-token-select__header",
+								schemeLoaded ? "" : "is-empty",
+							]
+								.filter(Boolean)
+								.join(" ")}
 							aria-hidden="true"
 						>
 							<span
@@ -330,7 +351,9 @@ class ColorTokenSelect extends Component {
 								}
 							/>
 							<span>
-								Schema: {schemeName || "–"}
+								{schemeLoaded
+									? `Schema: ${schemeName}`
+									: "Kein Schema aktiv"}
 							</span>
 						</li>
 						{options.map((option) => {
