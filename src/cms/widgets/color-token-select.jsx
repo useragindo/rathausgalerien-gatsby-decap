@@ -126,6 +126,27 @@ const injectStyles = () => {
 		.color-token-select__option.is-selected {
 			background: #e6f3ff;
 		}
+		.color-token-select__header {
+			align-items: center;
+			background: #f5f8fa;
+			border-bottom: 1px solid #e6ebef;
+			color: #6b7785;
+			display: flex;
+			font-size: 11px;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			padding: 6px 12px;
+			text-transform: uppercase;
+		}
+		.color-token-select__header-dot {
+			background: var(--header-color, #c5d2dd);
+			border: 1px solid rgba(0, 0, 0, 0.12);
+			border-radius: 50%;
+			display: inline-block;
+			height: 10px;
+			margin-right: 8px;
+			width: 10px;
+		}
 	`;
 	document.head.appendChild(style);
 };
@@ -134,6 +155,7 @@ class ColorTokenSelect extends Component {
 	state = {
 		isOpen: false,
 		schemeColors: null,
+		schemeName: null,
 	};
 
 	containerRef = createRef();
@@ -211,7 +233,8 @@ class ColorTokenSelect extends Component {
 				"color-schemes",
 				activeScheme,
 			);
-			const colors = schemeResult?.entry?.data?.colors;
+			const data = schemeResult?.entry?.data;
+			const colors = data?.colors;
 			if (colors && typeof colors === "object") {
 				const map = {};
 				for (const [slot, value] of Object.entries(colors)) {
@@ -219,8 +242,11 @@ class ColorTokenSelect extends Component {
 						map[slot] = value.trim();
 					}
 				}
-				if (Object.keys(map).length > 0 && this._isMounted) {
-					this.setState({ schemeColors: map });
+				if (this._isMounted) {
+					this.setState({
+						schemeColors: map,
+						schemeName: data?.name || activeScheme,
+					});
 				}
 			}
 		} catch {
@@ -251,12 +277,14 @@ class ColorTokenSelect extends Component {
 
 	render() {
 		const { value, className } = this.props;
-		const { isOpen } = this.state;
+		const { isOpen, schemeColors, schemeName } = this.state;
 		const options = readOptions(this.props);
 		const selected =
 			options.find((o) => o.value === value) ?? options[0];
 
 		const selectedColor = selected ? this._resolveColor(selected) : null;
+		const headerDotColor =
+			schemeColors && (schemeColors.bg || schemeColors.c1) || null;
 
 		return (
 			<div
@@ -289,6 +317,22 @@ class ColorTokenSelect extends Component {
 				</button>
 				{isOpen ? (
 					<ul className="color-token-select__menu" role="listbox">
+						<li
+							className="color-token-select__header"
+							aria-hidden="true"
+						>
+							<span
+								className="color-token-select__header-dot"
+								style={
+									headerDotColor
+										? { "--header-color": headerDotColor }
+										: undefined
+								}
+							/>
+							<span>
+								Schema: {schemeName || "–"}
+							</span>
+						</li>
 						{options.map((option) => {
 							const swatchColor = this._resolveColor(option);
 							const isSelected = option.value === value;
