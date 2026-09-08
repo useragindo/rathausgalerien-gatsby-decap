@@ -128,9 +128,3 @@ teaser:
   title: Shopping
   icon: /media/pages/rhg-logo-klein.svg
 ---
-![Rathausgalerien von Maria-Theresien-Straße](/media/pages/dsc_1672_bearb.jpg)
-
-# Ihr Shoppingcenter in Innsbruck
-
-Die RathausGalerien sind ein modernes Shoppingcenter in Innsbruck, welches seinen Kunden und Kundinnen eine große Auswahl an verschiedenen Einkaufsmöglichkeiten und
-gastronomischen Angeboten bietet. Es befindet sich direkt im Zentrum der Stadt, unweit der vielen Sehenswürdigkeiten der Altstadt.
