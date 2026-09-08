@@ -486,7 +486,8 @@ const JobList: React.FC<{
 	jobs: NormalizedJob[];
 	language: string;
 	theme?: SiteTheme | null;
-}> = ({ jobs, language, theme }) => {
+	showHeader?: boolean;
+}> = ({ jobs, language, theme, showHeader = true }) => {
 	const items = jobs.filter((job) => job.language === language);
 
 	if (!items.length) {
@@ -496,13 +497,15 @@ const JobList: React.FC<{
 	return (
 		<section
 			className="listing-section listing-section--jobs"
-			aria-labelledby="job-list-title"
+			aria-labelledby={showHeader ? "job-list-title" : undefined}
 		>
-			<header className="listing-section__header">
-				<p className="listing-section__eyebrow">Karriere</p>
-				<h2 id="job-list-title">Offene Stellen</h2>
-				<p>Aktuelle Jobs in den RathausGalerien und bei unseren Partnern.</p>
-			</header>
+			{showHeader ? (
+				<header className="listing-section__header">
+					<p className="listing-section__eyebrow">Karriere</p>
+					<h2 id="job-list-title">Offene Stellen</h2>
+					<p>Aktuelle Jobs in den RathausGalerien und bei unseren Partnern.</p>
+				</header>
+			) : null}
 			<ul className="listing-grid listing-grid--jobs">
 				{items.map((job) => {
 					const image = job.frontmatter.images?.[0];
@@ -575,7 +578,8 @@ const NewsList: React.FC<{
 	news: NormalizedNews[];
 	language: string;
 	theme?: SiteTheme | null;
-}> = ({ news, language, theme }) => {
+	showHeader?: boolean;
+}> = ({ news, language, theme, showHeader = true }) => {
 	const items = React.useMemo(
 		() =>
 			news
@@ -596,12 +600,14 @@ const NewsList: React.FC<{
 	return (
 		<section
 			className="listing-section listing-section--news"
-			aria-labelledby="news-list-title"
+			aria-labelledby={showHeader ? "news-list-title" : undefined}
 		>
-			<header className="listing-section__header">
-				<p className="listing-section__eyebrow">Aktuelles</p>
-				<h2 id="news-list-title">News</h2>
-			</header>
+			{showHeader ? (
+				<header className="listing-section__header">
+					<p className="listing-section__eyebrow">Aktuelles</p>
+					<h2 id="news-list-title">News</h2>
+				</header>
+			) : null}
 			<ul className="listing-grid listing-grid--news">
 				{items.map((item) => {
 					const image = getNewsImage(item);
@@ -743,10 +749,20 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 				/>
 			) : null}
 			{page.template === "jobs" ? (
-				<JobList jobs={jobs} language={page.language} theme={theme} />
+				<JobList
+					jobs={jobs}
+					language={page.language}
+					theme={theme}
+					showHeader={false}
+				/>
 			) : null}
 			{page.template === "news_list" ? (
-				<NewsList news={news} language={page.language} theme={theme} />
+				<NewsList
+					news={news}
+					language={page.language}
+					theme={theme}
+					showHeader={false}
+				/>
 			) : null}
 			{isServicesPage ? (
 				<>
