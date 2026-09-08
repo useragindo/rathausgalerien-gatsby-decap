@@ -255,6 +255,16 @@ export type NormalizedService = {
 	frontmatter: ImportedFrontmatter;
 };
 
+export type NormalizedFaq = {
+	id: string;
+	language: LanguageCode;
+	uuid: string;
+	question: string;
+	answer?: string;
+	order: number;
+	frontmatter: ImportedFrontmatter;
+};
+
 export type NormalizedColorScheme = {
 	id: string;
 	key: string;
@@ -273,6 +283,7 @@ export type SiteTheme = {
 export type SiteNavigationItem = {
 	key: string;
 	label: string;
+	menuLabel?: string | null;
 	url: string;
 	language: LanguageCode;
 	order: number;

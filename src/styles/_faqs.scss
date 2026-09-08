@@ -1,0 +1,123 @@
+.faq-list {
+	max-width: var(--container-sm);
+	margin: 0 auto;
+	padding-inline: var(--space-sm);
+}
+
+.faq-item {
+	border-block-end: 1px solid color-mix(in srgb, var(--color-blue-900) 12%, transparent);
+	padding-block: var(--space-md);
+	color: var(--color-blue-900);
+}
+
+.faq-item:first-child {
+	padding-block-start: 0;
+}
+
+.faq-item:last-child {
+	border-block-end: 0;
+	padding-block-end: 0;
+}
+
+.faq-item__question {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-sm);
+	padding-block: var(--space-sm);
+	font-size: clamp(1rem, 2vw, 1.25rem);
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	line-height: var(--line-height-tight);
+	cursor: pointer;
+	list-style: none;
+	user-select: none;
+
+	&::marker {
+		display: none;
+	}
+
+	&::before {
+		content: "+";
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 1.5rem;
+		height: 1.5rem;
+		font-size: 1.25rem;
+		font-weight: 300;
+		line-height: 1;
+		transition: transform var(--transition-base);
+	}
+}
+
+.faq-item[open] .faq-item__question::before {
+	transform: rotate(45deg);
+}
+
+.faq-item__answer {
+	padding-block: var(--space-md);
+	padding-inline-start: calc(1.5rem + var(--space-sm));
+	font-size: clamp(0.9rem, 1.3vw, 1rem);
+	line-height: 1.6;
+
+	> * + * {
+		margin-block-start: var(--space-sm);
+	}
+
+	h2,
+	h3,
+	h4 {
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		line-height: var(--line-height-tight);
+	}
+
+	h2 {
+		font-size: clamp(1rem, 2vw, 1.2rem);
+		margin-block-start: var(--space-md);
+
+		&:first-child {
+			margin-block-start: 0;
+		}
+	}
+
+	h3 {
+		font-size: clamp(0.95rem, 1.7vw, 1.1rem);
+	}
+
+	h4 {
+		font-size: clamp(0.9rem, 1.5vw, 1rem);
+	}
+
+	strong {
+		font-weight: 700;
+	}
+
+	ul {
+		padding-inline-start: 1.5em;
+		margin-block-start: var(--space-sm);
+	}
+
+	li + li {
+		margin-block-start: var(--space-2xs);
+	}
+
+	a {
+		color: var(--color-blue-900);
+		text-decoration-thickness: 0.08em;
+		text-underline-offset: 0.18em;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--color-blue-950);
+		}
+	}
+}
+
+@media (min-width: 48rem) {
+	.faq-item__question {
+		font-size: clamp(1rem, 1.5vw, 1.3rem);
+	}
+}

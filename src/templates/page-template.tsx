@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { ContentBlockRenderer } from "../components/content-blocks";
+import { FaqList } from "../components/faqs";
 import { LocationPlan } from "../components/location-plan";
 import { Seo } from "../components/seo";
 import { ServiceAZList, ServiceTiles } from "../components/services";
@@ -17,6 +18,7 @@ import type {
 	LanguageCode,
 	LanguageLinks,
 	NormalizedCategory,
+	NormalizedFaq,
 	NormalizedJob,
 	NormalizedLocation,
 	NormalizedNews,
@@ -45,6 +47,7 @@ type PageTemplateContext = {
 	news: NormalizedNews[];
 	categories: NormalizedCategory[];
 	services: NormalizedService[];
+	faqs: NormalizedFaq[];
 	theme?: SiteTheme;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
@@ -784,6 +787,24 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 						<ServiceAZList services={services} language={page.language} />
 					</section>
 				</>
+			) : null}
+			{page.template === "faqs" ? (
+				<section
+					className="listing-section listing-section--faqs"
+					aria-labelledby="faqs-title"
+				>
+					{page.heading ? (
+						<header className="listing-section__header">
+							<h2 id="faqs-title">{renderMultiline(page.heading)}</h2>
+							{page.intro ? (
+								<p className="listing-section__intro">
+									{renderMultiline(page.intro)}
+								</p>
+							) : null}
+						</header>
+					) : null}
+					<FaqList faqs={faqs} language={page.language} />
+				</section>
 			) : null}
 		</SiteLayout>
 	);

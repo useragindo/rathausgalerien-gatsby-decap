@@ -6,6 +6,7 @@ import type {
 	LanguageCode,
 	NormalizedCategory,
 	NormalizedColorScheme,
+	NormalizedFaq,
 	NormalizedJob,
 	NormalizedLocation,
 	NormalizedNews,
@@ -368,6 +369,32 @@ export const normalizeService = (
 	};
 };
 
+export const normalizeFaq = (node: ImportedMdxNode): NormalizedFaq | null => {
+	const frontmatter = node.frontmatter;
+
+	if (!frontmatter || frontmatter.type !== "faq") {
+		return null;
+	}
+
+	const language = getLanguage(frontmatter);
+	const uuid = trim(frontmatter.uuid);
+	const question = trim(frontmatter.question);
+
+	if (!uuid || !question) {
+		return null;
+	}
+
+	return {
+		id: node.id,
+		language,
+		uuid,
+		question,
+		answer: trim(node.body),
+		order: typeof frontmatter.order === "number" ? frontmatter.order : 999,
+		frontmatter,
+	};
+};
+
 // Slot names become CSS custom properties, so only characters that are safe
 // inside a custom property name are accepted. Which slots exist is the CMS's
 // business, not this module's.
@@ -460,6 +487,7 @@ export const createNavigationFromPages = (
 		.map((page) => ({
 			key: page.key,
 			label: trim(page.frontmatter.menu_label) ?? page.title,
+			menuLabel: trim(page.frontmatter.menu_label),
 			url: page.path,
 			language: page.language,
 			order: page.frontmatter.order ?? 999,
@@ -561,6 +589,9 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 	const services = nodes
 		.map(normalizeService)
 		.filter((service): service is NormalizedService => Boolean(service));
+	const faqs = nodes
+		.map(normalizeFaq)
+		.filter((faq): faq is NormalizedFaq => Boolean(faq));
 	const colorSchemes = nodes
 		.map(normalizeColorScheme)
 		.filter((scheme): scheme is NormalizedColorScheme => Boolean(scheme));
@@ -575,6 +606,7 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 		news,
 		categories,
 		services,
+		faqs,
 		navigation: createNavigationFromPages(pages),
 		theme: resolveActiveTheme(colorSchemes, activeSchemeKey),
 	};
