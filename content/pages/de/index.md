@@ -4,8 +4,8 @@ type: page
 key: index
 template: home
 order: 1
-heading: Shopping1
-intro: Test1
+heading: Shopping
+intro: ""
 seo:
   description: Suchen Sie ein Shoppingcenter in Innsbruck? Die RathausGalerien
     bieten ein einzigartiges Einkaufserlebnis und vielfältige Shops. Besuchen
@@ -15,12 +15,6 @@ blocks:
   - layout: grid-4
     date: ""
     header: fashion, food, & lifestyle
-    text: |-
-      RathausGalerien: Das Herz der Stadt! 
-
-      Eine große Auswahl an Shops und gastronomischen Angeboten 
-
-      direkt im Zentrum von Innsbruck.
     tiles:
       - text: |-
           ## spring
@@ -72,6 +66,8 @@ blocks:
         text_color: text
         images:
           - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_03.jpg
+        icons:
+          - icon: /media/pages/rhg-logo-klein.svg
   - date: ""
     layout: columns
     header: WEEKEND PARKING.
@@ -236,8 +232,8 @@ blocks:
           - image: /media/pages/h001_117_04_schliessfach_rz.jpg
 teaser:
   image: /media/pages/dsc_1672_bearb.jpg
-  title: Shopping1
-  icon: null
+  title: Shopping
+  icon: /media/pages/rhg-logo-klein.svg
 ---
 ![Rathausgalerien von Maria-Theresien-Straße](/media/pages/dsc_1672_bearb.jpg)
 

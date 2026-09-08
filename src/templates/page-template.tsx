@@ -691,6 +691,13 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 	// The teaser's own title is the page's H1 when a teaser is shown, so the
 	// heading below it steps down to H2; without a teaser, heading is the H1.
 	const HeadingTag = showTeaser ? "h2" : "h1";
+	// Editors commonly leave "heading" equal to the teaser title (it used to be
+	// the only H1). Repeating it as a visible H2 right below the teaser reads
+	// as a duplicated title, so skip it when the two are identical; the intro
+	// text below still renders if the page has one.
+	const headingDuplicatesTeaser =
+		showTeaser && trim(page.heading) === trim(page.frontmatter.teaser?.title);
+	const showPageHero = !headingDuplicatesTeaser || Boolean(page.intro);
 
 	return (
 		<SiteLayout
@@ -709,14 +716,18 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 				/>
 			) : null}
 			<article className={pageClassName}>
-				<header className="page-hero">
-					<HeadingTag className="page-hero__title">
-						{renderMultiline(page.heading)}
-					</HeadingTag>
-					{page.intro ? (
-						<p className="page-hero__description">{renderMultiline(page.intro)}</p>
-					) : null}
-				</header>
+				{showPageHero ? (
+					<header className="page-hero">
+						{!headingDuplicatesTeaser ? (
+							<HeadingTag className="page-hero__title">
+								{renderMultiline(page.heading)}
+							</HeadingTag>
+						) : null}
+						{page.intro ? (
+							<p className="page-hero__description">{renderMultiline(page.intro)}</p>
+						) : null}
+					</header>
+				) : null}
 				{isLocationPlan ? (
 					<LocationPlan
 						page={page}
