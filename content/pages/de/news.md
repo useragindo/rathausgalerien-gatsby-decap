@@ -4,7 +4,7 @@ type: page
 key: news
 template: news_list
 menu: main
-menu_label: Aktuelles
+menu_label: News
 order: 300
 heading: ""
 intro: ""
