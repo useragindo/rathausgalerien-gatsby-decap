@@ -17,18 +17,18 @@ blocks:
     header: fashion, food, & lifestyle
     tiles:
       - text: |-
-          ## spring
+          ## autumn
 
           ## fashion
 
           Jetzt die neue\
-          Frühjahrsmode\
+          Herbstmode\
           entdecken!
         category: 7e9371ec-c538-4ddd-8470-b1e9bc34790d
         images:
-          - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_01.jpg
-          - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
-          - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_01.jpg
+          - image: /media/pages/12_annika.jpg
+          - image: /media/pages/13_joelle.jpg
+          - image: /media/pages/14_sarah.jpg
         background_color: c1
         text_color: weiss
       - text: |-
