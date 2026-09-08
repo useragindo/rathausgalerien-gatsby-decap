@@ -24,7 +24,7 @@ blocks:
           Jetzt die neue\
           Frühjahrsmode\
           entdecken!
-        category: e49accfd-97ee-4531-8193-bb1007da6c7e
+        category: 7e9371ec-c538-4ddd-8470-b1e9bc34790d
         images:
           - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_01.jpg
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
