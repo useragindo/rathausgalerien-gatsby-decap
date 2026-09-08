@@ -95,20 +95,6 @@ blocks:
         images:
           - image: /media/pages/rhg_parken_01.png
   - date: ""
-    layout: grid-4
-    header: ""
-    tiles:
-      - text: Entdecken Sie die neuen Sonnenpflege- und Selbstbräunungs-Prpdukte von The
-          Rituals of Karma sowie die Me-Time Gift Sets zum verschenken oder
-          selbst verwöhnen. Ab einem Einkaufswert von 50€ bekommen My Rituals
-          Mitglieder ein The Rituals of Yozakura Body Set.
-      - images:
-          - image: /media/pages/karma-suncare-post.jpg
-      - images:
-          - image: /media/pages/novelties-post.jpg
-      - images:
-          - image: /media/pages/rituals-refill-week-post.jpg
-  - date: ""
     layout: columns
     header: GALERIEN. GENUSS.
     tiles:
@@ -123,6 +109,8 @@ blocks:
         icons:
           - icon: /media/pages/rhg-logo-klein.svg
         category: a3375da3-e4fe-40ba-a57b-68658d3c8da7
+        text_color: text
+        background_color: c3
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
   title: Shopping
