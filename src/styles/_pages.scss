@@ -71,10 +71,6 @@
 	text-transform: uppercase;
 }
 
-.home-intro__description {
-	display: none;
-}
-
 .page-hero {
 	max-width: var(--container-md);
 	margin-inline: auto;
@@ -158,9 +154,6 @@
 			letter-spacing: 0.09em;
 		}
 
-		.home-intro__description {
-			padding-inline: var(--page-gutter);
-		}
 	}
 
 @media (min-width: 64rem) {

@@ -478,9 +478,6 @@ const HomepageIntro: React.FC<{
 					</>
 				) : null}
 			</div>
-			{page.intro ? (
-				<p className="home-intro__description">{renderMultiline(page.intro)}</p>
-			) : null}
 		</section>
 	);
 };
@@ -682,9 +679,18 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 	const isHomepage = page.template === "home" || page.template === "funnel";
 	const isServicesPage = page.template === "services";
 	const isLocationPlan = page.template === "lageplan";
-	// Homepage and Services both use the image+badge teaser instead of the
-	// plain page-hero header, so the two never render at the same time.
-	const showTeaser = isHomepage || isServicesPage;
+	// Homepage and Services always use the image+badge teaser; any other page
+	// uses it too as soon as an editor fills in its Teaser fields in the CMS.
+	// The teaser and the plain page-hero header never render at the same time.
+	const hasTeaserContent = Boolean(
+		trim(page.frontmatter.teaser?.image) ||
+			trim(page.frontmatter.teaser?.title) ||
+			trim(page.frontmatter.teaser?.icon),
+	);
+	const showTeaser = isHomepage || isServicesPage || hasTeaserContent;
+	// The teaser's own title is the page's H1 when a teaser is shown, so the
+	// heading below it steps down to H2; without a teaser, heading is the H1.
+	const HeadingTag = showTeaser ? "h2" : "h1";
 
 	return (
 		<SiteLayout
@@ -703,14 +709,14 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 				/>
 			) : null}
 			<article className={pageClassName}>
-				{!showTeaser ? (
-					<header className="page-hero">
-						<h1 className="page-hero__title">{renderMultiline(page.heading)}</h1>
-						{page.intro ? (
-							<p className="page-hero__description">{renderMultiline(page.intro)}</p>
-						) : null}
-					</header>
-				) : null}
+				<header className="page-hero">
+					<HeadingTag className="page-hero__title">
+						{renderMultiline(page.heading)}
+					</HeadingTag>
+					{page.intro ? (
+						<p className="page-hero__description">{renderMultiline(page.intro)}</p>
+					) : null}
+				</header>
 				{isLocationPlan ? (
 					<LocationPlan
 						page={page}
