@@ -10,7 +10,7 @@
 	"scripts": {
 		"develop": "gatsby develop",
 		"start": "gatsby develop",
-		"cms:proxy": "npx --yes decap-server",
+		"cms:proxy": "npx --yes decap-server@3.10.0",
 		"build": "gatsby build",
 		"serve": "gatsby serve",
 		"clean": "gatsby clean",
