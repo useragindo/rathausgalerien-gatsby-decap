@@ -169,14 +169,6 @@ blocks:
       - images:
           - image: /media/pages/la-derach_14.jpg
   - date: ""
-    layout: columns
-    header: Freude schenken.
-    tiles:
-      - text: Unsere RathausGalerien Gutscheine sind ein totaler Geschenke Hit. Zu
-          finden bei Betty Barclay in den RathausGalerien.
-      - images:
-          - image: /media/pages/h001_132_02_06_gutscheine_rz_1000-x-1000_01.jpg
-  - date: ""
     layout: grid-4
     header: |-
       Fashion. Food. 
@@ -212,16 +204,6 @@ blocks:
           - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_05.jpg
   - date: ""
     layout: columns
-    header: Innsbrucks erste Adresse.
-    tiles:
-      - text: Mitten im Geschehen. Und mitten in der Maria-Theresien-Straße.
-        icons:
-          - icon: /media/pages/location_icon.svg
-            link: /lageplan
-      - images:
-          - image: /media/pages/eingang_.jpg
-  - date: ""
-    layout: columns
     header: Morawa Kiosk.
     tiles:
       - text: Mit der MORAWA KIOSK APP lesen Sie in den RathausGalerien ganz einfach und
@@ -230,15 +212,6 @@ blocks:
           Lesevergnügen kann beginnen!
       - images:
           - image: /media/pages/plakat_a3-01_1zu1.jpg
-  - date: ""
-    layout: columns
-    header: Galerien Schliess- fächer.
-    tiles:
-      - text: In den RathausGalerien-Schließfächern beim Lifteingang im 1. UG findet
-          sich Raum für alles, was dich beschwert - von einer Handtasche bis
-          hin zur Ski-Ausrüstung.
-      - images:
-          - image: /media/pages/h001_117_04_schliessfach_rz.jpg
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
   title: Shopping
