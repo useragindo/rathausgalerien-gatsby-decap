@@ -1037,20 +1037,18 @@ collections:
           hint: "Die häufig gestellte Frage.",
         }
 
-      - {
-          label: "Antwort",
-          name: "answer",
-          widget: "markdown",
-          buttons:
-            - bold
-            - italic
-            - quote
-            - link
-            - heading-two
-            - bulleted-list
-            - numbered-list
-          hint: "Die Antwort auf die Frage. Markdownformatierung unterstützt.",
-        }
+      - label: "Antwort"
+        name: "answer"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
+        hint: "Die Antwort auf die Frage. Markdownformatierung unterstützt."
 
   - name: "locations"
     label: "Locations"
