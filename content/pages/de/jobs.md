@@ -4,6 +4,7 @@ type: page
 key: jobs
 template: jobs
 menu: misc
+menu_label: Jobs
 order: 3
 heading: Jobs
 intro: Jobs123

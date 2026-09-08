@@ -30,7 +30,8 @@ export const buildFooterNavigation = (
 			return [];
 		}
 
-		const label = FOOTER_LABEL_OVERRIDES[key]?.[language] ?? item.label;
+		const label =
+			item.menuLabel ?? FOOTER_LABEL_OVERRIDES[key]?.[language] ?? item.label;
 		return [
 			{
 				label,
