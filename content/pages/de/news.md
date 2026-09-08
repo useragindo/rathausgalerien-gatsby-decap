@@ -6,11 +6,8 @@ template: news_list
 menu: main
 menu_label: Aktuelles
 order: 300
-heading: |-
-  Neues
-  aus den
-  Galerien
-intro: Das ist die News Seite
+heading: ""
+intro: ""
 seo:
   title: News
   description: Das ist die News Seite
