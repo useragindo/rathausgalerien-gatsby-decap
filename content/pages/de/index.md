@@ -70,7 +70,7 @@ blocks:
         category: ""
         link: /genuss
         background_color: c3
-        text_color: weiss
+        text_color: text
         images:
           - image: /media/pages/rhg_gastro_24_danielzangerl-_246.jpg
         icons:
