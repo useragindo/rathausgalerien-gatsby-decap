@@ -7,10 +7,7 @@ menu: main
 menu_label: Genuss
 order: 200
 heading: Kulinarik in den Galerien
-intro: |-
-  Genuss
-  im
-  Rathaus
+intro: Genuss im Rathaus
 seo:
   title: Kulinarik in den Galerien 123
   description: "Genuss "
