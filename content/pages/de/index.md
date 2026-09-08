@@ -124,26 +124,6 @@ blocks:
         text_color: text
         images:
           - image: /media/pages/rhg_parken_01.png
-  - date: ""
-    layout: columns
-    header: GALERIEN. GENUSS.
-    tiles:
-      - text: |-
-          ## Ideen
-
-          Lassen Sie
-
-          sich inspirieren
-        images:
-          - image: /media/pages/schmuck_fin_ecirgbv2.jpg
-        icons:
-          - icon: /media/pages/rhg-logo-klein.svg
-        category: a3375da3-e4fe-40ba-a57b-68658d3c8da7
-        text_color: text
-        background_color: c2
-    teaserText: |-
-      Lassen Sie sich inspirieren: Stilvolle Deko, modische Accessoires, feine
-      Düfte, edle Kosmetik und süße Verführungen - Ideen für jeden anlass.
   - layout: grid-4
     text_color: ""
     background_color: ""
@@ -175,6 +155,26 @@ blocks:
           ## Instagram
         images:
           - image: /media/pages/insta_sarah_mueller.jpg
+  - date: ""
+    layout: columns
+    header: GALERIEN. GENUSS.
+    tiles:
+      - text: |-
+          ## Ideen
+
+          Lassen Sie
+
+          sich inspirieren
+        images:
+          - image: /media/pages/schmuck_fin_ecirgbv2.jpg
+        icons:
+          - icon: /media/pages/rhg-logo-klein.svg
+        category: a3375da3-e4fe-40ba-a57b-68658d3c8da7
+        text_color: text
+        background_color: c2
+    teaserText: |-
+      Lassen Sie sich inspirieren: Stilvolle Deko, modische Accessoires, feine
+      Düfte, edle Kosmetik und süße Verführungen - Ideen für jeden anlass.
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
   title: Shopping
