@@ -14,7 +14,7 @@ seo:
 blocks:
   - layout: grid-4
     date: ""
-    header: fashion, food, & lifestyle 01
+    header: fashion, food, & lifestyle
     text: |-
       RathausGalerien: Das Herz der Stadt! 
 
@@ -50,6 +50,10 @@ blocks:
         images:
           - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
             alt: Zum Magazin
+    teaserText: |-
+      RathausGalerien: Das Herz der Stadt! 
+      Eine große Auswahl an Shops und gastronomischen  Angeboten 
+      direkt im Zentrum von Innsbruck.
   - reversed: false
     layout: columns
     header: |-
