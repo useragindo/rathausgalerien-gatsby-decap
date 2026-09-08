@@ -90,7 +90,7 @@ blocks:
           8 E-Lade Plätze
         icons:
           - icon: /media/pages/icon-car.svg
-        background_color: c3
+        background_color: c1
         text_color: text
         images:
           - image: /media/pages/rhg_parken_01.png
