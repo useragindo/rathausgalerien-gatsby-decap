@@ -235,7 +235,7 @@ blocks:
       - images:
           - image: /media/pages/h001_117_04_schliessfach_rz.jpg
 teaser:
-  image: /media/pages/dsc_1672_bearb.jpg
+  image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
   title: Shopping
   icon: /media/pages/rhg-logo-klein.svg
 ---
