@@ -114,6 +114,36 @@ blocks:
     teaserText: |-
       Lassen Sie sich inspirieren: Stilvolle Deko, modische Accessoires, feine
       Düfte, edle Kosmetik und süße Verführungen - Ideen für jeden anlass.
+  - layout: grid-4
+    text_color: ""
+    background_color: ""
+    reversed: false
+    date: ""
+    tiles:
+      - text_color: weiss
+        background_color: c2
+        text: |-
+          ## Galerien
+
+          ## News
+
+          Bleiben Sie
+
+          up to date
+        images:
+          - image: /media/pages/karma-suncare-post.jpg
+      - text_color: ""
+        background_color: ""
+        text: |-
+          ## Im 
+
+          ## Gespräch
+
+          Exklusive Einblicke
+
+          in die Galerien
+        images:
+          - image: /media/pages/rituals_9r3a3285.jpg
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
   title: Shopping
