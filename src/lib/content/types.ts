@@ -32,11 +32,10 @@ export type ImportedContentTile = {
 	images?: ImportedImage[] | null;
 	category?: string | null;
 	link?: string | null;
-	// Legacy free hex, kept read-only for content authored before the
-	// predefined colour tokens existed. No CMS field writes this anymore.
+	// Legacy free hex from before the colour tokens existed. No longer read:
+	// it froze tiles on a colour scheme change, so only text_color/
+	// background_color (scheme slots or a fixed neutral) are honoured now.
 	backgroundColor?: string | null;
-	// Slots of the active colour scheme (bg, text, c1 … c6) or a fixed
-	// neutral (schwarz, weiss). Takes priority over backgroundColor when set.
 	text_color?: string | null;
 	background_color?: string | null;
 	icons?: ImportedIcon[] | null;

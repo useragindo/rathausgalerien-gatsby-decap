@@ -21,18 +21,16 @@ blocks:
 
           ## fashion
 
-          Jetzt die neue
-
-          Frühjahrsmode
-
+          Jetzt die neue\
+          Frühjahrsmode\
           entdecken!
         category: e49accfd-97ee-4531-8193-bb1007da6c7e
         images:
           - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_01.jpg
           - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
           - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_01.jpg
-        background_color: c2
-        text_color: text
+        background_color: c1
+        text_color: weiss
       - text: |-
           ## DAS NEUE
 
@@ -44,10 +42,14 @@ blocks:
         images:
           - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
             alt: Zum Magazin
+        background_color: c2
+        text_color: weiss
     teaserText: |-
       RathausGalerien: Das Herz der Stadt! 
       Eine große Auswahl an Shops und gastronomischen  Angeboten 
       direkt im Zentrum von Innsbruck.
+    text_color: schwarz
+    background_color: bg
   - reversed: false
     layout: columns
     header: |-
@@ -62,12 +64,14 @@ blocks:
       - text: Leckeres Essen für alle
         category: ""
         link: /genuss
-        background_color: c2
-        text_color: text
+        background_color: c4
+        text_color: weiss
         images:
           - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_03.jpg
         icons:
           - icon: /media/pages/rhg-logo-klein.svg
+    text_color: ""
+    background_color: ""
   - date: ""
     layout: columns
     header: WEEKEND PARKING.

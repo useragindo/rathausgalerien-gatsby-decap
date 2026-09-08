@@ -436,11 +436,9 @@ const TileBox: React.FC<{
 	].join(" ");
 
 	const tileImages = variant === "media" ? getTileImages(tile) : [];
-	const backgroundColor = variant === "content" ? text(tile.backgroundColor) : undefined;
 	const style =
 		variant === "content"
-			? resolveColorPairStyle(tile.text_color, tile.background_color, theme) ??
-				(backgroundColor ? { backgroundColor } : undefined)
+			? resolveColorPairStyle(tile.text_color, tile.background_color, theme)
 			: undefined;
 	const { heroIcon, listIcons } =
 		variant === "content" ? resolveIconDisplay(tile.icons) : { heroIcon: undefined, listIcons: [] };
@@ -573,10 +571,11 @@ const ImportedBlock: React.FC<{
 		.filter(Boolean)
 		.join(" ");
 
-	const contentBackgroundColor = text(block.backgroundColor);
-	const contentTileStyle =
-		resolveColorPairStyle(block.text_color, block.background_color, theme) ??
-		(contentBackgroundColor ? { backgroundColor: contentBackgroundColor } : undefined);
+	const contentTileStyle = resolveColorPairStyle(
+		block.text_color,
+		block.background_color,
+		theme,
+	);
 
 	const contentTile = (
 		<div

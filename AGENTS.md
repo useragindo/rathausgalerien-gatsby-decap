@@ -157,6 +157,7 @@ The following apps are authenticated and have MCP tools available. Use `ToolSear
 - **skills** (`skills`) - 5 tools
 - **Slides** (`slides`) - 7 tools
 - **Git** (`git`) - 14 tools
+- **Docker** (`docker`) - 48 tools
 - **credentials** (`credentials`) - 6 tools
 - **design** (`design`) - 16 tools
 - **automations** (`automations`) - 8 tools
