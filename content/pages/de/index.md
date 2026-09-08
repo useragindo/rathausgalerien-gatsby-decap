@@ -109,109 +109,20 @@ blocks:
       - images:
           - image: /media/pages/rituals-refill-week-post.jpg
   - date: ""
-    layout: grid-4
-    header: OUT NOW.
-    tiles:
-      - text: >-
-          GALERIEN WUNDERLAND
-
-
-          Das neue Galerien Frühjahrsmagazin 2026 ist da. Zu finden in den RathausGalerien oder online zum Durchblättern [](static/media/pages/h001_127_02_magazin_hw.2025_rz_es.pdf)[](https://online.fliphtml5.com/ajmvx/xelq/)[HIER](https://online.fliphtml5.com/ajmvx/H001_143_01_Magazin_FJ_2026_RZ_ES/). 
-
-
-          Seid gespannt auf neue Kollektionen, Trends und Insights!
-      - images:
-          - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
-      - images:
-          - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_02.jpg
-      - images:
-          - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_03.jpg
-  - date: ""
-    layout: columns
-    header: FOLLOW US.
-    reversed: true
-    tiles:
-      - text: "Entdecke die Welt der RathausGalerien.\r Insights, neueste Trends, News
-          \rund Gewinnspiele erwarten dich\r @rathausgalerien.\r Besuche unsere
-          Social Media Accounts\r auf Instagram und Facebook. \rBleiben wir in
-          Kontakt!"
-        icons:
-          - icon: /media/shared/instagram_icon.svg
-            link: https://www.instagram.com/rathausgalerien/
-          - icon: /media/pages/facebook_icon.svg
-            link: https://www.facebook.com/RathausGalerien-Innsbruck-1952496888385726
-      - images:
-          - image: /media/pages/instagram_u-bersicht_posts.jpg
-  - date: ""
-    layout: grid-4
-    header: Kids Galerien.
-    tiles:
-      - text: Die coolsten und süßesten Styles für unsere Liebsten. Beste Bio-Baumwolle
-          und hochwertige Qualität. Zu finden bei Name It in den
-          RathausGalerien.
-      - images:
-          - image: /media/pages/name-it_spring_summer_2026_large_13253633_13253636_13228707_13253747_2.jpg
-      - images:
-          - image: /media/pages/name-it_spring_summer_2026_large_13254259_13252295_13253766_13254381_13253755_13253782_13197313-kopie.jpg
-      - images:
-          - image: /media/pages/name-it_spring_summer_2026_large_13253813_13253819_2-kopie.jpg
-  - date: ""
-    layout: grid-4
-    header: Läderach in Innsbruck.
-    tiles:
-      - text: Probieren Sie die bekannte FrischSchoggi sowie feinste Schweizer
-          Schokoladespezialitäten und Pralinen von Läderach. Hier finden Sie das
-          perfekte Geschenk für Ihre Liebsten und besondere Anlässe.
-      - images:
-          - image: /media/pages/la-derach_2.jpg
-      - images:
-          - image: /media/pages/la-derach_11.jpg
-      - images:
-          - image: /media/pages/la-derach_14.jpg
-  - date: ""
-    layout: grid-4
-    header: |-
-      Fashion. Food. 
-      Lifestyle.
-    tiles:
-      - text: >-
-          21 Shops. 4 Restaurants. 4 Bars. 2 Hotels. Und eine Bäckerei. Nur in
-          Innsbrucks erster Adresse.\
-
-          Perfekte Anbindung zu Bus und Straßenbahn.
-        icons:
-          - icon: /media/pages/auto_icon.svg
-            text: 24/7 Parkgarage
-          - icon: /media/pages/bus_icon.svg
-            text: Direkte Anbindung an Bus und Bahn
-      - images:
-          - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_01.jpg
-      - images:
-          - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_02.jpg
-      - images:
-          - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_03.jpg
-  - date: ""
     layout: columns
     header: GALERIEN. GENUSS.
     tiles:
-      - text: Die kulinarische Weltreise in den RathausGalerien erleben und alle
-          Köstlichkeiten genießen.
-      - images:
-          - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_01.jpg
-          - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_02.jpg
-          - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_03.jpg
-          - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_04.jpg
-          - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_05.jpg
-  - date: ""
-    layout: columns
-    header: Morawa Kiosk.
-    tiles:
-      - text: Mit der MORAWA KIOSK APP lesen Sie in den RathausGalerien ganz einfach und
-          vor allem kostenlos in zahlreichen, internationalen, beliebten
-          Zeitungen und Magazinen. Einfach die App downloaden, verbinden und das
-          Lesevergnügen kann beginnen!
-      - images:
-          - image: /media/pages/plakat_a3-01_1zu1.jpg
+      - text: |-
+          ## Ideen
+
+          Lassen Sie
+
+          sich inspirieren
+        images:
+          - image: /media/pages/schmuck_fin_ecirgbv2.jpg
+        icons:
+          - icon: /media/pages/rhg-logo-klein.svg
+        category: a3375da3-e4fe-40ba-a57b-68658d3c8da7
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
   title: Shopping
