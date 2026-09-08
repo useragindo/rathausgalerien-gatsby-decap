@@ -144,6 +144,37 @@ blocks:
     teaserText: |-
       Lassen Sie sich inspirieren: Stilvolle Deko, modische Accessoires, feine
       Düfte, edle Kosmetik und süße Verführungen - Ideen für jeden anlass.
+  - layout: grid-4
+    text_color: ""
+    background_color: ""
+    reversed: false
+    date: ""
+    tiles:
+      - text_color: ""
+        background_color: c3
+        text: |-
+          ## Die 
+
+          ## Galerien
+
+          Einzigartige
+
+          Architektur seit
+
+          knapp 25 Jahren
+        images:
+          - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_01.jpg
+          - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_03.jpg
+      - text_color: weiss
+        background_color: c4
+        text: |-
+          ## Follow
+
+          ## us on
+
+          ## Instagram
+        images:
+          - image: /media/pages/insta_sarah_mueller.jpg
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
   title: Shopping
