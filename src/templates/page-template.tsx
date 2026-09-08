@@ -383,20 +383,18 @@ export const LocationList: React.FC<LocationListProps> = ({
 								</span>
 								<span className="listing-card__body" style={cardStyle}>
 									<span className="listing-card__meta">{categoryLabel}</span>
-									{logo ? (
-										<span className="listing-card__logo">
-											<img
-												src={logo}
-												alt={`${location.title} Logo`}
-												loading="lazy"
-											/>
-											<span className="visually-hidden">{location.title}</span>
-										</span>
-									) : (
-										<span className="listing-card__title">
-											{location.title}
-										</span>
-									)}
+									<span
+										className={`listing-card__logo${
+											logo ? "" : " listing-card__logo--fallback"
+										}`}
+									>
+										<img
+											src={logo ?? "/media/pages/rhg-logo-klein.svg"}
+											alt={`${location.title} Logo`}
+											loading="lazy"
+										/>
+										<span className="visually-hidden">{location.title}</span>
+									</span>
 									<span className="listing-card__text">
 										{getLocationCardText(location)}
 									</span>
@@ -452,11 +450,17 @@ const HomepageIntro: React.FC<{
 
 	return (
 		<section className="home-intro" aria-labelledby="home-intro-title">
-			{image ? (
-				<div className="home-intro__media">
-					<img src={image} alt="RathausGalerien Innsbruck" loading="eager" />
-				</div>
-			) : null}
+			<div
+				className={`home-intro__media${
+					image ? "" : " home-intro__media--fallback"
+				}`}
+			>
+				<img
+					src={image ?? "/media/pages/rhg-logo-klein.svg"}
+					alt="RathausGalerien Innsbruck"
+					loading="eager"
+				/>
+			</div>
 			<div className="home-intro__card">
 				{teaserIcon ? (
 					<img src={teaserIcon} alt="" aria-hidden="true" loading="eager" />
@@ -516,14 +520,17 @@ const JobList: React.FC<{
 							<a className="listing-card__link" href={job.path}>
 								<span
 									className={`listing-card__media${
-										image ? "" : " listing-card__media--placeholder"
+										image
+											? ""
+											: " listing-card__media--placeholder listing-card__media--logo-fallback"
 									}`}
 								>
-									{image ? (
-										<img src={image} alt="" loading="lazy" />
-									) : (
-										<span aria-hidden="true" />
-									)}
+									<img
+										src={image ?? "/media/pages/rhg-logo-klein.svg"}
+										alt=""
+										aria-hidden={image ? undefined : "true"}
+										loading="lazy"
+									/>
 								</span>
 								<span className="listing-card__body" style={cardStyle}>
 									{job.frontmatter.location ? (
@@ -613,14 +620,17 @@ const NewsList: React.FC<{
 							<a className="listing-card__link" href={item.path}>
 								<span
 									className={`listing-card__media${
-										image ? "" : " listing-card__media--placeholder"
+										image
+											? ""
+											: " listing-card__media--placeholder listing-card__media--logo-fallback"
 									}`}
 								>
-									{image ? (
-										<img src={image} alt="" loading="lazy" />
-									) : (
-										<span aria-hidden="true" />
-									)}
+									<img
+										src={image ?? "/media/pages/rhg-logo-klein.svg"}
+										alt=""
+										aria-hidden={image ? undefined : "true"}
+										loading="lazy"
+									/>
 								</span>
 								<span className="listing-card__body" style={cardStyle}>
 									{date ? (
