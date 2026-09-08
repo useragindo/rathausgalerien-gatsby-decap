@@ -37,7 +37,7 @@ blocks:
           ## GALERIEN
 
           ## MAGAZIN!
-        category: ddfcab86-1237-4de6-9081-cafe473eecfd
+        category: ""
         backgroundColor: "#b58ec1"
         images:
           - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
@@ -61,13 +61,18 @@ blocks:
       Sie haben die Wahl zwischen acht verschiedenen 
       gastronomischen Angeboten.
     tiles:
-      - text: Leckeres Essen für alle
+      - text: |-
+          ## Genuss
+
+          8 Cafés, Bars 
+
+          & Restaurants
         category: ""
         link: /genuss
         background_color: c4
         text_color: weiss
         images:
-          - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_03.jpg
+          - image: /media/pages/rhg_gastro_24_danielzangerl-_246.jpg
         icons:
           - icon: /media/pages/rhg-logo-klein.svg
     text_color: ""
