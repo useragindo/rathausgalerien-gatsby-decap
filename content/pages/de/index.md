@@ -96,7 +96,7 @@ blocks:
         images:
           - image: /media/pages/karma-suncare-post.jpg
       - text_color: ""
-        background_color: ""
+        background_color: c4
         text: |-
           ## Im 
 
