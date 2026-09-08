@@ -92,7 +92,7 @@ blocks:
           - icon: /media/pages/icon-car.svg
         background_color: c3
         text_color: text
-      - images:
+        images:
           - image: /media/pages/rhg_parken_01.png
   - date: ""
     layout: grid-4
