@@ -29,7 +29,7 @@ blocks:
           - image: /media/pages/12_annika.jpg
           - image: /media/pages/13_joelle.jpg
           - image: /media/pages/14_sarah.jpg
-        background_color: c1
+        background_color: c2
         text_color: weiss
       - text: |-
           ## DAS NEUE
@@ -42,7 +42,7 @@ blocks:
         images:
           - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
             alt: Zum Magazin
-        background_color: c2
+        background_color: c1
         text_color: weiss
     teaserText: |-
       RathausGalerien: Das Herz der Stadt! 
