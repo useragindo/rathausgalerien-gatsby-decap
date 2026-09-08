@@ -668,6 +668,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 		news,
 		categories,
 		services,
+		faqs,
 		theme,
 		languageLinks,
 		socialLinks,
@@ -789,20 +790,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 				</>
 			) : null}
 			{page.template === "faqs" ? (
-				<section
-					className="listing-section listing-section--faqs"
-					aria-labelledby="faqs-title"
-				>
-					{page.heading ? (
-						<header className="listing-section__header">
-							<h2 id="faqs-title">{renderMultiline(page.heading)}</h2>
-							{page.intro ? (
-								<p className="listing-section__intro">
-									{renderMultiline(page.intro)}
-								</p>
-							) : null}
-						</header>
-					) : null}
+				<section className="listing-section listing-section--faqs">
 					<FaqList faqs={faqs} language={page.language} />
 				</section>
 			) : null}

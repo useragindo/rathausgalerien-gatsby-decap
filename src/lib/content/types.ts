@@ -110,6 +110,8 @@ export type ImportedFrontmatter = {
 	}> | null;
 	copyright?: string | null;
 	uuid?: string | null;
+	question?: string | null;
+	answer?: string | null;
 	name?: string | null;
 	group?: "brand" | "culinary" | string | null;
 	categories?: string[] | null;

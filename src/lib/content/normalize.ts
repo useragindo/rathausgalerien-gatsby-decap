@@ -389,7 +389,7 @@ export const normalizeFaq = (node: ImportedMdxNode): NormalizedFaq | null => {
 		language,
 		uuid,
 		question,
-		answer: trim(node.body),
+		answer: trim(frontmatter.answer),
 		order: typeof frontmatter.order === "number" ? frontmatter.order : 999,
 		frontmatter,
 	};
