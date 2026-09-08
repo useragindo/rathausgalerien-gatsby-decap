@@ -124,6 +124,9 @@ blocks:
         text_color: text
         images:
           - image: /media/pages/rhg_parken_01.png
+    teaserText: |-
+      Parken Sie von Freitags ab 12:00 Uhr bis sonntags 24:00 Uhr
+      für die ersten drei Stunden zum halben Preis.
   - layout: grid-4
     text_color: ""
     background_color: ""
