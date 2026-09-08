@@ -69,7 +69,7 @@ blocks:
           & Restaurants
         category: ""
         link: /genuss
-        background_color: c4
+        background_color: c3
         text_color: weiss
         images:
           - image: /media/pages/rhg_gastro_24_danielzangerl-_246.jpg
