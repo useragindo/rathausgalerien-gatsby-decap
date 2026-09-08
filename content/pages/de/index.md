@@ -6,10 +6,6 @@ template: home
 order: 1
 heading: Shopping1
 intro: Test1
-teaser:
-  image: /media/pages/dsc_1672_bearb.jpg
-  title: Shopping1
-  icon: ~
 seo:
   description: Suchen Sie ein Shoppingcenter in Innsbruck? Die RathausGalerien
     bieten ein einzigartiges Einkaufserlebnis und vielfältige Shops. Besuchen
@@ -70,8 +66,8 @@ blocks:
         link: /genuss
         background_color: c2
         text_color: text
-      - images:
-          - image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
+        images:
+          - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_03.jpg
   - date: ""
     layout: columns
     header: WEEKEND PARKING.
@@ -234,6 +230,10 @@ blocks:
           hin zur Ski-Ausrüstung.
       - images:
           - image: /media/pages/h001_117_04_schliessfach_rz.jpg
+teaser:
+  image: /media/pages/dsc_1672_bearb.jpg
+  title: Shopping1
+  icon: null
 ---
 ![Rathausgalerien von Maria-Theresien-Straße](/media/pages/dsc_1672_bearb.jpg)
 
