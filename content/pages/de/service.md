@@ -1,9 +1,16 @@
 ---
+locale: de
+type: page
+key: services
 template: services
+menu: main
+menu_label: SERVICE
+order: 400
 heading: |-
   UNSERE
   SERVICES
   FÜR SIE
+intro: Ein Überblick über die Angebote in den RathausGalerien.
 blocks:
   - layout: centered
     reversed: false
@@ -27,17 +34,6 @@ blocks:
       @rathausgalerien.
 az_intro: "Mit folgenden Services wird Ihr Aufenthalt in den RathausGalerien
   noch angenehmer und entspannter:"
-locale: de
-type: page
-key: services
-menu: main
-order: 400
-intro: Ein Überblick über die Angebote in den RathausGalerien.
-seo:
-  description: Ein Überblick über die Angebote in den RathausGalerien.
-  title: Services
-  url: services
-  ogType: article
 teaser:
   image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_04.jpg
   title: |-
@@ -46,4 +42,9 @@ teaser:
     FÜR SIE
   icon: /media/pages/rhg-logo-klein.svg
 az_heading: Services von A bis Z
+seo:
+  description: Ein Überblick über die Angebote in den RathausGalerien.
+  title: Services
+  url: services
+  ogType: article
 ---
