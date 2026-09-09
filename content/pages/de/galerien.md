@@ -50,6 +50,8 @@ blocks:
           - image: /media/pages/scr-20260909-ipwa.png
             alt: Historisches Schwarz-weiß-Foto eines alten Lkw, der durch einen steinernen
               Torbogen fährt
+    text_lowercase: true
+    text_align: center
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
   title: ""

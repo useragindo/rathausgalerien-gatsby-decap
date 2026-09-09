@@ -249,6 +249,21 @@ collections:
             default: false
             required: false
             hint: "Nur für 'Text + Bild (2 Spalten)' und 'Box zentriert'. Standard: Text links, Bild rechts."
+          - label: "Fließtext in Kleinbuchstaben"
+            name: "text_lowercase"
+            widget: boolean
+            default: false
+            required: false
+            hint: "Die Headline bleibt in Versalien (GROSS), nur der Fließtext (Absätze) wird klein geschrieben."
+          - label: "Textausrichtung"
+            name: "text_align"
+            widget: "select"
+            default: ""
+            required: false
+            options:
+              - { label: "Linksbündig (Standard)", value: "" }
+              - { label: "Zentriert", value: "center" }
+            hint: "Gilt für Headline und Fließtext gemeinsam."
           - label: "Images"
             name: "images"
             widget: list
@@ -630,6 +645,21 @@ collections:
             default: false
             required: false
             hint: "Nur für 'Text + Bild (2 Spalten)' und 'Box zentriert'. Standard: Text links, Bild rechts."
+          - label: "Fließtext in Kleinbuchstaben"
+            name: "text_lowercase"
+            widget: boolean
+            default: false
+            required: false
+            hint: "Die Headline bleibt in Versalien (GROSS), nur der Fließtext (Absätze) wird klein geschrieben."
+          - label: "Textausrichtung"
+            name: "text_align"
+            widget: "select"
+            default: ""
+            required: false
+            options:
+              - { label: "Linksbündig (Standard)", value: "" }
+              - { label: "Zentriert", value: "center" }
+            hint: "Gilt für Headline und Fließtext gemeinsam."
           - label: "Images"
             name: "images"
             widget: list

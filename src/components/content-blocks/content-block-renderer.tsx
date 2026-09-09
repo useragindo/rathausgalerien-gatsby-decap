@@ -567,6 +567,8 @@ const ImportedBlock: React.FC<{
 		`content-block--index-${index + 1}`,
 		images.length ? "content-block--has-images" : "",
 		icons.length ? "content-block--has-icons" : "",
+		block.text_lowercase ? "content-block--lowercase-text" : "",
+		block.text_align === "center" ? "content-block--align-center" : "",
 	]
 		.filter(Boolean)
 		.join(" ");

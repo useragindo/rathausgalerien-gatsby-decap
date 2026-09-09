@@ -125,6 +125,19 @@
 	margin-block-start: 0.75em;
 }
 
+/* ─── Formatierungs-Optionen (CMS-Checkboxen: text_lowercase, text_align) ─
+   Gelten je Block bzw. Kachel für Headline + Fließtext gemeinsam, außer
+   Kleinbuchstaben: dort bleibt die Headline in Versalien (nur `p`
+   betroffen, `text-transform` wird nicht von Headings geerbt neu gesetzt). */
+.content-block--lowercase-text .content-block__tile--content .content-block__text p {
+	text-transform: lowercase;
+}
+
+.content-block--align-center .content-block__tile--content {
+	align-items: center;
+	text-align: center;
+}
+
 /* ─── Media-Tile (Bilder) ─────────────────────────────────────────────── */
 .content-block__tile--media img {
 	width: 100%;
