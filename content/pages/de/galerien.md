@@ -4,6 +4,7 @@ type: page
 key: galerien
 template: standard
 menu: main
+menu_label: Die Galerie
 order: 600
 heading: |-
   Mitten im Herzen 
