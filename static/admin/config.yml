@@ -1,6 +1,6 @@
 backend:
-  name: git-gateway
-  branch: main
+    name: git-gateway
+    branch: main
 
 # Enables local editing with the Decap local backend proxy.
 # Start it with: npm run cms:proxy
@@ -15,12 +15,12 @@ media_folder: static/media
 public_folder: /media
 
 slug:
-  encoding: ascii
-  clean_accents: true
-  sanitize_replacement: "-"
+    encoding: ascii
+    clean_accents: true
+    sanitize_replacement: "-"
 
 editor:
-  preview: false
+    preview: false
 
 collections:
   - name: "pages"
@@ -45,7 +45,7 @@ collections:
       - key
       - locale
     editor:
-      preview: false
+        preview: false
     fields:
       # Grunddaten
       - label: "Sprache"
@@ -53,10 +53,10 @@ collections:
         widget: "select"
         default: "de"
         options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
+          - {label: "Deutsch", value: "de"}
+          - {label: "English", value: "en"}
 
-      - { label: "Type", name: "type", widget: "hidden", default: "page" }
+      - {label: "Type", name: "type", widget: "hidden", default: "page"}
 
       - label: "Key / Slug"
         name: "key"
@@ -70,15 +70,15 @@ collections:
         default: "standard"
         hint: "Bestimmt das Layout/Design der Seite."
         options:
-          - { label: "Standardseite", value: "standard" }
-          - { label: "Startseite", value: "home" }
-          - { label: "Shops-Übersicht", value: "shops" }
-          - { label: "Gastronomie-Übersicht", value: "gastronomie" }
-          - { label: "Lageplan", value: "lageplan" }
-          - { label: "Jobs", value: "jobs" }
-          - { label: "News-Übersicht", value: "news_list" }
-          - { label: "Services-Übersicht", value: "services" }
-          - { label: "FAQ-Übersicht", value: "faqs" }
+          - {label: "Standardseite", value: "standard"}
+          - {label: "Startseite", value: "home"}
+          - {label: "Shops-Übersicht", value: "shops"}
+          - {label: "Gastronomie-Übersicht", value: "gastronomie"}
+          - {label: "Lageplan", value: "lageplan"}
+          - {label: "Jobs", value: "jobs"}
+          - {label: "News-Übersicht", value: "news_list"}
+          - {label: "Services-Übersicht", value: "services"}
+          - {label: "FAQ-Übersicht", value: "faqs"}
 
       # Navigation
       - label: "Menü"
@@ -88,43 +88,18 @@ collections:
         default: ""
         hint: "Ob/wo die Seite in der Navigation erscheint."
         options:
-          - { label: "– keines –", value: "" }
-          - { label: "Hauptmenü", value: "main" }
-          - { label: "Sonstiges (Footer)", value: "misc" }
+          - {label: "– keines –", value: ""}
+          - {label: "Hauptmenü", value: "main"}
+          - {label: "Sonstiges (Footer)", value: "misc"}
 
-      - {
-          label: "Menü-Bezeichnung",
-          name: "menu_label",
-          widget: "string",
-          required: false,
-          hint: "Anzeigename im Menü. Leer lassen, um den Seitentitel zu verwenden.",
-        }
+      - {label: "Menü-Bezeichnung", name: "menu_label", widget: "string", required: false, hint: "Anzeigename im Menü. Leer lassen, um den Seitentitel zu verwenden."}
 
-      - {
-          label: "Reihenfolge",
-          name: "order",
-          widget: "number",
-          required: false,
-          default: 1,
-          value_type: "int",
-        }
+      - {label: "Reihenfolge", name: "order", widget: "number", required: false, default: 1, value_type: "int"}
 
       # Inhalt
-      - {
-          label: "Heading",
-          name: "heading",
-          widget: "text",
-          required: false,
-          hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt. Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
+      - {label: "Heading", name: "heading", widget: "text", required: false, hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt. Für einen manuellen Zeilenumbruch Enter drücken."}
 
-      - {
-          label: "Intro",
-          name: "intro",
-          widget: "text",
-          required: false,
-          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
+      - {label: "Intro", name: "intro", widget: "text", required: false, hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken."}
 
       - label: "Content"
         name: "body"
@@ -162,26 +137,26 @@ collections:
             widget: "select"
             default: "grid-4"
             options:
-              - { label: "4er Grid", value: "grid-4" }
-              - { label: "Text + Bild (2 Spalten)", value: "columns" }
-              - { label: "Box zentriert", value: "centered" }
+              - {label: "4er Grid", value: "grid-4"}
+              - {label: "Text + Bild (2 Spalten)", value: "columns"}
+              - {label: "Box zentriert", value: "centered"}
           - label: "Textfarbe"
             name: "text_color"
             widget: "color-token-select"
             required: false
             default: ""
             options:
-              - { label: "– keine –", value: "" }
-              - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-              - { label: "Text (text)", value: "text", color: "#22254e" }
-              - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-              - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-              - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-              - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-              - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-              - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-              - { label: "Schwarz", value: "schwarz", color: "#111111" }
-              - { label: "Weiß", value: "weiss", color: "#ffffff" }
+              - {label: "– keine –", value: ""}
+              - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+              - {label: "Text (text)", value: "text", color: "#22254e"}
+              - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+              - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+              - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+              - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+              - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+              - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+              - {label: "Schwarz", value: "schwarz", color: "#111111"}
+              - {label: "Weiß", value: "weiss", color: "#ffffff"}
             hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
           - label: "Hintergrundfarbe"
             name: "background_color"
@@ -189,17 +164,17 @@ collections:
             required: false
             default: ""
             options:
-              - { label: "– keine –", value: "" }
-              - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-              - { label: "Text (text)", value: "text", color: "#22254e" }
-              - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-              - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-              - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-              - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-              - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-              - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-              - { label: "Schwarz", value: "schwarz", color: "#111111" }
-              - { label: "Weiß", value: "weiss", color: "#ffffff" }
+              - {label: "– keine –", value: ""}
+              - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+              - {label: "Text (text)", value: "text", color: "#22254e"}
+              - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+              - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+              - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+              - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+              - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+              - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+              - {label: "Schwarz", value: "schwarz", color: "#111111"}
+              - {label: "Weiß", value: "weiss", color: "#ffffff"}
             hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
           - label: "Umgekehrt (Bild links, Text rechts)"
             name: "reversed"
@@ -219,8 +194,8 @@ collections:
             default: ""
             required: false
             options:
-              - { label: "Linksbündig (Standard)", value: "" }
-              - { label: "Zentriert", value: "center" }
+              - {label: "Linksbündig (Standard)", value: ""}
+              - {label: "Zentriert", value: "center"}
             hint: "Gilt für Headline und Fließtext gemeinsam."
           - label: "Images"
             name: "images"
@@ -291,17 +266,17 @@ collections:
                 required: false
                 default: ""
                 options:
-                  - { label: "– keine –", value: "" }
-                  - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-                  - { label: "Text (text)", value: "text", color: "#22254e" }
-                  - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-                  - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-                  - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-                  - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-                  - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-                  - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-                  - { label: "Schwarz", value: "schwarz", color: "#111111" }
-                  - { label: "Weiß", value: "weiss", color: "#ffffff" }
+                  - {label: "– keine –", value: ""}
+                  - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+                  - {label: "Text (text)", value: "text", color: "#22254e"}
+                  - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+                  - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+                  - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+                  - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+                  - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+                  - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+                  - {label: "Schwarz", value: "schwarz", color: "#111111"}
+                  - {label: "Weiß", value: "weiss", color: "#ffffff"}
                 hint: "Nur für Text-Kacheln. Textfarbe aus dem aktiven Schema oder Schwarz/Weiß."
               - label: "Hintergrundfarbe"
                 name: "background_color"
@@ -309,17 +284,17 @@ collections:
                 required: false
                 default: ""
                 options:
-                  - { label: "– keine –", value: "" }
-                  - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-                  - { label: "Text (text)", value: "text", color: "#22254e" }
-                  - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-                  - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-                  - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-                  - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-                  - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-                  - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-                  - { label: "Schwarz", value: "schwarz", color: "#111111" }
-                  - { label: "Weiß", value: "weiss", color: "#ffffff" }
+                  - {label: "– keine –", value: ""}
+                  - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+                  - {label: "Text (text)", value: "text", color: "#22254e"}
+                  - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+                  - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+                  - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+                  - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+                  - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+                  - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+                  - {label: "Schwarz", value: "schwarz", color: "#111111"}
+                  - {label: "Weiß", value: "weiss", color: "#ffffff"}
                 hint: "Nur für Text-Kacheln. Hintergrundfarbe aus dem aktiven Schema oder Schwarz/Weiß. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
               - label: "Icons"
                 name: "icons"
@@ -340,11 +315,7 @@ collections:
                     name: "link"
                     required: false
                     widget: "string"
-                    pattern:
-                      [
-                        "^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$",
-                        "Must start with slash or http(s)://",
-                      ]
+                    pattern: ["^(?:/|https?://)[A-Za-z0-9-_./]+$", "Must start with slash or http(s)://"]
                     hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
           - label: "Date"
             name: "date"
@@ -363,14 +334,12 @@ collections:
             widget: "text"
             required: false
             hint: "Für einen manuellen Zeilenumbruch Enter drücken."
-          -
-            label: "Image"
+          - label: "Image"
             name: "image"
             widget: "image"
             required: false
             hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
-          -
-            label: "Icon"
+          - label: "Icon"
             name: "icon"
             widget: "image"
             required: false
@@ -391,8 +360,7 @@ collections:
             name: "viewId"
             widget: "string"
             hint: "The ID of the image on the 'Location' site's view."
-            pattern:
-              ["^foto-(?:[a-z0-9-])+$", "Must be something like f.e. 'foto-1'."]
+            pattern: ["^foto-(?:[a-z0-9-])+$", "Must be something like f.e. 'foto-1'."]
           - label: "Label"
             name: "label"
             widget: "string"
@@ -423,13 +391,8 @@ collections:
         name: "seo"
         widget: object
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - {
-              label: "Description",
-              name: "description",
-              widget: "string",
-              hint: "Reines SEO-Feld. Leer lassen, um Heading und Intro zu übernehmen.",
-            }
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "string", hint: "Reines SEO-Feld. Leer lassen, um Heading und Intro zu übernehmen."}
           - label: "URL"
             name: "url"
             widget: "string"
@@ -441,23 +404,23 @@ collections:
             widget: "image"
             required: false
             hint: "Bild fuer Social-Shares. Fallback: Teaser-Bild, sonst erstes Block-Bild."
-          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - {label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false}
           - label: "OG Type"
             name: "ogType"
             widget: "select"
             default: "website"
             required: false
             options:
-              - { label: "Website", value: "website" }
-              - { label: "Article", value: "article" }
+              - {label: "Website", value: "website"}
+              - {label: "Article", value: "article"}
           - label: "Twitter Card"
             name: "twitterCard"
             widget: "select"
             default: "summary_large_image"
             required: false
             options:
-              - { label: "Summary Large Image", value: "summary_large_image" }
-              - { label: "Summary", value: "summary" }
+              - {label: "Summary Large Image", value: "summary_large_image"}
+              - {label: "Summary", value: "summary"}
           - label: "noindex"
             name: "noIndex"
             widget: "boolean"
@@ -476,7 +439,7 @@ collections:
     summary: "{{key}} ({{locale}})"
     create: true
     editor:
-      preview: false
+        preview: false
     fields:
       # Grunddaten
       - label: "Sprache"
@@ -484,17 +447,12 @@ collections:
         widget: "select"
         default: "de"
         options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
+          - {label: "Deutsch", value: "de"}
+          - {label: "English", value: "en"}
 
-      - { label: "Type", name: "type", widget: "hidden", default: "page" }
+      - {label: "Type", name: "type", widget: "hidden", default: "page"}
 
-      - {
-          label: "Template",
-          name: "template",
-          widget: "hidden",
-          default: "funnel",
-        }
+      - {label: "Template", name: "template", widget: "hidden", default: "funnel"}
 
       - label: "Key / Slug"
         name: "key"
@@ -509,30 +467,12 @@ collections:
         hint: "Kanonische URL für diesen Funnel (z.B. https://meine-domain.com). Wird für canonical und og:url verwendet."
 
       # Navigation
-      - {
-          label: "Menü-Bezeichnung",
-          name: "menu_label",
-          widget: "string",
-          required: false,
-          hint: "Anzeigename im Menü, falls der Funnel in der Navigation erscheint. Leer lassen, um den Seitentitel zu verwenden.",
-        }
+      - {label: "Menü-Bezeichnung", name: "menu_label", widget: "string", required: false, hint: "Anzeigename im Menü, falls der Funnel in der Navigation erscheint. Leer lassen, um den Seitentitel zu verwenden."}
 
       # Inhalt
-      - {
-          label: "Heading",
-          name: "heading",
-          widget: "text",
-          required: false,
-          hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt. Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
+      - {label: "Heading", name: "heading", widget: "text", required: false, hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt. Für einen manuellen Zeilenumbruch Enter drücken."}
 
-      - {
-          label: "Intro",
-          name: "intro",
-          widget: "text",
-          required: false,
-          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
+      - {label: "Intro", name: "intro", widget: "text", required: false, hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken."}
 
       - label: "Content"
         name: "body"
@@ -569,26 +509,26 @@ collections:
             widget: "select"
             default: "grid-4"
             options:
-              - { label: "4er Grid", value: "grid-4" }
-              - { label: "Text + Bild (2 Spalten)", value: "columns" }
-              - { label: "Box zentriert", value: "centered" }
+              - {label: "4er Grid", value: "grid-4"}
+              - {label: "Text + Bild (2 Spalten)", value: "columns"}
+              - {label: "Box zentriert", value: "centered"}
           - label: "Textfarbe"
             name: "text_color"
             widget: "color-token-select"
             required: false
             default: ""
             options:
-              - { label: "– keine –", value: "" }
-              - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-              - { label: "Text (text)", value: "text", color: "#22254e" }
-              - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-              - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-              - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-              - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-              - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-              - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-              - { label: "Schwarz", value: "schwarz", color: "#111111" }
-              - { label: "Weiß", value: "weiss", color: "#ffffff" }
+              - {label: "– keine –", value: ""}
+              - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+              - {label: "Text (text)", value: "text", color: "#22254e"}
+              - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+              - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+              - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+              - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+              - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+              - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+              - {label: "Schwarz", value: "schwarz", color: "#111111"}
+              - {label: "Weiß", value: "weiss", color: "#ffffff"}
             hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
           - label: "Hintergrundfarbe"
             name: "background_color"
@@ -596,17 +536,17 @@ collections:
             required: false
             default: ""
             options:
-              - { label: "– keine –", value: "" }
-              - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-              - { label: "Text (text)", value: "text", color: "#22254e" }
-              - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-              - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-              - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-              - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-              - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-              - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-              - { label: "Schwarz", value: "schwarz", color: "#111111" }
-              - { label: "Weiß", value: "weiss", color: "#ffffff" }
+              - {label: "– keine –", value: ""}
+              - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+              - {label: "Text (text)", value: "text", color: "#22254e"}
+              - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+              - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+              - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+              - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+              - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+              - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+              - {label: "Schwarz", value: "schwarz", color: "#111111"}
+              - {label: "Weiß", value: "weiss", color: "#ffffff"}
             hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
           - label: "Umgekehrt (Bild links, Text rechts)"
             name: "reversed"
@@ -626,8 +566,8 @@ collections:
             default: ""
             required: false
             options:
-              - { label: "Linksbündig (Standard)", value: "" }
-              - { label: "Zentriert", value: "center" }
+              - {label: "Linksbündig (Standard)", value: ""}
+              - {label: "Zentriert", value: "center"}
             hint: "Gilt für Headline und Fließtext gemeinsam."
           - label: "Images"
             name: "images"
@@ -698,17 +638,17 @@ collections:
                 required: false
                 default: ""
                 options:
-                  - { label: "– keine –", value: "" }
-                  - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-                  - { label: "Text (text)", value: "text", color: "#22254e" }
-                  - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-                  - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-                  - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-                  - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-                  - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-                  - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-                  - { label: "Schwarz", value: "schwarz", color: "#111111" }
-                  - { label: "Weiß", value: "weiss", color: "#ffffff" }
+                  - {label: "– keine –", value: ""}
+                  - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+                  - {label: "Text (text)", value: "text", color: "#22254e"}
+                  - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+                  - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+                  - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+                  - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+                  - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+                  - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+                  - {label: "Schwarz", value: "schwarz", color: "#111111"}
+                  - {label: "Weiß", value: "weiss", color: "#ffffff"}
                 hint: "Nur für Text-Kacheln. Textfarbe aus dem aktiven Schema oder Schwarz/Weiß."
               - label: "Hintergrundfarbe"
                 name: "background_color"
@@ -716,17 +656,17 @@ collections:
                 required: false
                 default: ""
                 options:
-                  - { label: "– keine –", value: "" }
-                  - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-                  - { label: "Text (text)", value: "text", color: "#22254e" }
-                  - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-                  - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-                  - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-                  - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-                  - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-                  - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-                  - { label: "Schwarz", value: "schwarz", color: "#111111" }
-                  - { label: "Weiß", value: "weiss", color: "#ffffff" }
+                  - {label: "– keine –", value: ""}
+                  - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+                  - {label: "Text (text)", value: "text", color: "#22254e"}
+                  - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+                  - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+                  - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+                  - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+                  - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+                  - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+                  - {label: "Schwarz", value: "schwarz", color: "#111111"}
+                  - {label: "Weiß", value: "weiss", color: "#ffffff"}
                 hint: "Nur für Text-Kacheln. Hintergrundfarbe aus dem aktiven Schema oder Schwarz/Weiß. Wenn beides leer ist, wird automatisch abgewechselt (Blau/Rosa/Gelb/Lila)."
               - label: "Icons"
                 name: "icons"
@@ -747,11 +687,7 @@ collections:
                     name: "link"
                     required: false
                     widget: "string"
-                    pattern:
-                      [
-                        "^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$",
-                        "Must start with slash or http(s)://",
-                      ]
+                    pattern: ["^(?:/|https?://)[A-Za-z0-9-_./]+$", "Must start with slash or http(s)://"]
                     hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
           - label: "Date"
             name: "date"
@@ -769,14 +705,12 @@ collections:
             widget: "text"
             required: false
             hint: "Für einen manuellen Zeilenumbruch Enter drücken."
-          -
-            label: "Image"
+          - label: "Image"
             name: "image"
             widget: "image"
             required: false
             hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
-          -
-            label: "Icon"
+          - label: "Icon"
             name: "icon"
             widget: "image"
             required: false
@@ -796,8 +730,7 @@ collections:
             name: "viewId"
             widget: "string"
             hint: "The ID of the image on the 'Location' site's view."
-            pattern:
-              ["^foto-(?:[a-z0-9-])+$", "Must be something like f.e. 'foto-1'."]
+            pattern: ["^foto-(?:[a-z0-9-])+$", "Must be something like f.e. 'foto-1'."]
           - label: "Label"
             name: "label"
             widget: "string"
@@ -826,35 +759,30 @@ collections:
         name: "seo"
         widget: object
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - {
-              label: "Description",
-              name: "description",
-              widget: "string",
-              hint: "Reines SEO-Feld. Leer lassen, um Heading und Intro zu übernehmen.",
-            }
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "string", hint: "Reines SEO-Feld. Leer lassen, um Heading und Intro zu übernehmen."}
           - label: "Image (OpenGraph/Twitter)"
             name: "image"
             widget: "image"
             required: false
             hint: "Bild fuer Social-Shares. Fallback: Teaser-Bild, sonst erstes Block-Bild."
-          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - {label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false}
           - label: "OG Type"
             name: "ogType"
             widget: "select"
             default: "website"
             required: false
             options:
-              - { label: "Website", value: "website" }
-              - { label: "Article", value: "article" }
+              - {label: "Website", value: "website"}
+              - {label: "Article", value: "article"}
           - label: "Twitter Card"
             name: "twitterCard"
             widget: "select"
             default: "summary_large_image"
             required: false
             options:
-              - { label: "Summary Large Image", value: "summary_large_image" }
-              - { label: "Summary", value: "summary" }
+              - {label: "Summary Large Image", value: "summary_large_image"}
+              - {label: "Summary", value: "summary"}
           - label: "noindex"
             name: "noIndex"
             widget: "boolean"
@@ -880,21 +808,21 @@ collections:
         pattern: "en"
     create: true
     editor:
-      preview: false
+        preview: false
     fields:
       - label: "Sprache"
         name: "locale"
         widget: "select"
         default: "de"
         options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
+          - {label: "Deutsch", value: "de"}
+          - {label: "English", value: "en"}
 
-      - { label: "Key", name: "key", widget: "hidden", default: "category" }
-      - { label: "Type", name: "type", widget: "hidden", default: "category" }
-      - { label: "UUID", name: "uuid", widget: "uuid" }
+      - {label: "Key", name: "key", widget: "hidden", default: "category"}
+      - {label: "Type", name: "type", widget: "hidden", default: "category"}
+      - {label: "UUID", name: "uuid", widget: "uuid"}
 
-      - { label: "Name", name: "name", widget: "string" }
+      - {label: "Name", name: "name", widget: "string"}
 
       - label: "Textfarbe"
         name: "text_color"
@@ -902,17 +830,17 @@ collections:
         required: false
         default: ""
         options:
-        - { label: "– keine –", value: "" }
-        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-        - { label: "Text (text)", value: "text", color: "#22254e" }
-        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-        - { label: "Schwarz", value: "schwarz", color: "#111111" }
-        - { label: "Weiß", value: "weiss", color: "#ffffff" }
+          - {label: "– keine –", value: ""}
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
         hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
       - label: "Hintergrundfarbe"
         name: "background_color"
@@ -920,17 +848,17 @@ collections:
         required: false
         default: ""
         options:
-        - { label: "– keine –", value: "" }
-        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-        - { label: "Text (text)", value: "text", color: "#22254e" }
-        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-        - { label: "Schwarz", value: "schwarz", color: "#111111" }
-        - { label: "Weiß", value: "weiss", color: "#ffffff" }
+          - {label: "– keine –", value: ""}
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
         hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
 
   - name: "services"
@@ -951,21 +879,25 @@ collections:
         pattern: "en"
     create: true
     editor:
-      preview: false
+        preview: false
     fields:
       - label: "Sprache"
         name: "locale"
         widget: "select"
         default: "de"
         options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
+          - {label: "Deutsch", value: "de"}
+          - {label: "English", value: "en"}
 
-      - { label: "Key", name: "key", widget: "hidden", default: "service" }
-      - { label: "Type", name: "type", widget: "hidden", default: "service" }
-      - { label: "UUID", name: "uuid", widget: "uuid" }
-
-      - { label: "Name", name: "name", widget: "string" }
+      - {label: "Key", name: "key", widget: "hidden", default: "service"}
+      - {label: "Type", name: "type", widget: "hidden", default: "service"}
+      - {label: "UUID", name: "uuid", widget: "uuid"}
+      - {label: "Name", name: "name", widget: "string"}
+      - label: "Beschreibung"
+        name: "description"
+        widget: "text"
+        required: false
+        hint: "Kurzbeschreibung, wird in der Liste 'Services von A bis Z' angezeigt. Für einen manuellen Zeilenumbruch Enter drücken."
 
       - label: "Icon"
         name: "icon"
@@ -973,13 +905,6 @@ collections:
         required: false
         hint: "Nur nötig, wenn 'Als Kachel anzeigen' aktiviert ist. Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
         pattern: ["(?:.+)\\.svg$", "Must be a SVG file"]
-
-      - label: "Beschreibung"
-        name: "description"
-        widget: "text"
-        required: false
-        hint: "Kurzbeschreibung, wird in der Liste 'Services von A bis Z' angezeigt. Für einen manuellen Zeilenumbruch Enter drücken."
-
       - label: "Als Kachel anzeigen"
         name: "tile"
         widget: "boolean"
@@ -994,16 +919,16 @@ collections:
         required: false
         hint: "Slot aus dem aktiven Farbschema (Einstellungen → Farben). Folgt automatisch dem Schema-Wechsel."
         options:
-          - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-          - { label: "Text (text)", value: "text", color: "#22254e" }
-          - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-          - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-          - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-          - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-          - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-          - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-          - { label: "Schwarz", value: "schwarz", color: "#111111" }
-          - { label: "Weiß", value: "weiss", color: "#ffffff" }
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
 
       - label: "Kachel-Textfarbe"
         name: "tile_text_color"
@@ -1012,16 +937,16 @@ collections:
         required: false
         hint: "Slot aus dem aktiven Farbschema (Einstellungen → Farben). Folgt automatisch dem Schema-Wechsel."
         options:
-          - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-          - { label: "Text (text)", value: "text", color: "#22254e" }
-          - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-          - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-          - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-          - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-          - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-          - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-          - { label: "Schwarz", value: "schwarz", color: "#111111" }
-          - { label: "Weiß", value: "weiss", color: "#ffffff" }
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
 
   - name: "faqs"
     label: "FAQs"
@@ -1046,36 +971,23 @@ collections:
       - slug
       - locale
     editor:
-      preview: false
+        preview: false
     fields:
       - label: "Sprache"
         name: "locale"
         widget: "select"
         default: "de"
         options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
+          - {label: "Deutsch", value: "de"}
+          - {label: "English", value: "en"}
 
-      - { label: "Key", name: "key", widget: "hidden", default: "faq" }
-      - { label: "Type", name: "type", widget: "hidden", default: "faq" }
-      - { label: "UUID", name: "uuid", widget: "uuid" }
+      - {label: "Key", name: "key", widget: "hidden", default: "faq"}
+      - {label: "Type", name: "type", widget: "hidden", default: "faq"}
+      - {label: "UUID", name: "uuid", widget: "uuid"}
 
-      - {
-          label: "Reihenfolge",
-          name: "order",
-          widget: "number",
-          required: false,
-          default: 1,
-          value_type: "int",
-          hint: "Bestimmt die Anzeigereihenfolge auf der FAQ-Seite (aufsteigend).",
-        }
+      - {label: "Reihenfolge", name: "order", widget: "number", required: false, default: 1, value_type: "int", hint: "Bestimmt die Anzeigereihenfolge auf der FAQ-Seite (aufsteigend)."}
 
-      - {
-          label: "Frage",
-          name: "question",
-          widget: "string",
-          hint: "Die häufig gestellte Frage.",
-        }
+      - {label: "Frage", name: "question", widget: "string", hint: "Die häufig gestellte Frage."}
 
       - label: "Antwort"
         name: "answer"
@@ -1108,52 +1020,152 @@ collections:
         pattern: "en"
     create: true
     editor:
-      preview: false
+        preview: false
     fields:
+      # Grunddaten
       - label: "Sprache"
         name: "locale"
         widget: "select"
         default: "de"
         options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
+          - {label: "Deutsch", value: "de"}
+          - {label: "English", value: "en"}
 
-      - { label: "Key", name: "key", widget: "hidden", default: "location" }
-      - { label: "Type", name: "type", widget: "hidden", default: "location" }
-      - { label: "UUID", name: "uuid", widget: "uuid" }
+      - {label: "Key", name: "key", widget: "hidden", default: "location"}
+      - {label: "Type", name: "type", widget: "hidden", default: "location"}
+      - {label: "UUID", name: "uuid", widget: "uuid"}
 
-      - {
-          label: "Heading",
-          name: "heading",
-          widget: "text",
-          required: false,
-          hint: "Standard: Name. Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
+      - {label: "Name", name: "name", widget: "string"}
 
-      - {
-          label: "Intro",
-          name: "intro",
-          widget: "text",
-          required: false,
-          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
+      - label: "Group"
+        name: "group"
+        widget: "select"
+        options:
+          - {label: "Brand", value: "brand"}
+          - {label: "Culinary", value: "culinary"}
 
-      - {
-          label: "A-Z Heading",
-          name: "az_heading",
-          widget: "text",
-          required: false,
-          hint: "Überschrift über der alphabetischen Service-Liste (z. B. 'Services von A bis Z'). Wird nur auf Seiten mit template=services angezeigt. Für Zeilenumbrüche Enter drücken.",
-        }
+      - label: "Categories"
+        name: "categories"
+        widget: "relation"
+        collection: "categories"
+        valueField: "uuid"
+        displayFields:
+          - "name"
+          - "locale"
+        searchFields:
+          - "name"
+        multiple: true
+        hint: "Kategorie in der passenden Sprache der Location wählen (Sprache wird in Klammern angezeigt)."
 
-      - {
-          label: "A-Z Intro",
-          name: "az_intro",
-          widget: "text",
-          required: false,
-          hint: "Einleitungstext unter der A-Z-Heading (nur auf Services-Seiten). Leer lassen, um nichts anzuzeigen. Für Zeilenumbrüche Enter drücken.",
-        }
+      # Inhalt
+      - {label: "Heading", name: "heading", widget: "text", required: false, hint: "Standard: Name. Für einen manuellen Zeilenumbruch Enter drücken."}
 
+      - {label: "Intro", name: "intro", widget: "text", required: false, hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken."}
+
+      - {label: "A-Z Heading", name: "az_heading", widget: "text", required: false, hint: "Überschrift über der alphabetischen Service-Liste (z. B. 'Services von A bis Z'). Wird nur auf Seiten mit template=services angezeigt. Für Zeilenumbrüche Enter drücken."}
+
+      - {label: "A-Z Intro", name: "az_intro", widget: "text", required: false, hint: "Einleitungstext unter der A-Z-Heading (nur auf Services-Seiten). Leer lassen, um nichts anzuzeigen. Für Zeilenumbrüche Enter drücken."}
+
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
+
+      # Kontakt & Zeiten
+      - label: "Hours"
+        name: "hours"
+        widget: "list"
+        fields:
+          - label: "Date"
+            name: "date"
+            widget: "string"
+          - label: "Time"
+            name: "time"
+            widget: "string"
+
+      - {label: "Address", name: "address", widget: "markdown"}
+
+      - label: "Contact"
+        name: "contact"
+        widget: object
+        fields:
+          - label: "Phone"
+            name: "phone"
+            widget: "string"
+          - label: "Email"
+            name: "email"
+            widget: "string"
+            hint: "Will use summary by default"
+            pattern: ["[^@]+@[^.]+\\..+", "Must be an email address"] # \\ = heredoc, \ = yaml
+          - label: "Website"
+            name: "url"
+            widget: "string"
+            required: false
+            pattern: ["^$|(?:https?://)[a-z0-9-_./]+", "Must be an URL like https://www.google.com"]
+
+      # Darstellung
+      - label: "Logo"
+        name: "logo"
+        widget: "image"
+        hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: {label: "Image", name: "image", widget: "image"}
+
+      - label: "View ID"
+        name: "viewId"
+        widget: "string"
+        required: false
+        hint: "The ID of the shop on the 'Location' site's view."
+        pattern: ["shop-(?:[a-z0-9-])", "Must be something like f.e. 'shop-1'."]
+
+      - label: "Textfarbe"
+        name: "text_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+          - {label: "– keine –", value: ""}
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
+        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+      - label: "Hintergrundfarbe"
+        name: "background_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+          - {label: "– keine –", value: ""}
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
+        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+
+      # SEO & Meta
       - label: "SEO"
         name: "seo"
         widget: object
@@ -1177,153 +1189,29 @@ collections:
             widget: "image"
             required: false
             hint: "Bild fuer Social-Shares. Fallback: erstes Galerie-Bild, sonst Logo."
-          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - {label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false}
           - label: "OG Type"
             name: "ogType"
             widget: "select"
             default: "website"
             required: false
             options:
-              - { label: "Website", value: "website" }
-              - { label: "Article", value: "article" }
+              - {label: "Website", value: "website"}
+              - {label: "Article", value: "article"}
           - label: "Twitter Card"
             name: "twitterCard"
             widget: "select"
             default: "summary_large_image"
             required: false
             options:
-              - { label: "Summary Large Image", value: "summary_large_image" }
-              - { label: "Summary", value: "summary" }
+              - {label: "Summary Large Image", value: "summary_large_image"}
+              - {label: "Summary", value: "summary"}
           - label: "noindex"
             name: "noIndex"
             widget: "boolean"
             default: false
             required: false
             hint: "Verhindert Indexierung durch Suchmaschinen."
-
-      - { label: "Name", name: "name", widget: "string" }
-
-      - label: "Group"
-        name: "group"
-        widget: "select"
-        options:
-          - { label: "Brand", value: "brand" }
-          - { label: "Culinary", value: "culinary" }
-
-      - label: "Categories"
-        name: "categories"
-        widget: "relation"
-        collection: "categories"
-        valueField: "uuid"
-        displayFields:
-          - "name"
-          - "locale"
-        searchFields:
-          - "name"
-        multiple: true
-        hint: "Kategorie in der passenden Sprache der Location wählen (Sprache wird in Klammern angezeigt)."
-
-      - 
-        label: "Logo"
-        name: "logo"
-        widget: "image"
-        hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
-
-      - label: "Images"
-        name: "images"
-        widget: "list"
-        field: { label: "Image", name: "image", widget: "image" }
-
-      - label: "Content"
-        name: "body"
-        widget: "markdown"
-        buttons:
-          - bold
-          - italic
-          - quote
-          - link
-          - heading-two
-          - bulleted-list
-          - numbered-list
-
-      - label: "Hours"
-        name: "hours"
-        widget: "list"
-        fields:
-          - label: "Date"
-            name: "date"
-            widget: "string"
-          - label: "Time"
-            name: "time"
-            widget: "string"
-
-      - { label: "Address", name: "address", widget: "markdown" }
-
-      - label: "Contact"
-        name: "contact"
-        widget: object
-        fields:
-          - label: "Phone"
-            name: "phone"
-            widget: "string"
-          - label: "Email"
-            name: "email"
-            widget: "string"
-            hint: "Will use summary by default"
-            pattern: ["[^@]+@[^.]+\\..+", "Must be an email address"] # \\ = heredoc, \ = yaml
-          - label: "Website"
-            name: "url"
-            widget: "string"
-            required: false
-            pattern:
-              [
-                "^$|(?:https?:\/\/)[a-z0-9-_.\/]+",
-                "Must be an URL like https://www.google.com",
-              ]
-
-      - label: "View ID"
-        name: "viewId"
-        widget: "string"
-        required: false
-        hint: "The ID of the shop on the 'Location' site's view."
-        pattern: ["shop-(?:[a-z0-9-])", "Must be something like f.e. 'shop-1'."]
-
-      - label: "Textfarbe"
-        name: "text_color"
-        widget: "color-token-select"
-        required: false
-        default: ""
-        options:
-        - { label: "– keine –", value: "" }
-        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-        - { label: "Text (text)", value: "text", color: "#22254e" }
-        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-        - { label: "Schwarz", value: "schwarz", color: "#111111" }
-        - { label: "Weiß", value: "weiss", color: "#ffffff" }
-        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
-      - label: "Hintergrundfarbe"
-        name: "background_color"
-        widget: "color-token-select"
-        required: false
-        default: ""
-        options:
-        - { label: "– keine –", value: "" }
-        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-        - { label: "Text (text)", value: "text", color: "#22254e" }
-        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-        - { label: "Schwarz", value: "schwarz", color: "#111111" }
-        - { label: "Weiß", value: "weiss", color: "#ffffff" }
-        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
 
   - name: "jobs"
     label: "Jobs"
@@ -1344,35 +1232,76 @@ collections:
         pattern: "en"
     create: true
     editor:
-      preview: false
+        preview: false
     fields:
       - label: "Sprache"
         name: "locale"
         widget: "select"
         default: "de"
         options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
+          - {label: "Deutsch", value: "de"}
+          - {label: "English", value: "en"}
 
-      - { label: "Key", name: "key", widget: "hidden", default: "job" }
-      - { label: "Type", name: "type", widget: "hidden", default: "job" }
-      - { label: "UUID", name: "uuid", widget: "uuid" }
+      - {label: "Key", name: "key", widget: "hidden", default: "job"}
+      - {label: "Type", name: "type", widget: "hidden", default: "job"}
+      - {label: "UUID", name: "uuid", widget: "uuid"}
+      - {label: "Location", name: "location", widget: "string"}
+      - {label: "Position", name: "position", widget: "string"}
+      - {label: "Specification", name: "specification", widget: "string"}
+      - {label: "Heading", name: "heading", widget: "text", required: false, hint: "Standard: Location – Position. Für einen manuellen Zeilenumbruch Enter drücken."}
+      - {label: "Intro", name: "intro", widget: "text", required: false, hint: "Standard: Specification. Für einen manuellen Zeilenumbruch Enter drücken."}
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
 
-      - {
-          label: "Heading",
-          name: "heading",
-          widget: "text",
-          required: false,
-          hint: "Standard: Location – Position. Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
-
-      - {
-          label: "Intro",
-          name: "intro",
-          widget: "text",
-          required: false,
-          hint: "Standard: Specification. Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: {label: "Image", name: "image", widget: "image"}
+      - label: "Textfarbe"
+        name: "text_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+          - {label: "– keine –", value: ""}
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
+        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+      - label: "Hintergrundfarbe"
+        name: "background_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+          - {label: "– keine –", value: ""}
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
+        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
 
       - label: "SEO"
         name: "seo"
@@ -1399,89 +1328,29 @@ collections:
             widget: "image"
             required: false
             hint: "Bild fuer Social-Shares. Fallback: erstes Galerie-Bild."
-          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - {label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false}
           - label: "OG Type"
             name: "ogType"
             widget: "select"
             default: "website"
             required: false
             options:
-              - { label: "Website", value: "website" }
-              - { label: "Article", value: "article" }
+              - {label: "Website", value: "website"}
+              - {label: "Article", value: "article"}
           - label: "Twitter Card"
             name: "twitterCard"
             widget: "select"
             default: "summary_large_image"
             required: false
             options:
-              - { label: "Summary Large Image", value: "summary_large_image" }
-              - { label: "Summary", value: "summary" }
+              - {label: "Summary Large Image", value: "summary_large_image"}
+              - {label: "Summary", value: "summary"}
           - label: "noindex"
             name: "noIndex"
             widget: "boolean"
             default: false
             required: false
             hint: "Verhindert Indexierung durch Suchmaschinen."
-
-      - { label: "Location", name: "location", widget: "string" }
-
-      - { label: "Position", name: "position", widget: "string" }
-
-      - { label: "Specification", name: "specification", widget: "string" }
-
-      - label: "Images"
-        name: "images"
-        widget: "list"
-        field: { label: "Image", name: "image", widget: "image" }
-
-      - label: "Content"
-        name: "body"
-        widget: "markdown"
-        buttons:
-          - bold
-          - italic
-          - quote
-          - link
-          - heading-two
-          - bulleted-list
-          - numbered-list
-
-      - label: "Textfarbe"
-        name: "text_color"
-        widget: "color-token-select"
-        required: false
-        default: ""
-        options:
-        - { label: "– keine –", value: "" }
-        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-        - { label: "Text (text)", value: "text", color: "#22254e" }
-        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-        - { label: "Schwarz", value: "schwarz", color: "#111111" }
-        - { label: "Weiß", value: "weiss", color: "#ffffff" }
-        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
-      - label: "Hintergrundfarbe"
-        name: "background_color"
-        widget: "color-token-select"
-        required: false
-        default: ""
-        options:
-        - { label: "– keine –", value: "" }
-        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-        - { label: "Text (text)", value: "text", color: "#22254e" }
-        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-        - { label: "Schwarz", value: "schwarz", color: "#111111" }
-        - { label: "Weiß", value: "weiss", color: "#ffffff" }
-        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
 
   - name: "news"
     label: "News"
@@ -1502,41 +1371,76 @@ collections:
         pattern: "en"
     create: true
     editor:
-      preview: false
+        preview: false
     fields:
       - label: "Sprache"
         name: "locale"
         widget: "select"
         default: "de"
         options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
+          - {label: "Deutsch", value: "de"}
+          - {label: "English", value: "en"}
 
-      - { label: "Key", name: "key", widget: "hidden", default: "news" }
-      - { label: "Type", name: "type", widget: "hidden", default: "news" }
-      - { label: "UUID", name: "uuid", widget: "uuid" }
+      - {label: "Key", name: "key", widget: "hidden", default: "news"}
+      - {label: "Type", name: "type", widget: "hidden", default: "news"}
+      - {label: "UUID", name: "uuid", widget: "uuid"}
+      - {label: "Heading", name: "heading", widget: "text", hint: "Für einen manuellen Zeilenumbruch Enter drücken."}
+      - {label: "Intro", name: "intro", widget: "text", required: false, hint: "Sichtbare Einleitung. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken."}
+      - {label: "Datum", name: "date", widget: "datetime", required: false}
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
 
-      - {
-          label: "Heading",
-          name: "heading",
-          widget: "text",
-          hint: "Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
-
-      - {
-          label: "Intro",
-          name: "intro",
-          widget: "text",
-          required: false,
-          hint: "Sichtbare Einleitung. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
-
-      - {
-          label: "Datum",
-          name: "date",
-          widget: "datetime",
-          required: false,
-        }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        required: false
+        hint: "Erstes Bild = großer Teaser oben. Zweites Bild = Foto neben dem Text. Weitere Bilder = Galerie."
+        field: {label: "Image", name: "image", widget: "image"}
+      - label: "Textfarbe"
+        name: "text_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+          - {label: "– keine –", value: ""}
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
+        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+      - label: "Hintergrundfarbe"
+        name: "background_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+          - {label: "– keine –", value: ""}
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
+        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
 
       - label: "SEO"
         name: "seo"
@@ -1563,85 +1467,29 @@ collections:
             widget: "image"
             required: false
             hint: "Bild fuer Social-Shares."
-          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - {label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false}
           - label: "OG Type"
             name: "ogType"
             widget: "select"
             default: "article"
             required: false
             options:
-              - { label: "Website", value: "website" }
-              - { label: "Article", value: "article" }
+              - {label: "Website", value: "website"}
+              - {label: "Article", value: "article"}
           - label: "Twitter Card"
             name: "twitterCard"
             widget: "select"
             default: "summary_large_image"
             required: false
             options:
-              - { label: "Summary Large Image", value: "summary_large_image" }
-              - { label: "Summary", value: "summary" }
+              - {label: "Summary Large Image", value: "summary_large_image"}
+              - {label: "Summary", value: "summary"}
           - label: "noindex"
             name: "noIndex"
             widget: "boolean"
             default: false
             required: false
             hint: "Verhindert Indexierung durch Suchmaschinen."
-
-      - label: "Images"
-        name: "images"
-        widget: "list"
-        required: false
-        hint: "Erstes Bild = großer Teaser oben. Zweites Bild = Foto neben dem Text. Weitere Bilder = Galerie."
-        field: { label: "Image", name: "image", widget: "image" }
-
-      - label: "Content"
-        name: "body"
-        widget: "markdown"
-        buttons:
-          - bold
-          - italic
-          - quote
-          - link
-          - heading-two
-          - bulleted-list
-          - numbered-list
-
-      - label: "Textfarbe"
-        name: "text_color"
-        widget: "color-token-select"
-        required: false
-        default: ""
-        options:
-        - { label: "– keine –", value: "" }
-        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-        - { label: "Text (text)", value: "text", color: "#22254e" }
-        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-        - { label: "Schwarz", value: "schwarz", color: "#111111" }
-        - { label: "Weiß", value: "weiss", color: "#ffffff" }
-        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
-      - label: "Hintergrundfarbe"
-        name: "background_color"
-        widget: "color-token-select"
-        required: false
-        default: ""
-        options:
-        - { label: "– keine –", value: "" }
-        - { label: "Hintergrund (bg)", value: "bg", color: "#d1efff" }
-        - { label: "Text (text)", value: "text", color: "#22254e" }
-        - { label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5" }
-        - { label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc" }
-        - { label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33" }
-        - { label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1" }
-        - { label: "Farbe 5 (c5)", value: "c5", color: "#99cccd" }
-        - { label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7" }
-        - { label: "Schwarz", value: "schwarz", color: "#111111" }
-        - { label: "Weiß", value: "weiss", color: "#ffffff" }
-        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
 
   - name: "blocks"
     label: "Blocks"
@@ -1661,39 +1509,34 @@ collections:
         pattern: "en"
     create: true
     editor:
-      preview: false
+        preview: false
     fields:
       - label: "Sprache"
         name: "locale"
         widget: "select"
         default: "de"
         options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
+          - {label: "Deutsch", value: "de"}
+          - {label: "English", value: "en"}
 
-      - { label: "Type", name: "type", widget: "hidden", default: "block" }
+      - {label: "Type", name: "type", widget: "hidden", default: "block"}
 
       - label: "Name"
         name: "name"
         widget: "select"
         options:
-          - { label: "General", value: "general" }
-          - { label: "Header", value: "header" }
-          - { label: "Footer", value: "footer" }
-          - { label: "Location", value: "location" }
+          - {label: "General", value: "general"}
+          - {label: "Header", value: "header"}
+          - {label: "Footer", value: "footer"}
+          - {label: "Location", value: "location"}
 
-      - {
-          label: "Company Name",
-          name: "company_name",
-          widget: string,
-          required: false,
-        }
+      - {label: "Company Name", name: "company_name", widget: string, required: false}
 
       - label: "Address Lines"
         name: "address_lines"
         widget: "list"
         required: false
-        field: { label: "Line", name: "line", widget: "string" }
+        field: {label: "Line", name: "line", widget: "string"}
 
       - label: "Social Media"
         name: "social_media"
@@ -1708,26 +1551,12 @@ collections:
           - label: "Link"
             name: "link"
             widget: "string"
-            pattern:
-              [
-                "^(?:\/|https?:\/\/)[A-Za-z0-9-_.\/]+$",
-                "Must start with slash or http(s)://",
-              ]
+            pattern: ["^(?:/|https?://)[A-Za-z0-9-_./]+$", "Must start with slash or http(s)://"]
             hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
 
-      - {
-          label: "Copyright",
-          name: "copyright",
-          widget: "string",
-          required: false,
-        }
+      - {label: "Copyright", name: "copyright", widget: "string", required: false}
 
-      - {
-          label: "Label Hours",
-          name: "label_hours",
-          widget: string,
-          required: false,
-        }
+      - {label: "Label Hours", name: "label_hours", widget: string, required: false}
 
   - name: "color-schemes"
     label: "Farbschemas"
@@ -1737,14 +1566,9 @@ collections:
     summary: "{{name}}"
     create: true
     editor:
-      preview: false
+        preview: false
     fields:
-      - {
-          label: "Type",
-          name: "type",
-          widget: "hidden",
-          default: "color_scheme",
-        }
+      - {label: "Type", name: "type", widget: "hidden", default: "color_scheme"}
 
       - label: "Key"
         name: "key"
@@ -1762,76 +1586,26 @@ collections:
         widget: "object"
         hint: "Diese acht Farben gelten für das gesamte Frontend, sobald das Schema aktiv ist."
         fields:
-          - {
-              label: "Hintergrund (bg)",
-              name: "bg",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Text (text)",
-              name: "text",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Farbe 1 (c1)",
-              name: "c1",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Farbe 2 (c2)",
-              name: "c2",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Farbe 3 (c3)",
-              name: "c3",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Farbe 4 (c4)",
-              name: "c4",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-            }
-          - {
-              label: "Farbe 5 (c5)",
-              name: "c5",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-              default: "#99cccd",
-            }
-          - {
-              label: "Farbe 6 (c6)",
-              name: "c6",
-              widget: "color",
-              allowInput: true,
-              enableAlpha: false,
-              default: "#8eb8c7",
-            }
+          - {label: "Hintergrund (bg)", name: "bg", widget: "color", allowInput: true, enableAlpha: false}
+          - {label: "Text (text)", name: "text", widget: "color", allowInput: true, enableAlpha: false}
+          - {label: "Farbe 1 (c1)", name: "c1", widget: "color", allowInput: true, enableAlpha: false}
+          - {label: "Farbe 2 (c2)", name: "c2", widget: "color", allowInput: true, enableAlpha: false}
+          - {label: "Farbe 3 (c3)", name: "c3", widget: "color", allowInput: true, enableAlpha: false}
+          - {label: "Farbe 4 (c4)", name: "c4", widget: "color", allowInput: true, enableAlpha: false}
+          - {label: "Farbe 5 (c5)", name: "c5", widget: "color", allowInput: true, enableAlpha: false, default: "#99cccd"}
+          - {label: "Farbe 6 (c6)", name: "c6", widget: "color", allowInput: true, enableAlpha: false, default: "#8eb8c7"}
 
   - name: "settings"
     label: "Einstellungen"
     editor:
-      preview: false
+        preview: false
     files:
       - name: "theme"
         label: "Farben"
         file: "content/settings/theme.md"
         fields:
-          - { label: "Type", name: "type", widget: "hidden", default: "settings" }
-          - { label: "Name", name: "name", widget: "hidden", default: "theme" }
+          - {label: "Type", name: "type", widget: "hidden", default: "settings"}
+          - {label: "Name", name: "name", widget: "hidden", default: "theme"}
           - label: "Aktives Farbschema"
             name: "active_scheme"
             widget: relation

@@ -39,9 +39,18 @@ if (typeof document !== "undefined") {
 		   position in Pages. */
 		body:has(a[href^="#/collections/pages"]) div:has(> label[for^="menu-field-"]),
 		body:has(a[href^="#/collections/funnels"]) div:has(> label[for^="funnel_url-field-"]) + div,
-		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"]) div:has(> label[for^="heading-field-"]),
+		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"], a[href^="#/collections/locations"], a[href^="#/collections/jobs"], a[href^="#/collections/news"]) div:has(> label[for^="heading-field-"]),
 		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"]) div:has(> label[for^="blocks-field-"]),
-		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"]) div:has(> label[for^="seo-field-"]) {
+		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"], a[href^="#/collections/locations"], a[href^="#/collections/jobs"], a[href^="#/collections/news"]) div:has(> label[for^="seo-field-"]),
+		body:has(a[href^="#/collections/locations"]) div:has(> label[for^="hours-field-"]),
+		body:has(a[href^="#/collections/locations"]) div:has(> label[for^="logo-field-"]),
+		body:has(a[href^="#/collections/jobs"], a[href^="#/collections/news"], a[href^="#/collections/categories"]) div:has(> label[for^="text_color-field-"]),
+		body:has(a[href^="#/collections/services"]) div:has(> label[for^="name-field-"]),
+		body:has(a[href^="#/collections/services"]) div:has(> label[for^="icon-field-"]),
+		body:has(a[href^="#/collections/categories"]) div:has(> label[for^="name-field-"]),
+		body:has(a[href^="#/collections/faqs"]) div:has(> label[for^="question-field-"]),
+		body:has(a[href^="#/collections/blocks"]) div:has(> label[for^="company_name-field-"]),
+		body:has(a[href^="#/collections/color-schemes"]) div:has(> label[for^="colors-field-"]) {
 			margin-top: 24px;
 			padding-top: 20px;
 			border-top: 1px solid #c5d2dd;
@@ -49,9 +58,18 @@ if (typeof document !== "undefined") {
 
 		body:has(a[href^="#/collections/pages"]) div:has(> label[for^="menu-field-"])::before,
 		body:has(a[href^="#/collections/funnels"]) div:has(> label[for^="funnel_url-field-"]) + div::before,
-		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"]) div:has(> label[for^="heading-field-"])::before,
+		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"], a[href^="#/collections/locations"], a[href^="#/collections/jobs"], a[href^="#/collections/news"]) div:has(> label[for^="heading-field-"])::before,
 		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"]) div:has(> label[for^="blocks-field-"])::before,
-		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"]) div:has(> label[for^="seo-field-"])::before {
+		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"], a[href^="#/collections/locations"], a[href^="#/collections/jobs"], a[href^="#/collections/news"]) div:has(> label[for^="seo-field-"])::before,
+		body:has(a[href^="#/collections/locations"]) div:has(> label[for^="hours-field-"])::before,
+		body:has(a[href^="#/collections/locations"]) div:has(> label[for^="logo-field-"])::before,
+		body:has(a[href^="#/collections/jobs"], a[href^="#/collections/news"], a[href^="#/collections/categories"]) div:has(> label[for^="text_color-field-"])::before,
+		body:has(a[href^="#/collections/services"]) div:has(> label[for^="name-field-"])::before,
+		body:has(a[href^="#/collections/services"]) div:has(> label[for^="icon-field-"])::before,
+		body:has(a[href^="#/collections/categories"]) div:has(> label[for^="name-field-"])::before,
+		body:has(a[href^="#/collections/faqs"]) div:has(> label[for^="question-field-"])::before,
+		body:has(a[href^="#/collections/blocks"]) div:has(> label[for^="company_name-field-"])::before,
+		body:has(a[href^="#/collections/color-schemes"]) div:has(> label[for^="colors-field-"])::before {
 			display: block;
 			margin-bottom: 8px;
 			font-size: 0.75rem;
@@ -67,14 +85,38 @@ if (typeof document !== "undefined") {
 		body:has(a[href^="#/collections/funnels"]) div:has(> label[for^="funnel_url-field-"]) + div::before {
 			content: "Navigation";
 		}
-		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"]) div:has(> label[for^="heading-field-"])::before {
+		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"], a[href^="#/collections/locations"], a[href^="#/collections/jobs"], a[href^="#/collections/news"]) div:has(> label[for^="heading-field-"])::before {
 			content: "Inhalt";
 		}
 		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"]) div:has(> label[for^="blocks-field-"])::before {
 			content: "Vorlagen-spezifisch";
 		}
-		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"]) div:has(> label[for^="seo-field-"])::before {
+		body:has(a[href^="#/collections/pages"], a[href^="#/collections/funnels"], a[href^="#/collections/locations"], a[href^="#/collections/jobs"], a[href^="#/collections/news"]) div:has(> label[for^="seo-field-"])::before {
 			content: "SEO & Meta";
+		}
+		body:has(a[href^="#/collections/locations"]) div:has(> label[for^="hours-field-"])::before {
+			content: "Kontakt & Zeiten";
+		}
+		body:has(a[href^="#/collections/locations"]) div:has(> label[for^="logo-field-"])::before {
+			content: "Darstellung";
+		}
+		body:has(a[href^="#/collections/jobs"], a[href^="#/collections/news"], a[href^="#/collections/categories"]) div:has(> label[for^="text_color-field-"])::before {
+			content: "Darstellung";
+		}
+		body:has(a[href^="#/collections/services"], a[href^="#/collections/categories"]) div:has(> label[for^="name-field-"])::before {
+			content: "Inhalt";
+		}
+		body:has(a[href^="#/collections/services"]) div:has(> label[for^="icon-field-"])::before {
+			content: "Kachel";
+		}
+		body:has(a[href^="#/collections/faqs"]) div:has(> label[for^="question-field-"])::before {
+			content: "Inhalt";
+		}
+		body:has(a[href^="#/collections/blocks"]) div:has(> label[for^="company_name-field-"])::before {
+			content: "Inhalt";
+		}
+		body:has(a[href^="#/collections/color-schemes"]) div:has(> label[for^="colors-field-"])::before {
+			content: "Farben";
 		}
 	`;
 	document.head.appendChild(style);
