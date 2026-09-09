@@ -4,7 +4,7 @@ type: page
 key: services
 template: services
 menu: main
-menu_label: SERVICE
+menu_label: SERVICES
 order: 400
 heading: |-
   UNSERE
