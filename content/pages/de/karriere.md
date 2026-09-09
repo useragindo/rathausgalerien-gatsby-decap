@@ -5,16 +5,18 @@ key: karriere
 template: standard
 menu: main
 order: 800
-seo:
-  title: Karriere
-  description: Jobs
+heading: Karriere
+intro: Jobs
 blocks:
   - layout: grid-4
     reversed: false
     date: ""
     header: Deine Karriere in den RHG
     text: Komm und mach mit.
-heading: Karriere
-intro: Jobs
+teaser:
+  image: /media/pages/rhg_goessers_gastgarten.jpg
+seo:
+  title: Karriere
+  description: Jobs
 ---
 Wir suchen Dich!
