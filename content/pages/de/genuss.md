@@ -7,10 +7,9 @@ menu: main
 menu_label: Kulinarik
 order: 200
 heading: Kulinarik in den Galerien 123
-intro: |-
-  Genuss
-  im
-  Rathaus
+intro: Ob knusprige Pizza und italienische Klassiker, traditionelle
+  österreichische Spezialitäten, frische Bowls oder asiatische Gerichte – hier
+  ist garantiert für jeden Geschmack das Richtige dabei.
 seo:
   title: Kulinarik in den Galerien 123
   description: "Genuss "
@@ -19,4 +18,3 @@ teaser:
   title: Das ist der Teaser
   image: /media/pages/1101310-rituals-sk25015-fortune-balm-repair-2025-jpg.jpg
 ---
-Ob knusprige Pizza und italienische Klassiker, traditionelle österreichische Spezialitäten, frische Bowls oder asiatische Gerichte – hier ist garantiert für jeden Geschmack das Richtige dabei.

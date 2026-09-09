@@ -5,6 +5,8 @@ key: galerien
 template: standard
 menu: main
 order: 600
+heading: Die Galerien
+intro: ""
 seo:
   title: Die Galerien
   description: "Die Innsbrucker Rathausgalerien im Überblick "
@@ -14,6 +16,8 @@ blocks:
     date: ""
     header: "Die Rathausgalerien "
     text: Ein Ort mit Geschichte mitten in der Stadt
-heading: Die Galerien
-intro: Die Innsbrucker Rathausgalerien im Überblick
+teaser:
+  image: /media/pages/eingang_.jpg
+  title: ""
+  icon: ""
 ---
