@@ -47,6 +47,7 @@ collections:
     editor:
       preview: false
     fields:
+      # Grunddaten
       - label: "Sprache"
         name: "locale"
         widget: "select"
@@ -79,6 +80,7 @@ collections:
           - { label: "Services-Übersicht", value: "services" }
           - { label: "FAQ-Übersicht", value: "faqs" }
 
+      # Navigation
       - label: "Menü"
         name: "menu"
         widget: "select"
@@ -107,6 +109,7 @@ collections:
           value_type: "int",
         }
 
+      # Inhalt
       - {
           label: "Heading",
           name: "heading",
@@ -123,52 +126,6 @@ collections:
           hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
         }
 
-      - label: "SEO"
-        name: "seo"
-        widget: object
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - {
-              label: "Description",
-              name: "description",
-              widget: "string",
-              hint: "Reines SEO-Feld. Leer lassen, um Heading und Intro zu übernehmen.",
-            }
-          - label: "URL"
-            name: "url"
-            widget: "string"
-            required: false
-            hint: "Erscheint in der Adressleiste. Leer lassen für Standardseiten ohne eigene URL."
-            pattern: ["^$|^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
-          - label: "Image (OpenGraph/Twitter)"
-            name: "image"
-            widget: "image"
-            required: false
-            hint: "Bild fuer Social-Shares. Fallback: Teaser-Bild, sonst erstes Block-Bild."
-          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
-          - label: "OG Type"
-            name: "ogType"
-            widget: "select"
-            default: "website"
-            required: false
-            options:
-              - { label: "Website", value: "website" }
-              - { label: "Article", value: "article" }
-          - label: "Twitter Card"
-            name: "twitterCard"
-            widget: "select"
-            default: "summary_large_image"
-            required: false
-            options:
-              - { label: "Summary Large Image", value: "summary_large_image" }
-              - { label: "Summary", value: "summary" }
-          - label: "noindex"
-            name: "noIndex"
-            widget: "boolean"
-            default: false
-            required: false
-            hint: "Verhindert Indexierung durch Suchmaschinen."
-
       - label: "Content"
         name: "body"
         required: false
@@ -182,6 +139,7 @@ collections:
           - bulleted-list
           - numbered-list
 
+      # Vorlagen-spezifisch
       - label: "Blocks"
         name: "blocks"
         widget: list
@@ -460,72 +418,7 @@ collections:
         required: false
         hint: "Nur für das Template 'Jobs' – wird angezeigt, wenn keine offenen Stellen vorhanden sind."
 
-  - name: "funnels"
-    label: "Funnels"
-    label_singular: "Funnel"
-    folder: "content/funnels"
-    media_folder: "/static/media/funnels"
-    public_folder: "/media/funnels"
-    path: "{{locale}}/{{slug}}"
-    identifier_field: key
-    summary: "{{key}} ({{locale}})"
-    create: true
-    editor:
-      preview: false
-    fields:
-      - label: "Sprache"
-        name: "locale"
-        widget: "select"
-        default: "de"
-        options:
-          - { label: "Deutsch", value: "de" }
-          - { label: "English", value: "en" }
-
-      - { label: "Type", name: "type", widget: "hidden", default: "page" }
-
-      - {
-          label: "Template",
-          name: "template",
-          widget: "hidden",
-          default: "funnel",
-        }
-
-      - label: "Key / Slug"
-        name: "key"
-        widget: "string"
-        hint: "Eindeutiger Schlüssel und Dateiname."
-        pattern: ["^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
-
-      - {
-          label: "Menü-Bezeichnung",
-          name: "menu_label",
-          widget: "string",
-          required: false,
-          hint: "Anzeigename im Menü, falls der Funnel in der Navigation erscheint. Leer lassen, um den Seitentitel zu verwenden.",
-        }
-
-      - label: "Funnel URL"
-        name: "funnel_url"
-        widget: "string"
-        required: false
-        hint: "Kanonische URL für diesen Funnel (z.B. https://meine-domain.com). Wird für canonical und og:url verwendet."
-
-      - {
-          label: "Heading",
-          name: "heading",
-          widget: "text",
-          required: false,
-          hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt. Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
-
-      - {
-          label: "Intro",
-          name: "intro",
-          widget: "text",
-          required: false,
-          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
-        }
-
+      # SEO & Meta
       - label: "SEO"
         name: "seo"
         widget: object
@@ -537,6 +430,12 @@ collections:
               widget: "string",
               hint: "Reines SEO-Feld. Leer lassen, um Heading und Intro zu übernehmen.",
             }
+          - label: "URL"
+            name: "url"
+            widget: "string"
+            required: false
+            hint: "Erscheint in der Adressleiste. Leer lassen für Standardseiten ohne eigene URL."
+            pattern: ["^$|^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
           - label: "Image (OpenGraph/Twitter)"
             name: "image"
             widget: "image"
@@ -566,6 +465,75 @@ collections:
             required: false
             hint: "Verhindert Indexierung durch Suchmaschinen."
 
+  - name: "funnels"
+    label: "Funnels"
+    label_singular: "Funnel"
+    folder: "content/funnels"
+    media_folder: "/static/media/funnels"
+    public_folder: "/media/funnels"
+    path: "{{locale}}/{{slug}}"
+    identifier_field: key
+    summary: "{{key}} ({{locale}})"
+    create: true
+    editor:
+      preview: false
+    fields:
+      # Grunddaten
+      - label: "Sprache"
+        name: "locale"
+        widget: "select"
+        default: "de"
+        options:
+          - { label: "Deutsch", value: "de" }
+          - { label: "English", value: "en" }
+
+      - { label: "Type", name: "type", widget: "hidden", default: "page" }
+
+      - {
+          label: "Template",
+          name: "template",
+          widget: "hidden",
+          default: "funnel",
+        }
+
+      - label: "Key / Slug"
+        name: "key"
+        widget: "string"
+        hint: "Eindeutiger Schlüssel und Dateiname."
+        pattern: ["^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
+
+      - label: "Funnel URL"
+        name: "funnel_url"
+        widget: "string"
+        required: false
+        hint: "Kanonische URL für diesen Funnel (z.B. https://meine-domain.com). Wird für canonical und og:url verwendet."
+
+      # Navigation
+      - {
+          label: "Menü-Bezeichnung",
+          name: "menu_label",
+          widget: "string",
+          required: false,
+          hint: "Anzeigename im Menü, falls der Funnel in der Navigation erscheint. Leer lassen, um den Seitentitel zu verwenden.",
+        }
+
+      # Inhalt
+      - {
+          label: "Heading",
+          name: "heading",
+          widget: "text",
+          required: false,
+          hint: "Sichtbarer Titel der Seite (H1). Wird auch als SEO-Titel verwendet, falls dieser leer bleibt. Für einen manuellen Zeilenumbruch Enter drücken.",
+        }
+
+      - {
+          label: "Intro",
+          name: "intro",
+          widget: "text",
+          required: false,
+          hint: "Sichtbare Einleitung unter dem Titel. Leer lassen, um hier keinen Text anzuzeigen (kein Fallback von SEO-Description). Für einen manuellen Zeilenumbruch Enter drücken.",
+        }
+
       - label: "Content"
         name: "body"
         required: false
@@ -579,6 +547,7 @@ collections:
           - bulleted-list
           - numbered-list
 
+      # Vorlagen-spezifisch
       - label: "Blocks"
         name: "blocks"
         widget: list
@@ -851,6 +820,47 @@ collections:
         name: "message"
         widget: "string"
         required: false
+
+      # SEO & Meta
+      - label: "SEO"
+        name: "seo"
+        widget: object
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - {
+              label: "Description",
+              name: "description",
+              widget: "string",
+              hint: "Reines SEO-Feld. Leer lassen, um Heading und Intro zu übernehmen.",
+            }
+          - label: "Image (OpenGraph/Twitter)"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Bild fuer Social-Shares. Fallback: Teaser-Bild, sonst erstes Block-Bild."
+          - { label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false }
+          - label: "OG Type"
+            name: "ogType"
+            widget: "select"
+            default: "website"
+            required: false
+            options:
+              - { label: "Website", value: "website" }
+              - { label: "Article", value: "article" }
+          - label: "Twitter Card"
+            name: "twitterCard"
+            widget: "select"
+            default: "summary_large_image"
+            required: false
+            options:
+              - { label: "Summary Large Image", value: "summary_large_image" }
+              - { label: "Summary", value: "summary" }
+          - label: "noindex"
+            name: "noIndex"
+            widget: "boolean"
+            default: false
+            required: false
+            hint: "Verhindert Indexierung durch Suchmaschinen."
 
   - name: "categories"
     label: "Categories"
