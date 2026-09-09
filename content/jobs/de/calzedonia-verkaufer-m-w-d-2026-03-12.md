@@ -6,7 +6,8 @@ uuid: 6e1c2560-f9ec-49da-aa5e-cc6926e1bcd5
 location: Calzedonia
 position: "Verkäufer (m/w/d) "
 specification: Vollzeit
-images: []
+images:
+  - /media/jobs/calzedonia_9r3a3338.jpg
 background_color: c2
 ---
 ## DEINE AUFGABEN
