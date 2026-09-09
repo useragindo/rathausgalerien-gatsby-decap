@@ -452,7 +452,12 @@ const HomepageIntro: React.FC<{
 	const countLabel = shopCount > 0 ? `${shopCount} Shops` : "Shops";
 
 	return (
-		<section className="home-intro" aria-labelledby="home-intro-title">
+		<section
+			className={`home-intro${
+				teaserTitle ? "" : " home-intro--image-only"
+			}`}
+			aria-labelledby={teaserTitle ? "home-intro-title" : undefined}
+		>
 			<div
 				className={`home-intro__media${
 					image ? "" : " home-intro__media--fallback"
@@ -464,20 +469,22 @@ const HomepageIntro: React.FC<{
 					loading="eager"
 				/>
 			</div>
-			<div className="home-intro__card">
-				{teaserIcon ? (
-					<img src={teaserIcon} alt="" aria-hidden="true" loading="eager" />
-				) : (
-					<ShoppingBagIcon />
-				)}
-				<h1 id="home-intro-title">{renderMultiline(teaserTitle)}</h1>
-				{showShopCount ? (
-					<>
-						<p>{countLabel}</p>
-						<p>Mitten in Innsbruck</p>
-					</>
-				) : null}
-			</div>
+			{teaserTitle ? (
+				<div className="home-intro__card">
+					{teaserIcon ? (
+						<img src={teaserIcon} alt="" aria-hidden="true" loading="eager" />
+					) : (
+						<ShoppingBagIcon />
+					)}
+					<h1 id="home-intro-title">{renderMultiline(teaserTitle)}</h1>
+					{showShopCount ? (
+						<>
+							<p>{countLabel}</p>
+							<p>Mitten in Innsbruck</p>
+						</>
+					) : null}
+				</div>
+			) : null}
 		</section>
 	);
 };
@@ -688,15 +695,18 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			trim(page.frontmatter.teaser?.icon),
 	);
 	const showTeaser = isHomepage || isServicesPage || hasTeaserContent;
-	// The teaser's own title is the page's H1 when a teaser is shown, so the
-	// heading below it steps down to H2; without a teaser, heading is the H1.
-	const HeadingTag = showTeaser ? "h2" : "h1";
+	// Only a teaser with a title renders its own H1 (in HomepageIntro); a
+	// title-less teaser shows just the full-width image. So the heading below
+	// steps down to H2 only when a teaser title exists, and is the page's H1
+	// otherwise.
+	const teaserTitle = trim(page.frontmatter.teaser?.title);
+	const HeadingTag = teaserTitle ? "h2" : "h1";
 	// Editors commonly leave "heading" equal to the teaser title (it used to be
 	// the only H1). Repeating it as a visible H2 right below the teaser reads
 	// as a duplicated title, so skip it when the two are identical; the intro
 	// text below still renders if the page has one.
 	const headingDuplicatesTeaser =
-		showTeaser && trim(page.heading) === trim(page.frontmatter.teaser?.title);
+		showTeaser && trim(page.heading) === teaserTitle;
 	const showPageHero = !headingDuplicatesTeaser || Boolean(page.intro);
 
 	return (

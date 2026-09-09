@@ -11,6 +11,14 @@
 	margin: 0 auto var(--space-lg);
 }
 
+.home-intro--image-only {
+	grid-template-columns: minmax(0, 1fr);
+}
+
+.home-intro--image-only .home-intro__card {
+	display: none;
+}
+
 .home-intro__media,
 .home-intro__card {
 	min-height: clamp(8.5rem, 39vw, 24rem);
@@ -126,6 +134,10 @@
 			margin-block: 0 clamp(1.25rem, 5vw, 1.9rem);
 		}
 
+		.home-intro--image-only {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
 		.home-intro__media,
 		.home-intro__card {
 			min-height: clamp(9.75rem, 45vw, 12.25rem);
@@ -167,6 +179,10 @@
 		grid-template-columns: minmax(0, 696fr) minmax(0, 514fr);
 		gap: clamp(0.75rem, 1.5vw, 1.5rem);
 		margin-block: var(--space-sm) clamp(2.25rem, 4vw, 4rem);
+	}
+
+	.home-intro--image-only {
+		grid-template-columns: minmax(0, 1fr);
 	}
 
 	.home-intro__media,
