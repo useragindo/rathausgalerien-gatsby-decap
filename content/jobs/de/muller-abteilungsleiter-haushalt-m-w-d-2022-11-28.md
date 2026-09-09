@@ -7,7 +7,7 @@ location: Müller
 position: Kundenberater Parfümerie (m/w/d)
 specification: Teilzeit (30 Std. Woche)
 images:
-  - /media/jobs/header-ausbildung.png
+  - /media/jobs/mu-ller_19_02_24_rg_reportage_mitarbeiter-214.jpg
 ---
 ## WAS UNS ÜBERZEUGT
 
