@@ -13,7 +13,7 @@ import {
 } from "../lib/content/categories";
 import { resolveColorPairStyle } from "../lib/content/color-tokens";
 import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
-import { trim } from "../lib/content/normalize";
+import { normalizeImageList, trim } from "../lib/content/normalize";
 import type {
 	LanguageCode,
 	LanguageLinks,
@@ -130,7 +130,7 @@ const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => {
 };
 
 const getLocationImage = (location: NormalizedLocation): string | undefined =>
-	location.frontmatter.images?.[0] ?? undefined;
+	normalizeImageList(location.frontmatter.images)[0];
 
 const stripMarkdown = (value: string): string =>
 	value
@@ -515,7 +515,7 @@ const JobList: React.FC<{
 			) : null}
 			<ul className="listing-grid listing-grid--jobs">
 				{items.map((job) => {
-					const image = job.frontmatter.images?.[0];
+					const image = normalizeImageList(job.frontmatter.images)[0];
 					const cardStyle = resolveColorPairStyle(
 						job.textColor,
 						job.backgroundColor,
@@ -566,7 +566,7 @@ const JobList: React.FC<{
 
 const getNewsImage = (news: NormalizedNews): string | undefined =>
 	trim(news.frontmatter.seo?.image) ??
-	trim(news.frontmatter.images?.[0]) ??
+	normalizeImageList(news.frontmatter.images)[0] ??
 	getMarkdownImage(news.body);
 
 const formatNewsDate = (date: string, language: string): string | undefined => {

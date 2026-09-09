@@ -1595,6 +1595,234 @@ collections:
           - {label: "Farbe 5 (c5)", name: "c5", widget: "color", allowInput: true, enableAlpha: false, default: "#99cccd"}
           - {label: "Farbe 6 (c6)", name: "c6", widget: "color", allowInput: true, enableAlpha: false, default: "#8eb8c7"}
 
+  - name: "lottery"
+    label: "Gewinnspiel"
+    label_singular: "Gewinnspiel-Eintrag"
+    folder: "content/lottery"
+    media_folder: "/static/media/lottery"
+    public_folder: "/media/lottery"
+    path: "{{locale}}/{{slug}}"
+    identifier_field: uuid
+    summary: "{{heading}} ({{locale}})"
+    slug: "{{key}}"
+    view_filters:
+      - label: "Deutsch"
+        field: locale
+        pattern: "de"
+      - label: "English"
+        field: locale
+        pattern: "en"
+    create: true
+    editor:
+        preview: false
+    fields:
+      - label: "Sprache"
+        name: "locale"
+        widget: "select"
+        default: "de"
+        options:
+          - {label: "Deutsch", value: "de"}
+          - {label: "English", value: "en"}
+
+      - {label: "Type", name: "type", widget: "hidden", default: "lottery"}
+      - {label: "UUID", name: "uuid", widget: "uuid"}
+
+      - label: "Key / Slug"
+        name: "key"
+        widget: "string"
+        hint: "Eindeutiger Schlüssel und Dateiname, z. B. gewinnspiel-2026-03. Bestimmt die URL, sofern keine SEO-URL gesetzt ist."
+        pattern: ["^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
+
+      - {label: "Heading", name: "heading", widget: "text", hint: "Sichtbarer Titel der Seite (H1). Für einen manuellen Zeilenumbruch Enter drücken."}
+      - {label: "Intro", name: "intro", widget: "text", required: false, hint: "Sichtbare Einleitung unter dem Titel. Für einen manuellen Zeilenumbruch Enter drücken."}
+      - {label: "Datum", name: "date", widget: "datetime", required: false, hint: "Optional, z. B. Start/Ende der Aktion. Erscheint über dem Titel."}
+
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        required: false
+        buttons:
+          - bold
+          - italic
+          - quote
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
+
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        required: false
+        hint: "Erstes Bild = großes Hero-Bild oben auf der Seite."
+        field: {label: "Image", name: "image", widget: "image"}
+
+      - label: "Textfarbe"
+        name: "text_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+          - {label: "– keine –", value: ""}
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
+        hint: "Textfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+      - label: "Hintergrundfarbe"
+        name: "background_color"
+        widget: "color-token-select"
+        required: false
+        default: ""
+        options:
+          - {label: "– keine –", value: ""}
+          - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+          - {label: "Text (text)", value: "text", color: "#22254e"}
+          - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+          - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+          - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+          - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+          - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+          - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+          - {label: "Schwarz", value: "schwarz", color: "#111111"}
+          - {label: "Weiß", value: "weiss", color: "#ffffff"}
+        hint: "Hintergrundfarbe aus dem aktiven Schema (siehe Einstellungen) oder Schwarz/Weiß."
+
+      - label: "Formular"
+        name: "form"
+        widget: "object"
+        hint: "Steuert Feldsatz, Texte und Zustände des Anmeldeformulars. Speicherung der Anmeldungen über Netlify Forms."
+        fields:
+          - label: "Formularname (Netlify)"
+            name: "name"
+            widget: "string"
+            hint: "Eindeutig pro Kampagne, z. B. lottery-2026-03. Wird 1:1 an Netlify Forms übergeben - bei einer neuen Kampagne unbedingt ändern."
+          - label: "Zustände"
+            name: "state"
+            widget: "object"
+            fields:
+              - label: "Ausgangszustand"
+                name: "idle"
+                widget: "object"
+                fields:
+                  - {label: "Button", name: "button", widget: "string", default: "Teilnehmen"}
+              - label: "Wird gesendet"
+                name: "sending"
+                widget: "object"
+                fields:
+                  - {label: "Button", name: "button", widget: "string", default: "Wird gesendet..."}
+              - label: "Erfolg"
+                name: "success"
+                widget: "object"
+                fields:
+                  - {label: "Titel", name: "title", widget: "string", default: "Vielen Dank für deine Teilnahme!"}
+                  - {label: "Text", name: "content", widget: "text", required: false, hint: "Markdownformatierung unterstützt."}
+                  - {label: "Button", name: "button", widget: "string", default: "Zurück zur Startseite"}
+              - label: "Fehler"
+                name: "failure"
+                widget: "object"
+                fields:
+                  - {label: "Titel", name: "title", widget: "string", default: "Bitte entschuldige..."}
+                  - {label: "Text", name: "content", widget: "text", required: false, hint: "Markdownformatierung unterstützt."}
+                  - label: "Fehlermeldungen"
+                    name: "errors"
+                    widget: "object"
+                    fields:
+                      - {label: "Pflichtfeld", name: "required", widget: "string", default: "Dieses Feld wird benötigt."}
+              - label: "Erneut versuchen"
+                name: "retrying"
+                widget: "object"
+                fields:
+                  - {label: "Button", name: "button", widget: "string", default: "Noch einmal versuchen"}
+          - label: "Felder"
+            name: "fields"
+            widget: "list"
+            identifier_field: label
+            hint: "Formularfelder in Anzeige-Reihenfolge."
+            fields:
+              - label: "Name (technisch)"
+                name: "name"
+                widget: "string"
+                hint: "Nur a-z, 0-9, -, _. Wird als Feldname an Netlify Forms übergeben."
+                pattern: ["^[a-z0-9_-]+$", "Nur a-z, 0-9, -, _"]
+              - {label: "Label", name: "label", widget: "string"}
+              - label: "Typ"
+                name: "type"
+                widget: "select"
+                default: "TEXT"
+                options:
+                  - {label: "Text", value: "TEXT"}
+                  - {label: "E-Mail", value: "EMAIL"}
+                  - {label: "Zahl", value: "NUMBER"}
+                  - {label: "Datum", value: "DATE"}
+                  - {label: "Auswahl (Select)", value: "SELECT"}
+                  - {label: "Checkbox", value: "CHECKBOX"}
+                  - {label: "Mehrzeiliger Text", value: "TEXTAREA"}
+              - {label: "Pflichtfeld", name: "required", widget: "boolean", default: true}
+              - label: "Optionen"
+                name: "options"
+                widget: "list"
+                required: false
+                hint: "Nur nötig, wenn Typ = Auswahl (Select)."
+                fields:
+                  - {label: "Label", name: "label", widget: "string"}
+                  - {label: "Wert", name: "value", widget: "string"}
+
+      - label: "SEO"
+        name: "seo"
+        widget: object
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: false
+            hint: "Will use heading by default"
+          - label: "Description"
+            name: "description"
+            widget: "string"
+            required: false
+            hint: "Will use intro by default"
+          - label: "URL"
+            name: "url"
+            widget: "string"
+            required: false
+            hint: "Erscheint in der Adressleiste, z. B. gewinnspiel -> /gewinnspiel. Leer lassen für /lottery/<key>."
+            pattern: ["^$|^[a-z0-9-]+$", "Nur a-z, 0-9, -"]
+          - label: "Image (OpenGraph/Twitter)"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Bild fuer Social-Shares. Fallback: erstes Bild."
+          - {label: "Image Alt-Text", name: "imageAlt", widget: "string", required: false}
+          - label: "OG Type"
+            name: "ogType"
+            widget: "select"
+            default: "website"
+            required: false
+            options:
+              - {label: "Website", value: "website"}
+              - {label: "Article", value: "article"}
+          - label: "Twitter Card"
+            name: "twitterCard"
+            widget: "select"
+            default: "summary_large_image"
+            required: false
+            options:
+              - {label: "Summary Large Image", value: "summary_large_image"}
+              - {label: "Summary", value: "summary"}
+          - label: "noindex"
+            name: "noIndex"
+            widget: "boolean"
+            default: false
+            required: false
+            hint: "Verhindert Indexierung durch Suchmaschinen."
+
   - name: "settings"
     label: "Einstellungen"
     editor:
@@ -1616,4 +1844,30 @@ collections:
             searchFields:
               - name
             hint: "Gilt für die gesamte Website. Die Auswahl kommt aus der Collection 'Farbschemas'."
+
+      - name: "lottery"
+        label: "Gewinnspiel"
+        file: "content/settings/lottery.md"
+        fields:
+          - {label: "Type", name: "type", widget: "hidden", default: "settings"}
+          - {label: "Name", name: "name", widget: "hidden", default: "lottery"}
+          - label: "Aktives Gewinnspiel"
+            name: "active_lottery"
+            widget: relation
+            collection: "lottery"
+            valueField: "key"
+            displayFields:
+              - heading
+              - locale
+            searchFields:
+              - heading
+              - key
+            required: false
+            hint: "Markiert das Gewinnspiel, das gerade läuft. Wird aktuell noch nirgends angezeigt - ein Teaser (z. B. auf der Startseite) folgt in einem eigenen Schritt. Leer lassen, wenn gerade kein Gewinnspiel läuft."
+          - label: "Teilnahmebedingungen-URL"
+            name: "terms_url"
+            widget: "string"
+            required: false
+            default: "/datenschutz"
+            hint: "Standard-Link für den Teilnahmebedingungen-Hinweis, falls im Formularfeld-Label kein eigener Link gesetzt ist. Gilt für beide Sprachen - für EN am besten /en/privacy-policy angeben."
 

@@ -1,0 +1,264 @@
+.lottery-form {
+	display: grid;
+	gap: var(--space-sm);
+}
+
+.lottery-form__field {
+	display: grid;
+	gap: var(--space-2xs);
+}
+
+.lottery-form__label {
+	font-size: var(--font-size-xs);
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.lottery-form__required {
+	color: var(--color-error);
+}
+
+.lottery-form__input {
+	min-height: 3rem;
+	padding: 0 var(--space-sm);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+	background: var(--color-white);
+	color: var(--color-text);
+	font: inherit;
+	font-size: var(--font-size-md);
+	transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.lottery-form__input--textarea {
+	padding-block: var(--space-xs);
+	resize: vertical;
+}
+
+.lottery-form__input--select {
+	appearance: none;
+	padding-inline-end: var(--space-lg);
+	/* Data-URIs können keine CSS-Variablen nutzen - der Chevron bleibt
+	   dunkelblau, auch wenn ein Farbschema die Textfarbe ändert. */
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2322254e' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 6 8 10 12 6'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right var(--space-sm) center;
+	background-size: 0.9rem;
+}
+
+.lottery-form__input:focus-visible {
+	outline: none;
+	border-color: var(--color-dunkelblau);
+	box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-focus) 55%, transparent);
+}
+
+.lottery-form__input[aria-invalid="true"] {
+	border-color: var(--color-error);
+}
+
+.lottery-form__error {
+	margin: 0;
+	color: var(--color-error);
+	font-size: var(--font-size-xs);
+}
+
+.lottery-form__field--checkbox {
+	gap: var(--space-2xs);
+}
+
+.lottery-form__checkbox-label {
+	display: grid;
+	grid-template-columns: 1.5rem 1fr;
+	align-items: start;
+	gap: var(--space-xs);
+	cursor: pointer;
+}
+
+.lottery-form__checkbox-input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.lottery-form__checkbox-box {
+	display: inline-block;
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-block-start: 0.05rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+	background: var(--color-white);
+	transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+.lottery-form__checkbox-input:checked + .lottery-form__checkbox-box {
+	border-color: var(--color-dunkelblau);
+	background-color: var(--color-dunkelblau);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='3 8 7 12 13 4'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 0.9rem;
+}
+
+.lottery-form__checkbox-input:focus-visible + .lottery-form__checkbox-box {
+	box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-focus) 55%, transparent);
+}
+
+.lottery-form__checkbox-input[aria-invalid="true"] + .lottery-form__checkbox-box {
+	border-color: var(--color-error);
+}
+
+.lottery-form__checkbox-text {
+	font-size: var(--font-size-sm);
+	line-height: 1.4;
+}
+
+.lottery-form__checkbox-text a {
+	color: var(--color-dunkelblau);
+	text-decoration-thickness: 0.08em;
+	text-underline-offset: 0.18em;
+}
+
+.lottery-form__honeypot {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.lottery-form__submit-row {
+	margin-block-start: var(--space-xs);
+}
+
+.lottery-form__submit {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-xs);
+	width: 100%;
+	min-height: 3rem;
+	padding-inline: var(--space-md);
+	border: none;
+	border-radius: var(--radius-sm);
+	background: var(--color-dunkelblau);
+	color: var(--color-white);
+	font-weight: 700;
+	font-size: var(--font-size-xs);
+	letter-spacing: 0.14em;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
+}
+
+.lottery-form__submit:hover:not(:disabled),
+.lottery-form__submit:focus-visible {
+	background: var(--color-blau);
+	color: var(--color-dunkelblau);
+}
+
+.lottery-form__submit:active:not(:disabled) {
+	transform: scale(0.98);
+}
+
+.lottery-form__submit:disabled {
+	cursor: progress;
+	opacity: 0.75;
+}
+
+.lottery-form__spinner {
+	width: 1rem;
+	height: 1rem;
+	border: 0.15rem solid color-mix(in srgb, var(--color-white) 40%, transparent);
+	border-block-start-color: var(--color-white);
+	border-radius: 50%;
+	animation: lottery-form-spin 0.7s linear infinite;
+}
+
+@keyframes lottery-form-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.lottery-form__message {
+	display: grid;
+	gap: var(--space-md);
+	text-align: center;
+	/* Sticky Header darf das anfokussierte Panel nicht überdecken. */
+	scroll-margin-top: calc(var(--header-height, 5rem) + 1rem);
+}
+
+.lottery-form__panel {
+	display: grid;
+	justify-items: center;
+	gap: var(--space-xs);
+	padding: clamp(1.25rem, 3vw, 2.5rem);
+	border-radius: var(--radius-md);
+}
+
+.lottery-form__panel--success {
+	background: color-mix(in srgb, var(--color-rosa) 26%, var(--color-white));
+}
+
+.lottery-form__panel--failure {
+	background: color-mix(in srgb, var(--color-error) 8%, var(--color-white));
+}
+
+.lottery-form__panel-badge {
+	display: block;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+	background-color: var(--color-dunkelblau);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 1.2rem;
+}
+
+.lottery-form__panel--success .lottery-form__panel-badge {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='3 8 7 12 13 4'/%3E%3C/svg%3E");
+}
+
+.lottery-form__panel--failure .lottery-form__panel-badge {
+	background-color: var(--color-error);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='8' y1='4' x2='8' y2='9'/%3E%3Ccircle cx='8' cy='12' r='0.5' fill='%23ffffff'/%3E%3Ccircle cx='8' cy='8' r='7'/%3E%3C/svg%3E");
+}
+
+.lottery-form__panel-title {
+	margin: 0;
+	font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.lottery-form__panel-action {
+	display: flex;
+	justify-content: center;
+}
+
+.lottery-form__panel-action .lottery-form__submit {
+	width: auto;
+	min-width: 14rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lottery-form__submit,
+	.lottery-form__checkbox-box {
+		transition: none;
+	}
+
+	.lottery-form__spinner {
+		/* Die Button-Beschriftung ("Wird gesendet...") transportiert den
+		   Zustand auch ohne Animation. */
+		animation: none;
+	}
+}

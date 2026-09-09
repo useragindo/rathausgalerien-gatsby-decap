@@ -35,6 +35,11 @@
 	--color-surface: color-mix(in srgb, var(--color-white) 72%, transparent);
 	--color-border: color-mix(in srgb, var(--color-text) 22%, transparent);
 	--color-focus: var(--color-rosa);
+	/* Fixed neutral like white/black, not a scheme slot: no colour scheme
+	 * defines an error red, so required-field markers and the lottery form's
+	 * failure panel need one value that survives every scheme change. Value
+	 * carried over from the old site. */
+	--color-error: #ef1544;
 
 	/* Typography — Museo Sans Rounded is the Figma reference font.
 	 * Self-hosted WOFF files are loaded via _fonts.scss from /static/fonts.

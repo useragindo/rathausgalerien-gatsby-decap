@@ -3,7 +3,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
 import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
-import { trim } from "../lib/content/normalize";
+import { normalizeImageList, trim } from "../lib/content/normalize";
 import type {
 	LanguageLinks,
 	NormalizedJob,
@@ -89,7 +89,8 @@ const resolveJobSeo = (job: NormalizedJob): ResolvedSeo => {
 	const seo = job.frontmatter.seo;
 	const description = getJobSeoDescription(job);
 	const title = trim(seo?.title) ?? job.title;
-	const image = trim(seo?.image) ?? trim(job.frontmatter.images?.[0]);
+	const image =
+		trim(seo?.image) ?? normalizeImageList(job.frontmatter.images)[0];
 	const imageAlt = trim(seo?.imageAlt) ?? trim(job.title);
 	const ogType = trim(seo?.ogType) ?? DEFAULT_OG_TYPE;
 	const ogLocale = OG_LOCALE_BY_LANGUAGE[job.language] ?? OG_LOCALE_BY_LANGUAGE.de;
@@ -161,7 +162,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 	const { job, navigation, theme, languageLinks, socialLinks } = pageContext;
 	const { frontmatter } = job;
 	const languages = buildLanguageOptions(languageLinks);
-	const images = frontmatter.images ?? [];
+	const images = normalizeImageList(frontmatter.images);
 	const heroImage = images[0];
 	const galleryImages = images.slice(1);
 	const location = trim(frontmatter.location);

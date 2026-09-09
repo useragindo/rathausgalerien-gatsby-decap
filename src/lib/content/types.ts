@@ -72,6 +72,7 @@ export type ImportedFrontmatter = {
 		| "location"
 		| "job"
 		| "news"
+		| "lottery"
 		| "service"
 		| "color_scheme"
 		| "settings"
@@ -126,7 +127,9 @@ export type ImportedFrontmatter = {
 	// locations) and category tiles. See color-tokens.ts.
 	text_color?: string | null;
 	background_color?: string | null;
-	images?: string[] | null;
+	// Das CMS speichert Bildlisten als Objekte ({image: "…"}), handgeschriebene
+	// Dateien als einfache Strings. Immer über normalizeImageList lesen.
+	images?: Array<string | { image?: string | null }> | null;
 	hours?: Array<{
 		date?: string | null;
 		time?: string | null;
@@ -141,6 +144,55 @@ export type ImportedFrontmatter = {
 	location?: string | null;
 	position?: string | null;
 	specification?: string | null;
+	form?: ImportedLotteryForm | null;
+	active_lottery?: string | null;
+	terms_url?: string | null;
+};
+
+// Field types the lottery form widget supports. Kept as a plain string union
+// (not an enum) because it comes straight out of CMS YAML.
+export type LotteryFieldType =
+	| "TEXT"
+	| "EMAIL"
+	| "NUMBER"
+	| "DATE"
+	| "SELECT"
+	| "CHECKBOX"
+	| "TEXTAREA";
+
+export type ImportedLotteryFormFieldOption = {
+	label?: string | null;
+	value?: string | null;
+};
+
+export type ImportedLotteryFormField = {
+	name?: string | null;
+	type?: string | null;
+	label?: string | null;
+	required?: boolean | null;
+	options?: ImportedLotteryFormFieldOption[] | null;
+};
+
+export type ImportedLotteryFormState = {
+	idle?: { button?: string | null } | null;
+	sending?: { button?: string | null } | null;
+	success?: {
+		title?: string | null;
+		content?: string | null;
+		button?: string | null;
+	} | null;
+	failure?: {
+		title?: string | null;
+		content?: string | null;
+		errors?: { required?: string | null } | null;
+	} | null;
+	retrying?: { button?: string | null } | null;
+};
+
+export type ImportedLotteryForm = {
+	name?: string | null;
+	state?: ImportedLotteryFormState | null;
+	fields?: ImportedLotteryFormField[] | null;
 };
 
 export type ImportedMdxNode = {
@@ -217,6 +269,55 @@ export type NormalizedNews = {
 	textColor?: ColorToken;
 	backgroundColor?: ColorToken;
 	frontmatter: ImportedFrontmatter;
+};
+
+export type NormalizedLotteryFormFieldOption = {
+	label: string;
+	value: string;
+};
+
+export type NormalizedLotteryFormField = {
+	name: string;
+	type: LotteryFieldType;
+	label: string;
+	required: boolean;
+	options: NormalizedLotteryFormFieldOption[];
+};
+
+export type NormalizedLotteryForm = {
+	name: string;
+	fields: NormalizedLotteryFormField[];
+	state: {
+		idle: { button: string };
+		sending: { button: string };
+		success: { title: string; content?: string; button: string };
+		failure: { title: string; content?: string; requiredError: string };
+		retrying: { button: string };
+	};
+};
+
+export type NormalizedLottery = {
+	id: string;
+	language: LanguageCode;
+	i18nKey: string;
+	title: string;
+	heading: string;
+	intro?: string;
+	slug: string;
+	path: string;
+	date: string | null;
+	body?: string;
+	form: NormalizedLotteryForm | null;
+	textColor?: ColorToken;
+	backgroundColor?: ColorToken;
+	frontmatter: ImportedFrontmatter;
+};
+
+// The single settings entry that governs the lottery site-wide (which
+// campaign is active, where the terms link points by default).
+export type LotterySettings = {
+	activeLottery: string | null;
+	termsUrl: string | null;
 };
 
 export type NormalizedCategory = {

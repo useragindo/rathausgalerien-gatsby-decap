@@ -3,7 +3,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
 import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
-import { trim } from "../lib/content/normalize";
+import { normalizeImageList, trim } from "../lib/content/normalize";
 import type {
 	LanguageCode,
 	LanguageLinks,
@@ -65,7 +65,7 @@ const getMarkdownImage = (content?: string): string | undefined => {
 };
 
 const getNewsFallbackImage = (news: NormalizedNews): string | undefined =>
-	trim(news.frontmatter.images?.[0]) ?? getMarkdownImage(news.body);
+	normalizeImageList(news.frontmatter.images)[0] ?? getMarkdownImage(news.body);
 
 const formatNewsDate = (date: string, language: LanguageCode): string => {
 	const parsed = new Date(date);
@@ -132,7 +132,7 @@ const getNewsIndexLabel = (news: NormalizedNews): string =>
 const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
 	const { news, navigation, theme, languageLinks, socialLinks } = pageContext;
 	const languages = buildLanguageOptions(languageLinks);
-	const images = news.frontmatter.images ?? [];
+	const images = normalizeImageList(news.frontmatter.images);
 	const heroImage = images[0];
 	const aboutImage = images[1] ?? images[0];
 	const galleryImages = images.slice(2);

@@ -8,6 +8,11 @@ const trim = (value?: string | null): string | undefined => {
 const normalizeInlineText = (value: string): string =>
 	value.replace(/\r/g, "").replace(/static\/media\//g, "/media/");
 
+// CMS-Texte landen ungefiltert auf öffentlichen Seiten - ein Link-Ziel wird
+// deshalb nur akzeptiert, wenn sein Schema ungefährlich ist. Alles andere
+// (javascript:, data:, vbscript:, …) rendert als reiner Text statt als Link.
+const SAFE_URL_PATTERN = /^(https?:\/\/|\/|#|mailto:|tel:)/i;
+
 const normalizeInlineUrl = (value: string): string | undefined => {
 	const normalized = normalizeInlineText(value.trim());
 
@@ -17,7 +22,7 @@ const normalizeInlineUrl = (value: string): string | undefined => {
 
 	const unwrapped = normalized.match(/^<(.+)>$/)?.[1].trim() ?? normalized;
 
-	return unwrapped ? unwrapped : undefined;
+	return unwrapped && SAFE_URL_PATTERN.test(unwrapped) ? unwrapped : undefined;
 };
 
 const renderFormattedText = (
@@ -122,8 +127,9 @@ const renderParagraph = (paragraph: string, index: number): React.ReactNode => {
 
 		return (
 			<ul key={index}>
-				{items.map((item) => (
-					<li key={item}>{renderInline(item)}</li>
+				{items.map((item, itemIndex) => (
+					// item allein wäre kein eindeutiger Key (doppelte Bullets).
+					<li key={`${itemIndex}-${item}`}>{renderInline(item)}</li>
 				))}
 			</ul>
 		);

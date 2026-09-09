@@ -15,20 +15,30 @@ const pageTemplate = path.resolve("./src/templates/page-template.tsx");
 const locationTemplate = path.resolve("./src/templates/location-template.tsx");
 const jobTemplate = path.resolve("./src/templates/job-template.tsx");
 const newsTemplate = path.resolve("./src/templates/news-template.tsx");
+const lotteryTemplate = path.resolve("./src/templates/lottery-template.tsx");
 const categoryTemplate = path.resolve("./src/templates/category-template.tsx");
 
+// usedPaths enthält die FINAL vergebenen Pfade (inkl. generierter Suffixe),
+// damit ein hier erzeugtes Suffix nie mit einer anderen Seite kollidiert.
 const makeUniquePath = (
 	requestedPath: string,
-	usedPaths: Map<string, number>,
+	usedPaths: Set<string>,
 ): string => {
-	const count = usedPaths.get(requestedPath) ?? 0;
-	usedPaths.set(requestedPath, count + 1);
-
-	if (count === 0) {
+	if (!usedPaths.has(requestedPath)) {
+		usedPaths.add(requestedPath);
 		return requestedPath;
 	}
 
-	return requestedPath.replace(/\/$/, `-${count + 1}/`);
+	let count = 2;
+	let candidate = requestedPath.replace(/\/$/, `-${count}/`);
+
+	while (usedPaths.has(candidate)) {
+		count += 1;
+		candidate = requestedPath.replace(/\/$/, `-${count}/`);
+	}
+
+	usedPaths.add(candidate);
+	return candidate;
 };
 
 export const createPages: GatsbyNode["createPages"] = async (args) => {
@@ -50,18 +60,21 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 		locations,
 		jobs,
 		news,
+		lotteries,
+		lotterySettings,
 		categories,
 		services,
 		faqs,
 		navigation,
 		theme,
 	} = normalizeNodes(mdxNodes);
-	const usedPaths = new Map<string, number>();
+	const usedPaths = new Set<string>();
 
 	const pageLanguageLinks = buildLanguageLinks(pages);
 	const locationLanguageLinks = buildLanguageLinks(locations);
 	const jobLanguageLinks = buildLanguageLinks(jobs);
 	const newsLanguageLinks = buildLanguageLinks(news);
+	const lotteryLanguageLinks = buildLanguageLinks(lotteries);
 	const socialLinksByLanguage = buildFooterSocialLinks(mdxNodes);
 
 	for (const page of pages) {
@@ -135,6 +148,21 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 		});
 	}
 
+	for (const lottery of lotteries) {
+		actions.createPage({
+			path: makeUniquePath(lottery.path, usedPaths),
+			component: lotteryTemplate,
+			context: {
+				lottery,
+				lotterySettings,
+				navigation,
+				theme,
+				languageLinks: lotteryLanguageLinks(lottery),
+				socialLinks: socialLinksByLanguage[lottery.language],
+			},
+		});
+	}
+
 	const categoriesBySlug = new Map<string, NormalizedCategory[]>();
 	for (const category of categories) {
 		const list = categoriesBySlug.get(category.slug) ?? [];
@@ -173,6 +201,6 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 	}
 
 	reporter.info(
-		`Created ${pages.length} content pages, ${locations.length} location pages, ${jobs.length} job pages, ${news.length} news pages, ${categories.length} category pages.`,
+		`Created ${pages.length} content pages, ${locations.length} location pages, ${jobs.length} job pages, ${news.length} news pages, ${lotteries.length} lottery pages, ${categories.length} category pages.`,
 	);
 };

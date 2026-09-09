@@ -2,13 +2,21 @@ import { COLOR_TOKENS } from "./color-tokens";
 import type {
 	ColorToken,
 	ImportedFrontmatter,
+	ImportedLotteryForm,
+	ImportedLotteryFormField,
 	ImportedMdxNode,
 	LanguageCode,
+	LotteryFieldType,
+	LotterySettings,
 	NormalizedCategory,
 	NormalizedColorScheme,
 	NormalizedFaq,
 	NormalizedJob,
 	NormalizedLocation,
+	NormalizedLottery,
+	NormalizedLotteryForm,
+	NormalizedLotteryFormField,
+	NormalizedLotteryFormFieldOption,
 	NormalizedNews,
 	NormalizedPage,
 	NormalizedService,
@@ -101,6 +109,36 @@ const withLanguagePrefix = (language: LanguageCode, slug?: string): string => {
 
 	return cleanSlug ? `/${language}/${cleanSlug}/` : `/${language}/`;
 };
+
+// seo.url und key stammen aus dem CMS und landen direkt in der URL. Werte,
+// die kein sauberer Slug sind (leer, "..", Großbuchstaben, Sonderzeichen),
+// werden verworfen, statt sie ungeprüft in Pfade und Build-Ausgabe zu
+// übernehmen - dann greift der Standardslug.
+const sanitizeConfiguredSlug = (value?: string | null): string | null => {
+	const slug = trim(value);
+
+	if (!slug) {
+		return null;
+	}
+
+	const segments = slug.split("/");
+	const segmentsAreClean =
+		segments.length > 0 &&
+		segments.every((segment) => segment.length > 0 && slugify(segment) === segment);
+
+	return segmentsAreClean ? slug : null;
+};
+
+// CMS-Bildlisten speichern Objekte ({image: "…"}), handgeschriebene Dateien
+// einfache Strings. Diese Hilfe liest beide Formen und liefert immer string[],
+// damit Templates nie mit dem Roh-Shape arbeiten müssen.
+export const normalizeImageList = (
+	images?: Array<string | { image?: string | null }> | null,
+): string[] =>
+	(images ?? [])
+		.map((image) => (typeof image === "string" ? image : image?.image))
+		.map((image) => trim(image))
+		.filter((image): image is string => Boolean(image));
 
 const getFileSlug = (node: ImportedMdxNode): string | undefined => {
 	const filePath = trim(node.internal?.contentFilePath);
@@ -297,6 +335,261 @@ export const normalizeNews = (node: ImportedMdxNode): NormalizedNews | null => {
 		textColor: normalizeOptionalColorToken(frontmatter.text_color),
 		backgroundColor: normalizeOptionalColorToken(frontmatter.background_color),
 		frontmatter,
+	};
+};
+
+const LOTTERY_FIELD_TYPES: readonly LotteryFieldType[] = [
+	"TEXT",
+	"EMAIL",
+	"NUMBER",
+	"DATE",
+	"SELECT",
+	"CHECKBOX",
+	"TEXTAREA",
+];
+
+// Netlify reserviert diese Feldnamen; ein CMS-Feld mit gleichem Namen würde
+// das Honeypot bzw. die form-name-Übergabe überschreiben.
+const LOTTERY_RESERVED_FIELD_NAMES: readonly string[] = ["form-name", "bot-field"];
+
+const isLotteryFieldType = (value?: unknown): value is LotteryFieldType =>
+	typeof value === "string" &&
+	LOTTERY_FIELD_TYPES.includes(value as LotteryFieldType);
+
+const normalizeLotteryFormField = (
+	field: ImportedLotteryFormField,
+): NormalizedLotteryFormField | null => {
+	const name = trim(field?.name);
+	const label = trim(field?.label);
+	// Handgeschriebenes YAML kennt Groß-/Kleinschreibung nicht zuverlässig
+	// ("text" statt "TEXT") - akzeptiert wird beides.
+	const rawType =
+		typeof field?.type === "string" ? field.type.toUpperCase() : undefined;
+	const type = isLotteryFieldType(rawType) ? rawType : undefined;
+
+	if (!name || !label || !type) {
+		return null;
+	}
+
+	if (LOTTERY_RESERVED_FIELD_NAMES.includes(name)) {
+		return null;
+	}
+
+	const options = (field?.options ?? [])
+		.map((option): NormalizedLotteryFormFieldOption | null => {
+			const value = trim(option?.value);
+			const optionLabel = trim(option?.label);
+			return value && optionLabel ? { label: optionLabel, value } : null;
+		})
+		.filter(
+			(option): option is NormalizedLotteryFormFieldOption =>
+				option !== null,
+		);
+
+	return {
+		name,
+		type,
+		label,
+		// Bewusst strikt: Decap speichert Booleans korrekt, aber ein quoted
+		// "false" in handgeschriebenem YAML dürfte nicht als Zustimmungspflicht
+		// durchrutschen.
+		required: field?.required === true,
+		options,
+	};
+};
+
+// Sprachabhängige Fallbacks für alle Formular-Texte, falls ein Editor
+// form.state leert (Decap speichert geleerte Felder als Leerstring).
+const LOTTERY_DEFAULT_STATE: Record<
+	LanguageCode,
+	{
+		idleButton: string;
+		sendingButton: string;
+		successTitle: string;
+		successButton: string;
+		failureTitle: string;
+		requiredError: string;
+		retryingButton: string;
+	}
+> = {
+	de: {
+		idleButton: "Teilnehmen",
+		sendingButton: "Wird gesendet...",
+		successTitle: "Vielen Dank für deine Teilnahme!",
+		successButton: "Zurück zur Startseite",
+		failureTitle: "Bitte entschuldige...",
+		requiredError: "Dieses Feld wird benötigt.",
+		retryingButton: "Noch einmal versuchen",
+	},
+	en: {
+		idleButton: "Enter now",
+		sendingButton: "Sending...",
+		successTitle: "Thank you for entering!",
+		successButton: "Back to homepage",
+		failureTitle: "Sorry about that...",
+		requiredError: "This field is required.",
+		retryingButton: "Try again",
+	},
+};
+
+const DEFAULT_TERMS_URL_BY_LANGUAGE: Record<LanguageCode, string> = {
+	de: "/datenschutz",
+	en: "/en/privacy-policy",
+};
+
+// Der Checkbox-Text darf über Markdown auf die Teilnahmebedingungen verlinken.
+// Fehlt der Link, wird der konfigurierte (settings.terms_url) bzw. der
+// sprachabhängige Standard-Link angehängt - ohne Link wäre die geforderte
+// Zustimmung für Teilnehmende nicht nachvollziehbar.
+const withTermsLink = (
+	field: NormalizedLotteryFormField,
+	language: LanguageCode,
+	termsUrl?: string | null,
+): NormalizedLotteryFormField => {
+	if (field.type !== "CHECKBOX" || field.label.includes("](")) {
+		return field;
+	}
+
+	const linkText =
+		language === "en" ? "terms and conditions" : "Teilnahmebedingungen";
+	const url =
+		trim(termsUrl) ?? DEFAULT_TERMS_URL_BY_LANGUAGE[language];
+
+	return { ...field, label: `${field.label} ([${linkText}](${url}))` };
+};
+
+// Defensive by construction: a malformed `form.state` (missing nested keys,
+// wrong types from a hand-edited YAML file) must never abort the build, so
+// every text falls back to a language-appropriate default instead of throwing.
+const normalizeLotteryForm = (
+	form?: ImportedLotteryForm | null,
+	language: LanguageCode = DEFAULT_LANGUAGE,
+	termsUrl?: string | null,
+): NormalizedLotteryForm | null => {
+	const defaults = LOTTERY_DEFAULT_STATE[language] ?? LOTTERY_DEFAULT_STATE.de;
+	const name = trim(form?.name);
+	const fieldNames = new Set<string>();
+	const fields = (form?.fields ?? [])
+		.map(normalizeLotteryFormField)
+		.filter((field): field is NormalizedLotteryFormField => field !== null)
+		// Doppelte Feldnamen würden sich in den Values gegenseitig überschreiben
+		// und doppelte DOM-IDs erzeugen - der erste Eintrag gewinnt.
+		.filter((field) => {
+			if (fieldNames.has(field.name)) {
+				return false;
+			}
+
+			fieldNames.add(field.name);
+			return true;
+		})
+		.map((field) => withTermsLink(field, language, termsUrl));
+
+	if (!name || !fields.length) {
+		return null;
+	}
+
+	return {
+		name,
+		fields,
+		state: {
+			idle: {
+				button: deriveDisplay(form?.state?.idle?.button, defaults.idleButton),
+			},
+			sending: {
+				button: deriveDisplay(
+					form?.state?.sending?.button,
+					defaults.sendingButton,
+				),
+			},
+			success: {
+				title: deriveDisplay(
+					form?.state?.success?.title,
+					defaults.successTitle,
+				),
+				content: trim(form?.state?.success?.content),
+				button: deriveDisplay(
+					form?.state?.success?.button,
+					defaults.successButton,
+				),
+			},
+			failure: {
+				title: deriveDisplay(
+					form?.state?.failure?.title,
+					defaults.failureTitle,
+				),
+				content: trim(form?.state?.failure?.content),
+				requiredError: deriveDisplay(
+					form?.state?.failure?.errors?.required,
+					defaults.requiredError,
+				),
+			},
+			retrying: {
+				button: deriveDisplay(
+					form?.state?.retrying?.button,
+					defaults.retryingButton,
+				),
+			},
+		},
+	};
+};
+
+export const normalizeLottery = (
+	node: ImportedMdxNode,
+	termsUrl?: string | null,
+): NormalizedLottery | null => {
+	const frontmatter = node.frontmatter;
+
+	if (!frontmatter || frontmatter.type !== "lottery") {
+		return null;
+	}
+
+	const language = getLanguage(frontmatter);
+	const heading = deriveDisplay(frontmatter.heading, node.id);
+	const intro = trim(frontmatter.intro);
+	const key = trim(frontmatter.key) ?? getFileSlug(node) ?? node.id;
+	// Pfadlogik wie bei Pages: seo.url überschreibt den Standardslug
+	// (/gewinnspiel statt /lottery/gewinnspiel-2026-03).
+	const configuredSlug = sanitizeConfiguredSlug(frontmatter.seo?.url);
+	const slug = configuredSlug ?? key;
+	const path = configuredSlug
+		? withLanguagePrefix(language, configuredSlug)
+		: withLanguagePrefix(language, `lottery/${key}`);
+
+	return {
+		id: node.id,
+		language,
+		i18nKey: getFileSlug(node) ?? key,
+		title: heading,
+		heading,
+		intro,
+		slug,
+		path,
+		date: toDateString(frontmatter.date) ?? null,
+		body: trim(node.body),
+		form: normalizeLotteryForm(frontmatter.form, language, termsUrl),
+		textColor: normalizeOptionalColorToken(frontmatter.text_color),
+		backgroundColor: normalizeOptionalColorToken(frontmatter.background_color),
+		frontmatter,
+	};
+};
+
+// Reads the single settings entry that governs the lottery site-wide.
+export const normalizeLotterySettings = (
+	node: ImportedMdxNode,
+): LotterySettings | null => {
+	const frontmatter = node.frontmatter;
+
+	if (
+		!frontmatter ||
+		frontmatter.type !== "settings" ||
+		trim(frontmatter.name) !== "lottery"
+	) {
+		return null;
+	}
+
+	return {
+		activeLottery: trim(frontmatter.active_lottery) ?? null,
+		termsUrl: trim(frontmatter.terms_url) ?? null,
 	};
 };
 
@@ -583,6 +876,15 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 	const news = nodes
 		.map(normalizeNews)
 		.filter((item): item is NormalizedNews => Boolean(item));
+	// Settings zuerst: der Terms-Link aus settings.terms_url fließt in die
+	// Lottery-Normalisierung ein (Fallback-Link am Checkbox-Label).
+	const lotterySettings = nodes
+		.map(normalizeLotterySettings)
+		.find((settings): settings is LotterySettings => Boolean(settings)) ??
+		null;
+	const lotteries = nodes
+		.map((node) => normalizeLottery(node, lotterySettings?.termsUrl))
+		.filter((item): item is NormalizedLottery => Boolean(item));
 	const categories = nodes
 		.map(normalizeCategory)
 		.filter((category): category is NormalizedCategory => Boolean(category));
@@ -604,6 +906,8 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 		locations,
 		jobs,
 		news,
+		lotteries,
+		lotterySettings,
 		categories,
 		services,
 		faqs,

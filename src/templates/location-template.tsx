@@ -4,7 +4,7 @@ import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
 import { resolveCategoryLabels } from "../lib/content/categories";
 import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
-import { trim } from "../lib/content/normalize";
+import { normalizeImageList, trim } from "../lib/content/normalize";
 import type {
 	LanguageLinks,
 	NormalizedCategory,
@@ -59,7 +59,7 @@ const resolveLocationSeo = (location: NormalizedLocation): ResolvedSeo => {
 	const description = getLocationSeoDescription(location);
 	const image =
 		trim(seo?.image) ??
-		trim(location.frontmatter.images?.[0]) ??
+		normalizeImageList(location.frontmatter.images)[0] ??
 		trim(location.frontmatter.logo);
 	const imageAlt = trim(seo?.imageAlt) ?? trim(location.heading);
 	const ogType = trim(seo?.ogType) ?? DEFAULT_OG_TYPE;
@@ -265,7 +265,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 	} = pageContext;
 	const { frontmatter } = location;
 	const languages = buildLanguageOptions(languageLinks);
-	const images = frontmatter.images ?? [];
+	const images = normalizeImageList(frontmatter.images);
 	const heroImage = images[0];
 	const aboutImage = images[1] ?? images[0];
 	const galleryImages = images.slice(2);
