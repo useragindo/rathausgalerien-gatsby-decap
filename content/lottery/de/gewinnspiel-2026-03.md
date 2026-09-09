@@ -56,6 +56,10 @@ form:
       label: Ich akzeptiere die [Teilnahmebedingungen](/datenschutz)
       type: CHECKBOX
       required: true
+    - type: TEXT
+      required: true
+      name: input
+      label: Ort
 seo:
   title: Gewinnspiel
   description: Mache mit bei unserem Gewinnspiel und gewinne einen von 10
