@@ -20,16 +20,10 @@
 
 .listing-section__header h2 {
 	font-size: clamp(2rem, 7vw, 5rem);
-	font-weight: 300;
+	font-weight: 200;
 	letter-spacing: clamp(0.14em, 1vw, 0.24em);
 	line-height: var(--line-height-tight);
 	text-transform: uppercase;
-}
-
-.listing-section--services .listing-section__header h2 {
-	font-size: var(--font-size-h2);
-	font-weight: 700;
-	letter-spacing: 0.04em;
 }
 
 .listing-section__header p:last-child {
