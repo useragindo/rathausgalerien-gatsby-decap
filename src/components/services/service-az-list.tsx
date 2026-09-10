@@ -64,24 +64,26 @@ export const ServiceAZList: React.FC<ServiceAZListProps> = ({
 					aria-labelledby={`service-az-${group.letter}`}
 					key={group.letter}
 				>
-					<h3
-						className="service-az-group__letter"
-						id={`service-az-${group.letter}`}
-					>
-						{group.letter}
-					</h3>
-					<ul className="service-az-group__items">
-						{group.items.map((service) => (
-							<li className="service-az-item" key={service.id}>
-								<span className="service-az-item__name">{service.name}</span>
-								{service.description ? (
-									<span className="service-az-item__description">
-										{service.description}
-									</span>
-								) : null}
-							</li>
-						))}
-					</ul>
+					<div className="service-az-group__content">
+						<h3
+							className="service-az-group__letter"
+							id={`service-az-${group.letter}`}
+						>
+							{group.letter}
+						</h3>
+						<ul className="service-az-group__items">
+							{group.items.map((service) => (
+								<li className="service-az-item" key={service.id}>
+									<span className="service-az-item__name">{service.name}</span>
+									{service.description ? (
+										<span className="service-az-item__description">
+											{service.description}
+										</span>
+									) : null}
+								</li>
+							))}
+						</ul>
+					</div>
 				</section>
 			))}
 		</div>

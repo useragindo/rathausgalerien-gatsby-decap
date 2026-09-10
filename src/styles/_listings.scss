@@ -26,6 +26,19 @@
 	text-transform: uppercase;
 }
 
+// Services A-Z heading only: smaller max size/tracking than the shared
+// listing-section headline above.
+.listing-section--services .listing-section__header h2 {
+	font-size: clamp(2rem, 7vw, 2.8rem);
+	letter-spacing: clamp(0.14em, 1vw, 0.15em);
+}
+
+// Services A-Z intro only: narrower and lighter than the shared intro below.
+.listing-section--services .listing-section__intro {
+	max-width: 32rem;
+	font-weight: 300;
+}
+
 .listing-section__header p:last-child {
 	font-size: var(--font-size-md);
 }

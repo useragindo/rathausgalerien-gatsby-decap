@@ -82,28 +82,54 @@
 	text-align: left;
 }
 
+// Same box model as .service-tiles (max-width + padding-inline), so the
+// dividers below line up with the tile grid's width exactly. The readable
+// text itself stays narrow via .service-az-group__content below.
 .service-az-list {
-	max-width: var(--container-sm);
+	max-width: var(--container-lg);
 	margin: 0 auto var(--space-lg);
 	padding-inline: var(--space-sm);
 }
 
 .service-az-group {
-	margin-block-end: var(--space-md);
+	position: relative;
 	padding-block-end: var(--space-md);
+}
+
+.service-az-group__content {
+	max-width: var(--container-sm);
+	margin-inline: auto;
 	text-align: center;
 }
 
 // The dotted divider separates whole letter groups, not the items within
-// one — those are only spaced apart, no rule between them.
+// one — those are only spaced apart, no rule between them. It's a row of
+// distinct dots (not a `border-style: dotted` line, which renders too
+// tight/solid-looking), the full tile-grid width rather than the narrower
+// text column above it.
+.service-az-group:not(:last-child)::after {
+	content: "";
+	position: absolute;
+	inset-inline: 0;
+	inset-block-end: 0;
+	height: 2px;
+	background-image: radial-gradient(
+		circle,
+		color-mix(in srgb, var(--color-blue-900) 45%, transparent) 1px,
+		transparent 1.5px
+	);
+	background-repeat: repeat-x;
+	background-size: 8px 2px;
+}
+
 .service-az-group:not(:last-child) {
-	border-block-end: 1px dotted color-mix(in srgb, var(--color-blue-900) 35%, transparent);
+	margin-block-end: var(--space-md);
 }
 
 .service-az-group__letter {
 	margin-block-end: var(--space-sm);
 	font-size: clamp(1.75rem, 4vw, 2.5rem);
-	font-weight: 300;
+	font-weight: 200;
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
 }
