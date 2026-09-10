@@ -8,5 +8,6 @@ description: Bis zu 50 kW Ladeleistung an einer von vier Schnell-Ladestationen
   für Ihr Elektrofahrzeug.
 icon: /media/services/elade.svg
 tile: true
+order: 4
 tile_color: c2
 ---

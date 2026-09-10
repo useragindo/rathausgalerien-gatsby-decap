@@ -7,4 +7,5 @@ name: ATM
 description: Bei der Raiffeisen Landesbank.
 icon: /media/services/atm.svg
 tile: true
+order: 1
 ---

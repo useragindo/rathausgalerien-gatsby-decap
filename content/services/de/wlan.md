@@ -7,4 +7,5 @@ name: WLAN
 description: Kostenloses WLAN in der ganzen Mall, 3 Stunden gratis.
 icon: /media/services/wlan.svg
 tile: true
+order: 7
 ---

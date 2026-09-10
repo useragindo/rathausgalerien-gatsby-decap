@@ -362,6 +362,9 @@ export type NormalizedService = {
 	tileTextColor: ColorToken;
 	tileText?: string;
 	tileTextThin: boolean;
+	// Tile display order (ascending); A-Z list ignores this and stays
+	// alphabetical.
+	tileOrder: number;
 	frontmatter: ImportedFrontmatter;
 };
 

@@ -878,6 +878,10 @@ collections:
         field: locale
         pattern: "en"
     create: true
+    sortable_fields:
+      - order
+      - name
+      - locale
     editor:
         preview: false
     fields:
@@ -893,6 +897,7 @@ collections:
       - {label: "Type", name: "type", widget: "hidden", default: "service"}
       - {label: "UUID", name: "uuid", widget: "uuid"}
       - {label: "Name", name: "name", widget: "string"}
+      - {label: "Reihenfolge", name: "order", widget: "number", required: false, default: 999, value_type: "int", hint: "Bestimmt nur die Reihenfolge der Kacheln oben (aufsteigend). Die Liste 'Services von A bis Z' bleibt immer alphabetisch."}
       - label: "Beschreibung"
         name: "description"
         widget: "text"

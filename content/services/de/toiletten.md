@@ -9,6 +9,7 @@ description: Im 1. UG und im 6. OG, auch sonntags geöffnet. Barrierefreie
   Baby-Wickelraum im 1. UG.
 icon: /media/services/wc.svg
 tile: true
+order: 8
 tile_text_color: text
 tile_text: |-
   Barrierefreie WC-Anlagen 

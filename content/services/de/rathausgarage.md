@@ -9,4 +9,5 @@ description: "Zentral parken mit über 340 Parkplätzen, Einfahrtshöhe 2,20 m.
   Telefon: +43 676 848 802 266"
 icon: /media/services/garage.svg
 tile: true
+order: 5
 ---

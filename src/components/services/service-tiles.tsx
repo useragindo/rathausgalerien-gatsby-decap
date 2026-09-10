@@ -24,7 +24,10 @@ export const ServiceTiles: React.FC<ServiceTilesProps> = ({
 	const items = services
 		.filter((service) => service.language === language && service.tile)
 		.slice()
-		.sort((a, b) => a.name.localeCompare(b.name, language));
+		.sort(
+			(a, b) =>
+				a.tileOrder - b.tileOrder || a.name.localeCompare(b.name, language),
+		);
 
 	if (!items.length) {
 		return null;

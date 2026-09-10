@@ -664,6 +664,7 @@ export const normalizeService = (
 		tileTextColor: normalizeServiceTileTextColor(frontmatter.tile_text_color),
 		tileText: trim(frontmatter.tile_text),
 		tileTextThin: Boolean(frontmatter.tile_text_thin),
+		tileOrder: typeof frontmatter.order === "number" ? frontmatter.order : 999,
 		frontmatter,
 	};
 };

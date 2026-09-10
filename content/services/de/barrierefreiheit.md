@@ -7,6 +7,7 @@ name: Barrierefreiheit
 description: kjhkjhn
 icon: /media/services/barriere.svg
 tile: true
+order: 2
 tile_color: c1
 tile_text_color: weiss
 tile_text: |-

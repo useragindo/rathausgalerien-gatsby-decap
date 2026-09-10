@@ -7,4 +7,5 @@ name: Schließfächer
 description: Im 1. UG, direkt gegenüber den Liften.
 icon: /media/services/schliessfaeher.svg
 tile: true
+order: 6
 ---

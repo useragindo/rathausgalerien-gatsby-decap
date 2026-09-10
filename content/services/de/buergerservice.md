@@ -8,4 +8,5 @@ description: Informationsstelle des Stadtmagistrates/Rathauses der Stadt
   Innsbruck. Mo–Do 07:00–17:30 Uhr, Fr 07:00–12:00 Uhr.
 icon: /media/services/buerger-service.svg
 tile: true
+order: 3
 ---

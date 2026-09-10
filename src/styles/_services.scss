@@ -51,12 +51,20 @@
 	overflow-wrap: break-word;
 }
 
-// "Kacheltext dünn": same size/case as the normal label, just a lighter
-// weight — and always the standard text colour, ignoring the tile's own
-// (often white) text-colour setting so it stays readable on every tile.
+// "Kacheltext dünn": a longer, plain-language note (e.g. Toiletten's opening
+// hours) instead of the short bold all-caps label — smaller, regular-case,
+// left-aligned running text. Always the standard text colour, ignoring the
+// tile's own (often white) text-colour setting so it stays readable on
+// every tile background.
 .service-tile__label--thin {
+	max-width: 100%;
 	color: var(--color-text);
+	font-size: var(--font-size-xs);
 	font-weight: 500;
+	letter-spacing: normal;
+	line-height: 1.4;
+	text-transform: none;
+	text-align: left;
 }
 
 .service-az-list {
