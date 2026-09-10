@@ -13,7 +13,23 @@ intro: >-
   Interviews, Trends und Insights aus den RathausGalerien finden Sie laufend hier
 
   auf der News-Seite und auf Instagram unter @rathausgalerien.
-blocks: []
+blocks:
+  - layout: columns
+    text_color: ""
+    background_color: ""
+    reversed: false
+    text_lowercase: false
+    text_align: ""
+    date: ""
+    tiles:
+      - text_color: ""
+        background_color: ""
+        images:
+          - image: /media/pages/insta_sarah_mueller.jpg
+        category: aa167073-ba10-44d0-81d9-90c23be34d91
+      - text_color: weiss
+        background_color: c4
+        text: Follow us on Instagram
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_229_web.jpg
   title: NEUES AUS DEN GALERIEN
