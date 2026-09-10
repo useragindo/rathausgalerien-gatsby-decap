@@ -12,7 +12,7 @@ menu: main
 order: 400
 intro: ""
 teaser:
-  image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_04.jpg
+  image: /media/pages/rathausgalerien-innen.jpeg
   title: |-
     UNSERE
     SERVICES
