@@ -10,6 +10,11 @@
 	// 4 per row is the design ("4 nebeneinander"), even on mobile — only drop
 	// to 2 below the width where a 4th column would get too narrow to read.
 	grid-template-columns: repeat(2, minmax(0, 1fr));
+	// Don't stretch every tile in a row to match its tallest sibling (e.g. a
+	// tile with a long "Kacheltext dünn" note) — that pushed the shorter
+	// tiles' centered icon+label group down with it. Each tile keeps its own
+	// height, so icons line up across the whole grid, not just per row.
+	align-items: start;
 	gap: var(--space-xs);
 	margin: 0;
 	padding: 0;
@@ -25,6 +30,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	// Centered as a group, same as every tile. Icons still land on one shared
+	// line because .service-tile__label reserves 2 lines' height even for a
+	// 1-line label (see below) — without that, a short label like "ATM"
+	// would let its icon sink lower than a 2-line label's icon.
 	justify-content: center;
 	gap: var(--space-xs);
 	// Figma's 98px icon no longer fits a square tile alongside two lines of
@@ -43,6 +52,12 @@
 }
 
 .service-tile__label {
+	// Reserves space for 2 lines even when the text is short (e.g. "ATM"),
+	// so the icon above sits at the same height on every tile regardless of
+	// whether its own label wraps to 1 or 2 lines.
+	min-height: 2.4em;
+	display: flex;
+	align-items: center;
 	font-size: clamp(1rem, 1.6vw + 0.6rem, 1.375rem);
 	font-weight: 700;
 	letter-spacing: 0.02em;
