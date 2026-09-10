@@ -77,8 +77,8 @@ Nach dem Login siehst du die Startansicht des CMS:
 
 - **Oben links:** Reiter **Inhalt** (alle Inhaltstypen) und **Medien** (globale Bilder-Übersicht, siehe Kapitel 5).
 - **Links (Seitenleiste):** Alle **Inhaltstypen** (in Decap "Collections" genannt) dieses Projekts:
-  - Pages, Funnels, Categories, Services, FAQs, Locations, Jobs, News, Gewinnspiele
-  - darunter, optisch abgetrennt: Blocks, Farbschemas, Einstellungen (das sind eher technische/globale Bausteine, siehe 4.10–4.12)
+  - Pages, Funnels, Categories, Services, FAQs, Locations, Jobs, News
+  - darunter, optisch abgetrennt: Blocks, Farbschemas, **Gewinnspiel**, Einstellungen (das sind eher technische/globale Bausteine bzw. Aktionsseiten, siehe 4.9–4.12)
 - **Mitte:** Liste der vorhandenen Einträge des gewählten Inhaltstyps. Über **Sortieren nach** / **Filtern nach** lässt sich die Liste ordnen; über die Sprachfilter oben (bei mehrsprachigen Typen) nach Deutsch/Englisch filtern.
 - **Neue(r/s) …-Button:** oben rechts, legt einen neuen Eintrag des gewählten Typs an.
 
@@ -254,28 +254,29 @@ News-Beiträge/Meldungen.
 
 ### 4.9 Gewinnspiele
 
-Aktionsseiten mit optionalem Teilnahme-Formular.
+Aktionsseiten mit optionalem Teilnahme-Formular. In der Seitenleiste heißt dieser Inhaltstyp **Gewinnspiel** (Einzahl).
 
 ![Bearbeitungsformular eines Gewinnspiels](manual/images/lottery-formular.png)
 
 | Feld | Pflicht | Hinweis |
 |---|---|---|
+| Key / Slug | ja | Nur Kleinbuchstaben, Zahlen, `-`, z. B. `gewinnspiel-2026-03`. Bestimmt die URL, außer eine SEO-URL ist gesetzt. |
 | Heading | ja | Titel |
 | Intro | nein | Einleitungstext |
-| Laufzeit / Datum | nein | Anzeige-Text unter dem Titel, z. B. Aktionszeitraum |
+| Datum | nein | Optional, z. B. Start/Ende der Aktion; erscheint über dem Titel |
 | Content | nein | Fließtext (Markdown) |
-| Gewinnspiel-Formular | nein | Siehe unten — **ohne Formularnamen erscheint kein Teilnahmeformular auf der Seite** |
-| Images | nein | 1. Bild = Hero oben, 2. Bild = Foto neben dem Text |
+| Images | nein | 1. Bild = großes Hero-Bild oben |
 | Textfarbe / Hintergrundfarbe | nein | Aus dem aktiven Farbschema |
+| Formular | nein | Siehe unten — **ohne Formularnamen erscheint kein Teilnahmeformular auf der Seite** |
 | SEO | teils | Wie bei Pages |
 
-**Gewinnspiel-Formular im Detail:**
+**Formular im Detail:**
 
-![Formular-Konfiguration eines Gewinnspiels: Texte, Zustände und Fehlermeldungen](manual/images/lottery-formular-details.png)
+![Formular-Konfiguration eines Gewinnspiels: Zustände, Fehlermeldungen und Feldliste](manual/images/lottery-formular-details.png)
 
-- **Formularname (Netlify):** eindeutiger technischer Name pro Kampagne (z. B. `lottery-march-2026`). Einsendungen erscheinen unter diesem Namen im Netlify-Dashboard — frag deinen Ansprechpartner, falls du dort keinen Zugriff hast.
-- **Texte & Zustände:** Button-Beschriftungen für die Zustände "Idle", "Sending", "Retrying" sowie Titel/Text für "Success" (Erfolg) und "Failure" (Fehler), inkl. der Fehlermeldung für fehlende Pflichtfelder.
-- **Felder:** Liste der Formularfelder in Anzeigereihenfolge. Pro Feld: technischer Feldname (wird mit der Anmeldung mitgesendet), Label (das sichtbare Beschriftungs­feld — unterstützt Markdown-Links, z. B. für einen Link zu den Teilnahmebedingungen), Feldtyp (Text, E-Mail, Zahl, Datum, Auswahl, Checkbox, mehrzeiliger Text), ob Pflichtfeld, und bei "Auswahl" die auswählbaren Optionen.
+- **Formularname (Netlify):** eindeutiger technischer Name pro Kampagne (z. B. `lottery-2026-03`). **Bei jeder neuen Kampagne unbedingt ändern** — Einsendungen erscheinen unter diesem Namen im Netlify-Dashboard; ein wiederverwendeter Name vermischt alte und neue Anmeldungen. Frag deinen Ansprechpartner, falls du im Netlify-Dashboard keinen Zugriff hast.
+- **Zustände:** Button-Beschriftungen für "Ausgangszustand", "Wird gesendet" und "Erneut versuchen" sowie Titel/Text für "Erfolg" und "Fehler" (inkl. der Fehlermeldung für fehlende Pflichtfelder). Alle Texte haben sinnvolle Standardwerte und müssen nicht zwingend angepasst werden.
+- **Felder:** Liste der Formularfelder in Anzeigereihenfolge. Pro Feld: technischer Name (nur `a-z`, `0-9`, `-`, `_` — wird 1:1 an Netlify Forms übergeben), Label (die sichtbare Beschriftung), Typ (Text, E-Mail, Zahl, Datum, Auswahl, Checkbox, mehrzeiliger Text), ob Pflichtfeld, und bei Typ "Auswahl" die auswählbaren Optionen (Label + Wert je Option).
 
 ### 4.10 Blocks
 
