@@ -34,7 +34,7 @@
 	width: min(100%, 1440px);
 	height: calc(var(--header-height) * var(--header-scale, 1));
 	margin-inline: auto;
-	padding-inline: clamp(1rem, 5vw, 115px);
+	padding-inline: var(--page-gutter);
 	transition: height var(--transition-base);
 }
 
@@ -44,7 +44,7 @@
 	/* mobile: vertically centered */
 	top: 50%;
 	transform: translateY(-50%);
-	inset-inline-start: clamp(1rem, 5vw, 115px);
+	inset-inline-start: var(--page-gutter);
 	display: inline-flex;
 	align-items: center;
 	color: var(--color-dunkelblau);
@@ -70,7 +70,7 @@
 .site-header__language {
 	position: absolute;
 	bottom: clamp(0.5rem, 2vw, 0.75rem);
-	inset-inline-start: clamp(1rem, 5vw, 115px);
+	inset-inline-start: var(--page-gutter);
 }
 
 /* Inline usage next to the header icons (see .site-header__actions) */
@@ -111,7 +111,7 @@
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	inset-inline-end: clamp(1rem, 5vw, 115px);
+	inset-inline-end: var(--page-gutter);
 	display: flex;
 	align-items: center;
 	gap: calc(var(--header-actions-gap) * var(--header-icon-scale, 1));
@@ -222,7 +222,7 @@
 	--header-menu-width: clamp(1.8rem, 8vw, 2.4rem);
 	position: absolute;
 	inset-block-start: clamp(0.75rem, 3vw, 1.875rem);
-	inset-inline-end: clamp(1rem, 5vw, 115px);
+	inset-inline-end: var(--page-gutter);
 	display: flex;
 	align-items: center;
 	gap: clamp(0.75rem, 2.5vw, 2.5rem);
@@ -263,7 +263,7 @@
 	align-items: start;
 	width: min(100%, 1440px);
 	margin-inline: auto;
-	padding: clamp(4rem, 12vw, 7.5rem) clamp(1rem, 5vw, 115px) clamp(2rem, 5vw, 3rem);
+	padding: clamp(4rem, 12vw, 7.5rem) var(--page-gutter) clamp(2rem, 5vw, 3rem);
 	gap: clamp(2rem, 5vw, 4rem);
 }
 
@@ -366,7 +366,7 @@
 	width: min(100%, 1440px);
 	margin-inline: auto;
 	margin-block-start: auto; /* push to bottom */
-	padding: clamp(1rem, 3vw, 1.5rem) clamp(1rem, 5vw, 115px) clamp(1.5rem, 4vw, 2.5rem);
+	padding: clamp(1rem, 3vw, 1.5rem) var(--page-gutter) clamp(1.5rem, 4vw, 2.5rem);
 	border-top: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
 }
 
@@ -436,15 +436,15 @@
 	}
 
 	.site-header__inner {
-		padding-inline: clamp(2rem, 8vw, 80px);
+		padding-inline: var(--page-gutter);
 	}
 
 	.site-header__brand {
-		inset-inline-start: clamp(2rem, 8vw, 80px);
+		inset-inline-start: var(--page-gutter);
 	}
 
 	.site-header__actions {
-		inset-inline-end: clamp(2rem, 8vw, 80px);
+		inset-inline-end: var(--page-gutter);
 	}
 
 	.site-header__icon-link svg {
@@ -459,18 +459,18 @@
 		--header-icon-size: clamp(2rem, 2.5vw, 2.25rem);
 		--header-menu-width: clamp(3.5rem, 5vw, 4.5rem);
 		inset-block-start: clamp(2rem, 3.5vw, 2.75rem);
-		inset-inline-end: clamp(2rem, 8vw, 80px);
+		inset-inline-end: var(--page-gutter);
 		gap: clamp(2rem, 3vw, 2.5rem);
 	}
 
 	.site-header__overlay-body {
 		grid-template-columns: 1fr auto;
 		align-items: center;
-		padding: clamp(4rem, 10vw, 6.5rem) clamp(2rem, 8vw, 80px) clamp(2rem, 5vw, 3rem);
+		padding: clamp(4rem, 10vw, 6.5rem) var(--page-gutter) clamp(2rem, 5vw, 3rem);
 	}
 
 	.site-header__overlay-footer {
-		padding-inline: clamp(2rem, 8vw, 80px);
+		padding-inline: var(--page-gutter);
 	}
 
 	.site-header__menu-teasers {
@@ -492,21 +492,21 @@
 		--header-icon-gap: 1.5rem;          /* 24px Figma: Abstand zwischen den Icons */
 	}
 
-	/* 115px side padding on desktop */
+	/* Same page gutter as the content grid below, so logo/menu align with it */
 	.site-header__inner {
-		padding-inline: 115px;
+		padding-inline: var(--page-gutter);
 	}
 
 	/* Logo: vertically centred in 280px header */
 	.site-header__brand {
 		top: 50%;
 		transform: translateY(-50%);
-		inset-inline-start: 115px;
+		inset-inline-start: var(--page-gutter);
 	}
 
 	/* Actions: vertically centred, same anchor as logo */
 	.site-header__actions {
-		inset-inline-end: 115px;
+		inset-inline-end: var(--page-gutter);
 	}
 
 	/* Language in overlay-footer stays in flow */
@@ -529,11 +529,11 @@
 	.site-header__overlay-body {
 		grid-template-columns: 1fr auto;
 		align-items: center;
-		padding: clamp(4rem, 10vw, 6.5rem) 115px clamp(2rem, 5vw, 3rem);
+		padding: clamp(4rem, 10vw, 6.5rem) var(--page-gutter) clamp(2rem, 5vw, 3rem);
 	}
 
 	.site-header__overlay-footer {
-		padding-inline: 115px;
+		padding-inline: var(--page-gutter);
 	}
 
 	.site-header__menu-teasers {
@@ -546,7 +546,7 @@
 		--header-icon-size: 2.5rem;
 		--header-menu-width: 6.25rem;
 		inset-block-start: 4.125rem;   /* same as header actions top */
-		inset-inline-end: 115px;
+		inset-inline-end: var(--page-gutter);
 		gap: 3.875rem;
 	}
 

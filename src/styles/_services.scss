@@ -1,7 +1,9 @@
+// No padding-inline of its own — site-main already provides the page
+// gutter, so this lines up exactly with the header (logo/burger) and every
+// other listing-section width, instead of sitting further inset.
 .service-tiles {
 	max-width: var(--container-lg);
 	margin: 0 auto var(--space-lg);
-	padding-inline: var(--space-sm);
 }
 
 .service-tiles__grid {
@@ -82,13 +84,13 @@
 	text-align: left;
 }
 
-// Same box model as .service-tiles (max-width + padding-inline), so the
-// dividers below line up with the tile grid's width exactly. The readable
-// text itself stays narrow via .service-az-group__content below.
+// Same box model as .service-tiles (max-width, no padding-inline of its
+// own — site-main already provides the page gutter), so the dividers below
+// line up with the tile grid's width exactly. The readable text itself
+// stays narrow via .service-az-group__content below.
 .service-az-list {
 	max-width: var(--container-lg);
 	margin: 0 auto var(--space-lg);
-	padding-inline: var(--space-sm);
 }
 
 .service-az-group {
