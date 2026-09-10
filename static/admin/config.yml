@@ -948,6 +948,19 @@ collections:
           - {label: "Schwarz", value: "schwarz", color: "#111111"}
           - {label: "Weiß", value: "weiss", color: "#ffffff"}
 
+      - label: "Kacheltext"
+        name: "tile_text"
+        widget: "text"
+        required: false
+        hint: "Überschreibt 'Name' nur auf der Kachel (in der Liste 'Services von A bis Z' bleibt Name stehen). Leer lassen, um Name zu übernehmen. Für einen manuellen Zeilenumbruch Enter drücken."
+
+      - label: "Kacheltext dünn"
+        name: "tile_text_thin"
+        widget: "boolean"
+        default: false
+        required: false
+        hint: "Zeigt den Kacheltext klein und schmal statt groß und fett (z. B. für einen längeren Hinweistext auf der Kachel)."
+
   - name: "faqs"
     label: "FAQs"
     label_singular: "FAQ"

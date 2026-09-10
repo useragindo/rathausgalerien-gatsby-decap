@@ -27,7 +27,9 @@
 	align-items: center;
 	justify-content: center;
 	gap: var(--space-xs);
-	aspect-ratio: 1;
+	// Figma's 98px icon no longer fits a square tile alongside two lines of
+	// label text, so the tile is now slightly taller than it is wide.
+	aspect-ratio: 1 / 1.15;
 	padding: var(--space-sm);
 	color: var(--color-blue-900);
 	background: var(--color-blue-300);
@@ -35,17 +37,26 @@
 }
 
 .service-tile__icon {
-	width: clamp(1.75rem, 4vw, 3rem);
-	height: clamp(1.75rem, 4vw, 3rem);
+	width: clamp(1.75rem, 6vw, 6.125rem); /* 98px in Figma */
+	height: clamp(1.75rem, 6vw, 6.125rem);
 	object-fit: contain;
 }
 
 .service-tile__label {
-	font-size: var(--font-size-xs);
+	font-size: clamp(1rem, 1.6vw + 0.6rem, 1.375rem);
 	font-weight: 700;
-	letter-spacing: 0.06em;
+	letter-spacing: 0.02em;
 	line-height: 1.2;
 	text-transform: uppercase;
+	overflow-wrap: break-word;
+}
+
+// "Kacheltext dünn": same size/case as the normal label, just a lighter
+// weight — and always the standard text colour, ignoring the tile's own
+// (often white) text-colour setting so it stays readable on every tile.
+.service-tile__label--thin {
+	color: var(--color-text);
+	font-weight: 500;
 }
 
 .service-az-list {

@@ -123,6 +123,10 @@ export type ImportedFrontmatter = {
 	tile?: boolean | null;
 	tile_color?: string | null;
 	tile_text_color?: string | null;
+	// Overrides `name` on the tile only (A-Z list below always shows `name`).
+	// Lets an editor place manual line breaks with Enter.
+	tile_text?: string | null;
+	tile_text_thin?: boolean | null;
 	// Predefined text/background colour for listing cards (news, jobs,
 	// locations) and category tiles. See color-tokens.ts.
 	text_color?: string | null;
@@ -356,6 +360,8 @@ export type NormalizedService = {
 	tile: boolean;
 	tileColor: ColorToken;
 	tileTextColor: ColorToken;
+	tileText?: string;
+	tileTextThin: boolean;
 	frontmatter: ImportedFrontmatter;
 };
 

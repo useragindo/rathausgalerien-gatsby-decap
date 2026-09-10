@@ -5,6 +5,7 @@ import type {
 	SiteTheme,
 } from "../../lib/content/types";
 import { resolveColorPairStyle } from "../../lib/content/color-tokens";
+import { renderMultiline } from "../../lib/content/markdown";
 
 type ServiceTilesProps = {
 	services: NormalizedService[];
@@ -53,7 +54,15 @@ export const ServiceTiles: React.FC<ServiceTilesProps> = ({
 								loading="lazy"
 							/>
 						) : null}
-						<span className="service-tile__label">{service.name}</span>
+						<span
+							className={
+								service.tileTextThin
+									? "service-tile__label service-tile__label--thin"
+									: "service-tile__label"
+							}
+						>
+							{renderMultiline(service.tileText || service.name)}
+						</span>
 					</li>
 				))}
 			</ul>

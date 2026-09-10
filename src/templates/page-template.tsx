@@ -701,13 +701,16 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 	// otherwise.
 	const teaserTitle = trim(page.frontmatter.teaser?.title);
 	const HeadingTag = teaserTitle ? "h2" : "h1";
+	const hasHeading = Boolean(trim(page.heading));
 	// Editors commonly leave "heading" equal to the teaser title (it used to be
 	// the only H1). Repeating it as a visible H2 right below the teaser reads
 	// as a duplicated title, so skip it when the two are identical; the intro
 	// text below still renders if the page has one.
 	const headingDuplicatesTeaser =
-		showTeaser && trim(page.heading) === teaserTitle;
-	const showPageHero = !headingDuplicatesTeaser || Boolean(page.intro);
+		showTeaser && hasHeading && trim(page.heading) === teaserTitle;
+	const showHeadingTag = hasHeading && !headingDuplicatesTeaser;
+	const hasIntro = Boolean(page.intro);
+	const showPageHero = showHeadingTag || hasIntro;
 
 	return (
 		<SiteLayout
@@ -728,7 +731,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			<article className={pageClassName}>
 				{showPageHero ? (
 					<header className="page-hero">
-						{!headingDuplicatesTeaser ? (
+						{showHeadingTag ? (
 							<HeadingTag className="page-hero__title">
 								{renderMultiline(page.heading)}
 							</HeadingTag>
@@ -802,9 +805,11 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 						className="listing-section listing-section--services"
 						aria-labelledby="services-az-title"
 					>
-						{page.azHeading ? (
+						{page.azHeading || page.azIntro ? (
 							<header className="listing-section__header">
-								<h2 id="services-az-title">{renderMultiline(page.azHeading)}</h2>
+								{page.azHeading ? (
+									<h2 id="services-az-title">{renderMultiline(page.azHeading)}</h2>
+								) : null}
 								{page.azIntro ? (
 									<p className="listing-section__intro">
 										{renderMultiline(page.azIntro)}

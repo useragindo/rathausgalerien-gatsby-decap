@@ -184,7 +184,11 @@ export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
   const language = getLanguage(frontmatter);
   const key = trim(frontmatter.key) ?? getFileSlug(node) ?? node.id;
   const template = getPageTemplate(frontmatter, key);
-  const heading = deriveDisplay(frontmatter.heading, key);
+  // `heading` stays empty when the editor leaves it blank — the template
+  // decides whether to show it. `title` (SEO/tab title, internal identity)
+  // still falls back to the page key so those never end up blank.
+  const heading = trim(frontmatter.heading) ?? "";
+  const title = deriveDisplay(frontmatter.heading, key);
   const intro = trim(frontmatter.intro);
 
   // SEO-description: reines SEO-Feld. Nur wenn seo.description leer ist,
@@ -203,7 +207,7 @@ export const normalizePage = (node: ImportedMdxNode): NormalizedPage | null => {
     i18nKey: key,
     key,
     template,
-    title: heading,
+    title,
     description: trim(description),
     heading,
     intro,
@@ -658,6 +662,8 @@ export const normalizeService = (
 		tile: Boolean(frontmatter.tile),
 		tileColor: normalizeServiceTileColor(frontmatter.tile_color),
 		tileTextColor: normalizeServiceTileTextColor(frontmatter.tile_text_color),
+		tileText: trim(frontmatter.tile_text),
+		tileTextThin: Boolean(frontmatter.tile_text_thin),
 		frontmatter,
 	};
 };
