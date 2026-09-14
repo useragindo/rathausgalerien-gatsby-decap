@@ -5,8 +5,10 @@ key: gutscheine
 template: standard
 menu: main
 order: 700
-heading: Gutscheine
-intro: Gutscheine, Vouchers, Geschenke
+heading: GALERIEN GUTSCHEINE
+intro: |-
+  Das perfekte Geschenk für Unentschlossene.
+  Galerien Gutscheine sind im Betty Barclay Store erhältlich.
 blocks:
   - layout: grid-4
     reversed: false
