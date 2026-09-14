@@ -28,6 +28,17 @@ blocks:
         images:
           - image: /media/pages/rathausgalerien_so25_danielzangerl-_021_web.jpg
           - image: /media/pages/rathausgalerien_so25_danielzangerl-_214_web.jpg
+  - reversed: false
+    layout: grid-4
+    header: GALERIEN GESCHENK-IDEEN
+    date: ""
+    text_color: ""
+    background_color: ""
+    text_align: ""
+    teaserText: |-
+      Stöbern Sie durch die Galerien, lassen Sie sich inspirieren und finden
+      Sie das passende Geschenk für jeden Anlass!
+    text_lowercase: false
 teaser:
   title: |-
     GESCHENK
