@@ -4,6 +4,7 @@ type: page
 key: gutscheine
 template: standard
 menu: main
+menu_label: GUTSCHEINE
 order: 700
 heading: GALERIEN GUTSCHEINE
 intro: |-
