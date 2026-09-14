@@ -173,7 +173,6 @@
 	min-height: clamp(10rem, 36vw, 18rem);
 	padding: var(--space-md);
 	background:
-		radial-gradient(circle at 28% 24%, color-mix(in srgb, var(--color-white) 42%, transparent) 0 18%, transparent 19%),
 		color-mix(in srgb, var(--listing-card-bg) 62%, var(--color-surface));
 	color: var(--color-blue-900);
 	text-align: center;
@@ -224,6 +223,7 @@
 	color: var(--color-blue-900);
 	background: var(--listing-card-bg);
 	transition: background var(--transition-base);
+	text-align: center;
 }
 
 .listing-card__link:hover .listing-card__body,
