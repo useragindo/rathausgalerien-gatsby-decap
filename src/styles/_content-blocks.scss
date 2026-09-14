@@ -216,6 +216,14 @@
 	aspect-ratio: 1;
 }
 
+/* Zahl größer & fett, nur im 4er-Grid (gleiche Kacheln) — Basis-Kachel-Titel
+   ist clamp(1.35rem, 2.78vw, 2.5rem)/thin; hier auf denselben Kurvenverlauf
+   hochskaliert (Faktor 1.4, sodass der Max-Wert 3.5rem statt 2.5rem ist). */
+.content-block--grid-4-equal .content-block__tile--content .content-block__text h2 {
+	font-size: clamp(1.89rem, 3.89vw, 3.5rem);
+	font-weight: 500;
+}
+
 @media (min-width: 44rem) {
 	.content-block--grid-4-equal .content-block__body {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -233,7 +241,7 @@
 	      Phantom-Reserve) — dadurch bleibt der gesamte Platz bis zum
 	      Kachel-Ende für das Label nutzbar, egal wie viele Zeilen es hat. */
 	.content-block--grid-4-equal .content-block__tile--content {
-		--stat-heading-line-height: calc(clamp(1.35rem, 2.78vw, 2.5rem) * 1.1);
+		--stat-heading-line-height: calc(clamp(1.89rem, 3.89vw, 3.5rem) * 0.75);
 	}
 
 	.content-block--grid-4-equal .content-block__tile--content .content-block__text {
