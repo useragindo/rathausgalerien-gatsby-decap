@@ -15,12 +15,19 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ─── Basis-Block ──────────────────────────────────────────────────────── */
+/* Figma: ~58px Abstand vor/nach der gepunkteten Trennlinie — gilt global
+   (nicht nur auf der Startseite), damit die Blockabstände auf allen Seiten
+   gleich eng sind. */
 .content-block {
 	position: relative;
 	isolation: isolate;
-	margin-block: var(--space-xl);
-	padding-block: var(--space-xl);
-	border-block-start: 1px dashed var(--color-border);
+	margin-block: clamp(1.25rem, 4vw, 3.625rem);
+	padding-block: clamp(1.35rem, 4vw, 3.625rem) 0;
+	border-block-start: 2px dotted color-mix(in srgb, var(--color-blue-900) 24%, transparent);
+}
+
+.content-block:first-child {
+	margin-block-start: 0;
 }
 
 /* ─── Überschrift oberhalb des Grids ──────────────────────────────────── */
@@ -452,17 +459,6 @@
    Index-Seite: spezifisches Figma-Styling
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* Figma: ~58px Abstand vor/nach der gepunkteten Trennlinie */
-.page--index .content-block {
-	margin-block: clamp(1.25rem, 4vw, 3.625rem);
-	padding-block: clamp(1.35rem, 4vw, 3.625rem) 0;
-	border-block-start: 2px dotted color-mix(in srgb, var(--color-blue-900) 24%, transparent);
-}
-
-.page--index .content-block:first-child {
-	margin-block-start: 0;
-}
-
 /* Figma: 52px / LH 52px */
 .page--index .content-block__section-title {
 	margin-block-end: clamp(0.75rem, 2vw, 1.5rem);
@@ -653,17 +649,13 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 @media (min-width: 64rem) {
+	/* Figma: 58px vor/nach Trennlinie bei 1440px — gilt global */
 	.content-block {
-		margin-block: var(--space-2xl);
-	}
-
-	/* Figma: 58px vor/nach Trennlinie bei 1440px */
-	.page--index .content-block {
 		margin-block: clamp(2rem, 4.03vw, 3.625rem);
 		padding-block-start: clamp(2rem, 4.03vw, 3.625rem);
 	}
 
-	.page--index .content-block:first-child {
+	.content-block:first-child {
 		padding-block-start: clamp(2rem, 4.03vw, 3.625rem);
 	}
 
