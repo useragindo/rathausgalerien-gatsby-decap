@@ -42,6 +42,7 @@ blocks:
           Appelt Juwelen
         images:
           - image: /media/pages/uhr_freigestellt.png
+          - image: /media/pages/schoki_laederach.png
     layout: grid-4-equal
     header: GALERIEN GESCHENK-IDEEN
     date: ""
