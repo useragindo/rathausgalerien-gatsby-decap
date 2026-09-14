@@ -10,7 +10,7 @@ intro: |-
   Das perfekte Geschenk für Unentschlossene.
   Galerien Gutscheine sind im Betty Barclay Store erhältlich.
 blocks:
-  - layout: grid-4
+  - layout: columns
     reversed: false
     date: ""
     header: ""
