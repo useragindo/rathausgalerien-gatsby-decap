@@ -34,6 +34,7 @@ type ContentBlockRendererProps = {
 
 type ImportedBlockLayout =
 	| "grid-4"
+	| "grid-4-equal"
 	| "columns"
 	| "centered"
 	| "image-left"
@@ -51,6 +52,7 @@ const isImportedBlockLayout = (value?: string | null): value is ImportedBlockLay
 		value &&
 			[
 				"grid-4",
+				"grid-4-equal",
 				"columns",
 				"centered",
 				"image-left",
@@ -440,6 +442,9 @@ const TileBox: React.FC<{
 		variant === "content"
 			? resolveColorPairStyle(tile.text_color, tile.background_color, theme)
 			: undefined;
+	// No explicit text_color: headings default to white (Figma), body text stays dark.
+	// An explicit text_color overrides both via CSS inheritance from the inline `color` above.
+	const hasTextColor = Boolean(style?.color);
 	const { heroIcon, listIcons } =
 		variant === "content" ? resolveIconDisplay(tile.icons) : { heroIcon: undefined, listIcons: [] };
 
@@ -467,11 +472,20 @@ const TileBox: React.FC<{
 		.join(" ");
 
 	return link ? (
-		<a href={link} className={fullClassName} style={style}>
+		<a
+			href={link}
+			className={fullClassName}
+			style={style}
+			data-has-text-color={hasTextColor || undefined}
+		>
 			{inner}
 		</a>
 	) : (
-		<div className={fullClassName} style={style}>
+		<div
+			className={fullClassName}
+			style={style}
+			data-has-text-color={hasTextColor || undefined}
+		>
 			{inner}
 		</div>
 	);
@@ -578,6 +592,8 @@ const ImportedBlock: React.FC<{
 		block.background_color,
 		theme,
 	);
+	// No explicit text_color: headings default to white (Figma), body text stays dark.
+	const hasBlockTextColor = Boolean(contentTileStyle?.color);
 
 	const contentTile = (
 		<div
@@ -589,6 +605,7 @@ const ImportedBlock: React.FC<{
 				.filter(Boolean)
 				.join(" ")}
 			style={contentTileStyle}
+			data-has-text-color={hasBlockTextColor || undefined}
 		>
 			{heroIcon && text(heroIcon.icon) ? (
 				<img className="content-block__hero-icon" src={text(heroIcon.icon)} alt="" loading="lazy" />

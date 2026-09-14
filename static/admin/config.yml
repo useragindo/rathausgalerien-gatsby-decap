@@ -138,6 +138,7 @@ collections:
             default: "grid-4"
             options:
               - {label: "4er Grid", value: "grid-4"}
+              - {label: "4er Grid (gleiche Kacheln)", value: "grid-4-equal"}
               - {label: "Text + Bild (2 Spalten)", value: "columns"}
               - {label: "Box zentriert", value: "centered"}
           - label: "Textfarbe"
@@ -510,6 +511,7 @@ collections:
             default: "grid-4"
             options:
               - {label: "4er Grid", value: "grid-4"}
+              - {label: "4er Grid (gleiche Kacheln)", value: "grid-4-equal"}
               - {label: "Text + Bild (2 Spalten)", value: "columns"}
               - {label: "Box zentriert", value: "centered"}
           - label: "Textfarbe"
