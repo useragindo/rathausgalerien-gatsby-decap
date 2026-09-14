@@ -1,6 +1,6 @@
 # CMS-Handbuch für Redakteure
 
-Ein Leitfaden für die Pflege der Website-Inhalte der RathausGalerien im Content-Management-System (CMS).
+Ein Leitfaden für die Pflege der Website-Inhalte der RathausGalerien im Content-Management-System (CMS) Netlify.
 
 ## Inhaltsverzeichnis
 
@@ -31,21 +31,21 @@ Ein Leitfaden für die Pflege der Website-Inhalte der RathausGalerien im Content
 
 ## 1. Einleitung
 
-Das CMS (Content-Management-System, sprich: "Inhalts-Verwaltungs-System") ist die Oberfläche, über die du Texte, Bilder und ganze Seiten der Website pflegst — **ohne Programmierkenntnisse**. Du meldest dich im Browser an, wählst links den gewünschten Inhaltstyp aus, bearbeitest ein Formular und klickst auf Speichern. Der Rest (dass daraus wieder eine fertige Webseite wird) übernimmt das System automatisch im Hintergrund.
+Das CMS (Content-Management-System, sprich: "Inhalts-Verwaltungs-System") ist die Oberfläche, über die du Texte, Bilder und ganze Seiten der Website pflegst — **ohne Programmierkenntnisse**. Du meldest dich im Browser an, wählst links den gewünschten Inhaltstyp aus, bearbeitest ein Formular und klickst auf Speichern. Den Rest erledigt das System automatisch im Hintergrund.
 
 Dieses Handbuch beschreibt **nur das, was in diesem Projekt tatsächlich eingerichtet ist**. Es gibt keine Vorschau-Funktion im CMS und keinen Entwurfs-Modus: Was du speicherst, geht direkt in die Warteschlange für die nächste Veröffentlichung (siehe Kapitel 6 und 7).
+
+Oben links gibt es einen Link **Live ansehen** — dieser führt aus dem CMS heraus auf die Startseite der veröffentlichten Website, nicht auf eine Vorschau des gerade bearbeiteten Eintrags.
 
 ---
 
 ## 2. Login: Zugang zum CMS
 
-Das CMS erreichst du über `https://<eure-domain>/admin/` (die Adresse trägt dir dein Ansprechpartner ein, siehe Kapitel 10).
+Das CMS erreichst du über `https://www.rathausgalerien.at/admin/`.
 
 Die Anmeldung läuft über **Netlify Identity** — ein Login-Fenster mit E-Mail-Adresse und Passwort, das sich beim Aufruf von `/admin/` automatisch öffnet.
 
-[SCREENSHOT: Netlify-Identity-Login-Maske mit Feldern für E-Mail und Passwort]
-
-> ⚠️ **Wichtig:** Es gibt keine öffentliche Registrierung. Neue Redakteure müssen von einem bestehenden Administrator per E-Mail eingeladen werden. Wende dich dazu an deinen Ansprechpartner (Kapitel 10).
+> ⚠️ **Wichtig:** Es gibt keine öffentliche Registrierung. Neue Redakteure müssen von einem bestehenden Administrator per E-Mail eingeladen werden.
 
 **So meldest du dich an:**
 
@@ -110,7 +110,7 @@ Für alle Typen gilt außerdem das gleiche Grundmuster:
 2. Oben auf **Lösche Beitrag** klicken.
 3. Löschen bestätigen.
 
-> ⚠️ Löschen kann nicht über das CMS rückgängig gemacht werden. Bei Unsicherheit lieber den Ansprechpartner (Kapitel 10) fragen, bevor du einen Eintrag löschst.
+> ⚠️ Löschen kann NICHT über das CMS rückgängig gemacht werden.
 
 Die folgenden Unterkapitel beschreiben nur, was pro Typ **abweicht** oder **zusätzlich** zu beachten ist, sowie die Feldreferenz.
 
@@ -140,7 +140,7 @@ Alle "normalen" Unterseiten der Website: Startseite, Übersichtsseiten (Shops, G
 | Message | nein | Nur Template "Jobs", Text bei keinen offenen Stellen |
 | SEO → Title/Description/URL/Image/… | teils | Siehe Kapitel 5 für das Bild-Feld |
 
-**Blocks (nur Startseite):** Jeder Block hat einen Header, Anrisstext, ein Layout ("4er Grid", "Text + Bild", "Box zentriert"), Textfarbe/Hintergrundfarbe (aus dem aktiven Farbschema, Kapitel 4.11), sowie je nach Layout Bilder oder bis zu 4 Kacheln (Tiles) mit Text/Bildern/Icons/Links. Eine Kachel bekommt entweder Text **oder** Bilder — nicht beides gemischt erwarten.
+**Blocks (nur Startseite):** Jeder Block hat einen Header, Anrisstext, ein Layout ("4er Grid", "Text + Bild" oder "Box zentriert"), Textfarbe/Hintergrundfarbe (aus dem aktiven Farbschema, Kapitel 4.11), sowie je nach Layout Bilder oder bis zu 4 Kacheln (Tiles) mit Text/Bildern/Icons/Links. Eine Kachel bekommt entweder Text **oder** Bilder.
 
 ### 4.2 Funnels
 
@@ -274,7 +274,7 @@ Aktionsseiten mit optionalem Teilnahme-Formular. In der Seitenleiste heißt dies
 
 ![Formular-Konfiguration eines Gewinnspiels: Zustände, Fehlermeldungen und Feldliste](manual/images/lottery-formular-details.png)
 
-- **Formularname (Netlify):** eindeutiger technischer Name pro Kampagne (z. B. `lottery-2026-03`). **Bei jeder neuen Kampagne unbedingt ändern** — Einsendungen erscheinen unter diesem Namen im Netlify-Dashboard; ein wiederverwendeter Name vermischt alte und neue Anmeldungen. Frag deinen Ansprechpartner, falls du im Netlify-Dashboard keinen Zugriff hast.
+- **Formularname (Netlify):** eindeutiger technischer Name pro Kampagne (z. B. `Lotterie-2026`). **Bei jeder neuen Kampagne unbedingt ändern** — Einsendungen erscheinen unter diesem Namen im Netlify-Dashboard; ein wiederverwendeter Name vermischt alte und neue Anmeldungen. Frag deinen Ansprechpartner, falls du im Netlify-Dashboard keinen Zugriff hast.
 - **Zustände:** Button-Beschriftungen für "Ausgangszustand", "Wird gesendet" und "Erneut versuchen" sowie Titel/Text für "Erfolg" und "Fehler" (inkl. der Fehlermeldung für fehlende Pflichtfelder). Alle Texte haben sinnvolle Standardwerte und müssen nicht zwingend angepasst werden.
 - **Felder:** Liste der Formularfelder in Anzeigereihenfolge. Pro Feld: technischer Name (nur `a-z`, `0-9`, `-`, `_` — wird 1:1 an Netlify Forms übergeben), Label (die sichtbare Beschriftung), Typ (Text, E-Mail, Zahl, Datum, Auswahl, Checkbox, mehrzeiliger Text), ob Pflichtfeld, und bei Typ "Auswahl" die auswählbaren Optionen (Label + Wert je Option).
 
@@ -305,7 +305,7 @@ Wiederverwendbare Farbpaletten. Ein Schema wird über die **Einstellungen** (4.1
 | Name | ja | Anzeigename in der Auswahl, z. B. "Herbst" |
 | Farben | ja | 8 Farbwerte: Hintergrund (bg), Text, sowie Farbe 1–6 (c1–c6) |
 
-> ⚠️ Änderungen an einem **bereits aktiven** Farbschema wirken sich sofort auf die gesamte Website aus (nach dem nächsten Build). Neue Schemas lieber unter neuem Key anlegen und erst nach Kontrolle über die Einstellungen aktivieren.
+> ⚠️ Änderungen an einem **bereits aktiven** Farbschema wirken sich sofort auf die gesamte Website aus. Neue Schemas lieber unter neuem Key anlegen und erst nach Kontrolle über die Einstellungen aktivieren.
 
 ### 4.12 Einstellungen
 
@@ -323,7 +323,7 @@ Ein einzelner, globaler Eintrag (kein "Neuer Eintrag"-Button, da es nur diesen e
 
 Es gibt zwei verschiedene Wege, ein Bild ins CMS zu bekommen — das ist die **häufigste Fehlerquelle**, deshalb genau lesen:
 
-> ⚠️ **Wichtig — die Upload-Falle:** Jedes Bildfeld in einem Formular hat einen eigenen, zum jeweiligen Inhaltstyp passenden Speicherordner. Lade Bilder **immer direkt über das jeweilige Bildfeld** hoch (Button "Wähle ein anderes Bild" direkt am Feld). Nutze **nicht** den allgemeinen Reiter **Medien** oben links, um ein Bild für ein bestimmtes Feld auszuwählen oder hochzuladen — darüber hochgeladene Bilder landen in einem anderen, allgemeinen Ordner und können zu falsch einsortierten oder doppelten Bildern führen.
+> ⚠️ **Wichtig:** Jedes Bildfeld in einem Formular hat einen **eigenen**, zum jeweiligen Inhaltstyp passenden Speicherordner. Lade Bilder **immer direkt über das jeweilige Bildfeld** hoch (Button "Wähle ein anderes Bild" direkt am Feld). Nutze **nicht** den allgemeinen Reiter **Medien** oben links, um ein Bild für ein bestimmtes Feld auszuwählen oder hochzuladen — darüber hochgeladene Bilder landen in einem anderen, allgemeinen Ordner und können zu falsch einsortierten oder doppelten Bildern führen.
 
 **Globale Medien-Bibliothek** (Reiter "Medien" oben links) — zeigt alle bisher hochgeladenen Bilder projektweit, z. B. zum Nachschauen, was es schon gibt:
 
@@ -364,7 +364,7 @@ Es gibt in diesem Projekt **keinen Entwurfs-Modus** und **keinen redaktionellen 
 2. Klicke oben auf den aktiv gewordenen Button (**Veröffentlichen**).
 3. Die Anzeige wechselt zurück zu "ÄNDERUNGEN GESPEICHERT" — deine Änderung ist jetzt gespeichert und reiht sich in die Warteschlange für die nächste Veröffentlichung ein (Kapitel 7).
 
-> ⚠️ Es gibt **keinen "Rückgängig"-Button** nach dem Speichern. Wenn du eine Änderung testen willst, notiere dir vorher den ursprünglichen Text, damit du ihn bei Bedarf wiederherstellen kannst. Bei Unsicherheit lieber vorher fragen (Kapitel 10).
+> ⚠️ Es gibt **keinen "Rückgängig"-Button** nach dem Speichern. Wenn du eine Änderung testen willst, notiere dir vorher den ursprünglichen Text, damit du ihn bei Bedarf wiederherstellen kannst.
 
 ---
 
