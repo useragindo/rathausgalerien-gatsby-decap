@@ -4,7 +4,8 @@ key: faq
 type: faq
 uuid: 87654321-4321-4321-4321-210987654321
 order: 2
-question: Gibt es ausreichend Parkplätze?
+question: Haben die RathausGalerien am Sonntag geöffnet?
+answer: Nein.
 ---
 
 Die RathausGalerien verfügen über ein modernes Parkhaus mit über 500 Stellplätzen. Die ersten 2 Stunden sind kostenlos. Danach kostet das Parken 2,50 Euro pro Stunde.
