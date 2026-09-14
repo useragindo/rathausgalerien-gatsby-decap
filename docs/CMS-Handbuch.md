@@ -78,7 +78,7 @@ Nach dem Login siehst du die Startansicht des CMS:
 - **Oben links:** Reiter **Inhalt** (alle Inhaltstypen) und **Medien** (globale Bilder-Übersicht, siehe Kapitel 5).
 - **Links (Seitenleiste):** Alle **Inhaltstypen** (in Decap "Collections" genannt) dieses Projekts:
   - Pages, Funnels, Categories, Services, FAQs, Locations, Jobs, News
-  - darunter, optisch abgetrennt: Blocks, Farbschemas, **Gewinnspiel**, Einstellungen (das sind eher technische/globale Bausteine bzw. Aktionsseiten, siehe 4.9–4.12)
+  - darunter, optisch abgetrennt: Blocks, Farbschemas, **Gewinnspiel**, Einstellungen (das sind eher technische/globale Bausteine bzw. Aktionsseiten, siehe 4.9–4.12). Unter **Einstellungen** liegen zwei feste Einträge: **Farben** und **Gewinnspiel**.
 - **Mitte:** Liste der vorhandenen Einträge des gewählten Inhaltstyps. Über **Sortieren nach** / **Filtern nach** lässt sich die Liste ordnen; über die Sprachfilter oben (bei mehrsprachigen Typen) nach Deutsch/Englisch filtern.
 - **Neue(r/s) …-Button:** oben rechts, legt einen neuen Eintrag des gewählten Typs an.
 
@@ -120,27 +120,70 @@ Alle "normalen" Unterseiten der Website: Startseite, Übersichtsseiten (Shops, G
 
 ![Bearbeitungsformular einer Page](manual/images/pages-formular.png)
 
-> ⚠️ Das Feld **Template** bestimmt das Layout/Design der Seite und schaltet unten weitere, nur für dieses Template relevante Felder frei (z. B. **Blocks** nur bei "Startseite", **Photos**/**Traffic information** nur bei "Lageplan", **Teaser** nur bei "Shops-/Gastronomie-Übersicht", **Message** nur bei "Jobs"). Bei den Spezialseiten mit dem Key `index`, `brands`, `culinary`, `locations`, `jobs` darf der **Key/Slug** nicht geändert werden — sonst funktioniert die Verlinkung im Rest der Website nicht mehr.
+> ⚠️ Das Feld **Template** bestimmt das Layout/Design der Seite und schaltet unten weitere, nur für dieses Template relevante Felder frei (z. B. **Blocks** nur bei "Startseite", **Photos**/**Traffic information** nur bei "Lageplan", **Teaser** nur bei "Shops-/Gastronomie-Übersicht", **Message** nur bei "Jobs"). Welche Seite wie aussieht, entscheidet also das Template — **nicht** der Key.
+
+> ⚠️ Zwei Ausnahmen beim **Key/Slug**, die nicht geändert werden dürfen:
+> - `index` — das ist die Startseite (liegt unter `/` bzw. `/en/`).
+> - `brands` und `culinary` — diese beiden Keys erzeugen fest die Adressen `/shops` und `/gastronomie`.
+>
+> Alle anderen Keys sind frei wählbar, solange das passende Template gesetzt ist (die Karriere-Seite heißt z. B. `karriere` und hat das Template "Jobs").
 
 | Feld | Pflicht | Hinweis |
 |---|---|---|
 | Sprache | ja | Deutsch/Englisch |
 | Key / Slug | ja | Nur Kleinbuchstaben, Zahlen, `-`. Bestimmt die URL, außer eine SEO-URL ist gesetzt. |
-| Template | ja | Bestimmt Layout & freigeschaltete Zusatzfelder (s. o.) |
+| Template | ja | Standardseite, Startseite, Shops-Übersicht, Gastronomie-Übersicht, Lageplan, Jobs, News-Übersicht, Services-Übersicht, FAQ-Übersicht. Bestimmt Layout & freigeschaltete Zusatzfelder (s. o.) |
 | Menü | nein | Ob/wo die Seite im Menü erscheint (Hauptmenü/Footer/keines) |
 | Menü-Bezeichnung | nein | Abweichender Anzeigename im Menü; leer = Seitentitel |
 | Reihenfolge | nein | Zahl, Standard 1 |
 | Heading | nein | Sichtbarer Titel (H1); dient auch als SEO-Titel, falls SEO-Titel leer |
 | Intro | nein | Einleitungstext unter dem Titel |
 | Content | nein | Freier Text (Markdown-Editor mit Formatierungsleiste) |
-| Blocks | nein | Nur Template "Startseite" — flexible Inhaltsblöcke, siehe unten |
-| Teaser | nein | Nur Template "Shops-/Gastronomie-Übersicht" |
+| Blocks | nein | Flexible Inhaltsblöcke, siehe unten |
+| Teaser | nein | Nur Template "Shops-/Gastronomie-Übersicht", siehe unten |
 | Photos | nein | Nur Template "Lageplan" |
 | Traffic information | nein | Nur Template "Lageplan" |
 | Message | nein | Nur Template "Jobs", Text bei keinen offenen Stellen |
 | SEO → Title/Description/URL/Image/… | teils | Siehe Kapitel 5 für das Bild-Feld |
 
-**Blocks (nur Startseite):** Jeder Block hat einen Header, Anrisstext, ein Layout ("4er Grid", "Text + Bild" oder "Box zentriert"), Textfarbe/Hintergrundfarbe (aus dem aktiven Farbschema, Kapitel 4.11), sowie je nach Layout Bilder oder bis zu 4 Kacheln (Tiles) mit Text/Bildern/Icons/Links. Eine Kachel bekommt entweder Text **oder** Bilder.
+**Blocks im Detail:**
+
+Blocks sind die flexiblen Inhaltsbausteine einer Seite. Du kannst beliebig viele davon untereinander anlegen; die Reihenfolge in der Liste ist die Reihenfolge auf der Seite.
+
+![Felder eines Blocks: Header, Anrisstext, Text, Layout und Darstellungsoptionen](manual/images/block-felder.png)
+
+| Feld | Hinweis |
+|---|---|
+| Header | Überschrift des Blocks. Für einen manuellen Zeilenumbruch Enter drücken. |
+| Anrisstext | Kurztext direkt unter dem Header |
+| Text | Fließtext (Markdown-Editor). **Ohne Kacheln:** der Haupttext des Blocks. **Mit Kacheln:** zusätzlicher Einleitungstext oberhalb der Kacheln. |
+| Layout | "4er Grid", "4er Grid (gleiche Kacheln)", "Text + Bild (2 Spalten)" oder "Box zentriert" |
+| Textfarbe / Hintergrundfarbe | Aus dem aktiven Farbschema (Kapitel 4.11) oder Schwarz/Weiß. Sind beide leer, wechselt die Website automatisch durch (Blau/Rosa/Gelb/Lila). |
+| Umgekehrt (Bild links, Text rechts) | Nur für "Text + Bild (2 Spalten)" und "Box zentriert". Standard: Text links, Bild rechts. |
+| Fließtext in Kleinbuchstaben | Die Headline bleibt in Versalien (GROSS), nur der Fließtext wird klein geschrieben |
+| Textausrichtung | Linksbündig (Standard) oder Zentriert — gilt für Headline und Fließtext gemeinsam |
+| Images | Bilderliste für Bild-Layouts |
+| Tiles (Kacheln) | Bis zu 4 Kacheln, siehe unten |
+
+**Die Layouts:**
+
+- **4er Grid** — bis zu 4 Kacheln nebeneinander, unterschiedlich hoch.
+- **4er Grid (gleiche Kacheln)** — wie oben, aber alle Kacheln sind gleich groß; gedacht für kurze Zahlen/Fakten nebeneinander.
+- **Text + Bild (2 Spalten)** — zweispaltig, Text und Bild nebeneinander.
+- **Box zentriert** — zentrierte Box; hier werden nur die **ersten 2 Kacheln** angezeigt.
+
+**Kacheln (Tiles):** Pro Kachel entweder **Text oder Bilder** ausfüllen — nicht beides. Je Kachel gibt es außerdem: **Kategorie** (verlinkt die Kachel auf die Kategorie-Seite), **Manueller Link** (wird statt der Kategorie verwendet), **Textfarbe/Hintergrundfarbe** (nur für Text-Kacheln) und **Icons** (nur für Text-Kacheln, jeweils SVG + Text + Link, werden unter dem Text angezeigt). Enthält eine Kachel mehrere Bilder, wird sie automatisch als Slider mit Pfeilen dargestellt.
+
+**Teaser (nur Shops-/Gastronomie-Übersicht):**
+
+![Teaser-Felder mit Title, Subtitle, Image und Icon](manual/images/teaser-felder.png)
+
+| Feld | Hinweis |
+|---|---|
+| Title | Titel des Teasers. Für einen manuellen Zeilenumbruch Enter drücken. |
+| Subtitle | Kleiner Text unterhalb der Shop-Anzahl — **nur auf der Startseite sichtbar** |
+| Image | Teaser-Bild |
+| Icon | **Muss eine SVG-Datei sein.** Leer lassen, um das Standard-Einkaufstaschen-Icon zu verwenden. |
 
 ### 4.2 Funnels
 
@@ -148,7 +191,11 @@ Eigenständige Landingpages außerhalb der normalen Seitenstruktur, z. B. für K
 
 ![Bearbeitungsformular eines Funnels](manual/images/funnels-formular.png)
 
-Funktioniert wie eine Page (gleiche Blocks/Teaser/Photos-Bausteine), aber ohne Template-Auswahl und mit einem zusätzlichen Feld:
+Funktioniert wie eine Page (gleiche Blocks/Teaser/Photos-Bausteine, siehe 4.1), mit diesen Unterschieden:
+
+- **Keine Template-Auswahl** — Funnels haben immer ihr eigenes Layout.
+- **Kein Menü- und kein Reihenfolge-Feld** — ein Funnel steht bewusst außerhalb der Navigation (nur **Menü-Bezeichnung** ist vorhanden).
+- **Keine SEO-URL** — die Adresse ergibt sich direkt aus dem Key/Slug und liegt auf oberster Ebene (`/mein-funnel` bzw. `/en/mein-funnel`).
 
 | Feld | Pflicht | Hinweis |
 |---|---|---|
@@ -168,17 +215,23 @@ Kategorien, mit denen Locations und Kacheln verschlagwortet werden (z. B. "Schmu
 
 ### 4.4 Services
 
-Die Liste der Center-Services (z. B. Apotheken, Bürgerservice, Ladestationen), die auf der Services-Seite alphabetisch aufgeführt werden.
+Die Center-Services (z. B. Apotheken, Bürgerservice, Ladestationen). Die Services-Seite hat zwei Bereiche: **oben die Kacheln** (nur Services mit "Als Kachel anzeigen") und darunter die Liste **"Services von A bis Z"**, in der **immer alle** Services stehen.
 
-![Bearbeitungsformular eines Service](manual/images/services-formular.png)
+![Bearbeitungsformular eines Service mit Reihenfolge und Kachel-Feldern](manual/images/services-formular.png)
 
 | Feld | Pflicht | Hinweis |
 |---|---|---|
+| Sprache | ja | Deutsch/Englisch |
 | Name | ja | Erscheint in der A-Z-Liste |
+| Reihenfolge | nein | Zahl (Standard 999). Bestimmt **nur** die Reihenfolge der Kacheln oben (aufsteigend). Die A-Z-Liste bleibt immer alphabetisch. |
 | Beschreibung | nein | Kurztext für die A-Z-Liste |
 | Icon | nein | Nur nötig, wenn "Als Kachel anzeigen" aktiv ist. **Muss eine SVG-Datei sein.** |
 | Als Kachel anzeigen | nein | Zeigt den Service zusätzlich als Kachel oben auf der Services-Seite |
-| Kachel-Hintergrund / -Textfarbe | nein | Nur relevant, wenn als Kachel angezeigt |
+| Kachel-Hintergrund / -Textfarbe | nein | Nur relevant, wenn als Kachel angezeigt. Aus dem aktiven Farbschema (Kapitel 4.11). |
+| Kacheltext | nein | Überschreibt den **Namen nur auf der Kachel** — in der A-Z-Liste bleibt der Name stehen. Leer lassen, um den Namen zu übernehmen. |
+| Kacheltext dünn | nein | Zeigt den Kacheltext klein und schmal statt groß und fett (z. B. für einen längeren Hinweistext auf der Kachel) |
+
+> ℹ️ In der Listenansicht lässt sich über **Sortieren nach** zwischen Reihenfolge, Name und Sprache wechseln.
 
 ### 4.5 FAQs
 
@@ -278,6 +331,8 @@ Aktionsseiten mit optionalem Teilnahme-Formular. In der Seitenleiste heißt dies
 - **Zustände:** Button-Beschriftungen für "Ausgangszustand", "Wird gesendet" und "Erneut versuchen" sowie Titel/Text für "Erfolg" und "Fehler" (inkl. der Fehlermeldung für fehlende Pflichtfelder). Alle Texte haben sinnvolle Standardwerte und müssen nicht zwingend angepasst werden.
 - **Felder:** Liste der Formularfelder in Anzeigereihenfolge. Pro Feld: technischer Name (nur `a-z`, `0-9`, `-`, `_` — wird 1:1 an Netlify Forms übergeben), Label (die sichtbare Beschriftung), Typ (Text, E-Mail, Zahl, Datum, Auswahl, Checkbox, mehrzeiliger Text), ob Pflichtfeld, und bei Typ "Auswahl" die auswählbaren Optionen (Label + Wert je Option).
 
+> ℹ️ Welches Gewinnspiel gerade als das laufende markiert ist und welcher Link im Teilnahmebedingungen-Hinweis steht, wird unter **Einstellungen → Gewinnspiel** gepflegt (Kapitel 4.12).
+
 ### 4.10 Blocks
 
 Wiederverwendbare, globale Website-Bausteine: **General**, **Header**, **Footer**, **Location** (Beschriftung für Öffnungszeiten). Es gibt jeweils **einen Eintrag pro Sprache und Baustein-Typ** — neue Blocks sollten nur in Absprache mit dem technischen Ansprechpartner angelegt werden, da sie fest im Seitenlayout verankert sind.
@@ -309,13 +364,28 @@ Wiederverwendbare Farbpaletten. Ein Schema wird über die **Einstellungen** (4.1
 
 ### 4.12 Einstellungen
 
-Ein einzelner, globaler Eintrag (kein "Neuer Eintrag"-Button, da es nur diesen einen gibt).
+Globale Einstellungen der Website. Hier gibt es keinen "Neuer Eintrag"-Button — es sind zwei feste Einträge: **Farben** und **Gewinnspiel**.
+
+![Die Einstellungen mit den beiden Einträgen Farben und Gewinnspiel](manual/images/einstellungen-uebersicht.png)
+
+**Farben:**
 
 ![Einstellungen-Formular mit Farbschema-Auswahl](manual/images/einstellungen-formular.png)
 
 | Feld | Pflicht | Hinweis |
 |---|---|---|
 | Aktives Farbschema | ja | Wählt eines der unter 4.11 angelegten Farbschemas für die gesamte Website aus |
+
+**Gewinnspiel:**
+
+![Einstellungen-Formular für das Gewinnspiel](manual/images/einstellungen-gewinnspiel.png)
+
+| Feld | Pflicht | Hinweis |
+|---|---|---|
+| Aktives Gewinnspiel | nein | Markiert das Gewinnspiel (Kapitel 4.9), das gerade läuft. Leer lassen, wenn gerade keines läuft. |
+| Teilnahmebedingungen-URL | nein | Standard-Link für den Teilnahmebedingungen-Hinweis im Formular, falls im Feld-Label kein eigener Link gesetzt ist. Standard: `/datenschutz`; gilt für beide Sprachen — für Englisch am besten `/en/privacy-policy` angeben. |
+
+> ℹ️ Das **aktive Gewinnspiel** wird derzeit noch nirgends auf der Website angezeigt — ein Teaser (z. B. auf der Startseite) ist als eigener Schritt geplant. Die Auswahl schadet nicht, bewirkt aktuell aber noch nichts Sichtbares.
 
 ---
 
