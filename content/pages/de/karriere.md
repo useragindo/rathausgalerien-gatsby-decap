@@ -2,21 +2,23 @@
 locale: de
 type: page
 key: karriere
-template: standard
+template: jobs
 menu: main
+menu_label: Karriere
 order: 800
-heading: Karriere
-intro: Jobs
-blocks:
-  - layout: grid-4
-    reversed: false
-    date: ""
-    header: Deine Karriere in den RHG
-    text: Komm und mach mit.
+heading: |-
+  Arbeiten im herzen 
+  von innsbruck
+intro: Bewerben Sie sich und werden Sie Teil der RathausGalerien!
+blocks: []
 teaser:
-  image: /media/pages/rhg_goessers_gastgarten.jpg
+  image: /media/pages/lacoste_19_02_24_rg_reportage.png
+  title: |-
+    JOBS
+    HEADLINE 
+    HIER
+  icon: /media/pages/rhg-logo-klein.svg
 seo:
   title: Karriere
   description: Jobs
 ---
-Wir suchen Dich!

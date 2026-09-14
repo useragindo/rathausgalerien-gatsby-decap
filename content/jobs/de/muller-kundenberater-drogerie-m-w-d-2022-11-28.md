@@ -1,13 +1,15 @@
 ---
+locale: de
 key: job
 type: job
-locale: de
 uuid: 161d69ad-b83c-4470-8617-9878bbf0fdfe
 location: Müller
 position: Kundenberater Drogerie (m/w/d)
 specification: Teilzeit (30 Std./Woche)
 images:
   - /media/header-ausbildung.png
+seo:
+  image: /media/jobs/lacoste_19_02_24_rg_reportage.png
 ---
 ## WAS UNS ÜBERZEUGT
 

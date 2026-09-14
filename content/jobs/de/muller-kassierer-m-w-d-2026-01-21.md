@@ -1,13 +1,15 @@
 ---
+locale: de
 key: job
 type: job
-locale: de
 uuid: ba5dca1c-904e-4cd4-bfec-9994109980ee
 location: Müller
 position: Kassierer (m/w/d)
 specification: Teilzeit (30 Std./Woche)
 images:
   - /media/header-ausbildung.png
+seo:
+  image: ""
 ---
 ## WAS UNS ÜBERZEUGT
 
