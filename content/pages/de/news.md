@@ -14,7 +14,7 @@ intro: >-
 
   auf der News-Seite und auf Instagram unter @rathausgalerien.
 blocks:
-  - layout: grid-4
+  - layout: centered
     text_color: ""
     background_color: ""
     reversed: false

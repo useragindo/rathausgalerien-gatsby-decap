@@ -181,7 +181,8 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Layout Typ 5: centered
    Halbiertes grid-4: nur 2 Kacheln, zentriert auf halber Content-Breite.
-   Beide Kacheln quadratisch (1:1), unabhängig vom grid-4-Seitenverhältnis.
+   Content-Kachel quadratisch (1:1), Bild-Kachel höher (284×374, wie die
+   Bild-Kacheln im grid-4), damit der Effekt des 4er-Grids erhalten bleibt.
    Bleibt auf allen Breakpoints 2-spaltig (keine 4-Spalten-Variante wie
    grid-4 ab 44rem).
    ═══════════════════════════════════════════════════════════════════════ */
@@ -196,7 +197,7 @@
 }
 
 .content-block--centered .content-block__tile--media {
-	aspect-ratio: 1;
+	aspect-ratio: 284 / 374;
 }
 
 
@@ -448,14 +449,16 @@
 }
 
 
-/* ─── Figma-Decoration: Scribble innerhalb der Textkacheln ─────────── */
-.page--index .content-block--grid-4 .content-block__tile--content {
+/* ─── Figma-Decoration: Scribble innerhalb der Textkacheln ───────────
+   Gilt seitenübergreifend (nicht nur auf der Startseite) für jede
+   quadratische Content-Kachel aus grid-4 oder centered. */
+:is(.content-block--grid-4, .content-block--centered) .content-block__tile--content {
 	align-items: center;
 	text-align: center;
 	isolation: isolate;
 }
 
-.page--index .content-block--grid-4 .content-block__tile--content::before {
+:is(.content-block--grid-4, .content-block--centered) .content-block__tile--content::before {
 	content: "";
 	position: absolute;
 	inset: 0;
@@ -469,7 +472,7 @@
 	filter: brightness(0) invert(1);
 }
 
-.page--index .content-block--grid-4 .content-block__tile--content .content-block__text {
+:is(.content-block--grid-4, .content-block--centered) .content-block__tile--content .content-block__text {
 	position: relative;
 	z-index: 1;
 }
