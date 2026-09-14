@@ -47,7 +47,7 @@ blocks:
     date: ""
     text_color: ""
     background_color: ""
-    text_align: ""
+    text_align: center
     teaserText: |-
       Stöbern Sie durch die Galerien, lassen Sie sich inspirieren und finden
       Sie das passende Geschenk für jeden Anlass!
