@@ -7,7 +7,7 @@ location: Rituals
 position: Store Manager (m/w/d)
 specification: Vollzeit 38,5h
 images:
-  - /media/bild-08.01.26-um-12.06.jpg
+  - /media/jobs/bild-08.01.26-um-12.06.jpg
 ---
 Hast du eine Leidenschaft für Retail? Liebst du es, Teams zu führen und zu coachen? Bereit, einen Rituals-Store zu leiten? Du könntest genau die Person sein, die wir suchen.
 
