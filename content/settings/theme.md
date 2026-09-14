@@ -1,5 +1,5 @@
 ---
 type: settings
 name: theme
-active_scheme: sommer
+active_scheme: herbst
 ---
