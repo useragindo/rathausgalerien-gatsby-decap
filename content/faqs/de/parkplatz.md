@@ -3,7 +3,7 @@ locale: de
 key: faq
 type: faq
 uuid: 87654321-4321-4321-4321-210987654321
-order: 2
+order: 20
 question: Haben die RathausGalerien am Sonntag geöffnet?
 answer: Nein.
 ---
