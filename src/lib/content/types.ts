@@ -103,6 +103,7 @@ export type ImportedFrontmatter = {
 	teaser?: {
 		image?: string | null;
 		title?: string | null;
+		subtitle?: string | null;
 		icon?: string | null;
 	} | null;
 	message?: string | null;

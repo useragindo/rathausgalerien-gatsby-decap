@@ -181,5 +181,6 @@ blocks:
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
   title: Shopping
+  subtitle: Mitten in Innsbruck
   icon: /media/pages/rhg-logo-klein.svg
 ---

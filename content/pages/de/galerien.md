@@ -17,7 +17,7 @@ blocks:
     reversed: false
     date: ""
     header: ""
-    text: Ein Ort mit Geschichte mitten in der Stadt
+    text: ""
     tiles:
       - text_color: ""
         background_color: ""

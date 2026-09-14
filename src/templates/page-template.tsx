@@ -442,6 +442,7 @@ const HomepageIntro: React.FC<{
 }> = ({ page, locations, showShopCount = true }) => {
 	const image = trim(page.frontmatter.teaser?.image);
 	const teaserTitle = trim(page.frontmatter.teaser?.title) ?? "";
+	const teaserSubtitle = trim(page.frontmatter.teaser?.subtitle);
 	const teaserIcon = trim(page.frontmatter.teaser?.icon);
 	const shopCount = showShopCount
 		? locations.filter(
@@ -480,7 +481,7 @@ const HomepageIntro: React.FC<{
 					{showShopCount ? (
 						<>
 							<p>{countLabel}</p>
-							<p>Mitten in Innsbruck</p>
+							{teaserSubtitle ? <p>{teaserSubtitle}</p> : null}
 						</>
 					) : null}
 				</div>

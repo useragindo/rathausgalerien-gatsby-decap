@@ -132,6 +132,11 @@ collections:
             widget: text
             required: false
             hint: "Wird unterhalb des Headers angezeigt. Für einen manuellen Zeilenumbruch Enter drücken."
+          - label: "Text"
+            name: "text"
+            widget: markdown
+            required: false
+            hint: "Ohne Tiles: Haupttext der Kachel. Mit Tiles: zusätzlicher Einleitungstext oberhalb der Kacheln."
           - label: "Layout"
             name: "layout"
             widget: "select"
@@ -335,6 +340,11 @@ collections:
             widget: "text"
             required: false
             hint: "Für einen manuellen Zeilenumbruch Enter drücken."
+          - label: "Subtitle"
+            name: "subtitle"
+            widget: "string"
+            required: false
+            hint: "Kleiner Text unterhalb der Shop-Anzahl (nur auf der Startseite sichtbar)."
           - label: "Image"
             name: "image"
             widget: "image"
@@ -505,6 +515,11 @@ collections:
             widget: text
             required: false
             hint: "Wird unterhalb des Headers angezeigt. Für einen manuellen Zeilenumbruch Enter drücken."
+          - label: "Text"
+            name: "text"
+            widget: markdown
+            required: false
+            hint: "Ohne Tiles: Haupttext der Kachel. Mit Tiles: zusätzlicher Einleitungstext oberhalb der Kacheln."
           - label: "Layout"
             name: "layout"
             widget: "select"
@@ -707,6 +722,11 @@ collections:
             widget: "text"
             required: false
             hint: "Für einen manuellen Zeilenumbruch Enter drücken."
+          - label: "Subtitle"
+            name: "subtitle"
+            widget: "string"
+            required: false
+            hint: "Kleiner Text unterhalb der Shop-Anzahl (nur auf der Startseite sichtbar)."
           - label: "Image"
             name: "image"
             widget: "image"

@@ -121,6 +121,7 @@ intro: >-
 teaser:
   image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
   title: Shopping in Innsbruck
+  subtitle: In the heart of Innsbruck
   icon: ~
 ---
 # RathausGalerien: Your shopping center in Innsbruck
