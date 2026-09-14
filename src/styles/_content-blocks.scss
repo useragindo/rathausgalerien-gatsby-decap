@@ -111,10 +111,16 @@
 	margin-block-end: 0;
 }
 
-/* Body-Zeilen (jede Zeile = eigener Absatz im Markdown) laufen wie ein
- * Absatz zusammen — Figma zeigt sie ohne Abstand direkt untereinander */
+/* Zeilen innerhalb EINES Absatzes (manueller Umbruch per "\") laufen ohne
+ * Abstand zusammen — Figma zeigt sie direkt untereinander. Zwei ECHTE,
+ * per Leerzeile getrennte Absätze bekommen dagegen einen sichtbaren Abstand
+ * (siehe "p + p" unten), sonst wirken sie wie eine einzige Zeile. */
 .content-block__tile--content .content-block__text p {
 	margin-block: 0;
+}
+
+.content-block__tile--content .content-block__text p + p {
+	margin-block-start: 0.75em;
 }
 
 /* Kachel-Titel = Überschriften im Kachel-Markdown.
@@ -137,11 +143,16 @@
 }
 
 /* ─── Formatierungs-Optionen (CMS-Checkboxen: text_lowercase, text_align) ─
-   Gelten je Block bzw. Kachel für Headline + Fließtext gemeinsam, außer
-   Kleinbuchstaben: dort bleibt die Headline in Versalien (nur `p`
-   betroffen, `text-transform` wird nicht von Headings geerbt neu gesetzt). */
+   Kleinbuchstaben ("text_lowercase") wird NICHT per text-transform: lowercase
+   gelöst (das würde auch Satzanfänge klein machen) — stattdessen erzeugt
+   MarkdownContent (lib/content/markdown.tsx) direkt klein geschriebenen Text,
+   bei dem nur Satzanfänge groß bleiben. Der Fließtext ist aber standardmäßig
+   per text-transform: uppercase auf Versalien gestellt (siehe oben) — das
+   muss hier zurückgesetzt werden, sonst zeigt der Browser den schon korrekt
+   klein/groß gemischten Text trotzdem komplett in Großbuchstaben an. Die
+   Headline bleibt davon unberührt (immer Versalien, eigene Regel). */
 .content-block--lowercase-text .content-block__tile--content .content-block__text p {
-	text-transform: lowercase;
+	text-transform: none;
 }
 
 .content-block--align-center .content-block__tile--content {

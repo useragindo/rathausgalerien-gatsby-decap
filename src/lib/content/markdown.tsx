@@ -96,7 +96,57 @@ const renderInline = (text: string): React.ReactNode[] => {
 	return nodes;
 };
 
-const renderParagraph = (paragraph: string, index: number): React.ReactNode => {
+// Ein `\` am Zeilenende ist der manuelle Zeilenumbruch, den Redakteure im CMS
+// setzen (z. B. für einen Namen über zwei Zeilen). Gilt für Überschriften
+// genauso wie für Absätze — sonst bleibt bei Überschriften der Backslash als
+// Zeichen sichtbar statt in einen <br/> umgewandelt zu werden.
+const splitLines = (text: string): string[] =>
+	text.split(/\\\n/).map((line) => line.trim());
+
+const renderLineFragments = (lines: string[]): React.ReactNode[] =>
+	lines.map((line, lineIndex) => (
+		<React.Fragment key={lineIndex}>
+			{lineIndex > 0 ? <br /> : null}
+			{renderInline(line)}
+		</React.Fragment>
+	));
+
+const renderLines = (text: string): React.ReactNode[] =>
+	renderLineFragments(splitLines(text));
+
+// "Fließtext in Kleinbuchstaben"-Option: kann nicht per CSS text-transform
+// gelöst werden, weil das jeden Buchstaben klein macht — auch Satzanfänge.
+// Diese Funktion senkt den ganzen Text ab, hält aber den ersten Buchstaben
+// sowie jeden Buchstaben nach einem Satzzeichen (. ! ?) groß. Der Zustand
+// läuft über einen manuellen "\"-Umbruch hinweg (ein Satz kann genau am
+// Zeilenumbruch enden), startet aber für jeden neuen Absatz frisch.
+const toSentenceCase = (lines: string[]): string[] => {
+	let capitalizeNext = true;
+
+	return lines.map((line) => {
+		let result = "";
+
+		for (const char of line.toLocaleLowerCase("de")) {
+			if (capitalizeNext && /\p{L}/u.test(char)) {
+				result += char.toLocaleUpperCase("de");
+				capitalizeNext = false;
+			} else {
+				result += char;
+				if (/[.!?]/.test(char)) {
+					capitalizeNext = true;
+				}
+			}
+		}
+
+		return result;
+	});
+};
+
+const renderParagraph = (
+	paragraph: string,
+	index: number,
+	lowercase?: boolean,
+): React.ReactNode => {
 	const cleaned = normalizeInlineText(paragraph).trim();
 
 	if (/^(-\s*){3,}$/.test(cleaned) || /^([*_]\s*){3,}$/.test(cleaned)) {
@@ -104,19 +154,19 @@ const renderParagraph = (paragraph: string, index: number): React.ReactNode => {
 	}
 
 	if (cleaned.startsWith("#### ")) {
-		return <h4 key={index}>{renderInline(cleaned.slice(5))}</h4>;
+		return <h4 key={index}>{renderLines(cleaned.slice(5))}</h4>;
 	}
 
 	if (cleaned.startsWith("### ")) {
-		return <h3 key={index}>{renderInline(cleaned.slice(4))}</h3>;
+		return <h3 key={index}>{renderLines(cleaned.slice(4))}</h3>;
 	}
 
 	if (cleaned.startsWith("## ")) {
-		return <h2 key={index}>{renderInline(cleaned.slice(3))}</h2>;
+		return <h2 key={index}>{renderLines(cleaned.slice(3))}</h2>;
 	}
 
 	if (cleaned.startsWith("# ")) {
-		return <h1 key={index}>{renderInline(cleaned.slice(2))}</h1>;
+		return <h1 key={index}>{renderLines(cleaned.slice(2))}</h1>;
 	}
 
 	if (/^[-*] /.test(cleaned)) {
@@ -135,18 +185,9 @@ const renderParagraph = (paragraph: string, index: number): React.ReactNode => {
 		);
 	}
 
-	const lines = cleaned.split(/\\\n/).map((line) => line.trim());
+	const lines = splitLines(cleaned);
 
-	return (
-		<p key={index}>
-			{lines.map((line, lineIndex) => (
-				<React.Fragment key={lineIndex}>
-					{lineIndex > 0 ? <br /> : null}
-					{renderInline(line)}
-				</React.Fragment>
-			))}
-		</p>
-	);
+	return <p key={index}>{renderLineFragments(lowercase ? toSentenceCase(lines) : lines)}</p>;
 };
 
 // CMS text fields (heading, intro) are plain strings, not markdown, but still
@@ -159,9 +200,13 @@ export const renderMultiline = (value: string): React.ReactNode =>
 		</React.Fragment>
 	));
 
-export const MarkdownContent: React.FC<{ content?: string | null }> = ({
-	content,
-}) => {
+export const MarkdownContent: React.FC<{
+	content?: string | null;
+	// Entspricht der CMS-Checkbox "Fließtext in Kleinbuchstaben": senkt Absätze
+	// ab, hält aber Satzanfänge groß. Überschriften bleiben davon unberührt
+	// (die bleiben immer in Versalien, per CSS text-transform: uppercase).
+	lowercase?: boolean;
+}> = ({ content, lowercase }) => {
 	const value = trim(content);
 
 	if (!value) {
@@ -174,7 +219,7 @@ export const MarkdownContent: React.FC<{ content?: string | null }> = ({
 				.split(/\n{2,}/)
 				.map((paragraph) => paragraph.trim())
 				.filter(Boolean)
-				.map(renderParagraph)}
+				.map((paragraph, index) => renderParagraph(paragraph, index, lowercase))}
 		</>
 	);
 };
