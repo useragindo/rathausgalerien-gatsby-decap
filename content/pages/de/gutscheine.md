@@ -13,8 +13,18 @@ blocks:
   - layout: grid-4
     reversed: false
     date: ""
-    header: Gutscheine
-    text: Hier finden Sie Gutscheine zum Verschenken oder selbst zu genießen.
+    header: ""
+    text: ""
+    tiles:
+      - text_color: ""
+        background_color: ""
+        text: >-
+          ## ERHÄLTLICH IN \
+
+          DIVERSEN MENGEN
+
+
+          Die Galerien Gutscheine sind in allen Shops einlösbar. Die Gutscheine können nicht online erworben werden, sondern müssen in Betty Barclay Store gekauft werden.
 teaser:
   title: |-
     GESCHENK
