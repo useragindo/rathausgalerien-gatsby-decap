@@ -13,7 +13,7 @@ form:
   name: lottery-2026-03
   state:
     idle:
-      button: Teilnehmen1
+      button: Jetzt teilnehmen
     sending:
       button: Wird gesendet...
     success:
@@ -56,10 +56,6 @@ form:
       label: Ich akzeptiere die [Teilnahmebedingungen](/datenschutz)
       type: CHECKBOX
       required: true
-    - type: TEXT
-      required: true
-      name: input
-      label: Ort
 seo:
   title: Gewinnspiel
   description: Mache mit bei unserem Gewinnspiel und gewinne einen von 10
