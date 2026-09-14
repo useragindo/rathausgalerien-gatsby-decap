@@ -29,7 +29,20 @@ blocks:
           - image: /media/pages/rathausgalerien_so25_danielzangerl-_021_web.jpg
           - image: /media/pages/rathausgalerien_so25_danielzangerl-_214_web.jpg
   - reversed: false
-    layout: grid-4
+    tiles:
+      - text_color: ""
+        background_color: c2
+        text: |-
+          ## SCHMUCK 
+
+          ## & UHREN
+
+          Zeitlose\
+          Lieblingsstücke von \
+          Appelt Juwelen
+        images:
+          - image: /media/pages/uhr_freigestellt.jpg
+    layout: grid-4-equal
     header: GALERIEN GESCHENK-IDEEN
     date: ""
     text_color: ""
