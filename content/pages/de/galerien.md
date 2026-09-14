@@ -17,7 +17,7 @@ blocks:
     reversed: false
     date: ""
     header: ""
-    text: Ein Ort mit Geschichte mitten in der Stadt
+    text: ""
     tiles:
       - text_color: ""
         background_color: ""
@@ -28,19 +28,13 @@ blocks:
           ## Geschichte
 
 
+          Wo heute Licht, Architektur und urbanes \
 
+          Leben aufeinandertreffen, befand sich \
 
-          Wo heute Licht, Architektur und urbanes 
+          einst das historische Rathausareal. Von historischen Gebäuden und Innenhöfen bis \
 
-
-          Leben aufeinandertreffen, befand sich 
-
-
-          einst das historische Rathausareal. Von historischen Gebäuden und Innenhöfen bis 
-
-
-          hin zu den modernen RathausGalerien, die 
-
+          hin zu den modernen RathausGalerien, die \
 
           heute die Innenstadt verbindet.
         images:
