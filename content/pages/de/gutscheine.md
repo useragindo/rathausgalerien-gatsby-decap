@@ -34,7 +34,7 @@ blocks:
       - text_color: ""
         background_color: c2
         text: |-
-          ## SCHMUCK\
+          ## SCHMUCK \
           & UHREN
 
           Zeitlose\
