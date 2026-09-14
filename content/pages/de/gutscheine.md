@@ -29,6 +29,7 @@ blocks:
         images:
           - image: /media/pages/rathausgalerien_so25_danielzangerl-_021_web.jpg
           - image: /media/pages/rathausgalerien_so25_danielzangerl-_214_web.jpg
+    text_align: center
   - reversed: false
     tiles:
       - text_color: ""
