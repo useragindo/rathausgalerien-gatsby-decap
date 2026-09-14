@@ -34,15 +34,14 @@ blocks:
       - text_color: ""
         background_color: c2
         text: |-
-          ## SCHMUCK 
-
-          ## & UHREN
+          **SCHMUCK**\
+          **& UHREN**
 
           Zeitlose\
           Lieblingsstücke von \
           Appelt Juwelen
         images:
-          - image: /media/pages/uhr_freigestellt.jpg
+          - image: /media/pages/uhr_freigestellt.png
     layout: grid-4-equal
     header: GALERIEN GESCHENK-IDEEN
     date: ""
