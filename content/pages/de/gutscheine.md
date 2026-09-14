@@ -25,6 +25,9 @@ blocks:
 
 
           Die Galerien Gutscheine sind in allen Shops einlösbar. Die Gutscheine können nicht online erworben werden, sondern müssen in Betty Barclay Store gekauft werden.
+        images:
+          - image: /media/pages/rathausgalerien_so25_danielzangerl-_021_web.jpg
+          - image: /media/pages/rathausgalerien_so25_danielzangerl-_214_web.jpg
 teaser:
   title: |-
     GESCHENK
