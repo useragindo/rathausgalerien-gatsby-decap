@@ -3,7 +3,7 @@ locale: de
 key: faq
 type: faq
 uuid: 12345678-1234-1234-1234-123456789012
-order: 1
+order: 10
 question: Wann sind die RathausGalerien geöffnet?
 answer: |-
   Mall
