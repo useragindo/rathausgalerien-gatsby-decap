@@ -236,15 +236,18 @@
 /* Icons + close button — mirrors header-actions position.
    The overlay is portalled to <body>, so it inherits nothing from
    .site-header: every token it uses has to be declared here. */
+.site-header__overlay-actions-outer {
+	width: min(100%, 1640px);
+	margin-inline: auto;
+	padding: clamp(4rem, 10vw, 6.5rem) var(--page-gutter) clamp(2rem, 5vw, 3rem);
+}
 .site-header__overlay-actions {
 	--header-icon-size: clamp(1.2rem, 5vw, 1.5rem);
 	--header-icon-gap: clamp(0.6rem, 2vw, 2rem);
 	--overlay-close-size: clamp(1.4rem, 5.6vw, 1.7rem);
-	position: absolute;
-	inset-block-start: clamp(0.75rem, 3vw, 1.875rem);
-	inset-inline-end: var(--page-gutter);
 	display: flex;
 	align-items: center;
+	justify-content: flex-end;
 	gap: clamp(0.75rem, 2.5vw, 2.5rem);
 }
 .site-header__overlay-close {
@@ -282,9 +285,9 @@
 	display: grid;
 	grid-template-columns: 1fr;
 	align-items: start;
-	width: min(100%, 1440px);
+	width: min(100%, 1640px);
 	margin-inline: auto;
-	padding: clamp(4rem, 12vw, 7.5rem) var(--page-gutter) clamp(2rem, 5vw, 3rem);
+	padding: clamp(4rem, 12vw, 7.5rem) 0 var(--page-gutter) clamp(2rem, 5vw, 3rem);
 	gap: clamp(2rem, 5vw, 4rem);
 }
 
@@ -535,7 +538,7 @@
 	.site-header__overlay-body {
 		grid-template-columns: 1fr auto;
 		align-items: center;
-		padding: clamp(4rem, 10vw, 6.5rem) var(--page-gutter) clamp(2rem, 5vw, 3rem);
+		padding: 0 clamp(4rem, 10vw, 6.5rem) var(--page-gutter) clamp(2rem, 5vw, 3rem);
 	}
 
 	.site-header__overlay-footer {

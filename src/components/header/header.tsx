@@ -290,32 +290,33 @@ const MenuOverlay: React.FC<{
 
 	const overlay = (
 		<div ref={dialogRef} className="site-header__overlay" role="dialog" aria-modal="true" aria-label="Navigation">
-
+			
 			{/* Icons + Close — mirrors header-actions position */}
-			<div className="site-header__overlay-actions">
-				{iconNavigation.length > 0 && (
-					<nav aria-label="Schnellzugriffe">
-						<ul className="site-header__icon-list">
-							{renderIconItems(iconNavigation)}
-						</ul>
-					</nav>
-				)}
-				<button
-					ref={closeButtonRef}
-					className="site-header__overlay-close"
-					onClick={onClose}
-					aria-label="Menü schließen"
-					type="button"
-				>
-					{/* The X fills its viewBox, so its ink is exactly the button size
-					    (45px in the design) and the stroke stays 1.5px. */}
-					<svg viewBox="0 0 45 45" aria-hidden="true" focusable="false">
-						<path d="M0.75 0.75 L44.25 44.25 M44.25 0.75 L0.75 44.25" />
-					</svg>
-					<span className="visually-hidden">Schließen</span>
-				</button>
+			<div className="site-header__overlay-actions-outer">
+				<div className="site-header__overlay-actions">
+					{iconNavigation.length > 0 && (
+						<nav aria-label="Schnellzugriffe">
+							<ul className="site-header__icon-list">
+								{renderIconItems(iconNavigation)}
+							</ul>
+						</nav>
+					)}
+					<button
+						ref={closeButtonRef}
+						className="site-header__overlay-close"
+						onClick={onClose}
+						aria-label="Menü schließen"
+						type="button"
+					>
+						{/* The X fills its viewBox, so its ink is exactly the button size
+								(45px in the design) and the stroke stays 1.5px. */}
+						<svg viewBox="0 0 45 45" aria-hidden="true" focusable="false">
+							<path d="M0.75 0.75 L44.25 44.25 M44.25 0.75 L0.75 44.25" />
+						</svg>
+						<span className="visually-hidden">Schließen</span>
+					</button>
+				</div>
 			</div>
-
 			{/* Nav + Teasers */}
 			<div className="site-header__overlay-body">
 				<nav aria-label="Hauptnavigation">
