@@ -323,14 +323,14 @@ const MenuOverlay: React.FC<{
 					<ul className="site-header__nav-list site-header__nav-list--overlay">
 						{renderNavItems(menuNavigation)}
 					</ul>
-					{/* Footer: Language + Social */}
+					{/* Footer: Social */}
 					{socialLinks.length > 0 && (
-					<nav aria-label="Social Media">
-						<ul className="site-header__social-list">
-							{renderSocialItems(socialLinks)}
-						</ul>
-					</nav>
-				)}
+						<nav aria-label="Social Media">
+							<ul className="site-header__social-list">
+								{renderSocialItems(socialLinks)}
+							</ul>
+						</nav>
+					)}
 				</nav>
 
 				<MenuTeaserCards boxes={menuBoxes} language={language} theme={theme} />
