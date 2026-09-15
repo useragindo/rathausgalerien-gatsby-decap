@@ -18,6 +18,7 @@ import { buildLanguageOptions } from "../lib/language";
 import {
 	getMenuBoxesForLanguage,
 	getMenuIconsForLanguage,
+	getMenuSocialLinks,
 	type NormalizedNavigationItem,
 } from "../lib/navigation";
 import {
@@ -304,6 +305,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 			theme={theme}
 			menuIcons={getMenuIconsForLanguage(menu, location.language)}
 			menuBoxes={getMenuBoxesForLanguage(menu, location.language)}
+			menuSocialLinks={getMenuSocialLinks(menu)}
 			language={location.language}
 			mainNavigation={toNavigationItems(navigation, location.language, "main")}
 			footerNavigation={buildFooterNavigation(navigation, location.language)}

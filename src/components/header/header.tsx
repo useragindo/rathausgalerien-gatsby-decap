@@ -16,6 +16,8 @@ type HeaderProps = {
 	menuIcons?: MenuIcon[];
 	// The boxes in the open menu — ordinary content tiles (Einstellungen → Menü).
 	menuBoxes?: ImportedContentTile[];
+	// Separate from footer social links: maintained in Einstellungen → Menü.
+	menuSocialLinks?: NormalizedNavigationItem[];
 	socialLinks?: NormalizedNavigationItem[];
 	languages?: { code: string; label: string; url: string }[];
 	language?: LanguageCode;
@@ -85,27 +87,41 @@ const LanguageSwitcher: React.FC<{
 	);
 };
 
-const SocialIcon: React.FC<{ label: string }> = ({ label }) => {
+const SocialIcon: React.FC<{ label: string; icon?: string }> = ({ label, icon }) => {
+	if (icon) {
+		// Masked span, not an img: the uploaded SVGs ship with a hardcoded
+		// light fill, so the mask lets the icon take the scheme's text colour
+		// like every other header icon (see .site-header__icon-glyph).
+		return (
+			<span
+				className="site-header__icon-glyph"
+				style={{
+					WebkitMaskImage: `url("${icon}")`,
+					maskImage: `url("${icon}")`,
+				}}
+				aria-hidden="true"
+			/>
+		);
+	}
+
 	const key = label.toLowerCase();
 	if (key.includes("instagram")) {
 		return (
-			<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-				<rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-				<circle cx="12" cy="12" r="5" />
-				<circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+			<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+				<path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm10.5 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
 			</svg>
 		);
 	}
 	if (key.includes("facebook") || key.includes("fb")) {
 		return (
-			<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-				<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+			<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+				<path fill="currentColor" d="M13.8 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.7-1.6H17V4.8c-.3 0-1.1-.1-2.1-.1-2.1 0-3.5 1.3-3.5 3.7V11H9v3h2.4v8h2.4Z" />
 			</svg>
 		);
 	}
 	return (
-		<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<circle cx="12" cy="12" r="9" />
+		<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+			<circle cx="12" cy="12" r="9" fill="currentColor" />
 		</svg>
 	);
 };
@@ -190,7 +206,7 @@ const renderSocialItems = (items: NormalizedNavigationItem[]) =>
 				target={item.openInNewTab ? "_blank" : undefined}
 				rel={item.openInNewTab ? "noreferrer" : undefined}
 			>
-				<SocialIcon label={item.label} />
+				<SocialIcon label={item.label} icon={item.icon} />
 				<span className="visually-hidden">{item.label}</span>
 			</a>
 		</li>
@@ -207,6 +223,7 @@ const MenuOverlay: React.FC<{
 	languages: { code: string; label: string; url: string }[];
 	language: LanguageCode;
 	theme?: SiteTheme | null;
+	menuButtonRef: React.RefObject<HTMLButtonElement | null>;
 }> = ({
 	isOpen,
 	onClose,
@@ -217,8 +234,11 @@ const MenuOverlay: React.FC<{
 	languages,
 	language,
 	theme,
+	menuButtonRef,
 }) => {
 	const [mounted, setMounted] = React.useState(false);
+	const dialogRef = React.useRef<HTMLDivElement>(null);
+	const closeButtonRef = React.useRef<HTMLButtonElement>(null);
 
 	React.useEffect(() => { setMounted(true); }, []);
 
@@ -229,15 +249,47 @@ const MenuOverlay: React.FC<{
 
 	React.useEffect(() => {
 		if (!isOpen) return;
-		const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+		const handler = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				onClose();
+				return;
+			}
+
+			if (event.key !== "Tab") return;
+
+			const focusable = Array.from(
+				dialogRef.current?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])") ?? [],
+			).filter((element) => !element.hasAttribute("hidden"));
+			const first = focusable[0];
+			const last = focusable.at(-1);
+
+			if (!first || !last) return;
+			if (event.shiftKey && document.activeElement === first) {
+				event.preventDefault();
+				last.focus();
+			} else if (!event.shiftKey && document.activeElement === last) {
+				event.preventDefault();
+				first.focus();
+			}
+		};
 		window.addEventListener("keydown", handler);
 		return () => window.removeEventListener("keydown", handler);
 	}, [isOpen, onClose]);
 
+	React.useEffect(() => {
+		if (!isOpen) return;
+		const frame = window.requestAnimationFrame(() => closeButtonRef.current?.focus());
+
+		return () => {
+			window.cancelAnimationFrame(frame);
+			menuButtonRef.current?.focus();
+		};
+	}, [isOpen, menuButtonRef]);
+
 	if (!mounted || !isOpen) return null;
 
 	const overlay = (
-		<div className="site-header__overlay" role="dialog" aria-modal="true" aria-label="Navigation">
+		<div ref={dialogRef} className="site-header__overlay" role="dialog" aria-modal="true" aria-label="Navigation">
 
 			{/* Icons + Close — mirrors header-actions position */}
 			<div className="site-header__overlay-actions">
@@ -249,6 +301,7 @@ const MenuOverlay: React.FC<{
 					</nav>
 				)}
 				<button
+					ref={closeButtonRef}
 					className="site-header__overlay-close"
 					onClick={onClose}
 					aria-label="Menü schließen"
@@ -276,8 +329,6 @@ const MenuOverlay: React.FC<{
 
 			{/* Footer: Language + Social */}
 			<div className="site-header__overlay-footer">
-				<LanguageSwitcher languages={languages} modifier="overlay" />
-
 				{socialLinks.length > 0 && (
 					<nav aria-label="Social Media">
 						<ul className="site-header__social-list">
@@ -285,6 +336,8 @@ const MenuOverlay: React.FC<{
 						</ul>
 					</nav>
 				)}
+
+				<LanguageSwitcher languages={languages} modifier="overlay" />
 			</div>
 
 		</div>
@@ -301,6 +354,7 @@ export const Header: React.FC<HeaderProps> = ({
 	utilityNavigation = [],
 	menuIcons = [],
 	menuBoxes = [],
+	menuSocialLinks = [],
 	socialLinks = [],
 	languages = [
 		{ code: "de", label: "DE", url: "/" },
@@ -313,6 +367,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
 	const [isScrolled, setIsScrolled] = React.useState(false);
 	const [menuOpen, setMenuOpen] = React.useState(false);
+	const menuButtonRef = React.useRef<HTMLButtonElement>(null);
 
 	// The CMS caps the list at 3; slicing keeps a hand-edited file from
 	// stretching the header.
@@ -356,6 +411,7 @@ export const Header: React.FC<HeaderProps> = ({
 
 						{menuNavigation.length > 0 && (
 							<button
+								ref={menuButtonRef}
 								className="site-header__menu-btn"
 								onClick={openMenu}
 								aria-label="Menü öffnen"
@@ -383,8 +439,9 @@ export const Header: React.FC<HeaderProps> = ({
 				menuBoxes={menuBoxes}
 				language={language}
 				theme={theme}
-				socialLinks={socialLinks}
+				socialLinks={menuSocialLinks}
 				languages={languages}
+				menuButtonRef={menuButtonRef}
 			/>
 		</>
 	);

@@ -2040,3 +2040,20 @@ collections:
                   - {label: "Weiß", value: "weiss", color: "#ffffff"}
                 hint: "Nur für Text-Kacheln. Im Design ist die Box Farbe 1 (c1)."
 
+          - label: "Social Media im Menü"
+            name: "social"
+            widget: list
+            required: false
+            hint: "Die Social-Media-Icons im geöffneten Menü, links neben dem Sprachwechsler. Wie beim Footer wird die Plattform automatisch aus dem Link erkannt (Instagram, Facebook, …)."
+            fields:
+              - label: "Icon"
+                name: "icon"
+                widget: "image"
+                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+                pattern: ["(?:.+)svg$", "Must be a SVG file"]
+              - label: "Link"
+                name: "link"
+                widget: "string"
+                pattern: ["^(?:/|https?://)[A-Za-z0-9-_./]+$", "Must start with slash or http(s)://"]
+                hint: "Vollständige URL zum Profil, z. B. https://www.instagram.com/rathausgalerien."
+

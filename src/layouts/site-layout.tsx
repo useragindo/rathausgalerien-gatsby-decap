@@ -16,6 +16,7 @@ type SiteLayoutProps = {
 	utilityNavigation?: NormalizedNavigationItem[];
 	menuIcons?: MenuIcon[];
 	menuBoxes?: ImportedContentTile[];
+	menuSocialLinks?: NormalizedNavigationItem[];
 	footerNavigation?: NormalizedNavigationItem[];
 	footerLegalNavigation?: NormalizedNavigationItem[];
 	socialLinks?: NormalizedNavigationItem[];
@@ -32,6 +33,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 	utilityNavigation = [],
 	menuIcons = [],
 	menuBoxes = [],
+	menuSocialLinks = [],
 	footerNavigation = [],
 	footerLegalNavigation = [],
 	socialLinks = [],
@@ -50,6 +52,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 			utilityNavigation={utilityNavigation}
 			menuIcons={menuIcons}
 			menuBoxes={menuBoxes}
+			menuSocialLinks={menuSocialLinks}
 			language={language}
 			theme={theme}
 			socialLinks={socialLinks}

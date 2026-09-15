@@ -17,6 +17,7 @@ import { buildLanguageOptions } from "../lib/language";
 import {
 	getMenuBoxesForLanguage,
 	getMenuIconsForLanguage,
+	getMenuSocialLinks,
 	type NormalizedNavigationItem,
 } from "../lib/navigation";
 import {
@@ -149,6 +150,7 @@ const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
 			theme={theme}
 			menuIcons={getMenuIconsForLanguage(menu, news.language)}
 			menuBoxes={getMenuBoxesForLanguage(menu, news.language)}
+			menuSocialLinks={getMenuSocialLinks(menu)}
 			language={news.language}
 			mainNavigation={toNavigationItems(navigation, news.language, "main")}
 			footerNavigation={buildFooterNavigation(navigation, news.language)}

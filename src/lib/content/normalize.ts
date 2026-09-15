@@ -22,10 +22,12 @@ import type {
 	NormalizedService,
 	ImportedMenuBox,
 	ImportedMenuIcon,
+	ImportedMenuSocialLink,
 	MenuIconSymbol,
 	SiteMenuBox,
 	SiteMenuIcon,
 	SiteMenuSettings,
+	SiteSocialLink,
 	SiteNavigationItem,
 	SiteTheme,
 } from "./types";
@@ -803,9 +805,15 @@ const getMenuIconSymbol = (value?: string | null): MenuIconSymbol => {
 // Reads the single settings entry that holds the menu configuration. Returns
 // the raw CMS lists, not the finished menu: the page links can only be
 // resolved once every page is normalized (see resolveMenuSettings).
+type RawMenuSettings = {
+	icons: ImportedMenuIcon[];
+	boxes: ImportedMenuBox[];
+	social: ImportedMenuSocialLink[];
+};
+
 export const normalizeMenuSettings = (
 	node: ImportedMdxNode,
-): { icons: ImportedMenuIcon[]; boxes: ImportedMenuBox[] } | null => {
+): RawMenuSettings | null => {
 	const frontmatter = node.frontmatter;
 
 	if (
@@ -819,6 +827,7 @@ export const normalizeMenuSettings = (
 	return {
 		icons: frontmatter.icons ?? [],
 		boxes: frontmatter.boxes ?? [],
+		social: frontmatter.social ?? [],
 	};
 };
 
@@ -827,10 +836,10 @@ export const normalizeMenuSettings = (
 // translation. An icon without any link target is dropped — it would render as
 // a symbol that goes nowhere.
 export const resolveMenuSettings = (
-	menu: { icons: ImportedMenuIcon[]; boxes: ImportedMenuBox[] } | null | undefined,
+	menu: RawMenuSettings | null | undefined,
 	pages: NormalizedPage[],
 ): SiteMenuSettings => {
-	const { icons, boxes } = menu ?? { icons: [], boxes: [] };
+	const { icons, boxes, social } = menu ?? { icons: [], boxes: [], social: [] };
 	const pathsByPageKey = new Map<string, Partial<Record<LanguageCode, string>>>();
 
 	for (const page of pages) {
@@ -887,7 +896,11 @@ export const resolveMenuSettings = (
 		});
 	}
 
-	return { icons: resolvedIcons, boxes: resolvedBoxes };
+	return {
+		icons: resolvedIcons,
+		boxes: resolvedBoxes,
+		social: buildSocialLinks(social),
+	};
 };
 
 export const createNavigationFromPages = (
@@ -906,13 +919,6 @@ export const createNavigationFromPages = (
 		}))
 		.sort((a, b) => a.order - b.order || a.label.localeCompare(b.label));
 
-export type FooterSocialLink = {
-	label: string;
-	url: string;
-	icon?: string;
-	openInNewTab: boolean;
-};
-
 const deriveSocialLabel = (url: string): string => {
 	const value = url.toLowerCase();
 	if (value.includes("instagram")) return "Instagram";
@@ -923,12 +929,49 @@ const deriveSocialLabel = (url: string): string => {
 	return "Social Media";
 };
 
+const getSafeSocialUrl = (value?: string | null): string | undefined => {
+	const url = trim(value);
+
+	if (!url) {
+		return undefined;
+	}
+
+	if (url.startsWith("/") && !url.startsWith("//")) {
+		return url;
+	}
+
+	try {
+		const protocol = new URL(url).protocol;
+		return protocol === "http:" || protocol === "https:" ? url : undefined;
+	} catch {
+		return undefined;
+	}
+};
+
+// Shared by the footer's and the menu's social lists: both store only an icon
+// and a URL, and derive the platform label from the URL (see above).
+const buildSocialLinks = (
+	items: Array<{ icon?: string | null; link?: string | null } | null | undefined> | null | undefined,
+): SiteSocialLink[] =>
+	(items ?? [])
+		.map((item): SiteSocialLink | null => {
+			const url = getSafeSocialUrl(item?.link);
+			if (!url) return null;
+			return {
+				label: deriveSocialLabel(url),
+				url,
+				icon: trim(item?.icon),
+				openInNewTab: true,
+			};
+		})
+		.filter((item): item is SiteSocialLink => item !== null);
+
 // Reads the per-language social links from the "footer" block so the footer
 // can render them (the block content is otherwise not consumed by the site).
 export const buildFooterSocialLinks = (
 	nodes: ImportedMdxNode[],
-): Record<LanguageCode, FooterSocialLink[]> => {
-	const byLanguage: Record<LanguageCode, FooterSocialLink[]> = {
+): Record<LanguageCode, SiteSocialLink[]> => {
+	const byLanguage: Record<LanguageCode, SiteSocialLink[]> = {
 		de: [],
 		en: [],
 	};
@@ -939,19 +982,7 @@ export const buildFooterSocialLinks = (
 			continue;
 		}
 
-		const language = getLanguage(frontmatter);
-		byLanguage[language] = (frontmatter.social_media ?? [])
-			.map((item): FooterSocialLink | null => {
-				const url = trim(item?.link);
-				if (!url) return null;
-				return {
-					label: deriveSocialLabel(url),
-					url,
-					icon: trim(item?.icon),
-					openInNewTab: true,
-				};
-			})
-			.filter((item): item is FooterSocialLink => item !== null);
+		byLanguage[getLanguage(frontmatter)] = buildSocialLinks(frontmatter.social_media);
 	}
 
 	return byLanguage;

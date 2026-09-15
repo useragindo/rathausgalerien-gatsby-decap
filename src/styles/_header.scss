@@ -387,12 +387,20 @@
 	color: var(--color-rosa);
 }
 
-.site-header__social-link svg {
+.site-header__social-link :is(svg, img) {
 	width: 100%;
 	height: 100%;
+	object-fit: contain;
 }
 
+/* In-flow inside the overlay footer: the swap puts Social left, DE / EN right,
+   on one centre line. The base .site-header__language is absolutely positioned
+   for an older header layout, so the modifier has to neutralise that or the
+   language switch would stick to the bottom-left at widths below 1280px. */
 .site-header__language--overlay {
+	position: static;
+	bottom: auto;
+	inset-inline-start: auto;
 	flex: 0 0 auto;
 }
 

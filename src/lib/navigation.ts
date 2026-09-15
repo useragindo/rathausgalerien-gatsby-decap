@@ -62,6 +62,18 @@ export const getMenuBoxesForLanguage = (
 		.filter((box) => !box.language || box.language === language)
 		.map((box) => box.tile);
 
+// Unlike the footer links, these are maintained in Einstellungen → Menü and
+// are only rendered in the open navigation overlay.
+export const getMenuSocialLinks = (
+	menu: SiteMenuSettings | null | undefined,
+): NormalizedNavigationItem[] =>
+	(menu?.social ?? []).map((link) => ({
+		label: link.label,
+		url: link.url,
+		icon: link.icon,
+		openInNewTab: link.openInNewTab,
+	}));
+
 const trim = (value?: string | null): string | undefined => {
 	const trimmed = value?.trim();
 	return trimmed ? trimmed : undefined;

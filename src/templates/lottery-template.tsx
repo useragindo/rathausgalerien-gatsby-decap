@@ -19,6 +19,7 @@ import { buildLanguageOptions } from "../lib/language";
 import {
 	getMenuBoxesForLanguage,
 	getMenuIconsForLanguage,
+	getMenuSocialLinks,
 	type NormalizedNavigationItem,
 } from "../lib/navigation";
 import {
@@ -139,6 +140,7 @@ const LotteryTemplate: React.FC<LotteryTemplateProps> = ({ pageContext }) => {
 			theme={theme}
 			menuIcons={getMenuIconsForLanguage(menu, lottery.language)}
 			menuBoxes={getMenuBoxesForLanguage(menu, lottery.language)}
+			menuSocialLinks={getMenuSocialLinks(menu)}
 			language={lottery.language}
 			mainNavigation={toNavigationItems(navigation, lottery.language, "main")}
 			footerNavigation={buildFooterNavigation(navigation, lottery.language)}

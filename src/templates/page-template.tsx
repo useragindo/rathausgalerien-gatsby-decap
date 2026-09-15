@@ -33,6 +33,7 @@ import { buildLanguageOptions } from "../lib/language";
 import {
 	getMenuBoxesForLanguage,
 	getMenuIconsForLanguage,
+	getMenuSocialLinks,
 	type NormalizedNavigationItem,
 } from "../lib/navigation";
 import type { ResolvedSeo } from "../lib/seo";
@@ -725,6 +726,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			theme={theme}
 			menuIcons={getMenuIconsForLanguage(menu, page.language)}
 			menuBoxes={getMenuBoxesForLanguage(menu, page.language)}
+			menuSocialLinks={getMenuSocialLinks(menu)}
 			language={page.language}
 			mainNavigation={mainNavigation}
 			footerNavigation={footerNavigation}

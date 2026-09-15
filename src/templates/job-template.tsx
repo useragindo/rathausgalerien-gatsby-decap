@@ -16,6 +16,7 @@ import { buildLanguageOptions } from "../lib/language";
 import {
 	getMenuBoxesForLanguage,
 	getMenuIconsForLanguage,
+	getMenuSocialLinks,
 	type NormalizedNavigationItem,
 } from "../lib/navigation";
 import {
@@ -181,6 +182,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 			theme={theme}
 			menuIcons={getMenuIconsForLanguage(menu, job.language)}
 			menuBoxes={getMenuBoxesForLanguage(menu, job.language)}
+			menuSocialLinks={getMenuSocialLinks(menu)}
 			language={job.language}
 			mainNavigation={toNavigationItems(navigation, job.language, "main")}
 			footerNavigation={buildFooterNavigation(navigation, job.language)}

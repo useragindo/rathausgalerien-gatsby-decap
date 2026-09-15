@@ -28,4 +28,7 @@ boxes:
       - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
         alt: Zum Magazin
     background_color: c1
+social:
+  - icon: /media/shared/instagram_icon.svg
+    link: http://www.instagram.com/rathausgalerien
 ---

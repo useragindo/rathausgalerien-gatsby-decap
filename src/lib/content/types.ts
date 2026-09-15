@@ -153,6 +153,15 @@ export type ImportedFrontmatter = {
 	terms_url?: string | null;
 	icons?: ImportedMenuIcon[] | null;
 	boxes?: ImportedMenuBox[] | null;
+	social?: ImportedMenuSocialLink[] | null;
+};
+
+// A social link in the open menu — same shape as the footer's social_media
+// list (content/blocks/*/footer.md): only an icon and a URL, the platform is
+// derived from the URL (see deriveSocialLabel in normalize.ts).
+export type ImportedMenuSocialLink = {
+	icon?: string | null;
+	link?: string | null;
 };
 
 // One of the two boxes in the open menu. It is an ordinary content tile — the
@@ -445,8 +454,19 @@ export type SiteMenuBox = {
 	language?: LanguageCode;
 };
 
+// A social link after normalization — the shared shape for both the footer
+// (content/blocks/*/footer.md) and the menu (content/settings/menu.md): an
+// icon, a URL, and a label derived from the URL (see deriveSocialLabel).
+export type SiteSocialLink = {
+	label: string;
+	url: string;
+	icon?: string;
+	openInNewTab: boolean;
+};
+
 // Everything the menu is maintained with in the CMS (Einstellungen → Menü).
 export type SiteMenuSettings = {
 	icons: SiteMenuIcon[];
 	boxes: SiteMenuBox[];
+	social: SiteSocialLink[];
 };
