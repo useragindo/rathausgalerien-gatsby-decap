@@ -114,38 +114,9 @@ const renderLineFragments = (lines: string[]): React.ReactNode[] =>
 const renderLines = (text: string): React.ReactNode[] =>
 	renderLineFragments(splitLines(text));
 
-// "Fließtext in Kleinbuchstaben"-Option: kann nicht per CSS text-transform
-// gelöst werden, weil das jeden Buchstaben klein macht — auch Satzanfänge.
-// Diese Funktion senkt den ganzen Text ab, hält aber den ersten Buchstaben
-// sowie jeden Buchstaben nach einem Satzzeichen (. ! ?) groß. Der Zustand
-// läuft über einen manuellen "\"-Umbruch hinweg (ein Satz kann genau am
-// Zeilenumbruch enden), startet aber für jeden neuen Absatz frisch.
-const toSentenceCase = (lines: string[]): string[] => {
-	let capitalizeNext = true;
-
-	return lines.map((line) => {
-		let result = "";
-
-		for (const char of line.toLocaleLowerCase("de")) {
-			if (capitalizeNext && /\p{L}/u.test(char)) {
-				result += char.toLocaleUpperCase("de");
-				capitalizeNext = false;
-			} else {
-				result += char;
-				if (/[.!?]/.test(char)) {
-					capitalizeNext = true;
-				}
-			}
-		}
-
-		return result;
-	});
-};
-
 const renderParagraph = (
 	paragraph: string,
 	index: number,
-	lowercase?: boolean,
 ): React.ReactNode => {
 	const cleaned = normalizeInlineText(paragraph).trim();
 
@@ -187,7 +158,7 @@ const renderParagraph = (
 
 	const lines = splitLines(cleaned);
 
-	return <p key={index}>{renderLineFragments(lowercase ? toSentenceCase(lines) : lines)}</p>;
+	return <p key={index}>{renderLineFragments(lines)}</p>;
 };
 
 // CMS text fields (heading, intro) are plain strings, not markdown, but still
@@ -202,11 +173,7 @@ export const renderMultiline = (value: string): React.ReactNode =>
 
 export const MarkdownContent: React.FC<{
 	content?: string | null;
-	// Entspricht der CMS-Checkbox "Fließtext in Kleinbuchstaben": senkt Absätze
-	// ab, hält aber Satzanfänge groß. Überschriften bleiben davon unberührt
-	// (die bleiben immer in Versalien, per CSS text-transform: uppercase).
-	lowercase?: boolean;
-}> = ({ content, lowercase }) => {
+}> = ({ content }) => {
 	const value = trim(content);
 
 	if (!value) {
@@ -219,7 +186,7 @@ export const MarkdownContent: React.FC<{
 				.split(/\n{2,}/)
 				.map((paragraph) => paragraph.trim())
 				.filter(Boolean)
-				.map((paragraph, index) => renderParagraph(paragraph, index, lowercase))}
+				.map((paragraph, index) => renderParagraph(paragraph, index))}
 		</>
 	);
 };

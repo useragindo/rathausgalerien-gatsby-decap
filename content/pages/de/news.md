@@ -18,7 +18,6 @@ blocks:
     text_color: ""
     background_color: ""
     reversed: false
-    text_lowercase: false
     text_align: ""
     date: ""
     tiles:

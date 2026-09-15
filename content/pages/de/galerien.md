@@ -41,13 +41,11 @@ blocks:
           - image: /media/pages/scr-20260909-ipwa.png
             alt: Historisches Schwarz-weiß-Foto eines alten Lkw, der durch einen steinernen
               Torbogen fährt
-    text_lowercase: true
     text_align: center
   - layout: grid-4-equal
     text_color: ""
     background_color: ""
     reversed: false
-    text_lowercase: false
     text_align: center
     date: ""
     tiles:
@@ -56,38 +54,37 @@ blocks:
         text: |-
           ## 32
 
-          shops, Hotels und \
-          gastronomie\
+          Shops, Hotels und \
+          Gastronomie\
           betriebe
       - text_color: ""
         background_color: c3
         text: |-
           ## 15.000
 
-          besucherinnen \
-          und besucher Pro \
+          Besucherinnen \
+          und Besucher pro \
           Tag
       - text_color: ""
         background_color: c1
         text: |-
           ## 500
 
-          mitarbeiterinnen\
-          und mitarbeiter
+          Mitarbeiterinnen\
+          und Mitarbeiter
       - text_color: ""
         background_color: c4
         text: |-
           ## 2002
 
           gemeinsam mit dem \
-          neuen rathaus in \
-          innsbruck \
+          neuen Rathaus in \
+          Innsbruck \
           eröffnet
   - layout: columns
     text_color: ""
     background_color: ""
     reversed: false
-    text_lowercase: true
     text_align: center
     date: ""
     tiles:
@@ -114,7 +111,6 @@ blocks:
     text_color: ""
     background_color: bg
     reversed: true
-    text_lowercase: false
     text_align: center
     date: ""
     tiles:

@@ -429,8 +429,7 @@ const TileBox: React.FC<{
 	tile: ImportedContentTile;
 	link?: string;
 	theme?: SiteTheme | null;
-	lowercase?: boolean;
-}> = ({ variant, tile, link, theme, lowercase }) => {
+}> = ({ variant, tile, link, theme }) => {
 	const boxClassName = [
 		"content-block__tile",
 		variant === "media"
@@ -462,7 +461,7 @@ const TileBox: React.FC<{
 					<img className="content-block__hero-icon" src={text(heroIcon.icon)} alt="" loading="lazy" />
 				) : null}
 				<div className="content-block__text">
-					<MarkdownContent content={tile.text} lowercase={lowercase} />
+					<MarkdownContent content={tile.text} />
 				</div>
 				<IconList icons={listIcons} />
 			</>
@@ -504,8 +503,7 @@ const TileGrid: React.FC<{
 	// halved grid-4.
 	maxTiles?: number;
 	theme?: SiteTheme | null;
-	lowercase?: boolean;
-}> = ({ tiles, categories, language, reverseTwoColumn, maxTiles = 4, theme, lowercase }) => {
+}> = ({ tiles, categories, language, reverseTwoColumn, maxTiles = 4, theme }) => {
 	const items: { variant: "content" | "media"; tile: ImportedContentTile; link?: string; key: string }[] = [];
 
 	for (const tile of tiles.slice(0, maxTiles)) {
@@ -536,7 +534,7 @@ const TileGrid: React.FC<{
 	return (
 		<>
 			{orderedItems.slice(0, maxTiles).map(({ variant, tile, link, key }) => (
-				<TileBox key={key} variant={variant} tile={tile} link={link} theme={theme} lowercase={lowercase} />
+				<TileBox key={key} variant={variant} tile={tile} link={link} theme={theme} />
 			))}
 		</>
 	);
@@ -583,7 +581,6 @@ const ImportedBlock: React.FC<{
 		`content-block--index-${index + 1}`,
 		images.length ? "content-block--has-images" : "",
 		icons.length ? "content-block--has-icons" : "",
-		block.text_lowercase ? "content-block--lowercase-text" : "",
 		block.text_align === "center" ? "content-block--align-center" : "",
 	]
 		.filter(Boolean)
@@ -613,7 +610,7 @@ const ImportedBlock: React.FC<{
 				<img className="content-block__hero-icon" src={text(heroIcon.icon)} alt="" loading="lazy" />
 			) : null}
 			<div className="content-block__text">
-				<MarkdownContent content={block.text} lowercase={Boolean(block.text_lowercase)} />
+				<MarkdownContent content={block.text} />
 			</div>
 			<IconList icons={listIcons} />
 		</div>
@@ -655,7 +652,7 @@ const ImportedBlock: React.FC<{
 			) : null}
 			{hasTiles && text(block.text) ? (
 				<div className="content-block__intro">
-					<MarkdownContent content={block.text} lowercase={Boolean(block.text_lowercase)} />
+					<MarkdownContent content={block.text} />
 				</div>
 			) : null}
 			<div className="content-block__body">
@@ -667,7 +664,6 @@ const ImportedBlock: React.FC<{
 						reverseTwoColumn={(isTwoColumnLayout || isCenteredLayout) && isReversed}
 						maxTiles={isCenteredLayout ? 2 : 4}
 						theme={theme}
-						lowercase={Boolean(block.text_lowercase)}
 					/>
 				) : isReversed ? (
 					<>

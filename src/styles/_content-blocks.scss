@@ -142,16 +142,12 @@
 	margin-block-start: 0.75em;
 }
 
-/* ─── Formatierungs-Optionen (CMS-Checkboxen: text_lowercase, text_align) ─
-   Kleinbuchstaben ("text_lowercase") wird NICHT per text-transform: lowercase
-   gelöst (das würde auch Satzanfänge klein machen) — stattdessen erzeugt
-   MarkdownContent (lib/content/markdown.tsx) direkt klein geschriebenen Text,
-   bei dem nur Satzanfänge groß bleiben. Der Fließtext ist aber standardmäßig
-   per text-transform: uppercase auf Versalien gestellt (siehe oben) — das
-   muss hier zurückgesetzt werden, sonst zeigt der Browser den schon korrekt
-   klein/groß gemischten Text trotzdem komplett in Großbuchstaben an. Die
-   Headline bleibt davon unberührt (immer Versalien, eigene Regel). */
-.content-block--lowercase-text .content-block__tile--content .content-block__text p {
+/* ─── Formatierungs-Optionen (CMS-Checkboxen: text_align) ──────────────
+   Der Fließtext wird standardmäßig per text-transform: uppercase auf
+   Versalien gestellt (siehe oben). Hier wird das zurückgesetzt, damit der
+   Editor-Text mit seiner genauen Gross-/Kleinschreibung gezeigt wird.
+   Die Headline bleibt davon unberührt (immer Versalien, eigene Regel). */
+.content-block__tile--content .content-block__text p {
 	text-transform: none;
 }
 

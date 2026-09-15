@@ -29,6 +29,7 @@ blocks:
         images:
           - image: /media/pages/rathausgalerien_so25_danielzangerl-_021_web.jpg
           - image: /media/pages/rathausgalerien_so25_danielzangerl-_214_web.jpg
+    text_align: center
   - reversed: false
     tiles:
       - text_color: ""
@@ -52,7 +53,6 @@ blocks:
     teaserText: |-
       Stöbern Sie durch die Galerien, lassen Sie sich inspirieren und finden
       Sie das passende Geschenk für jeden Anlass!
-    text_lowercase: false
 teaser:
   title: |-
     GESCHENK

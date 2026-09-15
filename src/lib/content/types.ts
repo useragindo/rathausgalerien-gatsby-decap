@@ -50,7 +50,6 @@ export type ImportedContentBlock = {
 	text_color?: string | null;
 	background_color?: string | null;
 	reversed?: boolean | null;
-	text_lowercase?: boolean | null;
 	text_align?: string | null;
 	date?: string | null;
 	images?: ImportedImage[] | null;

@@ -160,7 +160,6 @@ Blocks sind die flexiblen Inhaltsbausteine einer Seite. Du kannst beliebig viele
 | Layout | "4er Grid", "4er Grid (gleiche Kacheln)", "Text + Bild (2 Spalten)" oder "Box zentriert" |
 | Textfarbe / Hintergrundfarbe | Aus dem aktiven Farbschema (Kapitel 4.11) oder Schwarz/Weiß. Sind beide leer, wechselt die Website automatisch durch (Blau/Rosa/Gelb/Lila). |
 | Umgekehrt (Bild links, Text rechts) | Nur für "Text + Bild (2 Spalten)" und "Box zentriert". Standard: Text links, Bild rechts. |
-| Fließtext in Kleinbuchstaben | Die Headline bleibt in Versalien (GROSS), nur der Fließtext wird klein geschrieben |
 | Textausrichtung | Linksbündig (Standard) oder Zentriert — gilt für Headline und Fließtext gemeinsam |
 | Images | Bilderliste für Bild-Layouts |
 | Tiles (Kacheln) | Bis zu 4 Kacheln, siehe unten |
