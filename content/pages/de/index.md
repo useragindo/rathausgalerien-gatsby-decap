@@ -6,11 +6,6 @@ template: home
 order: 1
 heading: Shopping
 intro: ""
-seo:
-  description: Suchen Sie ein Shoppingcenter in Innsbruck? Die RathausGalerien
-    bieten ein einzigartiges Einkaufserlebnis und vielfältige Shops. Besuchen
-    Sie uns vor Ort!
-  title: Shopping
 blocks:
   - layout: grid-4
     date: ""
@@ -136,14 +131,12 @@ blocks:
       - text_color: ""
         background_color: c3
         text: |-
-          ## Die 
+          ## Die
 
           ## Galerien
 
-          Einzigartige
-
-          Architektur seit
-
+          Einzigartige\
+          Architektur seit \
           knapp 25 Jahren
         images:
           - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_01.jpg
@@ -183,4 +176,9 @@ teaser:
   title: Shopping
   subtitle: Mitten in Innsbruck
   icon: /media/pages/rhg-logo-klein.svg
+seo:
+  description: Suchen Sie ein Shoppingcenter in Innsbruck? Die RathausGalerien
+    bieten ein einzigartiges Einkaufserlebnis und vielfältige Shops. Besuchen
+    Sie uns vor Ort!
+  title: Shopping
 ---

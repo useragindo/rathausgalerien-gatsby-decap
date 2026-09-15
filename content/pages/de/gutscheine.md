@@ -35,21 +35,21 @@ blocks:
       - text_color: ""
         background_color: c2
         text: |-
-          ## SCHMUCK 
-
-          ## & UHREN
+          ## SCHMUCK \
+          & UHREN
 
           Zeitlose\
           Lieblingsstücke von \
           Appelt Juwelen
         images:
-          - image: /media/pages/uhr_freigestellt.jpg
+          - image: /media/pages/uhr_freigestellt.png
+          - image: /media/pages/schoki_laederach.png
     layout: grid-4-equal
     header: GALERIEN GESCHENK-IDEEN
     date: ""
     text_color: ""
     background_color: ""
-    text_align: ""
+    text_align: center
     teaserText: |-
       Stöbern Sie durch die Galerien, lassen Sie sich inspirieren und finden
       Sie das passende Geschenk für jeden Anlass!
