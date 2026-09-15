@@ -2,19 +2,25 @@ import * as React from "react";
 import { Footer } from "../components/footer/footer";
 import { Header } from "../components/header/header";
 import { ThemeStyle } from "../components/theme/theme-style";
-import type { SiteTheme } from "../lib/content/types";
-import type { NormalizedNavigationItem } from "../lib/navigation";
+import type {
+	ImportedContentTile,
+	LanguageCode,
+	SiteTheme,
+} from "../lib/content/types";
+import type { MenuIcon, NormalizedNavigationItem } from "../lib/navigation";
 
 type SiteLayoutProps = {
 	children: React.ReactNode;
 	theme?: SiteTheme | null;
 	mainNavigation?: NormalizedNavigationItem[];
 	utilityNavigation?: NormalizedNavigationItem[];
-	headerIconNavigation?: NormalizedNavigationItem[];
+	menuIcons?: MenuIcon[];
+	menuBoxes?: ImportedContentTile[];
 	footerNavigation?: NormalizedNavigationItem[];
 	footerLegalNavigation?: NormalizedNavigationItem[];
 	socialLinks?: NormalizedNavigationItem[];
 	languages?: { code: string; label: string; url: string }[];
+	language?: LanguageCode;
 	homeUrl?: string;
 	siteTitle?: string;
 };
@@ -24,11 +30,13 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 	theme,
 	mainNavigation = [],
 	utilityNavigation = [],
-	headerIconNavigation = [],
+	menuIcons = [],
+	menuBoxes = [],
 	footerNavigation = [],
 	footerLegalNavigation = [],
 	socialLinks = [],
 	languages,
+	language,
 	homeUrl = "/",
 	siteTitle = "RathausGalerien",
 }) => (
@@ -40,7 +48,10 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 		<Header
 			mainNavigation={mainNavigation}
 			utilityNavigation={utilityNavigation}
-			headerIconNavigation={headerIconNavigation}
+			menuIcons={menuIcons}
+			menuBoxes={menuBoxes}
+			language={language}
+			theme={theme}
 			socialLinks={socialLinks}
 			languages={languages}
 			homeUrl={homeUrl}

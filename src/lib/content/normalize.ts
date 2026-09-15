@@ -20,6 +20,12 @@ import type {
 	NormalizedNews,
 	NormalizedPage,
 	NormalizedService,
+	ImportedMenuBox,
+	ImportedMenuIcon,
+	MenuIconSymbol,
+	SiteMenuBox,
+	SiteMenuIcon,
+	SiteMenuSettings,
 	SiteNavigationItem,
 	SiteTheme,
 } from "./types";
@@ -779,6 +785,111 @@ export const resolveActiveTheme = (
 	};
 };
 
+const MENU_ICON_SYMBOLS: MenuIconSymbol[] = [
+	"phone",
+	"location",
+	"hours",
+	"custom",
+];
+
+const getMenuIconSymbol = (value?: string | null): MenuIconSymbol => {
+	const symbol = trim(value);
+
+	return MENU_ICON_SYMBOLS.includes(symbol as MenuIconSymbol)
+		? (symbol as MenuIconSymbol)
+		: "custom";
+};
+
+// Reads the single settings entry that holds the menu configuration. Returns
+// the raw CMS lists, not the finished menu: the page links can only be
+// resolved once every page is normalized (see resolveMenuSettings).
+export const normalizeMenuSettings = (
+	node: ImportedMdxNode,
+): { icons: ImportedMenuIcon[]; boxes: ImportedMenuBox[] } | null => {
+	const frontmatter = node.frontmatter;
+
+	if (
+		!frontmatter ||
+		frontmatter.type !== "settings" ||
+		trim(frontmatter.name) !== "menu"
+	) {
+		return null;
+	}
+
+	return {
+		icons: frontmatter.icons ?? [],
+		boxes: frontmatter.boxes ?? [],
+	};
+};
+
+// Turns the CMS lists into the menu the site renders: a page reference becomes
+// the path of that page in each language, so DE and EN link their own
+// translation. An icon without any link target is dropped — it would render as
+// a symbol that goes nowhere.
+export const resolveMenuSettings = (
+	menu: { icons: ImportedMenuIcon[]; boxes: ImportedMenuBox[] } | null | undefined,
+	pages: NormalizedPage[],
+): SiteMenuSettings => {
+	const { icons, boxes } = menu ?? { icons: [], boxes: [] };
+	const pathsByPageKey = new Map<string, Partial<Record<LanguageCode, string>>>();
+
+	for (const page of pages) {
+		const entry = pathsByPageKey.get(page.i18nKey) ?? {};
+		entry[page.language] = page.path;
+		pathsByPageKey.set(page.i18nKey, entry);
+	}
+
+	const resolvedIcons: SiteMenuIcon[] = [];
+
+	for (const icon of icons ?? []) {
+		const pageKey = trim(icon?.page);
+		const url = trim(icon?.url);
+		const paths = pageKey ? pathsByPageKey.get(pageKey) : undefined;
+
+		// A page that exists in only one language still links there from both,
+		// which beats sending the other language to the start page.
+		const de = paths?.de ?? paths?.en ?? url;
+		const en = paths?.en ?? paths?.de ?? url;
+
+		if (!de || !en) {
+			continue;
+		}
+
+		resolvedIcons.push({
+			symbol: getMenuIconSymbol(icon?.symbol),
+			image: trim(icon?.image),
+			url: { de, en },
+			openInNewTab: Boolean(icon?.openInNewTab),
+		});
+	}
+
+	const resolvedBoxes: SiteMenuBox[] = [];
+
+	for (const box of boxes ?? []) {
+		if (!box) {
+			continue;
+		}
+
+		// A box with neither text nor an image would render as an empty
+		// rectangle, so it is dropped rather than shown.
+		const hasText = Boolean(trim(box.text));
+		const hasImage = (box.images ?? []).some((image) => trim(image?.image));
+
+		if (!hasText && !hasImage) {
+			continue;
+		}
+
+		const { locale, ...tile } = box;
+
+		resolvedBoxes.push({
+			tile,
+			language: isLanguageCode(locale) ? locale : undefined,
+		});
+	}
+
+	return { icons: resolvedIcons, boxes: resolvedBoxes };
+};
+
 export const createNavigationFromPages = (
 	pages: NormalizedPage[],
 ): SiteNavigationItem[] =>
@@ -907,6 +1018,11 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 	const activeSchemeKey = nodes
 		.map(normalizeThemeSettings)
 		.find((key): key is string => Boolean(key));
+	// `?? null` keeps an existing but empty menu file distinguishable from a
+	// missing one; both end up as empty lists, so the menu never breaks.
+	const menuSettings = nodes
+		.map(normalizeMenuSettings)
+		.find((settings) => Boolean(settings)) ?? null;
 
 	return {
 		pages,
@@ -920,5 +1036,6 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 		faqs,
 		navigation: createNavigationFromPages(pages),
 		theme: resolveActiveTheme(colorSchemes, activeSchemeKey),
+		menu: resolveMenuSettings(menuSettings, pages),
 	};
 };

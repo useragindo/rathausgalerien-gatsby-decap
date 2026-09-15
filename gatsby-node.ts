@@ -67,6 +67,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 		faqs,
 		navigation,
 		theme,
+		menu,
 	} = normalizeNodes(mdxNodes);
 	const usedPaths = new Set<string>();
 
@@ -97,6 +98,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				// full FAQ collection.
 				faqs: page.template === "faqs" ? faqs : [],
 				theme,
+				menu,
 				languageLinks: pageLanguageLinks(page),
 				socialLinks: socialLinksByLanguage[page.language],
 			},
@@ -113,6 +115,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				categories,
 				news,
 				theme,
+				menu,
 				languageLinks: locationLanguageLinks(location),
 				socialLinks: socialLinksByLanguage[location.language],
 			},
@@ -128,6 +131,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				navigation,
 				news,
 				theme,
+				menu,
 				languageLinks: jobLanguageLinks(job),
 				socialLinks: socialLinksByLanguage[job.language],
 			},
@@ -142,6 +146,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				news: item,
 				navigation,
 				theme,
+				menu,
 				languageLinks: newsLanguageLinks(item),
 				socialLinks: socialLinksByLanguage[item.language],
 			},
@@ -157,6 +162,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				lotterySettings,
 				navigation,
 				theme,
+				menu,
 				languageLinks: lotteryLanguageLinks(lottery),
 				socialLinks: socialLinksByLanguage[lottery.language],
 			},
@@ -194,6 +200,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				categories,
 				news,
 				theme,
+				menu,
 				languageLinks,
 				socialLinks: socialLinksByLanguage[category.language],
 			},

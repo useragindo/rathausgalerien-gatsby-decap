@@ -4,6 +4,11 @@ import type {
 	NavigationSettings,
 	SocialLink,
 } from "./cms/types";
+import type {
+	ImportedContentTile,
+	MenuIconSymbol,
+	SiteMenuSettings,
+} from "./content/types";
 
 export type NormalizedNavigationItem = {
 	label: string;
@@ -13,6 +18,49 @@ export type NormalizedNavigationItem = {
 	ariaLabel?: string;
 	icon?: string;
 };
+
+// A header icon with its link and its label already narrowed to the page's
+// language.
+export type MenuIcon = {
+	symbol: MenuIconSymbol;
+	image?: string;
+	url: string;
+	label: string;
+	openInNewTab: boolean;
+};
+
+// The icons carry no text in the CMS — the editor picks a symbol, so the
+// wording for screen readers and tooltips belongs here.
+const MENU_ICON_LABELS: Record<MenuIconSymbol, Record<LanguageCode, string>> = {
+	phone: { de: "Kontakt", en: "Contact" },
+	location: { de: "Anfahrt", en: "Directions" },
+	hours: { de: "Öffnungszeiten", en: "Opening hours" },
+	custom: { de: "Mehr", en: "More" },
+};
+
+// Picks the language the page is rendered in out of the menu settings, which
+// carry both languages side by side (see resolveMenuSettings).
+export const getMenuIconsForLanguage = (
+	menu: SiteMenuSettings | null | undefined,
+	language: LanguageCode,
+): MenuIcon[] =>
+	(menu?.icons ?? []).map((icon) => ({
+		symbol: icon.symbol,
+		image: icon.image,
+		url: icon.url[language],
+		label: MENU_ICON_LABELS[icon.symbol][language],
+		openInNewTab: icon.openInNewTab,
+	}));
+
+// The boxes are ordinary content tiles, so they are handed to the tile
+// renderer unchanged. A box without a language is shown in both.
+export const getMenuBoxesForLanguage = (
+	menu: SiteMenuSettings | null | undefined,
+	language: LanguageCode,
+): ImportedContentTile[] =>
+	(menu?.boxes ?? [])
+		.filter((box) => !box.language || box.language === language)
+		.map((box) => box.tile);
 
 const trim = (value?: string | null): string | undefined => {
 	const trimmed = value?.trim();

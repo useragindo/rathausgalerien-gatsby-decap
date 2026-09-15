@@ -7,12 +7,17 @@ import type {
 	LanguageCode,
 	NormalizedCategory,
 	NormalizedLocation,
+	SiteMenuSettings,
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
-import type { NormalizedNavigationItem } from "../lib/navigation";
+import {
+	getMenuBoxesForLanguage,
+	getMenuIconsForLanguage,
+	type NormalizedNavigationItem,
+} from "../lib/navigation";
 import type { ResolvedSeo } from "../lib/seo";
 import { LocationList } from "./page-template";
 
@@ -22,6 +27,7 @@ type CategoryTemplateContext = {
 	locations: NormalizedLocation[];
 	categories: NormalizedCategory[];
 	theme?: SiteTheme;
+	menu?: SiteMenuSettings;
 	languageLinks: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 };
@@ -74,6 +80,7 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({ pageContext }) => {
 		locations,
 		categories,
 		theme,
+		menu,
 		languageLinks,
 		socialLinks,
 	} = pageContext;
@@ -84,6 +91,9 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({ pageContext }) => {
 	return (
 		<SiteLayout
 			theme={theme}
+			menuIcons={getMenuIconsForLanguage(menu, category.language)}
+			menuBoxes={getMenuBoxesForLanguage(menu, category.language)}
+			language={category.language}
 			mainNavigation={mainNavigation}
 			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}

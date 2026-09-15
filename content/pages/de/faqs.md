@@ -3,7 +3,7 @@ locale: de
 type: page
 key: faqs
 template: faqs
-menu: main
+menu: misc
 menu_label: FAQs
 order: 900
 heading: ""

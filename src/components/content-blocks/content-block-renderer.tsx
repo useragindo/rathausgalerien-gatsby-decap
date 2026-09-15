@@ -491,7 +491,8 @@ const TileBox: React.FC<{
 	);
 };
 
-const TileGrid: React.FC<{
+// Exported for the menu overlay, which renders the same tiles with maxTiles=2.
+export const TileGrid: React.FC<{
 	tiles: ImportedContentTile[];
 	categories: NormalizedCategory[] | null | undefined;
 	language: LanguageCode;

@@ -24,12 +24,17 @@ import type {
 	NormalizedNews,
 	NormalizedPage,
 	NormalizedService,
+	SiteMenuSettings,
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
-import type { NormalizedNavigationItem } from "../lib/navigation";
+import {
+	getMenuBoxesForLanguage,
+	getMenuIconsForLanguage,
+	type NormalizedNavigationItem,
+} from "../lib/navigation";
 import type { ResolvedSeo } from "../lib/seo";
 import {
 	DEFAULT_OG_TYPE,
@@ -49,6 +54,7 @@ type PageTemplateContext = {
 	services: NormalizedService[];
 	faqs: NormalizedFaq[];
 	theme?: SiteTheme;
+	menu?: SiteMenuSettings;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 };
@@ -675,6 +681,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 		services,
 		faqs,
 		theme,
+		menu,
 		languageLinks,
 		socialLinks,
 	} = pageContext;
@@ -716,6 +723,9 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 	return (
 		<SiteLayout
 			theme={theme}
+			menuIcons={getMenuIconsForLanguage(menu, page.language)}
+			menuBoxes={getMenuBoxesForLanguage(menu, page.language)}
+			language={page.language}
 			mainNavigation={mainNavigation}
 			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}

@@ -8,12 +8,17 @@ import type {
 	LanguageCode,
 	LanguageLinks,
 	NormalizedNews,
+	SiteMenuSettings,
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
-import type { NormalizedNavigationItem } from "../lib/navigation";
+import {
+	getMenuBoxesForLanguage,
+	getMenuIconsForLanguage,
+	type NormalizedNavigationItem,
+} from "../lib/navigation";
 import {
 	DEFAULT_OG_TYPE,
 	DEFAULT_TWITTER_CARD_WITH_IMAGE,
@@ -27,6 +32,7 @@ type NewsTemplateContext = {
 	news: NormalizedNews;
 	navigation: SiteNavigationItem[];
 	theme?: SiteTheme;
+	menu?: SiteMenuSettings;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 };
@@ -130,7 +136,7 @@ const getNewsIndexLabel = (news: NormalizedNews): string =>
 	news.language === "de" ? "Alle News" : "All news";
 
 const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
-	const { news, navigation, theme, languageLinks, socialLinks } = pageContext;
+	const { news, navigation, theme, menu, languageLinks, socialLinks } = pageContext;
 	const languages = buildLanguageOptions(languageLinks);
 	const images = normalizeImageList(news.frontmatter.images);
 	const heroImage = images[0];
@@ -141,6 +147,9 @@ const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
 	return (
 		<SiteLayout
 			theme={theme}
+			menuIcons={getMenuIconsForLanguage(menu, news.language)}
+			menuBoxes={getMenuBoxesForLanguage(menu, news.language)}
+			language={news.language}
 			mainNavigation={toNavigationItems(navigation, news.language, "main")}
 			footerNavigation={buildFooterNavigation(navigation, news.language)}
 			socialLinks={socialLinks}

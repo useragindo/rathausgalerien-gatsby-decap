@@ -1899,3 +1899,144 @@ collections:
             default: "/datenschutz"
             hint: "Standard-Link für den Teilnahmebedingungen-Hinweis, falls im Formularfeld-Label kein eigener Link gesetzt ist. Gilt für beide Sprachen - für EN am besten /en/privacy-policy angeben."
 
+      - name: "menu"
+        label: "Menü"
+        file: "content/settings/menu.md"
+        media_folder: "/static/media/shared"
+        public_folder: "/media/shared"
+        fields:
+          - {label: "Type", name: "type", widget: "hidden", default: "settings"}
+          - {label: "Name", name: "name", widget: "hidden", default: "menu"}
+
+          - label: "Icons oben rechts"
+            name: "icons"
+            widget: list
+            required: false
+            max: 3
+            identifier_field: symbol
+            hint: "Die kleinen Icons rechts oben - im Kopfbereich und im geöffneten Menü. Maximal 3, in der angezeigten Reihenfolge. Gilt für Deutsch und Englisch; die Beschriftung für Screenreader ergibt sich aus dem Symbol."
+            fields:
+              - label: "Symbol"
+                name: "symbol"
+                widget: "select"
+                default: "phone"
+                options:
+                  - {label: "Telefon", value: "phone"}
+                  - {label: "Standort", value: "location"}
+                  - {label: "Öffnungszeiten", value: "hours"}
+                  - {label: "Eigenes Bild", value: "custom"}
+              - label: "Eigenes Bild"
+                name: "image"
+                widget: "image"
+                required: false
+                hint: "Optional und für jedes Symbol möglich: Ist eine Datei gesetzt, wird sie statt der gezeichneten Standard-Form verwendet. Am besten ein SVG mit transparentem Hintergrund - es wird in der Textfarbe des Farbschemas eingefärbt."
+              - label: "Verlinkte Seite"
+                name: "page"
+                widget: relation
+                collection: "pages"
+                valueField: "key"
+                displayFields:
+                  - key
+                  - locale
+                searchFields:
+                  - key
+                  - heading
+                required: false
+                hint: "Empfohlen: Die Seite auswählen (egal ob der deutsche oder englische Eintrag). Das Icon zeigt dann in jeder Sprache auf die passende Übersetzung."
+              - label: "Link stattdessen frei eingeben"
+                name: "url"
+                widget: "string"
+                required: false
+                hint: "Nur nötig, wenn keine Seite verlinkt wird: Telefonnummer (tel:+43512123456), externe URL oder fester Pfad. Gilt dann für beide Sprachen."
+              - label: "In neuem Tab öffnen"
+                name: "openInNewTab"
+                widget: boolean
+                default: false
+                required: false
+
+          - label: "Boxen im Menü"
+            name: "boxes"
+            widget: list
+            required: false
+            max: 2
+            hint: "Die beiden Kacheln rechts im geöffneten Menü - dieselben Kacheln wie in den Content-Blocks. Pro Kachel entweder Text ODER ein Bild ausfüllen: mit Text wird sie zur Farbkachel, mit Bild zur Bildkachel. Leer lassen, wenn im Menü keine Box erscheinen soll."
+            fields:
+              - label: "Sprache"
+                name: "locale"
+                widget: "select"
+                default: ""
+                required: false
+                options:
+                  - {label: "Beide Sprachen", value: ""}
+                  - {label: "Nur Deutsch", value: "de"}
+                  - {label: "Nur English", value: "en"}
+                hint: "Nur nötig, wenn die Box Text enthält und pro Sprache anders lauten soll."
+              - label: "Text"
+                name: "text"
+                widget: markdown
+                required: false
+                hint: "Überschrift (##) wird groß und weiß gesetzt, normaler Text darunter klein und dunkel - wie im Design."
+                buttons:
+                  - bold
+                  - italic
+                  - quote
+                  - link
+                  - heading-two
+                  - bulleted-list
+                  - numbered-list
+              - label: "Bilder"
+                name: "images"
+                widget: list
+                required: false
+                hint: "Ein Bild wird als Bildkachel angezeigt. Bei mehreren Bildern wird die Kachel automatisch als Slider dargestellt."
+                fields:
+                  - label: "Bild"
+                    name: "image"
+                    widget: "image"
+                    hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+                  - label: "Alt-Text"
+                    name: "alt"
+                    widget: "string"
+                    required: false
+              - label: "Link"
+                name: "link"
+                widget: string
+                required: false
+                hint: "Ziel der Kachel, z. B. /magazin oder eine vollständige URL. Leer lassen, wenn die Kachel nicht klickbar sein soll."
+              - label: "Textfarbe"
+                name: "text_color"
+                widget: "color-token-select"
+                required: false
+                default: ""
+                options:
+                  - {label: "– keine –", value: ""}
+                  - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+                  - {label: "Text (text)", value: "text", color: "#22254e"}
+                  - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+                  - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+                  - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+                  - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+                  - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+                  - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+                  - {label: "Schwarz", value: "schwarz", color: "#111111"}
+                  - {label: "Weiß", value: "weiss", color: "#ffffff"}
+                hint: "Nur für Text-Kacheln. Leer lassen für das Design: Überschrift weiß, Text darunter dunkelblau."
+              - label: "Hintergrundfarbe"
+                name: "background_color"
+                widget: "color-token-select"
+                required: false
+                default: ""
+                options:
+                  - {label: "– keine –", value: ""}
+                  - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+                  - {label: "Text (text)", value: "text", color: "#22254e"}
+                  - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+                  - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+                  - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+                  - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+                  - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+                  - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+                  - {label: "Schwarz", value: "schwarz", color: "#111111"}
+                  - {label: "Weiß", value: "weiss", color: "#ffffff"}
+                hint: "Nur für Text-Kacheln. Im Design ist die Box Farbe 1 (c1)."
+

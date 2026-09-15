@@ -10,12 +10,17 @@ import type {
 	LanguageLinks,
 	LotterySettings,
 	NormalizedLottery,
+	SiteMenuSettings,
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
-import type { NormalizedNavigationItem } from "../lib/navigation";
+import {
+	getMenuBoxesForLanguage,
+	getMenuIconsForLanguage,
+	type NormalizedNavigationItem,
+} from "../lib/navigation";
 import {
 	DEFAULT_OG_TYPE,
 	DEFAULT_TWITTER_CARD_WITH_IMAGE,
@@ -30,6 +35,7 @@ type LotteryTemplateContext = {
 	lotterySettings: LotterySettings | null;
 	navigation: SiteNavigationItem[];
 	theme?: SiteTheme;
+	menu?: SiteMenuSettings;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 };
@@ -120,7 +126,7 @@ const getHomeUrl = (language: LanguageCode): string =>
 	language === "de" ? "/" : `/${language}/`;
 
 const LotteryTemplate: React.FC<LotteryTemplateProps> = ({ pageContext }) => {
-	const { lottery, navigation, theme, languageLinks, socialLinks } =
+	const { lottery, navigation, theme, menu, languageLinks, socialLinks } =
 		pageContext;
 	const languages = buildLanguageOptions(languageLinks);
 	const heroImage = getLotteryFallbackImage(lottery);
@@ -131,6 +137,9 @@ const LotteryTemplate: React.FC<LotteryTemplateProps> = ({ pageContext }) => {
 	return (
 		<SiteLayout
 			theme={theme}
+			menuIcons={getMenuIconsForLanguage(menu, lottery.language)}
+			menuBoxes={getMenuBoxesForLanguage(menu, lottery.language)}
+			language={lottery.language}
 			mainNavigation={toNavigationItems(navigation, lottery.language, "main")}
 			footerNavigation={buildFooterNavigation(navigation, lottery.language)}
 			socialLinks={socialLinks}

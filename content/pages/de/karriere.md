@@ -3,7 +3,7 @@ locale: de
 type: page
 key: karriere
 template: jobs
-menu: main
+menu: misc
 menu_label: Karriere
 order: 800
 heading: |-

@@ -9,12 +9,17 @@ import type {
 	LanguageLinks,
 	NormalizedCategory,
 	NormalizedLocation,
+	SiteMenuSettings,
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
-import type { NormalizedNavigationItem } from "../lib/navigation";
+import {
+	getMenuBoxesForLanguage,
+	getMenuIconsForLanguage,
+	type NormalizedNavigationItem,
+} from "../lib/navigation";
 import {
 	DEFAULT_OG_TYPE,
 	DEFAULT_TWITTER_CARD_WITH_IMAGE,
@@ -29,6 +34,7 @@ type LocationTemplateContext = {
 	navigation: SiteNavigationItem[];
 	categories: NormalizedCategory[];
 	theme?: SiteTheme;
+	menu?: SiteMenuSettings;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 };
@@ -260,6 +266,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 		navigation,
 		categories,
 		theme,
+		menu,
 		languageLinks,
 		socialLinks,
 	} = pageContext;
@@ -295,6 +302,9 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 	return (
 		<SiteLayout
 			theme={theme}
+			menuIcons={getMenuIconsForLanguage(menu, location.language)}
+			menuBoxes={getMenuBoxesForLanguage(menu, location.language)}
+			language={location.language}
 			mainNavigation={toNavigationItems(navigation, location.language, "main")}
 			footerNavigation={buildFooterNavigation(navigation, location.language)}
 			socialLinks={socialLinks}

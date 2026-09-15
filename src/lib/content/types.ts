@@ -151,6 +151,28 @@ export type ImportedFrontmatter = {
 	form?: ImportedLotteryForm | null;
 	active_lottery?: string | null;
 	terms_url?: string | null;
+	icons?: ImportedMenuIcon[] | null;
+	boxes?: ImportedMenuBox[] | null;
+};
+
+// One of the two boxes in the open menu. It is an ordinary content tile — the
+// same shape the content blocks use — plus the language it is meant for.
+export type ImportedMenuBox = ImportedContentTile & {
+	// Empty means both languages.
+	locale?: LanguageCode | string | null;
+};
+
+// One of the small icons at the top right of the header and the open menu,
+// as the CMS stores it in content/settings/menu.md.
+export type ImportedMenuIcon = {
+	symbol?: string | null;
+	// Only read when `symbol` is "custom".
+	image?: string | null;
+	// Page key (i18nKey): resolved per language, so DE and EN each link their
+	// own translation. Wins over `url` when both are set.
+	page?: string | null;
+	url?: string | null;
+	openInNewTab?: boolean | null;
 };
 
 // Field types the lottery form widget supports. Kept as a plain string union
@@ -401,4 +423,30 @@ export type SiteNavigationItem = {
 	language: LanguageCode;
 	order: number;
 	menu?: string;
+};
+
+// The three symbols the header icons can draw. "custom" means the editor
+// uploaded an image instead.
+export type MenuIconSymbol = "phone" | "location" | "hours" | "custom";
+
+// A header icon after normalization: the page link is already resolved for
+// both languages, so the template only picks its own.
+export type SiteMenuIcon = {
+	symbol: MenuIconSymbol;
+	image?: string;
+	url: Record<LanguageCode, string>;
+	openInNewTab: boolean;
+};
+
+// A menu box after normalization: the tile as the renderer expects it, with
+// the language it belongs to (undefined = both).
+export type SiteMenuBox = {
+	tile: ImportedContentTile;
+	language?: LanguageCode;
+};
+
+// Everything the menu is maintained with in the CMS (Einstellungen → Menü).
+export type SiteMenuSettings = {
+	icons: SiteMenuIcon[];
+	boxes: SiteMenuBox[];
 };

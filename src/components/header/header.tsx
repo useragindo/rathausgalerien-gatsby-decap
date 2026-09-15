@@ -1,34 +1,30 @@
 import * as React from "react";
 import { createPortal } from "react-dom";
-import type { NormalizedNavigationItem } from "../../lib/navigation";
+import { TileGrid } from "../content-blocks/content-block-renderer";
+import type {
+	ImportedContentTile,
+	LanguageCode,
+	SiteTheme,
+} from "../../lib/content/types";
+import type { MenuIcon, NormalizedNavigationItem } from "../../lib/navigation";
 
 type HeaderProps = {
 	mainNavigation?: NormalizedNavigationItem[];
 	utilityNavigation?: NormalizedNavigationItem[];
-	headerIconNavigation?: NormalizedNavigationItem[];
+	// Maintained in the CMS under Einstellungen → Menü. Both the header and the
+	// open menu draw the same three icons.
+	menuIcons?: MenuIcon[];
+	// The boxes in the open menu — ordinary content tiles (Einstellungen → Menü).
+	menuBoxes?: ImportedContentTile[];
 	socialLinks?: NormalizedNavigationItem[];
 	languages?: { code: string; label: string; url: string }[];
+	language?: LanguageCode;
+	theme?: SiteTheme | null;
 	homeUrl?: string;
 	siteTitle?: string;
 };
 
-type HeaderIconName = "phone" | "location" | "hours" | "default";
-
-const getHeaderIconName = (item: NormalizedNavigationItem): HeaderIconName => {
-	const value = `${item.icon ?? ""} ${item.label} ${item.url}`.toLowerCase();
-	if (value.includes("phone") || value.includes("telefon") || value.includes("tel:")) return "phone";
-	if (value.includes("location") || value.includes("lage") || value.includes("anfahrt") || value.includes("map")) return "location";
-	if (value.includes("hour") || value.includes("zeit") || value.includes("geöffnet") || value.includes("open")) return "hours";
-	return "default";
-};
-
-const getHeaderIconLabel = (item: NormalizedNavigationItem): string => {
-	const n = getHeaderIconName(item);
-	if (n === "phone") return "Kontakt";
-	if (n === "location") return "Anfahrt";
-	if (n === "hours") return "Öffnungszeiten";
-	return item.label;
-};
+type HeaderIconName = MenuIcon["symbol"];
 
 const HeaderIcon: React.FC<{ name: HeaderIconName }> = ({ name }) => {
 	if (name === "phone") {
@@ -114,18 +110,30 @@ const SocialIcon: React.FC<{ label: string }> = ({ label }) => {
 	);
 };
 
-const MenuTeaserCards: React.FC = () => (
-	<div className="site-header__menu-teasers">
-		<div className="site-header__menu-teaser site-header__menu-teaser--blue">
-			<div className="site-header__menu-teaser-g" aria-hidden="true">G</div>
-			<p className="site-header__menu-teaser-title">Das neue Galerien Magazin!</p>
-			<p className="site-header__menu-teaser-sub">Gleich reinschauen</p>
+// The two boxes on the right of the open menu. They are the same tiles the
+// content blocks render (a tile with text becomes a colour box, one with an
+// image a picture box), capped at the two the design shows.
+const MenuTeaserCards: React.FC<{
+	boxes: ImportedContentTile[];
+	language: LanguageCode;
+	theme?: SiteTheme | null;
+}> = ({ boxes, language, theme }) => {
+	if (!boxes.length) {
+		return null;
+	}
+
+	return (
+		<div className="site-header__menu-teasers">
+			<TileGrid
+				tiles={boxes}
+				categories={null}
+				language={language}
+				maxTiles={2}
+				theme={theme}
+			/>
 		</div>
-		<div className="site-header__menu-teaser site-header__menu-teaser--image">
-			<div className="site-header__menu-teaser-placeholder" aria-hidden="true" />
-		</div>
-	</div>
-);
+	);
+};
 
 const renderNavItems = (items: NormalizedNavigationItem[]) =>
 	items.map((item) => (
@@ -142,19 +150,32 @@ const renderNavItems = (items: NormalizedNavigationItem[]) =>
 		</li>
 	));
 
-const renderIconItems = (items: NormalizedNavigationItem[]) =>
-	items.map((item) => (
-		<li key={`${item.url}-${item.label}`}>
+const renderIconItems = (items: MenuIcon[]) =>
+	items.map((item, index) => (
+		<li key={`${item.symbol}-${item.url}-${index}`}>
 			<a
 				className="site-header__icon-link"
 				href={item.url}
-				aria-label={item.ariaLabel ?? getHeaderIconLabel(item)}
-				title={getHeaderIconLabel(item)}
+				aria-label={item.label}
+				title={item.label}
 				target={item.openInNewTab ? "_blank" : undefined}
 				rel={item.openInNewTab ? "noreferrer" : undefined}
 			>
-				<HeaderIcon name={getHeaderIconName(item)} />
-				<span className="visually-hidden">{getHeaderIconLabel(item)}</span>
+				{item.image ? (
+					// Masked span, not an img: the icon is painted in the scheme's
+					// text colour, exactly like the logo (see .site-header__logo).
+					<span
+						className="site-header__icon-glyph"
+						style={{
+							WebkitMaskImage: `url("${item.image}")`,
+							maskImage: `url("${item.image}")`,
+						}}
+						aria-hidden="true"
+					/>
+				) : (
+					<HeaderIcon name={item.symbol} />
+				)}
+				<span className="visually-hidden">{item.label}</span>
 			</a>
 		</li>
 	));
@@ -180,10 +201,23 @@ const MenuOverlay: React.FC<{
 	isOpen: boolean;
 	onClose: () => void;
 	menuNavigation: NormalizedNavigationItem[];
-	iconNavigation: NormalizedNavigationItem[];
+	iconNavigation: MenuIcon[];
+	menuBoxes: ImportedContentTile[];
 	socialLinks: NormalizedNavigationItem[];
 	languages: { code: string; label: string; url: string }[];
-}> = ({ isOpen, onClose, menuNavigation, iconNavigation, socialLinks, languages }) => {
+	language: LanguageCode;
+	theme?: SiteTheme | null;
+}> = ({
+	isOpen,
+	onClose,
+	menuNavigation,
+	iconNavigation,
+	menuBoxes,
+	socialLinks,
+	languages,
+	language,
+	theme,
+}) => {
 	const [mounted, setMounted] = React.useState(false);
 
 	React.useEffect(() => { setMounted(true); }, []);
@@ -210,7 +244,7 @@ const MenuOverlay: React.FC<{
 				{iconNavigation.length > 0 && (
 					<nav aria-label="Schnellzugriffe">
 						<ul className="site-header__icon-list">
-							{renderIconItems(iconNavigation.slice(0, 3))}
+							{renderIconItems(iconNavigation)}
 						</ul>
 					</nav>
 				)}
@@ -220,8 +254,10 @@ const MenuOverlay: React.FC<{
 					aria-label="Menü schließen"
 					type="button"
 				>
-					<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-						<path d="M14 14 L50 50 M50 14 L14 50" />
+					{/* The X fills its viewBox, so its ink is exactly the button size
+					    (45px in the design) and the stroke stays 1.5px. */}
+					<svg viewBox="0 0 45 45" aria-hidden="true" focusable="false">
+						<path d="M0.75 0.75 L44.25 44.25 M44.25 0.75 L0.75 44.25" />
 					</svg>
 					<span className="visually-hidden">Schließen</span>
 				</button>
@@ -235,7 +271,7 @@ const MenuOverlay: React.FC<{
 					</ul>
 				</nav>
 
-				<MenuTeaserCards />
+				<MenuTeaserCards boxes={menuBoxes} language={language} theme={theme} />
 			</div>
 
 			{/* Footer: Language + Social */}
@@ -260,31 +296,27 @@ const MenuOverlay: React.FC<{
 /* ─── Header ──────────────────────────────────────────────────────── */
 const combineNavigation = (...groups: NormalizedNavigationItem[][]): NormalizedNavigationItem[] => groups.flat();
 
-const toIconNavigation = (
-	main: NormalizedNavigationItem[],
-	utility: NormalizedNavigationItem[],
-	explicit: NormalizedNavigationItem[],
-): NormalizedNavigationItem[] => {
-	if (explicit.length > 0) return explicit;
-	return combineNavigation(utility, main).filter((item) => getHeaderIconName(item) !== "default");
-};
-
 export const Header: React.FC<HeaderProps> = ({
 	mainNavigation = [],
 	utilityNavigation = [],
-	headerIconNavigation = [],
+	menuIcons = [],
+	menuBoxes = [],
 	socialLinks = [],
 	languages = [
 		{ code: "de", label: "DE", url: "/" },
 		{ code: "en", label: "EN", url: "/en/" },
 	],
+	language = "de",
+	theme,
 	homeUrl = "/",
 	siteTitle = "RathausGalerien",
 }) => {
 	const [isScrolled, setIsScrolled] = React.useState(false);
 	const [menuOpen, setMenuOpen] = React.useState(false);
 
-	const iconNavigation = toIconNavigation(mainNavigation, utilityNavigation, headerIconNavigation);
+	// The CMS caps the list at 3; slicing keeps a hand-edited file from
+	// stretching the header.
+	const iconNavigation = menuIcons.slice(0, 3);
 	const menuNavigation = combineNavigation(mainNavigation, utilityNavigation);
 
 	const openMenu = React.useCallback(() => setMenuOpen(true), []);
@@ -317,7 +349,7 @@ export const Header: React.FC<HeaderProps> = ({
 						{iconNavigation.length > 0 && (
 							<nav className="site-header__icon-nav" aria-label="Schnellzugriffe">
 								<ul className="site-header__icon-list">
-									{renderIconItems(iconNavigation.slice(0, 3))}
+									{renderIconItems(iconNavigation)}
 								</ul>
 							</nav>
 						)}
@@ -348,6 +380,9 @@ export const Header: React.FC<HeaderProps> = ({
 				onClose={closeMenu}
 				menuNavigation={menuNavigation}
 				iconNavigation={iconNavigation}
+				menuBoxes={menuBoxes}
+				language={language}
+				theme={theme}
 				socialLinks={socialLinks}
 				languages={languages}
 			/>

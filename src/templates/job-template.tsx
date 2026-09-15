@@ -7,12 +7,17 @@ import { normalizeImageList, trim } from "../lib/content/normalize";
 import type {
 	LanguageLinks,
 	NormalizedJob,
+	SiteMenuSettings,
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
 import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
-import type { NormalizedNavigationItem } from "../lib/navigation";
+import {
+	getMenuBoxesForLanguage,
+	getMenuIconsForLanguage,
+	type NormalizedNavigationItem,
+} from "../lib/navigation";
 import {
 	DEFAULT_OG_TYPE,
 	DEFAULT_TWITTER_CARD_WITH_IMAGE,
@@ -26,6 +31,7 @@ type JobTemplateContext = {
 	job: NormalizedJob;
 	navigation: SiteNavigationItem[];
 	theme?: SiteTheme;
+	menu?: SiteMenuSettings;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 };
@@ -159,7 +165,7 @@ const ApplicationIcon: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
-	const { job, navigation, theme, languageLinks, socialLinks } = pageContext;
+	const { job, navigation, theme, menu, languageLinks, socialLinks } = pageContext;
 	const { frontmatter } = job;
 	const languages = buildLanguageOptions(languageLinks);
 	const images = normalizeImageList(frontmatter.images);
@@ -173,6 +179,9 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 	return (
 		<SiteLayout
 			theme={theme}
+			menuIcons={getMenuIconsForLanguage(menu, job.language)}
+			menuBoxes={getMenuBoxesForLanguage(menu, job.language)}
+			language={job.language}
 			mainNavigation={toNavigationItems(navigation, job.language, "main")}
 			footerNavigation={buildFooterNavigation(navigation, job.language)}
 			socialLinks={socialLinks}

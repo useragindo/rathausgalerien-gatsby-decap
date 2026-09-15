@@ -165,6 +165,23 @@
 	stroke-linejoin: round;
 }
 
+/* An icon uploaded in the CMS. Masked rather than drawn as an <img> so it
+   takes the scheme's text colour; `contain` keeps the file's own proportions
+   inside the square icon box (the design's three icons are 39×39, 29×40 and
+   40×40). */
+.site-header__icon-glyph {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: currentColor;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+}
+
 /* ─── Burger button ───────────────────────────────────────────────── */
 .site-header__menu-btn {
 	display: flex;
@@ -216,10 +233,13 @@
 	overscroll-behavior: contain;
 }
 
-/* Icons + close button — mirrors header-actions position */
+/* Icons + close button — mirrors header-actions position.
+   The overlay is portalled to <body>, so it inherits nothing from
+   .site-header: every token it uses has to be declared here. */
 .site-header__overlay-actions {
 	--header-icon-size: clamp(1.2rem, 5vw, 1.5rem);
-	--header-menu-width: clamp(1.8rem, 8vw, 2.4rem);
+	--header-icon-gap: clamp(0.6rem, 2vw, 2rem);
+	--overlay-close-size: clamp(1.4rem, 5.6vw, 1.7rem);
 	position: absolute;
 	inset-block-start: clamp(0.75rem, 3vw, 1.875rem);
 	inset-inline-end: var(--page-gutter);
@@ -231,8 +251,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: var(--header-menu-width);
-	height: var(--header-icon-size);
+	/* Square: the X fills its viewBox, so the button size is the glyph size. */
+	width: var(--overlay-close-size);
+	height: var(--overlay-close-size);
 	padding: 0;
 	border: 0;
 	background: transparent;
@@ -292,69 +313,42 @@
 	color: var(--color-rosa);
 }
 
-/* Teasers — hidden on mobile */
+/* Teasers — the two CMS-maintained boxes (Einstellungen → Menü). They render
+   with the same tile markup as the content blocks' "centered" layout
+   (.content-block__tile / --content / --media, see _content-blocks.scss),
+   just inside the overlay grid instead of a .content-block, so only the
+   layout (columns, tile ratio) and the heading colour are redeclared here —
+   the tile's own look (padding, text, image `object-fit`) is shared for free.
+   Hidden below tablet, like the rest of the overlay's right column. */
 .site-header__menu-teasers {
 	display: none;
 	align-self: center;
+	/* The two boxes have different heights (284 and 374 in the design) and
+	   share one centre line, like .content-block__body does for its tiles. */
+	align-items: center;
 }
 
-.site-header__menu-teaser {
-	position: relative;
-	overflow: hidden;
+.site-header__menu-teasers .content-block__tile {
 	border-radius: 2px;
 }
 
-.site-header__menu-teaser--blue {
+.site-header__menu-teasers .content-block__tile--content {
+	aspect-ratio: 1;
+}
+
+.site-header__menu-teasers .content-block__tile--media {
 	aspect-ratio: 284 / 374;
-	padding: clamp(1rem, 2vw, 1.5rem);
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	background: var(--color-blau);
 }
 
-.site-header__menu-teaser-g {
-	position: absolute;
-	inset: -5% auto auto -10%;
-	font-family: var(--font-family-accent);
-	font-size: clamp(10rem, 20vw, 16rem);
-	font-weight: var(--font-weight-medium);
-	line-height: 1;
-	color: color-mix(in srgb, var(--color-white) 25%, transparent);
-	pointer-events: none;
-	user-select: none;
-}
-
-.site-header__menu-teaser-title {
-	position: relative;
-	z-index: 1;
-	margin: 0;
-	font-size: clamp(1rem, 2.2vw, 1.5rem);
-	font-weight: var(--font-weight-medium);
-	line-height: 1.1;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
+/* Same rule as grid-4/grid-4-equal/centered content blocks: the heading is
+   white by default, and only switches to the tile's own colour when an
+   editor explicitly picked a text colour in the CMS. */
+.site-header__menu-teasers .content-block__tile--content .content-block__text :is(h1, h2, h3, h4) {
 	color: var(--color-white);
 }
 
-.site-header__menu-teaser-sub {
-	position: relative;
-	z-index: 1;
-	margin: 0.4rem 0 0;
-	font-size: clamp(0.7rem, 1.1vw, 0.875rem);
-	font-weight: var(--font-weight-medium);
-	letter-spacing: 0.1em;
-	color: var(--color-white);
-}
-
-.site-header__menu-teaser--image {
-	aspect-ratio: 284 / 374;
-	background: var(--color-blue-100);
-}
-
-.site-header__menu-teaser-placeholder {
-	width: 100%;
-	height: 100%;
+.site-header__menu-teasers .content-block__tile--content[data-has-text-color="true"] .content-block__text :is(h1, h2, h3, h4) {
+	color: inherit;
 }
 
 /* Footer: language + social */
@@ -457,10 +451,11 @@
 
 	.site-header__overlay-actions {
 		--header-icon-size: clamp(2rem, 2.5vw, 2.25rem);
-		--header-menu-width: clamp(3.5rem, 5vw, 4.5rem);
+		--header-icon-gap: clamp(1.5rem, 2.5vw, 2.125rem);
+		--overlay-close-size: clamp(2.25rem, 2.8vw, 2.5rem);
 		inset-block-start: clamp(2rem, 3.5vw, 2.75rem);
-		inset-inline-end: var(--page-gutter);
-		gap: clamp(2rem, 3vw, 2.5rem);
+		inset-inline-end: clamp(2.5rem, 5vw, 4.25rem);
+		gap: clamp(2.5rem, 5.5vw, 5.3125rem);
 	}
 
 	.site-header__overlay-body {
@@ -475,7 +470,10 @@
 
 	.site-header__menu-teasers {
 		display: grid;
-		grid-template-columns: repeat(2, clamp(10rem, 14vw, 15rem));
+		/* Columns follow the number of boxes, so a single box still sits flush
+		   right instead of leaving an empty second column. */
+		grid-auto-flow: column;
+		grid-auto-columns: clamp(10rem, 14vw, 15rem);
 		gap: 1rem;
 	}
 }
@@ -536,23 +534,29 @@
 		padding-inline: var(--page-gutter);
 	}
 
+	/* Fixed Figma px, not vw-clamped: measured off the RATH-31 design at
+	   1356px, both tiles 284px wide, 25px gap (the same --cb-gap the content
+	   blocks use at their own 1440px reference width). */
 	.site-header__menu-teasers {
 		display: grid;
-		grid-template-columns: repeat(2, clamp(10rem, 16vw, 17.75rem));
-		gap: 1rem;
+		/* Columns follow the number of boxes, so a single box still sits flush
+		   right instead of leaving an empty second column. */
+		grid-auto-flow: column;
+		grid-auto-columns: 17.75rem;
+		gap: 1.5625rem;
 	}
 
+	/* Measured off the RATH-31 design (1356px wide): icon boxes 40px with 34px
+	   between them, 85px to the X, X 45px, 68px to the right edge, 29px from
+	   the top. The right inset is the design's own margin, not --page-gutter:
+	   the design sets the X closer to the edge than the nav list on the left. */
 	.site-header__overlay-actions {
-		--header-icon-size: 2.5rem;
-		--header-menu-width: 6.25rem;
-		inset-block-start: 4.125rem;   /* same as header actions top */
-		inset-inline-end: var(--page-gutter);
-		gap: 3.875rem;
-	}
-
-	.site-header__overlay-close {
-		width: var(--header-menu-width);
-		height: var(--header-icon-size);
+		--header-icon-size: 2.5rem;       /* 40px */
+		--header-icon-gap: 2.125rem;      /* 34px */
+		--overlay-close-size: 2.8125rem;  /* 45px */
+		inset-block-start: 1.8125rem;     /* 29px */
+		inset-inline-end: 4.25rem;        /* 68px */
+		gap: 5.3125rem;                   /* 85px: Icons ↔ X */
 	}
 
 	.site-header__nav-list--overlay .site-header__nav-link {
