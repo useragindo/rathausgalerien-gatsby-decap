@@ -24,7 +24,7 @@ blocks:
           - image: /media/pages/12_annika.jpg
           - image: /media/pages/13_joelle.jpg
           - image: /media/pages/14_sarah.jpg
-        background_color: ""
+        background_color: c2
         text_color: ""
       - text: |-
           ## DAS NEUE
@@ -33,16 +33,15 @@ blocks:
 
           ## MAGAZIN!
 
-          GLEICH
-
+          GLEICH\
           REINSCHAUEN
         category: ""
         backgroundColor: "#b58ec1"
         images:
           - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
             alt: Zum Magazin
-        background_color: c1
-        text_color: weiss
+        background_color: bg
+        text_color: ""
     teaserText: |-
       RathausGalerien: Das Herz der Stadt! 
       Eine große Auswahl an Shops und gastronomischen  Angeboten 
