@@ -988,33 +988,25 @@ export const buildFooterSocialLinks = (
 	return byLanguage;
 };
 
-// Reads the footer page keys from the "footer" block.
-export const buildFooterPageKeys = (
-	nodes: ImportedMdxNode[],
-): Record<LanguageCode, string[] | null> => {
-	const byLanguage: Record<LanguageCode, string[] | null> = {
-		de: null,
-		en: null,
-	};
+// Reads the single settings entry that lists the footer's pages: a page
+// relation (by `key`), same identity as the pages collection, so it applies
+// to both languages at once and the passage below resolves it per language.
+export const normalizeFooterSettings = (
+	node: ImportedMdxNode,
+): string[] | null => {
+	const frontmatter = node.frontmatter;
 
-	for (const node of nodes) {
-		const frontmatter = node.frontmatter;
-		if (frontmatter?.type !== "block" || trim(frontmatter.name) !== "footer") {
-			continue;
-		}
-
-		const pageKeys = Array.isArray(frontmatter.footer_page_keys)
-			? frontmatter.footer_page_keys
-					.map((item: { key?: string | null } | string | null | undefined) =>
-						trim(typeof item === "string" ? item : item?.key),
-					)
-					.filter((key): key is string => Boolean(key))
-			: null;
-
-		byLanguage[getLanguage(frontmatter)] = pageKeys?.length ? pageKeys : null;
+	if (
+		!frontmatter ||
+		frontmatter.type !== "settings" ||
+		trim(frontmatter.name) !== "footer"
+	) {
+		return null;
 	}
 
-	return byLanguage;
+	return (frontmatter.footer_pages ?? [])
+		.map((entry) => trim(entry?.page))
+		.filter((key): key is string => Boolean(key));
 };
 
 type Translatable = { language: LanguageCode; i18nKey: string; path: string };
@@ -1083,6 +1075,9 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 	const menuSettings = nodes
 		.map(normalizeMenuSettings)
 		.find((settings) => Boolean(settings)) ?? null;
+	const footerPageKeys = nodes
+		.map(normalizeFooterSettings)
+		.find((keys): keys is string[] => Boolean(keys)) ?? null;
 
 	return {
 		pages,
@@ -1097,5 +1092,6 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 		navigation: createNavigationFromPages(pages),
 		theme: resolveActiveTheme(colorSchemes, activeSchemeKey),
 		menu: resolveMenuSettings(menuSettings, pages),
+		footerPageKeys,
 	};
 };

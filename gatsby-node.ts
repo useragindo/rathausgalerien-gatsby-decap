@@ -1,7 +1,6 @@
 import path from "path";
 import type { GatsbyNode } from "gatsby";
 import {
-	buildFooterPageKeys,
 	buildFooterSocialLinks,
 	buildLanguageLinks,
 	normalizeNodes,
@@ -11,6 +10,7 @@ import type {
 	LanguageCode,
 	NormalizedCategory,
 } from "./src/lib/content/types";
+import { buildFooterNavigation } from "./src/lib/footer";
 
 const pageTemplate = path.resolve("./src/templates/page-template.tsx");
 const locationTemplate = path.resolve("./src/templates/location-template.tsx");
@@ -69,6 +69,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 		navigation,
 		theme,
 		menu,
+		footerPageKeys,
 	} = normalizeNodes(mdxNodes);
 	const usedPaths = new Set<string>();
 
@@ -78,7 +79,10 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 	const newsLanguageLinks = buildLanguageLinks(news);
 	const lotteryLanguageLinks = buildLanguageLinks(lotteries);
 	const socialLinksByLanguage = buildFooterSocialLinks(mdxNodes);
-	const footerPageKeysByLanguage = buildFooterPageKeys(mdxNodes);
+	const footerNavigationByLanguage: Record<LanguageCode, ReturnType<typeof buildFooterNavigation>> = {
+		de: buildFooterNavigation(pages, "de", footerPageKeys),
+		en: buildFooterNavigation(pages, "en", footerPageKeys),
+	};
 
 	for (const page of pages) {
 		actions.createPage({
@@ -103,7 +107,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks: pageLanguageLinks(page),
 				socialLinks: socialLinksByLanguage[page.language],
-				footerPageKeys: footerPageKeysByLanguage[page.language],
+				footerNavigation: footerNavigationByLanguage[page.language],
 			},
 		});
 	}
@@ -121,7 +125,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks: locationLanguageLinks(location),
 				socialLinks: socialLinksByLanguage[location.language],
-				footerPageKeys: footerPageKeysByLanguage[location.language],
+				footerNavigation: footerNavigationByLanguage[location.language],
 			},
 		});
 	}
@@ -138,7 +142,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks: jobLanguageLinks(job),
 				socialLinks: socialLinksByLanguage[job.language],
-				footerPageKeys: footerPageKeysByLanguage[job.language],
+				footerNavigation: footerNavigationByLanguage[job.language],
 			},
 		});
 	}
@@ -154,7 +158,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks: newsLanguageLinks(item),
 				socialLinks: socialLinksByLanguage[item.language],
-				footerPageKeys: footerPageKeysByLanguage[item.language],
+				footerNavigation: footerNavigationByLanguage[item.language],
 			},
 		});
 	}
@@ -171,7 +175,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks: lotteryLanguageLinks(lottery),
 				socialLinks: socialLinksByLanguage[lottery.language],
-				footerPageKeys: footerPageKeysByLanguage[lottery.language],
+				footerNavigation: footerNavigationByLanguage[lottery.language],
 			},
 		});
 	}
@@ -210,7 +214,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks,
 				socialLinks: socialLinksByLanguage[category.language],
-				footerPageKeys: footerPageKeysByLanguage[category.language],
+				footerNavigation: footerNavigationByLanguage[category.language],
 			},
 		});
 	}

@@ -13,7 +13,6 @@ import type {
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
-import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
 import {
 	getMenuBoxesForLanguage,
@@ -38,7 +37,7 @@ type LocationTemplateContext = {
 	menu?: SiteMenuSettings;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
-	footerPageKeys?: string[] | null;
+	footerNavigation?: NormalizedNavigationItem[];
 };
 
 type LocationTemplateProps = PageProps<
@@ -271,7 +270,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 		menu,
 		languageLinks,
 		socialLinks,
-		footerPageKeys,
+		footerNavigation,
 	} = pageContext;
 	const { frontmatter } = location;
 	const languages = buildLanguageOptions(languageLinks);
@@ -310,7 +309,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 			menuSocialLinks={getMenuSocialLinks(menu)}
 			language={location.language}
 			mainNavigation={toNavigationItems(navigation, location.language, "main")}
-			footerNavigation={buildFooterNavigation(navigation, location.language, footerPageKeys)}
+			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}
 			languages={languages}
 			siteTitle="RathausGalerien"

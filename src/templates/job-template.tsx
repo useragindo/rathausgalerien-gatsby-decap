@@ -11,7 +11,6 @@ import type {
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
-import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
 import {
 	getMenuBoxesForLanguage,
@@ -35,7 +34,7 @@ type JobTemplateContext = {
 	menu?: SiteMenuSettings;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
-	footerPageKeys?: string[] | null;
+	footerNavigation?: NormalizedNavigationItem[];
 };
 
 type JobTemplateProps = PageProps<Record<string, never>, JobTemplateContext>;
@@ -167,7 +166,7 @@ const ApplicationIcon: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
-	const { job, navigation, theme, menu, languageLinks, socialLinks, footerPageKeys } = pageContext;
+	const { job, navigation, theme, menu, languageLinks, socialLinks, footerNavigation } = pageContext;
 	const { frontmatter } = job;
 	const languages = buildLanguageOptions(languageLinks);
 	const images = normalizeImageList(frontmatter.images);
@@ -186,7 +185,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 			menuSocialLinks={getMenuSocialLinks(menu)}
 			language={job.language}
 			mainNavigation={toNavigationItems(navigation, job.language, "main")}
-			footerNavigation={buildFooterNavigation(navigation, job.language, footerPageKeys)}
+			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}
 			languages={languages}
 			siteTitle="RathausGalerien"

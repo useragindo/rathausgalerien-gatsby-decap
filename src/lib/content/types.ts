@@ -111,7 +111,6 @@ export type ImportedFrontmatter = {
 		link?: string | null;
 	}> | null;
 	copyright?: string | null;
-	footer_page_keys?: Array<{ key?: string | null } | string> | null;
 	uuid?: string | null;
 	question?: string | null;
 	answer?: string | null;
@@ -155,6 +154,14 @@ export type ImportedFrontmatter = {
 	icons?: ImportedMenuIcon[] | null;
 	boxes?: ImportedMenuBox[] | null;
 	social?: ImportedMenuSocialLink[] | null;
+	footer_pages?: ImportedFooterPageEntry[] | null;
+};
+
+// One entry of the footer's page list (content/settings/footer.md): a
+// relation to the `pages` collection by `key`, resolved to each language's
+// URL the same way the menu icons resolve their `page` reference.
+export type ImportedFooterPageEntry = {
+	page?: string | null;
 };
 
 // A social link in the open menu — same shape as the footer's social_media

@@ -11,7 +11,6 @@ import type {
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
-import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
 import {
 	getMenuBoxesForLanguage,
@@ -31,7 +30,7 @@ type CategoryTemplateContext = {
 	menu?: SiteMenuSettings;
 	languageLinks: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
-	footerPageKeys?: string[] | null;
+	footerNavigation?: NormalizedNavigationItem[];
 };
 
 type CategoryTemplateProps = PageProps<
@@ -85,10 +84,9 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({ pageContext }) => {
 		menu,
 		languageLinks,
 		socialLinks,
-		footerPageKeys,
+		footerNavigation,
 	} = pageContext;
 	const mainNavigation = toNavigationItems(navigation, category.language, "main");
-	const footerNavigation = buildFooterNavigation(navigation, category.language, footerPageKeys);
 	const languages = buildLanguageOptions(languageLinks);
 
 	return (

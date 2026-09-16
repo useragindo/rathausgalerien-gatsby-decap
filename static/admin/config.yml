@@ -1586,13 +1586,6 @@ collections:
 
       - {label: "Label Hours", name: "label_hours", widget: string, required: false}
 
-      - label: "Footer Page Keys"
-        name: "footer_page_keys"
-        widget: "list"
-        required: false
-        hint: "Seiten, die in der Fußzeilen-Navigation angezeigt werden sollen (z. B. 'locations', 'jobs', 'privacy', 'imprint'). Wenn leer, werden Standard-Seiten verwendet."
-        field: {label: "Key", name: "key", widget: "string"}
-
   - name: "color-schemes"
     label: "Farbschemas"
     label_singular: "Farbschema"
@@ -1905,6 +1898,32 @@ collections:
             required: false
             default: "/datenschutz"
             hint: "Standard-Link für den Teilnahmebedingungen-Hinweis, falls im Formularfeld-Label kein eigener Link gesetzt ist. Gilt für beide Sprachen - für EN am besten /en/privacy-policy angeben."
+
+      - name: "footer"
+        label: "Footer"
+        file: "content/settings/footer.md"
+        fields:
+          - {label: "Type", name: "type", widget: "hidden", default: "settings"}
+          - {label: "Name", name: "name", widget: "hidden", default: "footer"}
+
+          - label: "Seiten im Footer"
+            name: "footer_pages"
+            widget: list
+            required: false
+            hint: "Seiten, die in der Footer-Navigation erscheinen sollen, in der gewünschten Reihenfolge. Gilt für Deutsch und Englisch gemeinsam - es wird automatisch die passende Übersetzung verlinkt. Leer lassen, um die Standard-Seiten zu verwenden."
+            fields:
+              - label: "Seite"
+                name: "page"
+                widget: relation
+                collection: "pages"
+                valueField: "key"
+                displayFields:
+                  - key
+                  - locale
+                searchFields:
+                  - key
+                  - heading
+                hint: "Seite auswählen (egal ob der deutsche oder englische Eintrag)."
 
       - name: "menu"
         label: "Menü"

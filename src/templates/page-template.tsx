@@ -28,7 +28,6 @@ import type {
 	SiteNavigationItem,
 	SiteTheme,
 } from "../lib/content/types";
-import { buildFooterNavigation } from "../lib/footer";
 import { buildLanguageOptions } from "../lib/language";
 import {
 	getMenuBoxesForLanguage,
@@ -58,7 +57,7 @@ type PageTemplateContext = {
 	menu?: SiteMenuSettings;
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
-	footerPageKeys?: string[] | null;
+	footerNavigation?: NormalizedNavigationItem[];
 };
 
 type PageTemplateProps = PageProps<Record<string, never>, PageTemplateContext>;
@@ -651,10 +650,9 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 		menu,
 		languageLinks,
 		socialLinks,
-		footerPageKeys,
+		footerNavigation,
 	} = pageContext;
 	const mainNavigation = toNavigationItems(navigation, page.language, "main");
-	const footerNavigation = buildFooterNavigation(navigation, page.language, footerPageKeys);
 	const languages = buildLanguageOptions(languageLinks);
 
 	// Keep the key-based CSS hook (`.page--index`, `.page--locations`, …) stable.
