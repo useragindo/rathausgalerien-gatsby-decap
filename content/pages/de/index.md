@@ -16,9 +16,9 @@ blocks:
 
           ## fashion
 
-          Jetzt die neue\
-          Herbstmode\
-          entdecken!
+          JETZT DIE NEUE\
+          HERBSTMODE\
+          ENTDECKEN!
         category: 7e9371ec-c538-4ddd-8470-b1e9bc34790d
         images:
           - image: /media/pages/12_annika.jpg
@@ -32,6 +32,10 @@ blocks:
           ## GALERIEN
 
           ## MAGAZIN!
+
+          GLEICH
+
+          REINSCHAUEN
         category: ""
         backgroundColor: "#b58ec1"
         images:
