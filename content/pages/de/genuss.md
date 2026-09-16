@@ -7,9 +7,10 @@ menu: main
 menu_label: Genuss
 order: 200
 heading: Kulinarik in den Galerien
-intro: Ob knusprige Pizza und italienische Klassiker, traditionelle
-  österreichische Spezialitäten, frische Bowls oder asiatische Gerichte – hier
-  ist garantiert für jeden Geschmack das Richtige dabei.
+intro: |-
+  Ob knusprige Pizza und italienische Klassiker, traditionelle
+  österreichische Spezialitäten, frische Bowls oder asiatische Gerichte
+  – hier ist garantiert für jeden Geschmack das Richtige dabei.
 blocks: []
 teaser:
   title: |-
