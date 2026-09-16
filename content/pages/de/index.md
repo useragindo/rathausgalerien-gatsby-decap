@@ -9,7 +9,7 @@ intro: ""
 blocks:
   - layout: grid-4
     date: ""
-    header: fashion, food, & lifestyle
+    header: fashion, food & lifestyle
     tiles:
       - text: |-
           ## autumn
@@ -40,7 +40,7 @@ blocks:
         images:
           - image: /media/pages/h001_147_02_news_03_fj-so_rlo_1000-x-1000_01.jpg
             alt: Zum Magazin
-        background_color: bg
+        background_color: c1
         text_color: ""
     teaserText: |-
       RathausGalerien: Das Herz der Stadt! 
@@ -91,6 +91,7 @@ blocks:
           UP TO DATE!
         images:
           - image: /media/pages/karma-suncare-post.jpg
+        link: /news
       - text_color: ""
         background_color: c4
         text: |-
@@ -109,9 +110,8 @@ blocks:
       - text: |-
           ## PARKEN
 
-          340 Parkplätze
-
-          8 E-Lade Plätze
+          340 PARKPLÄTZE\
+          8 E-LADEPLÄTZE
         icons:
           - icon: /media/pages/icon-car.svg
         background_color: c1
@@ -120,7 +120,7 @@ blocks:
           - image: /media/pages/rhg_parken_01.png
         link: /services
     teaserText: |-
-      Parken Sie von Freitags ab 12:00 Uhr bis sonntags 24:00 Uhr
+      Parken Sie von freitags ab 12.00 Uhr bis sonntags 24.00 Uhr
       für die ersten drei Stunden zum halben Preis.
   - layout: grid-4
     text_color: ""
@@ -153,7 +153,7 @@ blocks:
           - image: /media/pages/insta_sarah_mueller.jpg
   - date: ""
     layout: columns
-    header: GALERIEN – GESCHENK – IDEEN
+    header: GALERIEN-GESCHENK-IDEEN
     tiles:
       - text: |-
           ## Ideen
