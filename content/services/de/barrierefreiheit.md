@@ -4,10 +4,12 @@ key: service
 type: service
 uuid: 93988ab2-3d3a-492d-8c81-df809ef02145
 name: Barrierefreiheit
-description: kjhkjhn
+order: 2
+description: |-
+  Die RathausGalerien und Shops
+  sind über alle Eingänge barrierefrei zugänglich.
 icon: /media/services/barriere.svg
 tile: true
-order: 2
 tile_color: c1
 tile_text_color: weiss
 tile_text: |-
