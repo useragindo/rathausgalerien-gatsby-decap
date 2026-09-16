@@ -118,6 +118,7 @@ blocks:
         text_color: text
         images:
           - image: /media/pages/rhg_parken_01.png
+        link: /services
     teaserText: |-
       Parken Sie von Freitags ab 12:00 Uhr bis sonntags 24:00 Uhr
       für die ersten drei Stunden zum halben Preis.
@@ -134,9 +135,9 @@ blocks:
 
           ## Galerien
 
-          Einzigartige\
-          Architektur seit \
-          knapp 25 Jahren
+          EINZIGARTIGE\
+          ARCHITEKTUR SEIT\
+          KNAPP 25 JAHREN
         images:
           - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_01.jpg
           - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_03.jpg
@@ -152,14 +153,13 @@ blocks:
           - image: /media/pages/insta_sarah_mueller.jpg
   - date: ""
     layout: columns
-    header: GALERIEN. GENUSS.
+    header: GALERIEN – GESCHENK – IDEEN
     tiles:
       - text: |-
           ## Ideen
 
-          Lassen Sie
-
-          sich inspirieren
+          LASSEN SIE\
+          SICH INSPIRIEREN
         images:
           - image: /media/pages/schmuck_fin_ecirgbv2.jpg
         icons:
@@ -169,7 +169,9 @@ blocks:
         background_color: c2
     teaserText: |-
       Lassen Sie sich inspirieren: Stilvolle Deko, modische Accessoires, feine
-      Düfte, edle Kosmetik und süße Verführungen - Ideen für jeden anlass.
+      Düfte, edle Kosmetik und süße Verführungen – Ideen für jeden Anlass.
+    images:
+      - image: /media/pages/icon_geschenkbox.svg
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
   title: Shopping
