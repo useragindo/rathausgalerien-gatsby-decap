@@ -60,7 +60,7 @@ seo:
   title: Gewinnspiel
   description: Mache mit bei unserem Gewinnspiel und gewinne einen von 10
     Gutscheinen für die RathausGalerien im Wert von jeweils 100 €!
-  url: gewinnspiel
+  url: gewinnen
 ---
 Mach mit bei unserem Gewinnspiel und sichere dir die Chance auf einen von 10 Gutscheinen für die RathausGalerien im Wert von jeweils 100 €!
 
