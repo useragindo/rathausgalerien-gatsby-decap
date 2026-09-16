@@ -3,7 +3,7 @@ locale: de
 type: lottery
 uuid: 99f637bf-a7cd-403a-8380-5c620b509bef
 key: fahrschein
-heading: Fahschein zu gewinnen
+heading: Fahrschein zu gewinnen
 intro: Gewinne einen Fahrschein vom VVT von deiner Heimatadresse zu den
   Rathausgalerien und wieder nach Hause.
 date: 2026-09-14T15:17:00.000Z

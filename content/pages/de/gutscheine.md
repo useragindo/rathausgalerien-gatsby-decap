@@ -3,7 +3,7 @@ locale: de
 type: page
 key: gutscheine
 template: standard
-menu: ""
+menu: misc
 menu_label: GUTSCHEINE
 order: 700
 heading: GALERIEN GUTSCHEINE

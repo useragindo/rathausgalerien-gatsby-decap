@@ -65,6 +65,10 @@
 }
 
 .site-footer__nav-list a {
+	flex: 0 0 calc(50% - var(--space-xs) / 2);
+}
+
+.site-footer__nav-list a {
 	display: inline-flex;
 	align-items: center;
 	gap: var(--space-2xs);

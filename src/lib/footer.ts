@@ -24,11 +24,10 @@ export const buildFooterNavigation = (
 			.map((item) => [item.key, item]),
 	);
 
-	return FOOTER_PAGE_KEYS.flatMap((key) => {
+	// Curated list: always present in the footer.
+	const curated = FOOTER_PAGE_KEYS.flatMap((key) => {
 		const item = byKey.get(key);
-		if (!item) {
-			return [];
-		}
+		if (!item) return [];
 
 		const label =
 			item.menuLabel ?? FOOTER_LABEL_OVERRIDES[key]?.[language] ?? item.label;
@@ -41,4 +40,17 @@ export const buildFooterNavigation = (
 			},
 		];
 	});
+
+	// All pages flagged with menu: "misc" are appended to the footer navigation.
+	const miscItems = navigation
+		.filter((item) => item.language === language && item.menu === "misc")
+		.sort((a, b) => a.order - b.order)
+		.map((item) => ({
+			label: item.menuLabel ?? item.label,
+			url: item.url,
+			language: item.language,
+			openInNewTab: false,
+		}));
+
+	return [...curated, ...miscItems];
 };

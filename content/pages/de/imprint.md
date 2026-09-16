@@ -1,16 +1,16 @@
 ---
 locale: de
-key: imprint
 type: page
+key: imprint
 template: standard
-menu: misc
+menu: ""
 order: 1
+heading: Impressum
+intro: Alle gesetzlichen Inhaberangaben finden Sie hier!
 seo:
   description: Alle gesetzlichen Inhaberangaben finden Sie hier!
   title: Impressum
   url: impressum
-heading: Impressum
-intro: Alle gesetzlichen Inhaberangaben finden Sie hier!
 ---
 ## Für den Inhalt verantwortlich:
 
