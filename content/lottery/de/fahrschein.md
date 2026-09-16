@@ -34,5 +34,6 @@ seo:
   ogType: website
   twitterCard: summary_large_image
   noIndex: false
+  url: fahrschein
 ---
 Eine Aktion von agindo
