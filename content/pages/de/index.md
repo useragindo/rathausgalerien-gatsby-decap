@@ -78,27 +78,23 @@ blocks:
     reversed: false
     date: ""
     tiles:
-      - text_color: weiss
+      - text_color: ""
         background_color: c2
         text: |-
-          ## Galerien
+          ## Galerien\
+          News
 
-          ## News
-
-          Bleiben Sie
-
+          Bleiben Sie\
           up to date
         images:
           - image: /media/pages/karma-suncare-post.jpg
       - text_color: ""
         background_color: c4
         text: |-
-          ## Im 
+          ## Im\
+          Gespräch
 
-          ## Gespräch
-
-          Exklusive Einblicke
-
+          Exklusive Einblicke\
           in die Galerien
         images:
           - image: /media/pages/rituals_9r3a3285.jpg
