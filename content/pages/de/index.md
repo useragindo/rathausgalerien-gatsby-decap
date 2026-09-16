@@ -83,11 +83,12 @@ blocks:
       - text_color: ""
         background_color: c2
         text: |-
-          ## Galerien\
-          News
+          ## Galerien
 
-          Bleiben Sie\
-          up to date
+          ## News
+
+          BLEIBEN SIE\
+          UP TO DATE!
         images:
           - image: /media/pages/karma-suncare-post.jpg
       - text_color: ""
@@ -96,8 +97,8 @@ blocks:
           ## Im\
           Gespräch
 
-          Exklusive Einblicke\
-          in die Galerien
+          EXKLUSIVE EINBLICKE\
+          IN DIE GALERIEN
         images:
           - image: /media/pages/rituals_9r3a3285.jpg
   - date: ""
