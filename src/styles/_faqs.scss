@@ -22,7 +22,7 @@
 .faq-item__question {
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: space-between;
 	gap: var(--space-sm);
 	padding-block: var(--space-sm);
 	font-size: clamp(1rem, 2vw, 1.25rem);
@@ -37,7 +37,7 @@
 		display: none;
 	}
 
-	&::before {
+	&::after {
 		content: "+";
 		display: flex;
 		align-items: center;
@@ -52,7 +52,7 @@
 	}
 }
 
-.faq-item[open] .faq-item__question::before {
+.faq-item[open] .faq-item__question::after {
 	transform: rotate(45deg);
 }
 
