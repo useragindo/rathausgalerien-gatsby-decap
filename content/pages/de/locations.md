@@ -4,11 +4,15 @@ type: page
 key: locations
 template: lageplan
 menu: main
+menu_label: LAGEPLAN
 order: 500
-seo:
-  description: Einen interaktiven Lageplan der Rathausgalerien finden Sie hier.
-  title: Lageplan
-  url: lageplan
+heading: DAS HERZ DER STADT
+intro: |-
+  Die RathausGalerien liegen zentral in der Innsbrucker
+  Maria-Theresien-Straße. Unser interaktiver Lageplan hilft
+  bei der Orientierung.
+teaser:
+  image: /media/pages/rathausgalerien_so25_danielzangerl-_090_web.jpg
 photos:
   - image: /media/pages/rhg_mts_eingang.jpg
     label: Eingang Maria-Theresien-Straße
@@ -38,6 +42,8 @@ traffic_information: >-
 
 
   Für eine schnelle und bequeme Anfahrt verwenden Sie Google Maps oder die Netzpläne der IVB.
-heading: Lageplan
-intro: Einen interaktiven Lageplan der Rathausgalerien finden Sie hier.
+seo:
+  description: Einen interaktiven Lageplan der Rathausgalerien finden Sie hier.
+  title: Lageplan
+  url: lageplan
 ---
