@@ -25,9 +25,9 @@ form:
     retrying:
       button: Noch einmal versuchen
   fields:
-    - type: CHECKBOX
+    - type: TEXT
       required: true
-      name: input
+      name: fahrschein
       label: Willst du einen Fahrschein?
   name: fahrscheinspiel-20260914
 seo:
