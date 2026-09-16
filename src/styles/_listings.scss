@@ -140,7 +140,7 @@
 }
 
 .listing-card--has-media .listing-card__link {
-	grid-template-rows: auto 1fr;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .listing-card__link:hover {
@@ -158,19 +158,18 @@
 	display: block;
 	overflow: hidden;
 	background: var(--color-surface);
+	aspect-ratio: 4 / 5;
 }
 
 .listing-card__media img {
 	width: 100%;
 	height: 100%;
-	aspect-ratio: 5 / 4;
 	object-fit: cover;
 }
 
 .listing-card__media--placeholder {
 	display: grid;
 	place-items: center;
-	min-height: clamp(10rem, 36vw, 18rem);
 	padding: var(--space-md);
 	background:
 		color-mix(in srgb, var(--listing-card-bg) 62%, var(--color-surface));
@@ -218,7 +217,8 @@
 	flex-direction: column;
 	justify-content: center;
 	gap: clamp(0.35rem, 1vw, var(--space-xs));
-	min-height: clamp(12rem, 42vw, 18rem);
+	order: -1;
+	min-height: clamp(15rem, 28vw, 22rem);
 	padding: clamp(1rem, 3.5vw, var(--space-md));
 	color: var(--color-blue-900);
 	background: var(--listing-card-bg);
@@ -284,7 +284,7 @@
 .listing-card--job .listing-card__body {
 	justify-content: center;
 	gap: clamp(0.45rem, 1vw, var(--space-xs));
-	min-height: clamp(10.5rem, 30vw, 15.5rem);
+	min-height: clamp(12rem, 19vw, 16.5rem);
 	padding: clamp(1rem, 2.2vw, 1.75rem);
 }
 
@@ -308,43 +308,14 @@
 	-webkit-line-clamp: 2;
 }
 
-@media (min-width: 44rem) {
-	.listing-card--has-media .listing-card__link {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		grid-template-rows: none;
-	}
+.listing-card:nth-child(4n + 3) .listing-card__body,
+.listing-card:nth-child(4n + 4) .listing-card__body {
+	order: 0;
+}
 
-	.listing-card__media,
-	.listing-card__media img {
-		height: 100%;
-	}
-
-	.listing-card__media--placeholder {
-		min-height: 100%;
-	}
-
-	.listing-card__media img {
-		aspect-ratio: 1;
-	}
-
-	.listing-card__body {
-		order: -1;
-		min-height: clamp(15rem, 28vw, 22rem);
-	}
-
-	.listing-card--job .listing-card__body {
-		min-height: clamp(12rem, 19vw, 16.5rem);
-	}
-
-	.listing-card:nth-child(4n + 3) .listing-card__body,
-	.listing-card:nth-child(4n + 4) .listing-card__body {
-		order: 0;
-	}
-
-	.listing-card:nth-child(4n + 3) .listing-card__media,
-	.listing-card:nth-child(4n + 4) .listing-card__media {
-		order: -1;
-	}
+.listing-card:nth-child(4n + 3) .listing-card__media,
+.listing-card:nth-child(4n + 4) .listing-card__media {
+	order: -1;
 }
 
 @media (min-width: 72rem) {

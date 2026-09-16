@@ -1,23 +1,9 @@
-.listing-card--news .listing-card__body {
-	min-height: clamp(11rem, 32vw, 16rem);
-}
-
-.listing-card--news .listing-card__media--placeholder {
-	min-height: clamp(9rem, 30vw, 15rem);
-}
-
 .news-card__date {
 	font-size: var(--font-size-xs);
 	font-weight: 700;
 	letter-spacing: 0.14em;
 	line-height: 1.2;
 	text-transform: uppercase;
-}
-
-@media (min-width: 44rem) {
-	.listing-card--news .listing-card__body {
-		min-height: clamp(13rem, 24vw, 18rem);
-	}
 }
 
 .news-detail {

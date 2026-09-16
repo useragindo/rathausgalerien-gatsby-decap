@@ -2,7 +2,7 @@
    Content Blocks — Figma-Design 2026
    Layout-Typen (Figma-Maße bei 1440px, Content-Breite 1211px, Gap 25px):
      1. grid-4      — 4 Kacheln in einer Reihe, je 284px breit
-                      Kachel 1+3 = 284×284, Kachel 2+4 = 284×374
+                      Kachel 1+3 = 284×284 (1:1), Kachel 2+4 = 4:5 (Hochformat)
      2. grid-4-equal — 4 gleich große, quadratische Content-Kacheln
                       (z. B. Fakten/Stats-Reihe), keine Alternation
      3. image-left  — Bild 691×520 links | Content 520×520 rechts, kein Gap
@@ -10,8 +10,8 @@
      5. slider-left — Slider 691×520 links | Content 520×520 rechts, kein Gap
         slider-right — Content links | Slider rechts (gleiche Maße)
      6. centered    — halbiertes grid-4: 2 Kacheln, zentriert, halbe
-                      Content-Breite, Content-Kachel quadratisch, Bild-Kachel
-                      höher (284×374, wie grid-4)
+                      Content-Breite, Content-Kachel quadratisch (1:1), Bild-
+                      Kachel ebenfalls quadratisch (1:1)
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ─── Basis-Block ──────────────────────────────────────────────────────── */
@@ -167,11 +167,11 @@
 
 /* ═══════════════════════════════════════════════════════════════════════
    Layout Typ 1: grid-4
-   Figma-Proportionen: 284×284 und 284×374 abwechselnd
-     Kachel 1 (Content): 284×284  → aspect-ratio: 1
-     Kachel 2 (Bild):    284×374  → aspect-ratio: 284/374
-     Kachel 3 (Bild):    284×284  → aspect-ratio: 1
-     Kachel 4 (Bild):    284×374  → aspect-ratio: 284/374
+   Proportionen: quadratisch (1:1) und Hochformat (4:5) abwechselnd
+     Kachel 1 (Content): 1:1  → aspect-ratio: 1
+     Kachel 2 (Bild):    4:5  → aspect-ratio: 4/5
+     Kachel 3 (Bild):    1:1  → aspect-ratio: 1
+     Kachel 4 (Bild):    4:5  → aspect-ratio: 4/5
 
    Mobile (<44rem):
      Content-Tile: volle Breite, 1:1
@@ -191,14 +191,15 @@
 }
 
 .content-block--grid-4 .content-block__tile--media {
-	aspect-ratio: 284 / 374;
+	aspect-ratio: 4 / 5;
 }
 
 
 /* ═══════════════════════════════════════════════════════════════════════
    Layout Typ 2: grid-4-equal
-   4 gleich große, quadratische Content-Kacheln (keine Bild-Kacheln, keine
-   Alternation wie bei grid-4) — z. B. für eine Fakten-/Stats-Reihe.
+   4 gleich große, quadratische Kacheln (keine Alternation wie bei grid-4)
+   — z. B. für eine Fakten-/Stats-Reihe. Enthält eine Kachel ausnahmsweise
+   ein Bild statt Text, bleibt es ebenfalls quadratisch (1:1).
 
    Mobile (<44rem): 2×2-Grid, alle Kacheln quadratisch.
    Tablet+ (≥44rem): alle 4 in einer Reihe, alle quadratisch.
@@ -209,6 +210,10 @@
 }
 
 .content-block--grid-4-equal .content-block__tile--content {
+	aspect-ratio: 1;
+}
+
+.content-block--grid-4-equal .content-block__tile--media {
 	aspect-ratio: 1;
 }
 
@@ -264,8 +269,7 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Layout Typ 5: centered
    Halbiertes grid-4: nur 2 Kacheln, zentriert auf halber Content-Breite.
-   Content-Kachel quadratisch (1:1), Bild-Kachel höher (284×374, wie die
-   Bild-Kacheln im grid-4), damit der Effekt des 4er-Grids erhalten bleibt.
+   Content-Kachel und Bild-Kachel beide quadratisch (1:1).
    Bleibt auf allen Breakpoints 2-spaltig (keine 4-Spalten-Variante wie
    grid-4 ab 44rem).
    ═══════════════════════════════════════════════════════════════════════ */
@@ -280,7 +284,7 @@
 }
 
 .content-block--centered .content-block__tile--media {
-	aspect-ratio: 284 / 374;
+	aspect-ratio: 1;
 }
 
 
@@ -605,7 +609,7 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Tablet (≥ 44rem / 704px)
    grid-4: Content + 3 Bilder alle 4 in einer Reihe
-           Figma: 1+3=quadratisch (284×284), 2+4=höher (284×374)
+           1+3=quadratisch (1:1), 2+4=Hochformat (4:5)
    ═══════════════════════════════════════════════════════════════════════ */
 
 @media (min-width: 44rem) {
@@ -625,9 +629,9 @@
 		aspect-ratio: 1;
 	}
 
-	/* Kachel 2 (:nth-child(2)): 284×374 */
+	/* Kachel 2 (:nth-child(2)): 4:5 */
 	.content-block--grid-4 .content-block__body > .content-block__tile:nth-child(2) {
-		aspect-ratio: 284 / 374;
+		aspect-ratio: 4 / 5;
 	}
 
 	/* Kachel 3 (:nth-child(3)): 284×284 → 1:1 */
@@ -635,9 +639,9 @@
 		aspect-ratio: 1;
 	}
 
-	/* Kachel 4 (:nth-child(4)): 284×374 */
+	/* Kachel 4 (:nth-child(4)): 4:5 */
 	.content-block--grid-4 .content-block__body > .content-block__tile:nth-child(4) {
-		aspect-ratio: 284 / 374;
+		aspect-ratio: 4 / 5;
 	}
 }
 
@@ -648,11 +652,25 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 43.9375rem) {
-	.content-block .content-block__body {
+	/* Nur Text+Bild/Slider: Content-Kachel darf mit dem Text wachsen, die
+	   Zeilenhöhe kommt vom Bild (aspect-ratio). grid-4/grid-4-equal/centered
+	   bleiben ausgenommen — deren Content-Kachel muss wie auf Desktop
+	   quadratisch bleiben, nur kleiner skaliert (siehe Basis-Regeln). */
+	:is(
+		.content-block--image-left,
+		.content-block--text-left,
+		.content-block--slider-left,
+		.content-block--slider-right
+	) .content-block__body {
 		align-items: stretch;
 	}
 
-	.content-block .content-block__tile--content {
+	:is(
+		.content-block--image-left,
+		.content-block--text-left,
+		.content-block--slider-left,
+		.content-block--slider-right
+	) .content-block__tile--content {
 		aspect-ratio: auto;
 		min-height: 0;
 	}
