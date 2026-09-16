@@ -194,6 +194,28 @@
 	aspect-ratio: 4 / 5;
 }
 
+/* Mobile 2×2: Reihe 1 = klein, groß (DOM-Reihenfolge) — Reihe 2 wird
+   visuell umgekehrt zu groß, klein, damit sich das Muster pro Zeile abwechselt.
+   Nur <44rem: ab dem Breakpoint stehen alle 4 Kacheln in einer Reihe
+   (klein, groß, klein, groß) und werden nicht mehr umsortiert. */
+@media (max-width: 43.9375rem) {
+	.content-block--grid-4 .content-block__body > .content-block__tile:nth-child(3) {
+		order: 1;
+	}
+
+	.content-block--grid-4 .content-block__body > .content-block__tile:nth-child(4) {
+		order: 0;
+	}
+
+	/* Größerer vertikaler Abstand zwischen den beiden Kachel-Reihen im
+	   mobilen 2×2-Grid — horizontaler Abstand zwischen den Kacheln einer
+	   Reihe bleibt beim normalen --cb-gap. */
+	.content-block--grid-4 .content-block__body,
+	.content-block--grid-4-equal .content-block__body {
+		row-gap: clamp(1rem, 4vw, 2rem);
+	}
+}
+
 
 /* ═══════════════════════════════════════════════════════════════════════
    Layout Typ 2: grid-4-equal
