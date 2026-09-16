@@ -111,6 +111,7 @@ export type ImportedFrontmatter = {
 		link?: string | null;
 	}> | null;
 	copyright?: string | null;
+	footer_page_keys?: Array<{ key?: string | null } | string> | null;
 	uuid?: string | null;
 	question?: string | null;
 	answer?: string | null;

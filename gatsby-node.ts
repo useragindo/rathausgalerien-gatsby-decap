@@ -1,6 +1,7 @@
 import path from "path";
 import type { GatsbyNode } from "gatsby";
 import {
+	buildFooterPageKeys,
 	buildFooterSocialLinks,
 	buildLanguageLinks,
 	normalizeNodes,
@@ -77,6 +78,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 	const newsLanguageLinks = buildLanguageLinks(news);
 	const lotteryLanguageLinks = buildLanguageLinks(lotteries);
 	const socialLinksByLanguage = buildFooterSocialLinks(mdxNodes);
+	const footerPageKeysByLanguage = buildFooterPageKeys(mdxNodes);
 
 	for (const page of pages) {
 		actions.createPage({
@@ -101,6 +103,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks: pageLanguageLinks(page),
 				socialLinks: socialLinksByLanguage[page.language],
+				footerPageKeys: footerPageKeysByLanguage[page.language],
 			},
 		});
 	}
@@ -118,6 +121,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks: locationLanguageLinks(location),
 				socialLinks: socialLinksByLanguage[location.language],
+				footerPageKeys: footerPageKeysByLanguage[location.language],
 			},
 		});
 	}
@@ -134,6 +138,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks: jobLanguageLinks(job),
 				socialLinks: socialLinksByLanguage[job.language],
+				footerPageKeys: footerPageKeysByLanguage[job.language],
 			},
 		});
 	}
@@ -149,6 +154,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks: newsLanguageLinks(item),
 				socialLinks: socialLinksByLanguage[item.language],
+				footerPageKeys: footerPageKeysByLanguage[item.language],
 			},
 		});
 	}
@@ -165,6 +171,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks: lotteryLanguageLinks(lottery),
 				socialLinks: socialLinksByLanguage[lottery.language],
+				footerPageKeys: footerPageKeysByLanguage[lottery.language],
 			},
 		});
 	}
@@ -203,6 +210,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				menu,
 				languageLinks,
 				socialLinks: socialLinksByLanguage[category.language],
+				footerPageKeys: footerPageKeysByLanguage[category.language],
 			},
 		});
 	}

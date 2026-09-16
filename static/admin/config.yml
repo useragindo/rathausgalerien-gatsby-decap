@@ -1586,6 +1586,13 @@ collections:
 
       - {label: "Label Hours", name: "label_hours", widget: string, required: false}
 
+      - label: "Footer Page Keys"
+        name: "footer_page_keys"
+        widget: "list"
+        required: false
+        hint: "Seiten, die in der Fußzeilen-Navigation angezeigt werden sollen (z. B. 'locations', 'jobs', 'privacy', 'imprint'). Wenn leer, werden Standard-Seiten verwendet."
+        field: {label: "Key", name: "key", widget: "string"}
+
   - name: "color-schemes"
     label: "Farbschemas"
     label_singular: "Farbschema"

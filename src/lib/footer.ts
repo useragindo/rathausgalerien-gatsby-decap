@@ -1,9 +1,8 @@
 import type { LanguageCode, SiteNavigationItem } from "./content/types";
 import type { NormalizedNavigationItem } from "./navigation";
 
-// The footer shows a curated list independent of each page's single `menu`
-// field, so a page can appear both in the main menu and the footer.
-const FOOTER_PAGE_KEYS = ["locations", "jobs", "privacy", "imprint"] as const;
+// Default footer pages if none are configured in CMS.
+const DEFAULT_FOOTER_PAGE_KEYS = ["locations", "jobs", "privacy", "imprint"] as const;
 
 // Footer labels that intentionally differ from the page title.
 const FOOTER_LABEL_OVERRIDES: Record<
@@ -17,6 +16,7 @@ const FOOTER_LABEL_OVERRIDES: Record<
 export const buildFooterNavigation = (
 	navigation: SiteNavigationItem[],
 	language: LanguageCode,
+	pageKeys?: string[] | null,
 ): NormalizedNavigationItem[] => {
 	const byKey = new Map(
 		navigation
@@ -24,8 +24,11 @@ export const buildFooterNavigation = (
 			.map((item) => [item.key, item]),
 	);
 
+	// Use CMS-configured page keys, or fall back to defaults if not configured.
+	const footerPageKeys = pageKeys?.length ? pageKeys : DEFAULT_FOOTER_PAGE_KEYS;
+
 	// Curated list: always present in the footer.
-	const curated = FOOTER_PAGE_KEYS.flatMap((key) => {
+	const curated = footerPageKeys.flatMap((key) => {
 		const item = byKey.get(key);
 		if (!item) return [];
 

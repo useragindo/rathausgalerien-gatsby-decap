@@ -988,6 +988,35 @@ export const buildFooterSocialLinks = (
 	return byLanguage;
 };
 
+// Reads the footer page keys from the "footer" block.
+export const buildFooterPageKeys = (
+	nodes: ImportedMdxNode[],
+): Record<LanguageCode, string[] | null> => {
+	const byLanguage: Record<LanguageCode, string[] | null> = {
+		de: null,
+		en: null,
+	};
+
+	for (const node of nodes) {
+		const frontmatter = node.frontmatter;
+		if (frontmatter?.type !== "block" || trim(frontmatter.name) !== "footer") {
+			continue;
+		}
+
+		const pageKeys = Array.isArray(frontmatter.footer_page_keys)
+			? frontmatter.footer_page_keys
+					.map((item: { key?: string | null } | string | null | undefined) =>
+						trim(typeof item === "string" ? item : item?.key),
+					)
+					.filter((key): key is string => Boolean(key))
+			: null;
+
+		byLanguage[getLanguage(frontmatter)] = pageKeys?.length ? pageKeys : null;
+	}
+
+	return byLanguage;
+};
+
 type Translatable = { language: LanguageCode; i18nKey: string; path: string };
 
 // Groups items by their language-independent identity so each item can resolve

@@ -31,6 +31,7 @@ type CategoryTemplateContext = {
 	menu?: SiteMenuSettings;
 	languageLinks: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
+	footerPageKeys?: string[] | null;
 };
 
 type CategoryTemplateProps = PageProps<
@@ -84,9 +85,10 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({ pageContext }) => {
 		menu,
 		languageLinks,
 		socialLinks,
+		footerPageKeys,
 	} = pageContext;
 	const mainNavigation = toNavigationItems(navigation, category.language, "main");
-	const footerNavigation = buildFooterNavigation(navigation, category.language);
+	const footerNavigation = buildFooterNavigation(navigation, category.language, footerPageKeys);
 	const languages = buildLanguageOptions(languageLinks);
 
 	return (
