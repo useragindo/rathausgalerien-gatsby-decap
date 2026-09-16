@@ -7,6 +7,8 @@ heading: Fahrschein zu gewinnen
 intro: Gewinne einen Fahrschein vom VVT von deiner Heimatadresse zu den
   Rathausgalerien und wieder nach Hause.
 date: 2026-09-14T15:17:00.000Z
+images:
+  - /media/lottery/generiertes-bild-1-1-.png
 text_color: ""
 background_color: ""
 form:
