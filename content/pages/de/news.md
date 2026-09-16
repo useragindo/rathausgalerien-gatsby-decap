@@ -23,13 +23,21 @@ blocks:
     tiles:
       - text_color: weiss
         background_color: c4
-        text: Follow us on Instagram
+        text: |-
+          ## FOLLOW\
+          US ON\
+          INSTAGRAM
         images:
           - image: /media/pages/insta_sarah_mueller.jpg
         category: aa167073-ba10-44d0-81d9-90c23be34d91
+        link: http://www.instagram.com/rathausgalerien
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_229_web.jpg
-  title: NEUES AUS DEN GALERIEN
+  title: |-
+    NEUES
+    AUS DEN 
+    GALERIEN
+  icon: /media/pages/rhg-logo-klein.svg
 seo:
   title: News
   description: Das ist die News Seite
