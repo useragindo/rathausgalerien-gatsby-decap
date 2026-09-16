@@ -23,7 +23,22 @@
 	isolation: isolate;
 	margin-block: clamp(1.25rem, 4vw, 3.625rem);
 	padding-block: clamp(1.35rem, 4vw, 3.625rem) 0;
-	border-block-start: 2px dotted color-mix(in srgb, var(--color-blue-900) 24%, transparent);
+}
+
+/* Gepunktete Trennlinie als Gradient statt border-style:dotted — damit
+   lässt sich der Abstand zwischen den Punkten exakt festlegen (2px Punkt,
+   8px Lücke), statt sich auf das Browser-Default für "dotted" zu verlassen. */
+.content-block::before {
+	content: "";
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline: 0;
+	height: 2px;
+	background-image: repeating-linear-gradient(
+		to right,
+		color-mix(in srgb, var(--color-blue-900) 34%, transparent) 0 2px,
+		transparent 2px 8px
+	);
 }
 
 .content-block:first-child {
