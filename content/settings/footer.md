@@ -2,10 +2,12 @@
 type: settings
 name: footer
 footer_pages_de:
-  - page: locations
+  - page: faqs
+  - page: gutscheine
   - page: karriere
-  - page: privacy
   - page: imprint
+  - page: locations
+  - page: privacy
 footer_pages_en:
   - page: locations
   - page: jobs

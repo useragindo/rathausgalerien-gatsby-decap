@@ -87,6 +87,17 @@
 	color: var(--color-rosa);
 }
 
+.site-footer__nav-list--pages {
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	justify-content: center;
+}
+
+.site-footer__nav-list--pages a {
+	flex-basis: auto;
+	justify-content: center;
+}
+
 .site-footer__nav-list--social {
 	flex-direction: row;
 	gap: var(--space-sm);

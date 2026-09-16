@@ -122,7 +122,11 @@ export const Footer: React.FC<FooterProps> = ({
 				<span className="visually-hidden">{siteTitle}</span>
 			</a>
 
-			<FooterNavigation items={footerNavigation} label="Footer-Navigation" />
+			<FooterNavigation
+				items={footerNavigation}
+				label="Footer-Navigation"
+				modifier="pages"
+			/>
 			<FooterNavigation
 				items={footerLegalNavigation}
 				label="Rechtliche Links"
