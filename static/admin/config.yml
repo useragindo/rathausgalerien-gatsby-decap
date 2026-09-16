@@ -1555,7 +1555,6 @@ collections:
         options:
           - {label: "General", value: "general"}
           - {label: "Header", value: "header"}
-          - {label: "Footer", value: "footer"}
           - {label: "Location", value: "location"}
 
       - {label: "Company Name", name: "company_name", widget: string, required: false}
@@ -1565,24 +1564,6 @@ collections:
         widget: "list"
         required: false
         field: {label: "Line", name: "line", widget: "string"}
-
-      - label: "Social Media"
-        name: "social_media"
-        widget: "list"
-        required: false
-        fields:
-          - label: "Icon"
-            name: "icon"
-            widget: "image"
-            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
-            pattern: ["(?:.+)svg$", "Must be a SVG file"]
-          - label: "Link"
-            name: "link"
-            widget: "string"
-            pattern: ["^(?:/|https?://)[A-Za-z0-9-_./]+$", "Must start with slash or http(s)://"]
-            hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
-
-      - {label: "Copyright", name: "copyright", widget: "string", required: false}
 
       - {label: "Label Hours", name: "label_hours", widget: string, required: false}
 
@@ -1902,15 +1883,17 @@ collections:
       - name: "footer"
         label: "Footer"
         file: "content/settings/footer.md"
+        media_folder: "/static/media/shared"
+        public_folder: "/media/shared"
         fields:
           - {label: "Type", name: "type", widget: "hidden", default: "settings"}
           - {label: "Name", name: "name", widget: "hidden", default: "footer"}
 
-          - label: "Seiten im Footer"
-            name: "footer_pages"
+          - label: "Seiten im Footer (Deutsch)"
+            name: "footer_pages_de"
             widget: list
             required: false
-            hint: "Seiten, die in der Footer-Navigation erscheinen sollen, in der gewünschten Reihenfolge. Gilt für Deutsch und Englisch gemeinsam - es wird automatisch die passende Übersetzung verlinkt. Leer lassen, um die Standard-Seiten zu verwenden."
+            hint: "Deutsche Seiten, die in der Footer-Navigation erscheinen sollen, in der gewünschten Reihenfolge. Leer lassen, um die Standard-Seiten zu verwenden."
             fields:
               - label: "Seite"
                 name: "page"
@@ -1923,7 +1906,49 @@ collections:
                 searchFields:
                   - key
                   - heading
-                hint: "Seite auswählen (egal ob der deutsche oder englische Eintrag)."
+                hint: "Nur deutsche Seiten auswählen (Sprache steht in Klammern)."
+
+          - label: "Seiten im Footer (Englisch)"
+            name: "footer_pages_en"
+            widget: list
+            required: false
+            hint: "Englische Seiten, die in der Footer-Navigation erscheinen sollen, in der gewünschten Reihenfolge. Leer lassen, um die Standard-Seiten zu verwenden."
+            fields:
+              - label: "Seite"
+                name: "page"
+                widget: relation
+                collection: "pages"
+                valueField: "key"
+                displayFields:
+                  - key
+                  - locale
+                searchFields:
+                  - key
+                  - heading
+                hint: "Nur englische Seiten auswählen (Sprache steht in Klammern)."
+
+          - label: "Social Media"
+            name: "social_media"
+            widget: "list"
+            required: false
+            hint: "Gilt für Deutsch und Englisch gemeinsam."
+            fields:
+              - label: "Icon"
+                name: "icon"
+                widget: "image"
+                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+                pattern: ["(?:.+)svg$", "Must be a SVG file"]
+              - label: "Link"
+                name: "link"
+                widget: "string"
+                pattern: ["^(?:/|https?://)[A-Za-z0-9-_./]+$", "Must start with slash or http(s)://"]
+                hint: "Provide the URL to a subpage - f.e. /phone - or external URL - f.e. https://www.google.com"
+
+          - label: "Copyright"
+            name: "copyright"
+            widget: "string"
+            required: false
+            hint: "Ersetzt den Standardtext (©RATHAUSGALERIEN {Jahr}) komplett, falls gesetzt. Gilt für Deutsch und Englisch gemeinsam. Leer lassen für den Standardtext mit automatischem Jahr."
 
       - name: "menu"
         label: "Menü"

@@ -38,6 +38,7 @@ type LocationTemplateContext = {
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 	footerNavigation?: NormalizedNavigationItem[];
+	footerCopyright?: string;
 };
 
 type LocationTemplateProps = PageProps<
@@ -271,6 +272,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 		languageLinks,
 		socialLinks,
 		footerNavigation,
+		footerCopyright,
 	} = pageContext;
 	const { frontmatter } = location;
 	const languages = buildLanguageOptions(languageLinks);
@@ -311,6 +313,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 			mainNavigation={toNavigationItems(navigation, location.language, "main")}
 			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}
+			footerCopyright={footerCopyright}
 			languages={languages}
 			siteTitle="RathausGalerien"
 		>

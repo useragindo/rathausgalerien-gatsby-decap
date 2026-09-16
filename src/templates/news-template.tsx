@@ -36,6 +36,7 @@ type NewsTemplateContext = {
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 	footerNavigation?: NormalizedNavigationItem[];
+	footerCopyright?: string;
 };
 
 type NewsTemplateProps = PageProps<Record<string, never>, NewsTemplateContext>;
@@ -137,7 +138,7 @@ const getNewsIndexLabel = (news: NormalizedNews): string =>
 	news.language === "de" ? "Alle News" : "All news";
 
 const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
-	const { news, navigation, theme, menu, languageLinks, socialLinks, footerNavigation } = pageContext;
+	const { news, navigation, theme, menu, languageLinks, socialLinks, footerNavigation, footerCopyright } = pageContext;
 	const languages = buildLanguageOptions(languageLinks);
 	const images = normalizeImageList(news.frontmatter.images);
 	const heroImage = images[0];
@@ -155,6 +156,7 @@ const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
 			mainNavigation={toNavigationItems(navigation, news.language, "main")}
 			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}
+			footerCopyright={footerCopyright}
 			languages={languages}
 			siteTitle="RathausGalerien"
 		>

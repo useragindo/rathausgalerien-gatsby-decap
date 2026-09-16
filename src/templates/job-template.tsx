@@ -35,6 +35,7 @@ type JobTemplateContext = {
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 	footerNavigation?: NormalizedNavigationItem[];
+	footerCopyright?: string;
 };
 
 type JobTemplateProps = PageProps<Record<string, never>, JobTemplateContext>;
@@ -166,7 +167,7 @@ const ApplicationIcon: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
-	const { job, navigation, theme, menu, languageLinks, socialLinks, footerNavigation } = pageContext;
+	const { job, navigation, theme, menu, languageLinks, socialLinks, footerNavigation, footerCopyright } = pageContext;
 	const { frontmatter } = job;
 	const languages = buildLanguageOptions(languageLinks);
 	const images = normalizeImageList(frontmatter.images);
@@ -187,6 +188,7 @@ const JobTemplate: React.FC<JobTemplateProps> = ({ pageContext }) => {
 			mainNavigation={toNavigationItems(navigation, job.language, "main")}
 			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}
+			footerCopyright={footerCopyright}
 			languages={languages}
 			siteTitle="RathausGalerien"
 		>

@@ -154,12 +154,14 @@ export type ImportedFrontmatter = {
 	icons?: ImportedMenuIcon[] | null;
 	boxes?: ImportedMenuBox[] | null;
 	social?: ImportedMenuSocialLink[] | null;
-	footer_pages?: ImportedFooterPageEntry[] | null;
+	footer_pages_de?: ImportedFooterPageEntry[] | null;
+	footer_pages_en?: ImportedFooterPageEntry[] | null;
 };
 
-// One entry of the footer's page list (content/settings/footer.md): a
-// relation to the `pages` collection by `key`, resolved to each language's
-// URL the same way the menu icons resolve their `page` reference.
+// One entry of the footer's per-language page list (content/settings/footer.md):
+// a relation to the `pages` collection by `key`. Kept per-language because a
+// page's `key` is not guaranteed to match across its DE/EN translations (e.g.
+// the German "jobs" page has the key "karriere").
 export type ImportedFooterPageEntry = {
 	page?: string | null;
 };

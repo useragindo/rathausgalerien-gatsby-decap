@@ -20,6 +20,7 @@ type SiteLayoutProps = {
 	footerNavigation?: NormalizedNavigationItem[];
 	footerLegalNavigation?: NormalizedNavigationItem[];
 	socialLinks?: NormalizedNavigationItem[];
+	footerCopyright?: string;
 	languages?: { code: string; label: string; url: string }[];
 	language?: LanguageCode;
 	homeUrl?: string;
@@ -37,6 +38,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 	footerNavigation = [],
 	footerLegalNavigation = [],
 	socialLinks = [],
+	footerCopyright,
 	languages,
 	language,
 	homeUrl = "/",
@@ -67,6 +69,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 			footerNavigation={footerNavigation}
 			footerLegalNavigation={footerLegalNavigation}
 			socialLinks={socialLinks}
+			copyrightLabel={footerCopyright}
 			homeUrl={homeUrl}
 			siteTitle={siteTitle}
 		/>

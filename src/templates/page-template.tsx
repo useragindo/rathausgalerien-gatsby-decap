@@ -58,6 +58,7 @@ type PageTemplateContext = {
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 	footerNavigation?: NormalizedNavigationItem[];
+	footerCopyright?: string;
 };
 
 type PageTemplateProps = PageProps<Record<string, never>, PageTemplateContext>;
@@ -651,6 +652,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 		languageLinks,
 		socialLinks,
 		footerNavigation,
+		footerCopyright,
 	} = pageContext;
 	const mainNavigation = toNavigationItems(navigation, page.language, "main");
 	const languages = buildLanguageOptions(languageLinks);
@@ -696,6 +698,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			mainNavigation={mainNavigation}
 			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}
+			footerCopyright={footerCopyright}
 			languages={languages}
 			siteTitle="RathausGalerien"
 		>

@@ -39,6 +39,7 @@ type LotteryTemplateContext = {
 	languageLinks?: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 	footerNavigation?: NormalizedNavigationItem[];
+	footerCopyright?: string;
 };
 
 type LotteryTemplateProps = PageProps<
@@ -127,7 +128,7 @@ const getHomeUrl = (language: LanguageCode): string =>
 	language === "de" ? "/" : `/${language}/`;
 
 const LotteryTemplate: React.FC<LotteryTemplateProps> = ({ pageContext }) => {
-	const { lottery, navigation, theme, menu, languageLinks, socialLinks, footerNavigation } =
+	const { lottery, navigation, theme, menu, languageLinks, socialLinks, footerNavigation, footerCopyright } =
 		pageContext;
 	const languages = buildLanguageOptions(languageLinks);
 	const heroImage = getLotteryFallbackImage(lottery);
@@ -145,6 +146,7 @@ const LotteryTemplate: React.FC<LotteryTemplateProps> = ({ pageContext }) => {
 			mainNavigation={toNavigationItems(navigation, lottery.language, "main")}
 			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}
+			footerCopyright={footerCopyright}
 			languages={languages}
 			siteTitle="RathausGalerien"
 		>

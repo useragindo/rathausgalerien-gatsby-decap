@@ -20,6 +20,7 @@ import type {
 	NormalizedNews,
 	NormalizedPage,
 	NormalizedService,
+	ImportedFooterPageEntry,
 	ImportedMenuBox,
 	ImportedMenuIcon,
 	ImportedMenuSocialLink,
@@ -966,34 +967,27 @@ const buildSocialLinks = (
 		})
 		.filter((item): item is SiteSocialLink => item !== null);
 
-// Reads the per-language social links from the "footer" block so the footer
-// can render them (the block content is otherwise not consumed by the site).
-export const buildFooterSocialLinks = (
-	nodes: ImportedMdxNode[],
-): Record<LanguageCode, SiteSocialLink[]> => {
-	const byLanguage: Record<LanguageCode, SiteSocialLink[]> = {
-		de: [],
-		en: [],
-	};
-
-	for (const node of nodes) {
-		const frontmatter = node.frontmatter;
-		if (frontmatter?.type !== "block" || trim(frontmatter.name) !== "footer") {
-			continue;
-		}
-
-		byLanguage[getLanguage(frontmatter)] = buildSocialLinks(frontmatter.social_media);
-	}
-
-	return byLanguage;
+// Everything the footer is maintained with in the CMS (Einstellungen →
+// Footer): a curated page list per language (a page's `key` is not guaranteed
+// to match across its DE/EN translations, so each language picks its own
+// pages), the social icons, and an optional copyright override — the latter
+// two apply to both languages.
+export type RawFooterSettings = {
+	pageKeysByLanguage: Record<LanguageCode, string[]>;
+	socialLinks: SiteSocialLink[];
+	copyright?: string;
 };
 
-// Reads the single settings entry that lists the footer's pages: a page
-// relation (by `key`), same identity as the pages collection, so it applies
-// to both languages at once and the passage below resolves it per language.
+const toFooterPageKeys = (
+	entries: ImportedFooterPageEntry[] | null | undefined,
+): string[] =>
+	(entries ?? [])
+		.map((entry) => trim(entry?.page))
+		.filter((key): key is string => Boolean(key));
+
 export const normalizeFooterSettings = (
 	node: ImportedMdxNode,
-): string[] | null => {
+): RawFooterSettings | null => {
 	const frontmatter = node.frontmatter;
 
 	if (
@@ -1004,9 +998,14 @@ export const normalizeFooterSettings = (
 		return null;
 	}
 
-	return (frontmatter.footer_pages ?? [])
-		.map((entry) => trim(entry?.page))
-		.filter((key): key is string => Boolean(key));
+	return {
+		pageKeysByLanguage: {
+			de: toFooterPageKeys(frontmatter.footer_pages_de),
+			en: toFooterPageKeys(frontmatter.footer_pages_en),
+		},
+		socialLinks: buildSocialLinks(frontmatter.social_media),
+		copyright: trim(frontmatter.copyright),
+	};
 };
 
 type Translatable = { language: LanguageCode; i18nKey: string; path: string };
@@ -1075,9 +1074,9 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 	const menuSettings = nodes
 		.map(normalizeMenuSettings)
 		.find((settings) => Boolean(settings)) ?? null;
-	const footerPageKeys = nodes
+	const footerSettings = nodes
 		.map(normalizeFooterSettings)
-		.find((keys): keys is string[] => Boolean(keys)) ?? null;
+		.find((settings): settings is RawFooterSettings => Boolean(settings)) ?? null;
 
 	return {
 		pages,
@@ -1092,6 +1091,8 @@ export const normalizeNodes = (nodes: ImportedMdxNode[]) => {
 		navigation: createNavigationFromPages(pages),
 		theme: resolveActiveTheme(colorSchemes, activeSchemeKey),
 		menu: resolveMenuSettings(menuSettings, pages),
-		footerPageKeys,
+		footerPageKeysByLanguage: footerSettings?.pageKeysByLanguage ?? null,
+		footerSocialLinks: footerSettings?.socialLinks ?? [],
+		footerCopyright: footerSettings?.copyright,
 	};
 };

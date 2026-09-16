@@ -31,6 +31,7 @@ type CategoryTemplateContext = {
 	languageLinks: LanguageLinks;
 	socialLinks?: NormalizedNavigationItem[];
 	footerNavigation?: NormalizedNavigationItem[];
+	footerCopyright?: string;
 };
 
 type CategoryTemplateProps = PageProps<
@@ -85,6 +86,7 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({ pageContext }) => {
 		languageLinks,
 		socialLinks,
 		footerNavigation,
+		footerCopyright,
 	} = pageContext;
 	const mainNavigation = toNavigationItems(navigation, category.language, "main");
 	const languages = buildLanguageOptions(languageLinks);
@@ -99,6 +101,7 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({ pageContext }) => {
 			mainNavigation={mainNavigation}
 			footerNavigation={footerNavigation}
 			socialLinks={socialLinks}
+			footerCopyright={footerCopyright}
 			languages={languages}
 			siteTitle="RathausGalerien"
 		>
