@@ -62,9 +62,8 @@ blocks:
       - text: |-
           ## Genuss
 
-          8 Cafés, Bars 
-
-          & Restaurants
+          8 CAFÉS, BARS\
+          & RESTAURANTS
         category: ""
         link: /genuss
         background_color: c3
@@ -72,7 +71,7 @@ blocks:
         images:
           - image: /media/pages/rhg_gastro_24_danielzangerl-_246.jpg
         icons:
-          - icon: /media/pages/rhg-logo-klein.svg
+          - icon: /media/pages/icon_genuss.svg
     text_color: ""
     background_color: ""
   - layout: grid-4
