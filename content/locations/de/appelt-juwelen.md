@@ -28,6 +28,7 @@ images:
   - /media/locations/h001_053_02_06_appelt_02.jpg
   - /media/locations/h001_053_02_06_appelt_03.jpg
 viewId: shop-11
+background_color: c3
 seo:
   description: Hier finden Sie Informationen zu Appelt-Juwelen in den RathausGalerien.
   title: Appelt Juwelen
