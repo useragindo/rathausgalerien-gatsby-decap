@@ -350,6 +350,10 @@
 	color: var(--color-white);
 }
 
+.site-header__menu-teasers .content-block__tile--content .content-block__text {
+	text-align: center;
+}
+
 .site-header__menu-teasers .content-block__tile--content[data-has-text-color="true"] .content-block__text :is(h1, h2, h3, h4) {
 	color: inherit;
 }
