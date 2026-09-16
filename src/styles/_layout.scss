@@ -11,6 +11,12 @@
 	padding: var(--space-lg) var(--page-gutter) var(--space-2xl);
 }
 
+@media (max-width: 43.9375rem) {
+	.site-main {
+		padding: 0;
+	}
+}
+
 .site-main:has(.home-intro) {
 	padding-block-start: var(--space-2xs);
 }

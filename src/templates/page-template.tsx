@@ -329,41 +329,6 @@ export const LocationList: React.FC<LocationListProps> = ({
 					<p>{description}</p>
 				</header>
 			) : null}
-			{hasCategoryFilter && filterOptions.length > 0 ? (
-				<div
-					className="listing-filters"
-					role="toolbar"
-					aria-label="Shop-Kategorien filtern"
-				>
-					<button
-						type="button"
-						className={`listing-filters__pill${
-							activeCategoryKey === "all"
-								? " listing-filters__pill--active"
-								: ""
-						}`}
-						onClick={() => setActiveCategoryKey("all")}
-						aria-pressed={activeCategoryKey === "all"}
-					>
-						Alle
-					</button>
-					{filterOptions.map((option) => (
-						<button
-							key={option.key}
-							type="button"
-							className={`listing-filters__pill${
-								activeCategoryKey === option.key
-									? " listing-filters__pill--active"
-									: ""
-							}`}
-							onClick={() => setActiveCategoryKey(option.key)}
-							aria-pressed={activeCategoryKey === option.key}
-						>
-							{option.label}
-						</button>
-					))}
-				</div>
-			) : null}
 			<ul className="listing-grid">
 				{visibleItems.map(({ location, categoryLabel, categoryKey }) => {
 					const image = getLocationImage(location);
