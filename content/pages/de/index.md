@@ -24,8 +24,8 @@ blocks:
           - image: /media/pages/12_annika.jpg
           - image: /media/pages/13_joelle.jpg
           - image: /media/pages/14_sarah.jpg
-        background_color: c2
-        text_color: weiss
+        background_color: ""
+        text_color: ""
       - text: |-
           ## DAS NEUE
 
