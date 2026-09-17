@@ -29,7 +29,7 @@ boxes:
         alt: Zum Magazin
     background_color: c1
 social:
-  - icon: /media/shared/instagram_icon.svg
+  - icon: /media/shared/icon_instagram.svg
     link: http://www.instagram.com/rathausgalerien
   - icon: /media/shared/icon_facebook.svg
     link: https://www.facebook.com/100054431053105/
