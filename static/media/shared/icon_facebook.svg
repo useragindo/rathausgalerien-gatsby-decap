@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
   <defs>
     <clipPath id="clip0_808_177">
       <rect width="74.85" height="32.8" fill="white"/>
@@ -8,7 +8,7 @@
   <mask id="mask0_808_177" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="75" height="33" clip-path="url(#clip0_808_177)">
     <path d="M74.85 0H0V32.8H74.85V0Z" fill="white"/>
   </mask>
-  <g mask="url(#mask0_808_177)" transform="matrix(15.33633, 0, 0, 15.33633, -644.030945, 8.750871)" clip-path="url(#clip0_808_177)" style="">
+  <g mask="url(#mask0_808_177)" transform="matrix(7.745448, 0, 0, 7.745448, -324.547821, 1.403995)" clip-path="url(#clip0_808_177)" style="">
     <g>
       <path d="M64.67 32.8V20.14H68.93L69.59 15.15H64.67V11.44C64.67 11.04 65 10.32 65.32 10.06C65.6 9.83 66.32 9.57 66.67 9.57H69.79V5.18L67.86 4.98C65.58 4.93 63.38 4.84 61.56 6.42C59.03 8.63 59.63 12.13 59.56 15.15H55.3V20.14H59.56V32.8H43.52C42.87 32.8 41.98 31.73 42.04 31.06V1.74C42.15 0.74 42.84 0.08 43.84 0H73.1C74 0.06 74.78 0.76 74.84 1.67V31.12C74.89 31.78 73.99 32.79 73.36 32.79H64.67V32.8Z" style="fill: rgb(34, 37, 78); paint-order: fill;"/>
     </g>
