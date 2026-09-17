@@ -5,39 +5,49 @@ key: hours
 template: standard
 menu: ""
 order: 7
+heading: ÖFFNUNGSZEITEN
+intro: ""
 seo:
   description: Unsere Öffnungszeiten auf einen Blick.
   title: Hours
   url: oeffnungszeiten
-heading: Hours
-intro: Unsere Öffnungszeiten auf einen Blick.
 ---
-**Müller**
+## **MÜLLER**
+
+
 Mo - Fr 08.30 bis 19.00 Uhr\
 Sa 09.00 bis 18.00 Uhr
 
-**Shops**\
+**SHOPS**
+
 Mo - Fr 09.00 – 19.00 Uhr   \
 Sa 10.00 – 18.00 Uhr
 
-**Morawa**\
+**MORAWA**
+
 Mo - Fr 08.00 bis 19.00 Uhr\
 Sa 09.00 bis 18.00 Uhr
 
-**Der Bäcker Ruetz**\
+**DER BÄCKER RUETZ**
+
 Mo - Fr 06.30 bis 19.00 Uhr\
 Sa 06.30 bis 18.00 Uhr
 
-**Restaurants/Bars (genaue Zeiten siehe Homepages der einzelnen Gastronomen)**\
+**RESTAURANTS/BARS**
+
 Mo - Do bis 00.00 Uhr \
 Fr - Sa bis max 01.00 Uhr \
 Sonn- und Feiertage individuell geöffnet, längstens bis 22.00 Uhr
 
-**Öffnungszeiten Mall**\
+**ÖFFNUNGSZEITEN MALL**
+
 Mo – Sa 06.30 bis 00.00 Uhr \
 Sonn- und Feiertage 08.00 bis 22.00 Uhr
 
-**RathausGarage ist immer offen (24/7)**\
+**RATHAUSGARAGE IMMER GEÖFFNET**
+
+24/7 geöffnet
+
 Zugang bei geschlossener Mall über die Zufahrtsrampe am Adolf-Pichler-Platz.
 
 Sonn- und Feiertag:\
