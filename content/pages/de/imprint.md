@@ -42,4 +42,6 @@ GmbH & Co KG
 
 ## Umsetzung & Programmierung
 
-Armin Pfurtscheller, Webdesign & Programmierung
+agindo interaktives marketing, Innsbruck
+
+www.agindo.at
