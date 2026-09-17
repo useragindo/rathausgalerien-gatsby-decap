@@ -14,7 +14,9 @@ footer_pages_en:
   - page: privacy
   - page: imprint
 social_media:
-  - icon: /media/shared/instagram_icon.svg
-    link: 'http://www.instagram.com/rathausgalerien'
+  - icon: /media/shared/icon_instagram.svg
+    link: http://www.instagram.com/rathausgalerien
+  - icon: /media/shared/icon_facebook.svg
+    link: https://www.facebook.com/100054431053105
 copyright: RathausGalerien
 ---
