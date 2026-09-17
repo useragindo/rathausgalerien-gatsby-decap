@@ -37,17 +37,10 @@ form:
       label: Alter
       type: TEXT
       required: true
-    - name: question
-      label: Wie würdest du deinen Besuch in den RathausGalerien beschreiben?
-      type: SELECT
+    - type: TEXT
       required: true
-      options:
-        - label: Gezielter Einkauf
-          value: option-1
-        - label: Bummeln & inspirieren lassen
-          value: option-2
-        - label: Treffpunkt mit Freunden
-          value: option-3
+      name: inuput
+      label: Wohnort
     - name: email
       label: E-Mail
       type: EMAIL
