@@ -11,6 +11,9 @@ seo:
   url: kulinarik
 teaser:
   image: /media/pages/thailiba_3.jpg
+  images:
+    - image: /media/pages/thailiba_3.jpg
+      alt: ""
   title: Home of great taste.
 heading: Kulinarik
 intro: Alle Gastronomiebetriebe finden Sie hier.

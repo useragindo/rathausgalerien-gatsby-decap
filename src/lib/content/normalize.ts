@@ -2,6 +2,7 @@ import { COLOR_TOKENS } from "./color-tokens";
 import type {
 	ColorToken,
 	ImportedFrontmatter,
+	ImportedImage,
 	ImportedLotteryForm,
 	ImportedLotteryFormField,
 	ImportedMdxNode,
@@ -148,6 +149,17 @@ export const normalizeImageList = (
 		.map((image) => (typeof image === "string" ? image : image?.image))
 		.map((image) => trim(image))
 		.filter((image): image is string => Boolean(image));
+
+export const getTeaserImages = (
+	teaser?: { images?: ImportedImage[] | null; image?: string | null } | null,
+): ImportedImage[] => {
+	const images = (teaser?.images ?? []).filter((img) => trim(img.image));
+	if (images.length) {
+		return images;
+	}
+	const legacyImage = trim(teaser?.image);
+	return legacyImage ? [{ image: legacyImage }] : [];
+};
 
 const getFileSlug = (node: ImportedMdxNode): string | undefined => {
 	const filePath = trim(node.internal?.contentFilePath);

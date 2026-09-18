@@ -13,6 +13,9 @@ intro: |-
   bei der Orientierung.
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_090_web.jpg
+  images:
+    - image: /media/pages/rathausgalerien_so25_danielzangerl-_090_web.jpg
+      alt: ""
 photos:
   - image: /media/pages/rhg_mts_eingang.jpg
     label: Eingang Maria-Theresien-Straße

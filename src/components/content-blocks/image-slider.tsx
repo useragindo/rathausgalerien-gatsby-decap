@@ -4,11 +4,13 @@ import type { ImportedImage } from "../../lib/content/types";
 type ImageSliderProps = {
 	images: ImportedImage[];
 	className?: string;
+	arrowColor?: string;
 };
 
 export const ImageSlider: React.FC<ImageSliderProps> = ({
 	images,
 	className = "",
+	arrowColor,
 }) => {
 	const validImages = images.filter((image) => image.image);
 	const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -34,7 +36,10 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
 	};
 
 	return (
-		<div className={`image-slider ${className}`.trim()}>
+		<div
+			className={`image-slider ${className}`.trim()}
+			style={arrowColor ? { color: arrowColor } : undefined}
+		>
 			<div
 				className="image-slider__track"
 				style={{ transform: `translateX(-${currentIndex * 100}%)` }}

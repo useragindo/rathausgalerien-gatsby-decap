@@ -339,11 +339,38 @@ collections:
             widget: "string"
             required: false
             hint: "Kleiner Text unterhalb der Shop-Anzahl (nur auf der Startseite sichtbar)."
-          - label: "Image"
-            name: "image"
-            widget: "image"
+          - label: "Bilder"
+            name: "images"
+            widget: list
             required: false
-            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+            hint: "Ein Bild wird wie bisher angezeigt. Bei mehreren Bildern wird automatisch ein Slider mit Pfeilen dargestellt."
+            fields:
+              - label: "Bild"
+                name: "image"
+                widget: "image"
+                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+              - label: "Alt-Text"
+                name: "alt"
+                widget: "string"
+                required: false
+          - label: "Pfeilfarbe"
+            name: "arrow_color"
+            widget: "color-token-select"
+            required: false
+            default: ""
+            options:
+              - {label: "– keine – (Standard: Weiß)", value: ""}
+              - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+              - {label: "Text (text)", value: "text", color: "#22254e"}
+              - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+              - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+              - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+              - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+              - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+              - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+              - {label: "Schwarz", value: "schwarz", color: "#111111"}
+              - {label: "Weiß", value: "weiss", color: "#ffffff"}
+            hint: "Farbe der Slider-Pfeile aus dem aktiven Schema. Nur sichtbar bei mehreren Bildern."
           - label: "Icon"
             name: "icon"
             widget: "image"
@@ -715,11 +742,38 @@ collections:
             widget: "string"
             required: false
             hint: "Kleiner Text unterhalb der Shop-Anzahl (nur auf der Startseite sichtbar)."
-          - label: "Image"
-            name: "image"
-            widget: "image"
+          - label: "Bilder"
+            name: "images"
+            widget: list
             required: false
-            hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+            hint: "Ein Bild wird wie bisher angezeigt. Bei mehreren Bildern wird automatisch ein Slider mit Pfeilen dargestellt."
+            fields:
+              - label: "Bild"
+                name: "image"
+                widget: "image"
+                hint: "Bild hier direkt hochladen/auswaehlen (nicht ueber die globale Medien-Ansicht oben, sonst landet es im falschen Ordner)."
+              - label: "Alt-Text"
+                name: "alt"
+                widget: "string"
+                required: false
+          - label: "Pfeilfarbe"
+            name: "arrow_color"
+            widget: "color-token-select"
+            required: false
+            default: ""
+            options:
+              - {label: "– keine – (Standard: Weiß)", value: ""}
+              - {label: "Hintergrund (bg)", value: "bg", color: "#d1efff"}
+              - {label: "Text (text)", value: "text", color: "#22254e"}
+              - {label: "Farbe 1 (c1)", value: "c1", color: "#7bd0e5"}
+              - {label: "Farbe 2 (c2)", value: "c2", color: "#ffa4cc"}
+              - {label: "Farbe 3 (c3)", value: "c3", color: "#ffbb33"}
+              - {label: "Farbe 4 (c4)", value: "c4", color: "#b58ec1"}
+              - {label: "Farbe 5 (c5)", value: "c5", color: "#99cccd"}
+              - {label: "Farbe 6 (c6)", value: "c6", color: "#8eb8c7"}
+              - {label: "Schwarz", value: "schwarz", color: "#111111"}
+              - {label: "Weiß", value: "weiss", color: "#ffffff"}
+            hint: "Farbe der Slider-Pfeile aus dem aktiven Schema. Nur sichtbar bei mehreren Bildern."
           - label: "Icon"
             name: "icon"
             widget: "image"

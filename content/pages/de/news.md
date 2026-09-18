@@ -33,6 +33,9 @@ blocks:
         link: http://www.instagram.com/rathausgalerien
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_229_web.jpg
+  images:
+    - image: /media/pages/rathausgalerien_so25_danielzangerl-_229_web.jpg
+      alt: ""
   title: |-
     NEUES
     AUS DEN 

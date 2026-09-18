@@ -13,6 +13,9 @@ intro: Bewerben Sie sich und werden Sie Teil der RathausGalerien!
 blocks: []
 teaser:
   image: /media/pages/lacoste_19_02_24_rg_reportage.png
+  images:
+    - image: /media/pages/lacoste_19_02_24_rg_reportage.png
+      alt: ""
   title: |-
     JOBS
     HEADLINE 

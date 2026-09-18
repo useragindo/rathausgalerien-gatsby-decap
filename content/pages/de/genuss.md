@@ -18,6 +18,9 @@ teaser:
     Trinken 
     Geniessen
   image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_02.jpg
+  images:
+    - image: /media/pages/h001_132_02_04_fashion_rz_1000-x-1000_02.jpg
+      alt: ""
   icon: /media/pages/rhg-logo-klein.svg
 seo:
   title: Kulinarik in den Galerien 123

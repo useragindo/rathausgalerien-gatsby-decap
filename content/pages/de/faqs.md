@@ -10,6 +10,9 @@ heading: ""
 intro: ""
 teaser:
   image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_03.jpg
+  images:
+    - image: /media/pages/h001_132_02_03_food_rz_1000-x-1000_03.jpg
+      alt: ""
   icon: /media/pages/icon-car.svg
   title: Unsere FAQs
 seo:

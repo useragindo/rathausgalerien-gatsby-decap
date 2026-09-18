@@ -11,6 +11,9 @@ seo:
   url: culinary
 teaser:
   image: /media/pages/thailiba_3.jpg
+  images:
+    - image: /media/pages/thailiba_3.jpg
+      alt: ""
   title: Home of great taste.
 heading: Culinary
 intro: All restaurants and bars can be found here.

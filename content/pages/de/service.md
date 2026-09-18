@@ -13,6 +13,9 @@ order: 400
 intro: ""
 teaser:
   image: /media/pages/rathausgalerien-innen.jpeg
+  images:
+    - image: /media/pages/rathausgalerien-innen.jpeg
+      alt: ""
   title: |-
     UNSERE
     SERVICES

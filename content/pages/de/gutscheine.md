@@ -59,6 +59,9 @@ teaser:
     IDEEN
   icon: /media/pages/rhg-logo-klein.svg
   image: /media/pages/rathausgalerien_so25_danielzangerl-_214_web.jpg
+  images:
+    - image: /media/pages/rathausgalerien_so25_danielzangerl-_214_web.jpg
+      alt: ""
 seo:
   title: Gutscheine
   description: Gutscheine, Vouchers, Geschenke

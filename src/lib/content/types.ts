@@ -101,9 +101,11 @@ export type ImportedFrontmatter = {
 	traffic_information?: string | null;
 	teaser?: {
 		image?: string | null;
+		images?: ImportedImage[] | null;
 		title?: string | null;
 		subtitle?: string | null;
 		icon?: string | null;
+		arrow_color?: string | null;
 	} | null;
 	message?: string | null;
 	social_media?: Array<{

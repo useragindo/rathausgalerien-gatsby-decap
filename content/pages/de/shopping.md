@@ -14,6 +14,9 @@ teaser:
     Einkaufen in den 
     Rathausgalerien
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
+  images:
+    - image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
+      alt: ""
   icon: /media/pages/rhg-logo-klein.svg
 seo:
   title: Shopping

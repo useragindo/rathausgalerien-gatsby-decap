@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { ContentBlockRenderer } from "../components/content-blocks";
+import { ImageSlider } from "../components/content-blocks/image-slider";
 import { FaqList } from "../components/faqs";
 import { LocationPlan } from "../components/location-plan";
 import { Seo } from "../components/seo";
@@ -11,9 +12,9 @@ import {
 	resolveCategories,
 	resolveCategoryLabels,
 } from "../lib/content/categories";
-import { resolveColorPairStyle } from "../lib/content/color-tokens";
+import { resolveColorPairStyle, resolveColorTokenVar } from "../lib/content/color-tokens";
 import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
-import { normalizeImageList, trim } from "../lib/content/normalize";
+import { getTeaserImages, normalizeImageList, trim } from "../lib/content/normalize";
 import type {
 	LanguageCode,
 	LanguageLinks,
@@ -412,11 +413,16 @@ const HomepageIntro: React.FC<{
 	page: NormalizedPage;
 	locations: NormalizedLocation[];
 	showShopCount?: boolean;
-}> = ({ page, locations, showShopCount = true }) => {
-	const image = trim(page.frontmatter.teaser?.image);
+	theme?: SiteTheme | null;
+}> = ({ page, locations, showShopCount = true, theme }) => {
+	const teaserImages = getTeaserImages(page.frontmatter.teaser);
 	const teaserTitle = trim(page.frontmatter.teaser?.title) ?? "";
 	const teaserSubtitle = trim(page.frontmatter.teaser?.subtitle);
 	const teaserIcon = trim(page.frontmatter.teaser?.icon);
+	const resolvedArrowColor = resolveColorTokenVar(
+		page.frontmatter.teaser?.arrow_color,
+		theme,
+	);
 	const shopCount = showShopCount
 		? locations.filter(
 				(location) =>
@@ -424,6 +430,7 @@ const HomepageIntro: React.FC<{
 			).length
 		: 0;
 	const countLabel = shopCount > 0 ? `${shopCount} Shops` : "Shops";
+	const hasImage = teaserImages.length > 0;
 
 	return (
 		<section
@@ -434,14 +441,24 @@ const HomepageIntro: React.FC<{
 		>
 			<div
 				className={`home-intro__media${
-					image ? "" : " home-intro__media--fallback"
+					hasImage ? "" : " home-intro__media--fallback"
 				}`}
 			>
-				<img
-					src={image ?? "/media/pages/rhg-logo-klein.svg"}
-					alt="RathausGalerien Innsbruck"
-					loading="eager"
-				/>
+				{teaserImages.length > 1 ? (
+					<ImageSlider images={teaserImages} arrowColor={resolvedArrowColor} />
+				) : hasImage ? (
+					<img
+						src={teaserImages[0]?.image ?? undefined}
+						alt={teaserImages[0]?.alt ?? "RathausGalerien Innsbruck"}
+						loading="eager"
+					/>
+				) : (
+					<img
+						src="/media/pages/rhg-logo-klein.svg"
+						alt="RathausGalerien Innsbruck"
+						loading="eager"
+					/>
+				)}
 			</div>
 			{teaserTitle ? (
 				<div className="home-intro__card">
@@ -667,6 +684,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 	// The teaser and the plain page-hero header never render at the same time.
 	const hasTeaserContent = Boolean(
 		trim(page.frontmatter.teaser?.image) ||
+			getTeaserImages(page.frontmatter.teaser).length > 0 ||
 			trim(page.frontmatter.teaser?.title) ||
 			trim(page.frontmatter.teaser?.icon),
 	);
@@ -707,6 +725,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 					page={page}
 					locations={locations}
 					showShopCount={isHomepage}
+					theme={theme}
 				/>
 			) : null}
 			<article className={pageClassName}>

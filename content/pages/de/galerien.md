@@ -127,6 +127,9 @@ blocks:
           CENTERMANAGEMENT
 teaser:
   image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
+  images:
+    - image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
+      alt: ""
   title: ""
   icon: ""
 seo:
