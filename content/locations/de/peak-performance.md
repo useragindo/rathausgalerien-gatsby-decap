@@ -1,24 +1,13 @@
 ---
+locale: de
 key: location
 type: location
-locale: de
 uuid: 00f20e2b-8828-487c-b8a6-851ea9b5ac8b
-seo:
-  description: Hier finden Sie Informationen zu sehen!wutscher in den RathausGalerien.
-  title: sehen!wutscher
-  url: ""
 name: sehen!wutscher
 group: brand
 categories:
-  - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
-  - aa167073-ba10-44d0-81d9-90c23be34d91
-  - b640ac1f-3ce7-4d0c-a49c-2d8e61e48258
   - 28e2ac65-354b-4ab3-b4ea-385863152807
-logo: /media/locations/wutscher.svg
-images:
-  - /media/locations/0a3a7201.jpg
-  - /media/locations/dsc02257.jpg
-  - /media/locations/dsc02727_retusche.jpg
+intro: Hier finden Sie Informationen zu sehen!wutscher in den RathausGalerien.
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00
@@ -34,8 +23,16 @@ contact:
   email: innsbruck@wutscher.com
   phone: +43 512 55 98 95
   url: https://wutscher.com/
+logo: /media/locations/wutscher.svg
+images:
+  - /media/locations/0a3a7201.jpg
+  - /media/locations/dsc02257.jpg
+  - /media/locations/dsc02727_retusche.jpg
 viewId: shop-12
-intro: Hier finden Sie Informationen zu sehen!wutscher in den RathausGalerien.
+seo:
+  description: Hier finden Sie Informationen zu sehen!wutscher in den RathausGalerien.
+  title: sehen!wutscher
+  url: ""
 ---
 sehen!wutscher: Dein Optiker in Innsbruck \
 \
