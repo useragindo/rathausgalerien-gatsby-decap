@@ -6,16 +6,7 @@ template: standard
 menu: ""
 order: 1
 heading: ""
-blocks:
-  - layout: grid-4
-    text_color: ""
-    background_color: ""
-    reversed: false
-    text_align: ""
-    tiles:
-      - text_color: ""
-        background_color: ""
-    date: ""
+blocks: []
 teaser:
   image: /media/pages/rathausgalerien-innen.jpeg
   title: |-
