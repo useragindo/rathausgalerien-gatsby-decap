@@ -202,7 +202,7 @@ const formatOpeningHoursTime = (time: string): string => {
 };
 
 const getLocationDetailLabel = (location: NormalizedLocation): string =>
-	location.group === "culinary" ? "Zur Speisekarte" : "Gleich finden";
+	location.group === "culinary" ? "Zur Speisekarte" : "Mehr";
 
 const getLocationInfoCategoryTitle = (
 	location: NormalizedLocation,
@@ -437,13 +437,14 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 							<h2 id="location-about-title">{renderMultiline(location.heading)}</h2>
 							<div className="detail-rich-text">
 								<MarkdownContent content={bodyContent} />
+								<a
+									className="location-detail__text-link"
+									target="_blank"
+									href={websiteUrl}
+								>
+									{getLocationDetailLabel(location)}
+								</a>
 							</div>
-							<a
-								className="location-detail__text-link"
-								href={getLocationIndexPath(location)}
-							>
-								{getLocationDetailLabel(location)}
-							</a>
 						</div>
 						{aboutImage ? (
 							<div className="location-detail__about-media">

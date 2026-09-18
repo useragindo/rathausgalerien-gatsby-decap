@@ -431,6 +431,10 @@
 	line-height: 1.45;
 }
 
+.location-detail__about-copy .detail-rich-text {
+	text-align: center;
+}
+
 .job-detail__about-copy .detail-rich-text {
 	max-width: 100%;
 	font-size: clamp(0.86rem, 1.6vw, 1.15rem);

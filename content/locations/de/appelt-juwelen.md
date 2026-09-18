@@ -39,6 +39,4 @@ seo:
   title: Appelt Juwelen
   url: appelt-juwelen
 ---
-## SCHMUCK
-
 ... hier werden Träume wahr! Bei Appelt Juwelen erwartet Sie eine vielseitige Auswahl an edlen Stücken in allen Preislagen. Dazu gehören neben Ingo Appelts handgefertigter, edler Unikatkollektion auch handgeschmiedete Trauringe sowie die Juwelenmarken Palido, Niessing, Humphrey, Xenox, oder Ernstes Design und ein abwechslungsreiches Sortiment an Uhrenmarken von Ebel über Oris, Meistersinger, Raymond Weil, Seiko, Garmin als auch Jacques Lemans.
