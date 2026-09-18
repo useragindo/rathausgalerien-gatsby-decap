@@ -1,23 +1,13 @@
 ---
+locale: de
 key: location
 type: location
-locale: de
 uuid: 172b20aa-bbdf-4ee6-8475-314556dd8b23
-seo:
-  description: Hier finden Sie Informationen zu Napapijri in den RathausGalerien.
-  title: Napapijri
-  url: napapijri
 name: Napapijri
 group: brand
 categories:
   - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
-  - f1ea6839-f5e1-45e1-9e08-0c87d8092889
-logo: /media/locations/napapijri.svg
-images:
-  - /media/locations/napapijri_ss19_001.jpg
-  - /media/locations/napapijri_ss19_002.jpg
-  - /media/locations/napapijri_ss19_003.jpg
-  - /media/locations/napapijri_ss19_004.jpg
+intro: Hier finden Sie Informationen zu Napapijri in den RathausGalerien.
 hours:
   - date: Mo - Fr
     time: 10.00 - 18.30
@@ -32,8 +22,17 @@ contact:
   email: napapijri_innsbruck@vfc.com
   phone: +43 512 56 37 23
   url: https://www.napapijri.com
+logo: /media/locations/napapijri.svg
+images:
+  - /media/locations/napapijri_ss19_001.jpg
+  - /media/locations/napapijri_ss19_002.jpg
+  - /media/locations/napapijri_ss19_003.jpg
+  - /media/locations/napapijri_ss19_004.jpg
 viewId: shop-4
-intro: Hier finden Sie Informationen zu Napapijri in den RathausGalerien.
+seo:
+  description: Hier finden Sie Informationen zu Napapijri in den RathausGalerien.
+  title: Napapijri
+  url: napapijri
 ---
 Premium Lifestyle Sportswear von NAPAPIJRI ist zwischen lässigem Abenteuergeist und kosmopolitischem Feeling angesiedelt. Die internationale Marke zeichnet sich durch die exklusive Verschmelzung von sportlichem Stil und Premiumkleidung aus.
 
