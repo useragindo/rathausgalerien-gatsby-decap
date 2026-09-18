@@ -4,8 +4,13 @@ type: lottery
 uuid: 67c4ba4e-8c06-4428-aa5e-7f9e3b9a2426
 key: gewinnspiel-2026-03
 heading: Gewinnspiel
-intro: Mache mit bei unserem Gewinnspiel und gewinne einen von 10 Gutscheinen
-  für die RathausGalerien im Wert von jeweils 100 €!
+intro: >
+  Mach mit bei unserem Gewinnspiel und sichere dir die Chance auf einen von 10
+  Gutscheinen für die RathausGalerien im Wert von jeweils 100 €!
+
+  Fülle dazu einfach alle untenstehenden Felder aus.
+
+  Viel Glück!
 date: ""
 images:
   - /media/lottery/rhg_mall_flanieren_web.jpg
@@ -56,8 +61,3 @@ seo:
     Gutscheinen für die RathausGalerien im Wert von jeweils 100 €!
   url: gewinnen
 ---
-Mach mit bei unserem Gewinnspiel und sichere dir die Chance auf einen von 10 Gutscheinen für die RathausGalerien im Wert von jeweils 100 €!
-
-Fülle dazu einfach alle untenstehenden Felder aus.
-
-Viel Glück!
