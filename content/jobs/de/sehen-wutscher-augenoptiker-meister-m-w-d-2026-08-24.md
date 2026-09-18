@@ -1,11 +1,12 @@
 ---
+locale: de
 key: job
 type: job
-locale: de
 uuid: 073103ee-c122-42bb-8a04-b0dedde48635
 location: sehen!wutscher
 position: Augenoptiker/-meister (m/w/d)
 specification: Vollzeit, Teilzeit
+logo: /media/jobs/wutscher_einzeilig_1c.svg
 ---
 
 
