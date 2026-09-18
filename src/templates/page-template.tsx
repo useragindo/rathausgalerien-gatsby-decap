@@ -507,6 +507,7 @@ const JobList: React.FC<{
 			<ul className="listing-grid listing-grid--jobs">
 				{items.map((job) => {
 					const image = normalizeImageList(job.frontmatter.images)[0];
+					const logo = trim(job.frontmatter.logo);
 					const cardStyle = resolveColorPairStyle(
 						job.textColor,
 						job.backgroundColor,
@@ -534,6 +535,15 @@ const JobList: React.FC<{
 									/>
 								</span>
 								<span className="listing-card__body" style={cardStyle}>
+									{logo ? (
+										<span className="listing-card__logo">
+											<img
+												src={logo}
+												alt={`${job.frontmatter.location} Logo`}
+												loading="lazy"
+											/>
+										</span>
+									) : null}
 									{job.frontmatter.location ? (
 										<span className="listing-card__meta">
 											{job.frontmatter.location}
