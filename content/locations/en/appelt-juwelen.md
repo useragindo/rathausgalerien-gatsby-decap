@@ -13,7 +13,7 @@ group: brand
 categories:
   - b83bcc8a-45d7-409d-90a3-97baaf6a5735
   - 7d14bb2b-1e2e-48b0-8073-57bd17b06b6f
-logo: /media/locations/appeltjuwelen.svg
+logo: /media/locations/appeltjuwelen.png
 images:
   - /media/locations/appelt_juwelen_3.jpg
   - /media/locations/appelt_juwelen_2.jpg

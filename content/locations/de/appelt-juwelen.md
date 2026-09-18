@@ -23,7 +23,7 @@ contact:
   email: ingo@appelt.at
   phone: +43 512 58 76 06
   url: https://www.appelt.at
-logo: /media/locations/appeltjuwelen.svg
+logo: /media/locations/appeltjuwelen.png
 images:
   - /media/locations/h001_053_02_06_appelt_01.jpg
   - /media/locations/h001_053_02_06_appelt_02.jpg

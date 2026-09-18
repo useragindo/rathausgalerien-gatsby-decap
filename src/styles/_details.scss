@@ -163,10 +163,13 @@
 	min-width: 0;
 }
 
+/* Höhenbudget passend zur Breitenbegrenzung: sonst hängen alle Logos ausser den
+   sehr flachen Schriftzügen an der max-height und wirken neben diesen winzig.
+   Die Grid-Zeile der Marken-Kachel ist 33% der Kartenhöhe, das trägt diese Höhe. */
 .location-detail__info-card img {
 	width: auto;
 	max-width: min(14rem, 82%);
-	max-height: clamp(2.25rem, 5.4vw, 4.7rem);
+	max-height: clamp(3rem, 9vw, 4.7rem);
 	object-fit: contain;
 }
 
