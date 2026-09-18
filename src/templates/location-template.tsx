@@ -2,6 +2,7 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
+import { formatPhoneLabel, getPhoneHref } from "../lib/content/contact";
 import { getBodyExcerpt } from "../lib/content/excerpt";
 import { resolveCategoryLabels } from "../lib/content/categories";
 import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
@@ -141,14 +142,6 @@ const getAddressLines = (address?: string | null, name?: string): string[] => {
 
 	return lines;
 };
-
-const getPhoneHref = (phone: string): string => {
-	const value = phone.trim().replace(/^tel:/, "");
-	return `tel:${value.replace(/[^+\d]/g, "")}`;
-};
-
-const formatPhoneLabel = (phone: string): string =>
-	phone.replace(/^tel:/, "").trim();
 
 const getExternalUrl = (url?: string | null): string | undefined => {
 	const value = url?.trim();

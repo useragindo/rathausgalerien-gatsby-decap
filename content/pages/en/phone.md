@@ -2,7 +2,7 @@
 locale: en
 key: phone
 type: page
-template: standard
+template: phone
 menu: main
 order: 2
 seo:

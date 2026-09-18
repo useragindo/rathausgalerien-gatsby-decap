@@ -3,6 +3,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { ContentBlockRenderer } from "../components/content-blocks";
 import { ImageSlider } from "../components/content-blocks/image-slider";
 import { FaqList } from "../components/faqs";
+import { LocationPhoneList } from "../components/locations";
 import { LocationPlan } from "../components/location-plan";
 import { Seo } from "../components/seo";
 import { ServiceAZList, ServiceTiles } from "../components/services";
@@ -817,6 +818,14 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 			{page.template === "faqs" ? (
 				<section className="listing-section listing-section--faqs">
 					<FaqList faqs={faqs} language={page.language} />
+				</section>
+			) : null}
+			{page.template === "phone" ? (
+				<section className="listing-section listing-section--phone">
+					<LocationPhoneList
+						locations={locations}
+						language={page.language}
+					/>
 				</section>
 			) : null}
 		</SiteLayout>
