@@ -1,18 +1,13 @@
 ---
+locale: de
 key: location
 type: location
-locale: de
 uuid: 9bc6a14f-cb85-45e8-8a29-ac86fe24263d
-seo:
-  description: "Hier finden Sie alle Informationen zur Centerverwaltung in den
-    RathausGalerien. "
-  title: Centerverwaltung
-  url: centerverwaltung
 name: Centerverwaltung
 group: brand
 categories:
-  - 82074ef4-f123-45c9-8765-bbf0685b05a4
-logo: /media/locations/_rathausgalerien.svg
+  - 0a877604-4838-4609-8c27-03a3f270226c
+intro: Hier finden Sie alle Informationen zur Centerverwaltung in den RathausGalerien.
 hours:
   - date: Mo - Fr
     time: 08.30 bis 11.30 Uhr
@@ -25,9 +20,12 @@ address: |-
 contact:
   email: info@rathausgalerien.at
   phone: tel:+43512574861
-intro: >-
-  Hier finden Sie alle Informationen zur Centerverwaltung in den
-  RathausGalerien.
+logo: /media/locations/_rathausgalerien.svg
+seo:
+  description: "Hier finden Sie alle Informationen zur Centerverwaltung in den
+    RathausGalerien. "
+  title: Centerverwaltung
+  url: centerverwaltung
 ---
 Außerhalb der Bürozeiten erreichen Sie uns unter folgender Mobilnummer.\
 Mobil: +43 - 699 - 10 01 66 87
