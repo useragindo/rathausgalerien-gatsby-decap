@@ -6,7 +6,7 @@ uuid: daf37308-4354-4334-b4e7-9717c8d1b7a5
 name: Odlo
 group: brand
 categories:
-  - f1ea6839-f5e1-45e1-9e08-0c87d8092889
+  - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
 intro: Hier finden Sie Informationen zu Odlo in den RathausGalerien.
 hours:
   - date: Mo - Fr
