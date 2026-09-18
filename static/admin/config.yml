@@ -1329,7 +1329,7 @@ collections:
       - {label: "UUID", name: "uuid", widget: "uuid"}
       - {label: "Location", name: "location", widget: "string"}
       - {label: "Position", name: "position", widget: "string"}
-      - {label: "Specification", name: "specification", widget: "string"}
+      - {label: "Specification", name: "specification", widget: "text", hint: "Für einen manuellen Zeilenumbruch Enter drücken."}
       - {label: "Logo", name: "logo", widget: "image", required: false, hint: "Firmenlogo oben in der Box"}
       - {label: "Heading", name: "heading", widget: "text", required: false, hint: "Standard: Location – Position. Für einen manuellen Zeilenumbruch Enter drücken."}
       - {label: "Intro", name: "intro", widget: "text", required: false, hint: "Standard: Specification. Für einen manuellen Zeilenumbruch Enter drücken."}
