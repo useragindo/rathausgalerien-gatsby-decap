@@ -11,6 +11,7 @@
 		"develop": "gatsby develop",
 		"start": "gatsby develop",
 		"cms:proxy": "npx --yes decap-server@3.10.0",
+		"prebuild": "node -e \"console.log('WATCHER:', require.resolve('@parcel/watcher')); try { console.log('LINUX WATCHER:', require.resolve('@parcel/watcher-linux-x64-glibc')) } catch(e) { console.log('LINUX WATCHER: MISSING') }\"",
 		"build": "gatsby build",
 		"serve": "gatsby serve",
 		"clean": "gatsby clean",
