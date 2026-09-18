@@ -1,11 +1,12 @@
 ---
+locale: de
 key: job
 type: job
-locale: de
 uuid: 131d1f17-27cc-4b2b-951f-9ce1e2394e35
 location: Rituals
 position: Store Manager (m/w/d)
 specification: Vollzeit 38,5h
+logo: /media/jobs/rituals_1c_pur.svg
 images:
   - /media/jobs/bild-08.01.26-um-12.06.jpg
 ---
