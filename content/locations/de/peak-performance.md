@@ -6,7 +6,7 @@ uuid: 00f20e2b-8828-487c-b8a6-851ea9b5ac8b
 name: sehen!wutscher
 group: brand
 categories:
-  - 28e2ac65-354b-4ab3-b4ea-385863152807
+  - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
 intro: Hier finden Sie Informationen zu sehen!wutscher in den RathausGalerien.
 hours:
   - date: Mo - Fr
