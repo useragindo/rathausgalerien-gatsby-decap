@@ -12,6 +12,7 @@ import {
 	resolveCategories,
 	resolveCategoryLabels,
 } from "../lib/content/categories";
+import { stripMarkdownText, truncateText } from "../lib/content/excerpt";
 import { resolveColorPairStyle, resolveColorTokenVar } from "../lib/content/color-tokens";
 import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
 import { getTeaserImages, normalizeImageList, trim } from "../lib/content/normalize";
@@ -141,26 +142,7 @@ const resolvePageSeo = (page: NormalizedPage): ResolvedSeo => {
 const getLocationImage = (location: NormalizedLocation): string | undefined =>
 	normalizeImageList(location.frontmatter.images)[0];
 
-const stripMarkdown = (value: string): string =>
-	value
-		.replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-		.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
-		.replace(/^#{1,6}\s+/gm, "")
-		.replace(/[>*_`~-]/g, "")
-		.replace(/\s+/g, " ")
-		.trim();
-
-const truncateText = (value: string, maxLength = 135): string => {
-	if (value.length <= maxLength) {
-		return value;
-	}
-
-	const truncated = value
-		.slice(0, maxLength)
-		.replace(/\s+\S*$/, "")
-		.trim();
-	return `${truncated || value.slice(0, maxLength).trim()} …`;
-};
+const stripMarkdown = stripMarkdownText;
 
 const getFirstBodyParagraph = (body?: string): string | undefined => {
 	if (!body) {
@@ -179,7 +161,7 @@ const getLocationCardText = (location: NormalizedLocation): string => {
 	const text =
 		bodyText || intro || `${location.title} in den RathausGalerien.`;
 
-	return truncateText(text);
+	return truncateText(text, 135);
 };
 
 type LocationListingCard = {

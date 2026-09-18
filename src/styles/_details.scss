@@ -128,10 +128,15 @@
 	text-align: center;
 }
 
+/* grid-template-columns: 100% ist nicht kosmetisch: ohne sie schrumpft die
+   Spalte auf die Inhaltsbreite, und die Prozent-max-width der Textspalte rechnet
+   dann gegen genau diese geschrumpfte Breite. Die Anschrift bekam so 153 statt
+   250 px und brach mitten im Strassennamen um. */
 .location-detail__info-card,
 .job-detail__info-card {
 	display: grid;
 	grid-template-rows: 33% 24% 43%;
+	grid-template-columns: 100%;
 	justify-items: center;
 	align-items: start;
 	height: 100%;
@@ -261,11 +266,10 @@
 	max-width: min(16rem, 90%);
 }
 
-.location-detail__info-card--contact address,
-.location-detail__info-card--contact li,
-.location-detail__info-card--contact a {
-	white-space: nowrap;
-}
+/* Früher stand hier white-space: nowrap, das hat die Anschrift an der
+   Kachelkante abgeschnitten ("Maria-Theresien-Straße 1"). Sie darf umbrechen,
+   abreissen nicht — und text-wrap: balance darf hier nicht stehen, das würde
+   die per <br> gesetzten Zeilen gegeneinander ausgleichen. */
 
 .location-detail__info-copy p,
 .job-detail__info-copy p {
@@ -312,13 +316,21 @@
 	list-style: none;
 	display: grid;
 	gap: 0.12rem;
-	margin: var(--space-2xs) 0 0;
+	margin: clamp(0.5rem, 1.2vw, 0.9rem) 0 0;
 	padding: 0;
 }
 
 .location-detail__info-card a,
 .job-detail__info-card a {
 	color: inherit;
+	text-decoration: none;
+}
+
+.location-detail__info-card a:hover,
+.location-detail__info-card a:focus-visible,
+.job-detail__info-card a:hover,
+.job-detail__info-card a:focus-visible {
+	text-decoration: underline;
 	text-decoration-thickness: 0.08em;
 	text-underline-offset: 0.18em;
 }
@@ -341,20 +353,20 @@
 	margin: 0;
 }
 
+/* Tag und Zeit laufen als EIN Textfluss, damit "Mo - Sa 9:00 - 23:00 Uhr" am
+   Zeilenende umbricht statt als zwei Spalten nebeneinander zu stehen, die jede
+   für sich umbricht ("Mo -" / "Sa"). */
 .location-detail__mini-list-row {
-	display: flex;
-	justify-content: center;
-	gap: 0.22em;
+	display: block;
+	text-align: center;
 }
 
 .location-detail__mini-list-row--stacked {
-	display: block;
-	margin-block-start: clamp(0.28rem, 0.75vw, 0.55rem);
+	margin-block-start: clamp(0.5rem, 1.2vw, 0.9rem);
 }
 
 .location-detail__mini-list dt {
 	display: inline;
-	font-weight: 700;
 }
 
 .location-detail__mini-list dd {

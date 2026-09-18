@@ -2,6 +2,7 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
+import { getBodyExcerpt } from "../lib/content/excerpt";
 import { resolveCategoryLabels } from "../lib/content/categories";
 import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
 import { normalizeImageList, trim } from "../lib/content/normalize";
@@ -106,37 +107,6 @@ const resolveLocationSeo = (location: NormalizedLocation): ResolvedSeo => {
 const getLocationIntro = (location: NormalizedLocation): string | undefined =>
 	location.intro?.trim() || undefined;
 
-const stripMarkdownText = (value: string): string =>
-	value
-		.replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-		.replace(/\[([^\]]+)]\([^)]*\)/g, "$1")
-		.replace(/^#{1,6}\s+/gm, "")
-		.replace(/[>*_`~-]/g, "")
-		.replace(/\\\n/g, " ")
-		.replace(/\s+/g, " ")
-		.trim();
-
-const truncateText = (value: string, maxLength = 155): string => {
-	if (value.length <= maxLength) {
-		return value;
-	}
-
-	const truncated = value
-		.slice(0, maxLength)
-		.replace(/\s+\S*$/, "")
-		.trim();
-	return `${truncated || value.slice(0, maxLength).trim()} …`;
-};
-
-const getBodyExcerpt = (body?: string, maxLength = 155): string | undefined => {
-	const paragraph = body
-		?.split(/\n{2,}/)
-		.map(stripMarkdownText)
-		.find(Boolean);
-
-	return paragraph ? truncateText(paragraph, maxLength) : undefined;
-};
-
 const getLocationSeoDescription = (location: NormalizedLocation): string =>
 	trim(location.frontmatter.seo?.description) ??
 	getLocationIntro(location) ??
@@ -156,11 +126,21 @@ const getLocationIndexPath = (location: NormalizedLocation): string => {
 const getLocationIndexLabel = (location: NormalizedLocation): string =>
 	location.group === "culinary" ? "Alle Gastronomie" : "Alle Shops";
 
-const getAddressLines = (address?: string | null): string[] =>
-	(address ?? "")
+const getAddressLines = (address?: string | null, name?: string): string[] => {
+	const lines = (address ?? "")
 		.split(/\\|\n/)
 		.map((line) => line.trim())
 		.filter(Boolean);
+
+	// Die erste Zeile wiederholt meist den Markennamen, der in der Kachel schon
+	// als Logo steht ("Thai-Li-Ba", "Restaurant Lichtblick"). Nur die Anschrift zeigen.
+	const brand = name?.trim().toLowerCase();
+	if (brand && lines.length > 1 && lines[0].toLowerCase().includes(brand)) {
+		return lines.slice(1);
+	}
+
+	return lines;
+};
 
 const getPhoneHref = (phone: string): string => {
 	const value = phone.trim().replace(/^tel:/, "");
@@ -193,25 +173,39 @@ const formatUrlLabel = (url: string): string =>
 const formatOpeningHoursLabel = (label: string): string =>
 	label.trim().replace(/\s+von$/i, "");
 
-const formatOpeningHoursTime = (time: string, label: string): string => {
+// Eine Zeitspanne ist eine Einheit: sonst bricht die Kachel hinter dem
+// Bindestrich um und lässt "18:00-" allein am Zeilenende stehen. Geschütztes
+// Leerzeichen (U+00A0) und geschützter Bindestrich (U+2011) halten sie zusammen.
+const keepTimeRangesTogether = (time: string): string =>
+	time
+		.replace(/(\d{1,2}:\d{2}) - (\d{1,2}:\d{2})/g, "$1\u00a0\u2011\u00a0$2")
+		.replace(/(\d{1,2}:\d{2})-(\d{1,2}:\d{2})/g, "$1\u2011$2");
+
+// "u." / "und" / "and" trennen zwei Zeitspannen, die beide ihr "Uhr" brauchen.
+// Hinter "u." steht ein Leerzeichen, also kein \b dahinter — das wäre keine Wortgrenze.
+const RANGE_SEPARATOR = /\s*\b(?:u\.|und\b|and\b)\s*/i;
+
+const formatOpeningHoursTime = (time: string): string => {
 	const normalized = time
 		.trim()
 		.replace(/(\d{1,2})\.(\d{2})/g, "$1:$2")
+		// führende Null nur bei der Anfangszeit: "10:00 - 01:00" behält seine
+		.replace(/^0(?=[1-9]:)/, "")
 		.replace(/\s+/g, " ");
 
 	if (!normalized) {
 		return "";
 	}
 
-	if (/geschlossen/i.test(normalized)) {
+	if (/geschlossen|closed/i.test(normalized)) {
 		return normalized;
 	}
 
-	if (/warme küche/i.test(label) && /\bu\.\b/i.test(normalized)) {
-		return `${normalized.replace(/\s*u\.\s*/i, " Uhr & ")} Uhr`;
-	}
+	const joined = normalized.replace(RANGE_SEPARATOR, " Uhr & ");
 
-	return /\bUhr\b/i.test(normalized) ? normalized : `${normalized} Uhr`;
+	return keepTimeRangesTogether(
+		/\bUhr\s*$/i.test(joined) ? joined : `${joined} Uhr`,
+	);
 };
 
 const getLocationDetailLabel = (location: NormalizedLocation): string =>
@@ -287,7 +281,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 		getLocationFallbackCategory(location),
 	);
 	const locationIntro = getLocationIntro(location);
-	const addressLines = getAddressLines(frontmatter.address);
+	const addressLines = getAddressLines(frontmatter.address, location.title);
 	const websiteUrl = getExternalUrl(frontmatter.contact?.url);
 	const hasOpeningHours = Boolean(frontmatter.hours?.length);
 	const hasContact = Boolean(
@@ -368,10 +362,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 								<dl className="location-detail__mini-list">
 									{frontmatter.hours?.map((entry) => {
 										const label = formatOpeningHoursLabel(entry.date ?? "");
-										const time = formatOpeningHoursTime(
-											entry.time ?? "",
-											label,
-										);
+										const time = formatOpeningHoursTime(entry.time ?? "");
 										const isKitchenHours = /^warme küche/i.test(label);
 
 										return (
@@ -383,7 +374,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 												}
 												key={`${entry.date}-${entry.time}`}
 											>
-												<dt>{label}</dt>
+												<dt>{label}</dt>{" "}
 												<dd>{time}</dd>
 											</div>
 										);

@@ -2,6 +2,7 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { Seo } from "../components/seo";
 import { SiteLayout } from "../layouts";
+import { getBodyExcerpt } from "../lib/content/excerpt";
 import { MarkdownContent, renderMultiline } from "../lib/content/markdown";
 import { normalizeImageList, trim } from "../lib/content/normalize";
 import type {
@@ -55,37 +56,6 @@ const toNavigationItems = (
 			language: item.language,
 			openInNewTab: false,
 		}));
-
-const stripMarkdownText = (value: string): string =>
-	value
-		.replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-		.replace(/\[([^\]]+)]\([^)]*\)/g, "$1")
-		.replace(/^#{1,6}\s+/gm, "")
-		.replace(/[>*_`~-]/g, "")
-		.replace(/\\\n/g, " ")
-		.replace(/\s+/g, " ")
-		.trim();
-
-const truncateText = (value: string, maxLength = 155): string => {
-	if (value.length <= maxLength) {
-		return value;
-	}
-
-	const truncated = value
-		.slice(0, maxLength)
-		.replace(/\s+\S*$/, "")
-		.trim();
-	return `${truncated || value.slice(0, maxLength).trim()} …`;
-};
-
-const getBodyExcerpt = (body?: string): string | undefined => {
-	const paragraph = body
-		?.split(/\n{2,}/)
-		.map(stripMarkdownText)
-		.find(Boolean);
-
-	return paragraph ? truncateText(paragraph) : undefined;
-};
 
 const getJobSeoDescription = (job: NormalizedJob): string =>
 	trim(job.frontmatter.seo?.description) ??
