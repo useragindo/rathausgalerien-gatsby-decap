@@ -143,7 +143,6 @@ const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
 	const images = normalizeImageList(news.frontmatter.images);
 	const heroImage = images[0];
 	const aboutImage = images[1] ?? images[0];
-	const galleryImages = images.slice(2);
 	const date = news.date ? formatNewsDate(news.date, news.language) : undefined;
 
 	return (
@@ -206,22 +205,6 @@ const NewsTemplate: React.FC<NewsTemplateProps> = ({ pageContext }) => {
 					</section>
 				) : null}
 
-				{galleryImages.length ? (
-					<section
-						className="detail-gallery news-detail__gallery"
-						aria-labelledby="news-gallery-title"
-					>
-						<p className="detail-panel__eyebrow">Galerie</p>
-						<h2 id="news-gallery-title">Eindrücke</h2>
-						<ul className="detail-gallery__grid">
-							{galleryImages.map((galleryImage) => (
-								<li key={galleryImage}>
-									<img src={galleryImage} alt="" loading="lazy" />
-								</li>
-							))}
-						</ul>
-					</section>
-				) : null}
 			</article>
 		</SiteLayout>
 	);

@@ -266,7 +266,6 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 	const images = normalizeImageList(frontmatter.images);
 	const heroImage = images[0];
 	const aboutImage = images[1] ?? images[0];
-	const galleryImages = images.slice(2);
 	const categoryLabels = resolveCategoryLabels(
 		frontmatter.categories,
 		categories,
@@ -455,22 +454,6 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 					</section>
 				) : null}
 
-				{galleryImages.length ? (
-					<section
-						className="detail-gallery location-detail__gallery"
-						aria-labelledby="location-gallery-title"
-					>
-						<p className="detail-panel__eyebrow">Galerie</p>
-						<h2 id="location-gallery-title">Eindrücke</h2>
-						<ul className="detail-gallery__grid">
-							{galleryImages.map((image) => (
-								<li key={image}>
-									<img src={image} alt="" loading="lazy" />
-								</li>
-							))}
-						</ul>
-					</section>
-				) : null}
 			</article>
 		</SiteLayout>
 	);
