@@ -177,6 +177,10 @@ teaser:
   title: Shopping
   subtitle: Mitten in Innsbruck
   icon: /media/pages/rhg-logo-klein.svg
+  images:
+    - image: /media/pages/rathausgalerien_so25_danielzangerl-_038_web.jpg
+    - image: /media/pages/eingang_.jpg
+  arrow_color: weiss
 seo:
   description: Suchen Sie ein Shoppingcenter in Innsbruck? Die RathausGalerien
     bieten ein einzigartiges Einkaufserlebnis und vielfältige Shops. Besuchen
