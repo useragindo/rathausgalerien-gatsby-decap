@@ -17,10 +17,10 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@mdx-js/react": "^2.3.0",
-		"decap-cms-app": "3.6.4",
-		"gatsby": "^5.16.1",
-		"gatsby-plugin-decap-cms": "^4.0.4",
+		"@mdx-js/react": "2.3.0",
+		"decap-cms-app": "3.2.0",
+		"gatsby": "^5.14.6",
+		"gatsby-plugin-decap-cms": "4.0.4",
 		"gatsby-plugin-image": "^3.16.0",
 		"gatsby-plugin-mdx": "^5.16.0",
 		"gatsby-plugin-sass": "^6.16.0",
@@ -29,18 +29,18 @@
 		"gatsby-source-filesystem": "^5.16.0",
 		"gatsby-transformer-sharp": "^5.16.0",
 		"gatsby-transformer-yaml": "^5.16.0",
-		"netlify-identity-widget": "^1.9.2",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1",
-		"sass": "^1.104.1"
+		"netlify-identity-widget": "1.9.2",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"sass": "^1.100.0"
 	},
 	"overrides": {
 		"graphql": "^16.8.1"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.19",
-		"@types/react": "^18.3.0",
-		"@types/react-dom": "^18.3.0",
-		"typescript": "^5.9.3"
+		"@types/react": "^18.2.55",
+		"@types/react-dom": "^18.2.19",
+		"typescript": "^5.3.3"
 	}
 }
