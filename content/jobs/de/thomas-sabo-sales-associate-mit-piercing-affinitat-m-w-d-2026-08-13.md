@@ -1,11 +1,12 @@
 ---
+locale: de
 key: job
 type: job
-locale: de
 uuid: eefd3c25-69d4-4929-a28b-d98257f24c83
 location: THOMAS SABO
 position: Sales Associate mit Piercing-Affinität (m/w/d)
 specification: Teilzeit
+logo: /media/jobs/ts_logo_dachmarke_1cschwarz.svg
 ---
 THOMAS SABO ist ein innovatives internationals Lifestyle-Unternehmen, das inspirierende Schmuck- und Uhren-Produkte sowie Sonennbrillen und weitere Accessoires für Frauen und Männer kreiert. Unsere treibenden Kräfte sind die Liebe zur Mode und die Faszination für die Schaffung einzigartiger, ausdrucksstarker Designs, die immer den aktuellen Trends folgen. 
 
