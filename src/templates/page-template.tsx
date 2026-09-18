@@ -552,7 +552,7 @@ const JobList: React.FC<{
 									) : null}
 									{job.frontmatter.specification ? (
 										<span className="listing-card__specification">
-											{job.frontmatter.specification}
+											{renderMultiline(job.frontmatter.specification)}
 										</span>
 									) : null}
 									<span className="listing-card__cta">Mehr Infos</span>
