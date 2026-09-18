@@ -45,7 +45,7 @@ Sonn- und Feiertage 08.00 bis 22.00 Uhr
 
 **RATHAUSGARAGE IMMER GEÖFFNET**
 
-24/7 geöffnet
+24/7 geöffnet 
 
 Zugang bei geschlossener Mall über die Zufahrtsrampe am Adolf-Pichler-Platz.
 
