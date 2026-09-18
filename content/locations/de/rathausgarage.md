@@ -1,26 +1,26 @@
 ---
+locale: de
 key: location
 type: location
-locale: de
 uuid: 43cbcc74-b91a-4e36-aff1-cc84ec070e77
-seo:
-  description: 'Hier finden Sie alle Informationen zur GalerienGarage. '
-  title: 'RathausGarage '
-  url: garage
-name: 'RathausGarage '
+name: "RathausGarage "
 group: brand
 categories:
-  - 82074ef4-f123-45c9-8765-bbf0685b05a4
-logo: /media/locations/boe_parking.svg
+  - 0a877604-4838-4609-8c27-03a3f270226c
+intro: Hier finden Sie alle Informationen zur GalerienGarage.
 address: |-
   RathausGalerien\
   Maria-Theresien-Straße 18\
   6020 Innsbruck
 contact:
   email: parken@boe.co.at
-  phone: 'tel:+43 676 848 802 266'
-  url: 'https://www.boe-parking.at'
-intro: Hier finden Sie alle Informationen zur GalerienGarage.
+  phone: tel:+43 676 848 802 266
+  url: https://www.boe-parking.at
+logo: /media/locations/boe_parking.svg
+seo:
+  description: "Hier finden Sie alle Informationen zur GalerienGarage. "
+  title: "RathausGarage "
+  url: garage
 ---
 Zentral parken in unserer RathausGarage mit 350 kühlen Parkplätzen. \
 Einfahrtshöhe: 2,20 m, Frauenparkplätze im 1. UG lt. Hinweisschildern.
