@@ -5,22 +5,13 @@ key: gewinnspiel-teilnahmebedingungen
 template: standard
 menu: ""
 order: 1
-heading: |-
-  TEILNAHME
-  BEDINGUNGEN
-blocks:
-  - layout: grid-4
-    text_color: ""
-    background_color: ""
-    reversed: false
-    text_align: ""
-    tiles:
-      - text_color: ""
-        background_color: ""
-    date: ""
+heading: ""
+blocks: []
 teaser:
   image: /media/pages/rathausgalerien-innen.jpeg
-  title: TEILNAHMEBEDINGUNGEN
+  title: |-
+    TEILNAHME
+    BEDINGUNGEN
   icon: /media/pages/rhg-logo-klein.svg
 seo:
   ogType: website
