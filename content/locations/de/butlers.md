@@ -6,7 +6,7 @@ uuid: 5f395e1e-c693-4661-bd2f-73b5fa5d9215
 name: Butlers
 group: brand
 categories:
-  - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
+  - 0cc9ada7-e950-4089-b3fe-13f92774c8c9
 intro: Hier finden Sie Informationen zu Butlers in den RathausGalerien.
 hours:
   - date: Mo - Fr
