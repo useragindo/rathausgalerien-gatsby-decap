@@ -1,26 +1,13 @@
 ---
+locale: de
 key: location
 type: location
-locale: de
 uuid: daf37308-4354-4334-b4e7-9717c8d1b7a5
-seo:
-  description: Hier finden Sie Informationen zu Odlo in den RathausGalerien.
-  title: Odlo
-  url: odlo
 name: Odlo
 group: brand
 categories:
   - f1ea6839-f5e1-45e1-9e08-0c87d8092889
-  - aa167073-ba10-44d0-81d9-90c23be34d91
-  - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
-logo: /media/locations/odlo.svg
-images:
-  - /media/locations/odlo_.jpg
-  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_01.jpg
-  - /media/locations/odlo_2.jpg
-  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_04.jpg
-  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_02.jpg
-  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_03.jpg
+intro: Hier finden Sie Informationen zu Odlo in den RathausGalerien.
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00
@@ -34,8 +21,19 @@ contact:
   email: innsbruck@odlo.com
   phone: +43 512 319373
   url: https://www.odlo.com
+logo: /media/locations/odlo.svg
+images:
+  - /media/locations/odlo_.jpg
+  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_01.jpg
+  - /media/locations/odlo_2.jpg
+  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_04.jpg
+  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_02.jpg
+  - /media/locations/h001_132_03_shops_rlo_1000-x-1000_03.jpg
 viewId: shop-5
-intro: Hier finden Sie Informationen zu Odlo in den RathausGalerien.
+seo:
+  description: Hier finden Sie Informationen zu Odlo in den RathausGalerien.
+  title: Odlo
+  url: odlo
 ---
 THERE'S MORE OUT THERE
 
