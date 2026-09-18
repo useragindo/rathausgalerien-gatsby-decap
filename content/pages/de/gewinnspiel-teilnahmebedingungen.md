@@ -18,6 +18,8 @@ blocks:
     date: ""
 teaser:
   image: /media/pages/rathausgalerien-innen.jpeg
+  title: TEILNAHMEBEDINGUNGEN
+  icon: /media/pages/rhg-logo-klein.svg
 seo:
   ogType: website
   twitterCard: summary_large_image
@@ -26,7 +28,11 @@ seo:
   description: Teilnahmebedingungen für die Teilnahme an Gewinnspielen der RathausGalerien
   image: /media/pages/dsc_1672_bearb.jpg
 ---
-## Teilnahmebedingungen für Social-Media-Gewinnspiele und Magazin-Gewinnspiele der RathausGalerien und für das RathausGalerien Gewinnspiel im Wintermagazin 2025/26
+## Teilnahmebedingungen
+
+**für Social-Media-Gewinnspiele und Magazin-Gewinnspiele der RathausGalerien und für das RathausGalerien Gewinnspiel im Wintermagazin 2025/26**
+
+
 
 **Gegenstand der Teilnahmebedingungen und Veranstalter**                                                                   
 
