@@ -1,21 +1,13 @@
 ---
+locale: de
 key: location
 type: location
-locale: de
 uuid: b122828d-da87-4924-942d-5a94d98935af
-seo:
-  description: Hier finden Sie Informationen zum Stage 12 in den RathausGalerien.
-  title: Stage 12
-  url: stage-12
 name: Stage 12
 group: culinary
 categories:
-  - ddfcab86-1237-4de6-9081-cafe473eecfd
   - 6484b646-4c69-405a-aacf-1fe3f550f8ab
-logo: /media/locations/stage12.svg
-images:
-  - /media/locations/rathausgalerien_adpartners_print_dz-69.jpg
-  - /media/locations/rathausgalerien_adpartners_print_dz-91.jpg
+intro: Hier finden Sie Informationen zum Stage 12 in den RathausGalerien.
 hours:
   - date: Mo - Do
     time: 12.00 - 00.00
@@ -32,8 +24,15 @@ contact:
   email: office@stage12.at
   phone: tel:+43 512 312312
   url: https://stage12.at/bar/
+logo: /media/locations/stage12.svg
+images:
+  - /media/locations/rathausgalerien_adpartners_print_dz-69.jpg
+  - /media/locations/rathausgalerien_adpartners_print_dz-91.jpg
 viewId: shop-37
-intro: Hier finden Sie Informationen zum Stage 12 in den RathausGalerien.
+seo:
+  description: Hier finden Sie Informationen zum Stage 12 in den RathausGalerien.
+  title: Stage 12
+  url: stage-12
 ---
 Cooles Design, tolle Atmosphäre und kreative Cocktails und Drinks erwarten Sie\
 Die Hotelbar Stage 12 ist bekannt für Stil und Stimmung. Genießen Sie mitten im Zentrum von Innsbruck tolle saisonale Signature Drinks von dem Team der Stage 12 Bar. Noch dazu gibt es frische Popcorn mit verschiedenen Aromen.
