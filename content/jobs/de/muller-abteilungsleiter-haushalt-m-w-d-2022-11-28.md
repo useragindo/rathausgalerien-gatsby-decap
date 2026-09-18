@@ -5,8 +5,10 @@ type: job
 uuid: eb49ed1b-b854-4e6f-9856-85b36bdd0390
 location: Müller
 position: Kundenberater Parfümerie (m/w/d)Teilzeit (30 Std. Woche)
-specification: Du liebst Düfte, Beauty  & Beratung? Dann werde Teil des Müller
-  Parfümerie-Teams!. 
+specification: |-
+  Du liebst Düfte, Beauty
+  & Beratung? Dann werde Teil 
+  des Müller Parfümerie-Teams!
 logo: /media/jobs/logo.svg
 heading: ""
 images:
