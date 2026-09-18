@@ -1,23 +1,13 @@
 ---
+locale: de
 key: location
 type: location
-locale: de
 uuid: e7e3a91f-67f4-4350-818a-abc93c2f4e8c
-seo:
-  description: Hier finden Sie Informationen zur Sportalm in den RathausGalerien.
-  title: Sportalm Kitzbühel
-  url: sportalm
 name: Sportalm Kitzbühel
 group: brand
 categories:
   - 7e9371ec-c538-4ddd-8470-b1e9bc34790d
-  - aa167073-ba10-44d0-81d9-90c23be34d91
-logo: /media/locations/sportalm_kitzbuehel.svg
-images:
-  - /media/locations/sportalm_4.jpg
-  - /media/locations/sportalm_5.jpg
-  - /media/locations/sportalm_.jpg
-  - /media/locations/sportalm_3.jpg
+intro: Hier finden Sie Informationen zur Sportalm in den RathausGalerien.
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00
@@ -32,8 +22,17 @@ contact:
   email: shop-Innsbruck@sportalm.at
   phone: +43 512 56 09 77
   url: "https://www.sportalm.at "
+logo: /media/locations/sportalm_kitzbuehel.svg
+images:
+  - /media/locations/sportalm_4.jpg
+  - /media/locations/sportalm_5.jpg
+  - /media/locations/sportalm_.jpg
+  - /media/locations/sportalm_3.jpg
 viewId: shop-31
-intro: Hier finden Sie Informationen zur Sportalm in den RathausGalerien.
+seo:
+  description: Hier finden Sie Informationen zur Sportalm in den RathausGalerien.
+  title: Sportalm Kitzbühel
+  url: sportalm
 ---
 Sportalm ist eines der erfolgreichsten, international tätigen Textilunternehmen Österreichs mit Sitz in Kitzbühel. Seit fast 40 Jahren als Familienbetrieb der Familie Ehrlich geführt, wird seit 1996 auch in der eigenen Produktionsstätte in Bulgarien produziert.
 
