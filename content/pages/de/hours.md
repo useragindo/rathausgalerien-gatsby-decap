@@ -24,7 +24,7 @@ Sa 10.00 – 18.00 Uhr
 
 **MORAWA**
 
-Mo - Fr 08.00 bis 19.00 Uhr\
+Mo - Fr 08.00 bis 19.00 Uhr \
 Sa 09.00 bis 18.00 Uhr
 
 **DER BÄCKER RUETZ**
