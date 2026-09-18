@@ -1,18 +1,13 @@
 ---
+locale: de
 key: location
 type: location
-locale: de
 uuid: 47b27fdf-f4ed-4ef6-a3fc-9418775bdf55
-seo:
-  description: Hier finden Sie Informationen zu The Penz Hotel in den RathausGalerien.
-  title: The Penz Hotel
-  url: the-penz-hotel
 name: The Penz Hotel
 group: culinary
 categories:
   - 6484b646-4c69-405a-aacf-1fe3f550f8ab
-  - ddfcab86-1237-4de6-9081-cafe473eecfd
-logo: /media/locations/penz_hotel.svg
+intro: Hier finden Sie Informationen zu The Penz Hotel in den RathausGalerien.
 address: |-
   The PENZ Hotel\
   Adolf-Pichler-Platz 3\
@@ -20,8 +15,12 @@ address: |-
 contact:
   email: office@thepenz.com
   phone: +43 512 57 56 570
-  url: 'https://www.the-penz.com'
+  url: https://www.the-penz.com
+logo: /media/locations/penz_hotel.svg
 viewId: shop-33
-intro: Hier finden Sie Informationen zu The Penz Hotel in den RathausGalerien.
+seo:
+  description: Hier finden Sie Informationen zu The Penz Hotel in den RathausGalerien.
+  title: The Penz Hotel
+  url: the-penz-hotel
 ---
 Sich wie zuhause fühlen. Wenn Sie mitten in der Stadt wohnen wollen, dann gibt es in Innsbruck nur ein Hotel für Sie: The Penz.
