@@ -16,10 +16,7 @@ teaser:
   images:
     - image: /media/pages/lacoste_19_02_24_rg_reportage.png
       alt: ""
-  title: |-
-    JOBS
-    HEADLINE 
-    HIER
+  title: KARRIERE
   icon: /media/pages/rhg-logo-klein.svg
 seo:
   title: Karriere
