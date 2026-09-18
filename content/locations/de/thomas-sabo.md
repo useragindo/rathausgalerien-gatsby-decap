@@ -7,15 +7,7 @@ name: Thomas Sabo
 group: brand
 categories:
   - 5d022c40-ebe6-4ce1-9c01-f1d3fda8f2fa
-heading: THOMAS SABO ist international eines der führenden Schmuckunternehmen
-  und bietet seine vielseitigen Designs über einen selektiven und hochwertigen
-  Multi-Channel-Vertrieb an. Über das Kernsegment des aufwendig von Hand
-  gearbeiteten Schmucks aus 925er Sterlingsilber hinaus designt und vertreibt
-  THOMAS SABO Uhren (seit 2009). Das im Jahr 1984 von Thomas Sabo in Lauf an der
-  Pegnitz, Süddeutschland, gegründete Unternehmen ist weltweit in mehr als 70
-  Ländern mit eigenen Flagshipstores und Verkaufspunkten sowie über
-  Wholesale-Partner und mit dem globalen Online-Shop unter www.thomassabo.com
-  vertreten.
+heading: THOMAS SABO
 intro: THOMAS SABO ist international eines der führenden Schmuckunternehmen und
   bietet seine vielseitigen Designs über einen selektiven und hochwertigen
   Multi-Channel-Vertrieb an.
