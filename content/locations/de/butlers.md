@@ -1,24 +1,13 @@
 ---
+locale: de
 key: location
 type: location
-locale: de
 uuid: 5f395e1e-c693-4661-bd2f-73b5fa5d9215
-seo:
-  description: Hier finden Sie Informationen zu Butlers in den RathausGalerien.
-  title: Butlers
-  url: butlers
 name: Butlers
 group: brand
 categories:
-  - aa167073-ba10-44d0-81d9-90c23be34d91
   - a3375da3-e4fe-40ba-a57b-68658d3c8da7
-  - 0cc9ada7-e950-4089-b3fe-13f92774c8c9
-logo: /media/locations/butlers.svg
-images:
-  - /media/locations/butlers_.jpg
-  - /media/locations/butlers_2.jpg
-  - /media/locations/butlers_3.jpg
-  - /media/locations/butlers_4.jpg
+intro: Hier finden Sie Informationen zu Butlers in den RathausGalerien.
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00
@@ -32,8 +21,17 @@ contact:
   email: 13108@butlers24.de
   phone: +43 512 56 02 02
   url: https://www.butlers.com
+logo: /media/locations/butlers.svg
+images:
+  - /media/locations/butlers_.jpg
+  - /media/locations/butlers_2.jpg
+  - /media/locations/butlers_3.jpg
+  - /media/locations/butlers_4.jpg
 viewId: shop-24
-intro: Hier finden Sie Informationen zu Butlers in den RathausGalerien.
+seo:
+  description: Hier finden Sie Informationen zu Butlers in den RathausGalerien.
+  title: Butlers
+  url: butlers
 ---
 FÜRS MITEINANDER\
 DESIGNED BY BUTLERS
