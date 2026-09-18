@@ -6,7 +6,7 @@ uuid: 4180b644-b90e-4e06-98cc-60bbf73e9809
 name: Müller
 group: brand
 categories:
-  - 0cc9ada7-e950-4089-b3fe-13f92774c8c9
+  - b640ac1f-3ce7-4d0c-a49c-2d8e61e48258
 intro: Hier finden Sie Informationen zu Müller in den RathausGalerien.
 hours:
   - date: Mo - Fr
