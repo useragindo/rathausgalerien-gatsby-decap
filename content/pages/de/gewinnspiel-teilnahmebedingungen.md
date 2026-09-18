@@ -5,7 +5,9 @@ key: gewinnspiel-teilnahmebedingungen
 template: standard
 menu: ""
 order: 1
-heading: TEILNAHMEBEDINGUNGEN
+heading: |-
+  TEILNAHME
+  BEDINGUNGEN
 blocks:
   - layout: grid-4
     text_color: ""
