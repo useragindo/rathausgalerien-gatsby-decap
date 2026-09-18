@@ -4,7 +4,7 @@ key: job
 type: job
 uuid: eb49ed1b-b854-4e6f-9856-85b36bdd0390
 location: Müller
-position: Kundenberater Parfümerie (m/w/d)Teilzeit (30 Std. Woche)
+position: "Kundenberater Parfümerie "
 specification: |-
   Du liebst Düfte, Beauty
   & Beratung? Dann werde Teil 
@@ -15,7 +15,11 @@ images:
   - /media/jobs/header-ausbildung.png
 background_color: c3
 ---
-## WAS UNS ÜBERZEUGT
+**(m/w/d) Teilzeit (30 Std. Woche)**
+
+
+
+**WAS UNS ÜBERZEUGT**
 
 * Erfahrung im Bereich Parfümerie oder Beauty.
 * Serviceorientierung und Spaß beim Kundenkontakt.
@@ -23,14 +27,18 @@ background_color: c3
 * Zeitliche Flexibilität.
 * Bereitschaft für Einsätze am Samstag.
 
-## WAS SIE BEI UNS BEWEGEN
+
+
+**WAS SIE BEI UNS BEWEGEN**
 
 * Professionell unsere Produkte verkaufen.
 * Freundlich & kompetent unsere Kunden beraten.
 * Ansprechend unser Sortiment präsentieren.
 * Regelmäßig Waren und Regale pflegen.
 
-## WAS WIR BIETEN
+
+
+**WAS WIR BIETEN**
 
 * Krisensicherer Arbeitsplatz.
 * Einkaufsrabatt für Mitarbeiter bis zu 20%.
@@ -39,7 +47,9 @@ background_color: c3
 * Kollektivvertragliches Mindestgehalt von € 2.251,00 brutto pro Monat (Vollzeitbasis).
 * Attraktive Überzahlung je nach Erfahrung und Qualifikation.
 
-## KONTAKT
+
+
+**KONTAKT**
 
 Frau Mair +43 59 120 1958
 
