@@ -6,6 +6,7 @@ uuid: 161d69ad-b83c-4470-8617-9878bbf0fdfe
 location: Müller
 position: Kundenberater Drogerie (m/w/d)
 specification: Teilzeit (30 Std./Woche)
+logo: /media/jobs/logo.svg
 images:
   - /media/jobs/header-ausbildung.png
 seo:

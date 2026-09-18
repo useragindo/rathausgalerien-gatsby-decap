@@ -1,11 +1,12 @@
 ---
+locale: de
 key: job
 type: job
-locale: de
 uuid: 5341edd2-0017-4913-a990-41c1b6200e09
 location: THOMAS SABO
 position: Assistant Store Manager (m/w/d) Innsbruck
 specification: 30 Wochenstunden oder Vollzeit
+logo: ""
 ---
 THOMAS SABO ist ein innovatives internationals Lifestyle-Unternehmen, das inspirierende Schmuck- und Uhren-Produkte sowie Sonennbrillen und weitere Accessoires für Frauen und Männer kreiert. Unsere treibenden Kräfte sind die Liebe zur Mode und die Faszination für die Schaffung einzigartiger, ausdrucksstarker Designs, die immer den aktuellen Trends folgen. 
 
