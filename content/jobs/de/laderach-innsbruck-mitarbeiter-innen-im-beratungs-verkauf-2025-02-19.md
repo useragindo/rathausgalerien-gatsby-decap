@@ -6,7 +6,7 @@ uuid: 7255dfdc-dcb9-4683-93d6-66a307faf0e0
 location: Läderach Innsbruck
 position: Mitarbeiter:innen im Beratungs-Verkauf
 specification: Voll- und Teilzeit - 25h-38,5 Wochenstunden
-logo: ""
+logo: /media/jobs/laderach_logo_rgb_black.svg
 images:
   - /media/jobs/27_02_25_rg_people_-540.jpg
 background_color: c4
