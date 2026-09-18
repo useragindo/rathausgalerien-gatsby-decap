@@ -1,16 +1,17 @@
 ---
+locale: de
 key: job
 type: job
-locale: de
 uuid: 317eca7b-c041-4259-9fd9-0162b002add2
-seo:
-  title: "Samsonite "
-  description: Kundenberater*in für Reise- und Businessprodukte
 location: "Samsonite "
 position: "Kundenberater*in "
 specification: Teilzeit, Vollzeit
+logo: /media/jobs/samsonite_black.svg
 images:
   - /media/jobs/sebastianzier_samsoniteinnsbruck-1632.jpg
+seo:
+  title: "Samsonite "
+  description: Kundenberater*in für Reise- und Businessprodukte
 ---
 Seit seiner Gründung im Jahr 1910 produziert Samsonite Gepäck und Taschen in Premium-Qualität mit einem klaren Ziel: langlebige und widerstandsfähige Produkte für die Bedürfnisse von Reisenden und Pendlern zu entwickeln. Das Unternehmen ist in der Branche führend bei der Verwendung neuer Materialien und der Entwicklung ikonischer Designs sowie darin, den Komfort kontinuierlich zu verbessern. Auf diesem Weg gab es eine Reihe von bemerkenswerten "Neuerungen" - alle Teil der von Innovationen geprägten Samsonite Tradition.
 
