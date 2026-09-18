@@ -6,7 +6,7 @@ uuid: aaad9f43-1184-4d0e-8fc7-e5aa397e9fe4
 name: Samsonite
 group: brand
 categories:
-  - aa167073-ba10-44d0-81d9-90c23be34d91
+  - 3fb21e1c-c486-4f47-b543-d7b342571bfb
 intro: Samsonite
 hours:
   - date: Mo - Fr
