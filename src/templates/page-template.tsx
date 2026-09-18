@@ -535,6 +535,7 @@ const JobList: React.FC<{
 									/>
 								</span>
 								<span className="listing-card__body" style={cardStyle}>
+									<span className="listing-card__eyebrow">Wir stellen ein</span>
 									{logo ? (
 										<span className="listing-card__logo">
 											<img
@@ -544,17 +545,17 @@ const JobList: React.FC<{
 											/>
 										</span>
 									) : null}
-									{job.frontmatter.location ? (
-										<span className="listing-card__meta">
-											{job.frontmatter.location}
+									{job.frontmatter.position ? (
+										<span className="listing-card__position">
+											{job.frontmatter.position}
 										</span>
 									) : null}
-									<span className="listing-card__title">{job.title}</span>
 									{job.frontmatter.specification ? (
-										<span className="listing-card__text">
+										<span className="listing-card__specification">
 											{job.frontmatter.specification}
 										</span>
 									) : null}
+									<span className="listing-card__cta">Mehr Infos</span>
 								</span>
 							</a>
 						</li>

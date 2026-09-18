@@ -262,6 +262,41 @@
 	-webkit-line-clamp: 2;
 }
 
+.listing-card--job .listing-card__eyebrow {
+	font-size: clamp(0.66rem, 0.9vw, 0.78rem);
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+.listing-card--job .listing-card__position {
+	min-width: 0;
+	font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+	font-weight: 700;
+	line-height: 1.3;
+	letter-spacing: normal;
+	text-transform: none;
+	overflow-wrap: anywhere;
+}
+
+.listing-card--job .listing-card__specification {
+	font-size: clamp(0.8rem, 1.05vw, 0.95rem);
+	font-weight: 400;
+	line-height: 1.35;
+	letter-spacing: normal;
+	text-transform: none;
+}
+
+.listing-card--job .listing-card__cta {
+	margin-block-start: clamp(0.4rem, 1.2vw, var(--space-xs));
+	font-size: clamp(0.66rem, 0.9vw, 0.78rem);
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-decoration: underline;
+	text-transform: uppercase;
+}
+
 .listing-card:nth-child(4n + 3) .listing-card__body,
 .listing-card:nth-child(4n + 4) .listing-card__body {
 	order: 0;
