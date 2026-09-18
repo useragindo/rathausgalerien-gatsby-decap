@@ -25,8 +25,6 @@ seo:
 
 **für Social-Media-Gewinnspiele und Magazin-Gewinnspiele der RathausGalerien und für das RathausGalerien Gewinnspiel im Wintermagazin 2025/26**
 
-
-
 **Gegenstand der Teilnahmebedingungen und Veranstalter**                                                                   
 
  (1) Diese Teilnahmebedingungen regeln die Bedingungen für eine Teilnahme an dem Gewinnspiel sowie gegebenenfalls erforderliche Rechteübertragungen. Die Beschreibung und der Ablauf des jeweiligen Gewinnspiels erfolgen im Rahmen der jeweiligen Gewinnspielaktion auf der Instagram-Seite der RathausGalerien.                                                                                                                                            
