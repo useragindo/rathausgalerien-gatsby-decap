@@ -39,14 +39,15 @@ form:
       required: true
     - type: TEXT
       required: true
-      name: inuput
+      name: input
       label: Wohnort
     - name: email
       label: E-Mail
       type: EMAIL
       required: true
     - name: terms
-      label: Ich akzeptiere die [Teilnahmebedingungen](/datenschutz)
+      label: Ich akzeptiere die
+        [Teilnahmebedingungen](/gewinnspiel-teilnahmebedingungen)
       type: CHECKBOX
       required: true
 seo:
