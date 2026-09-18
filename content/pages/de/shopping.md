@@ -7,7 +7,7 @@ menu: main
 menu_label: SHOPPING
 order: 100
 heading: Shopping
-intro: Willkommen in den Rathausgalerien
+intro: "Willkommen in den Rathausgalerien "
 blocks: []
 teaser:
   title: |-
