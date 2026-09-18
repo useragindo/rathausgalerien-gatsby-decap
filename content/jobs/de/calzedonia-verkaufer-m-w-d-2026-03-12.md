@@ -6,25 +6,25 @@ uuid: 6e1c2560-f9ec-49da-aa5e-cc6926e1bcd5
 location: Calzedonia
 position: "Verkäufer (m/w/d) "
 specification: Vollzeit
-logo: ""
+logo: /media/jobs/calzedonia_1c.svg
 images:
   - /media/jobs/calzedonia_9r3a3338.jpg
 background_color: c2
 ---
-## DEINE AUFGABEN
+**DEINE AUFGABEN**
 
 * Aktiver Verkauf und Beratung unserer KundInnen
 * Unterstützung beim Visual Merchandising
 * Tägliche To-Do's wie Lagerordnung, Kassa, Sauberkeit im Store
 
-## DEIN PROFIL
+**DEIN PROFIL**
 
 * Du magst Mode & neue Trends
 * Du bist ein Teamplayer und hast gerne Spaß bei der Arbeit
 * Du begeisterst KundInnen gerne von unseren Produkten
 * Du hast schon Berufserfahrung oder möchtest deine Karriere bei uns starten
 
-## UNSER ANGEBOT
+**UNSER ANGEBOT**
 
 * Individuelle Einschulung für einen optimalen Start sowie Karriere- und Entwicklungsmöglichkeiten und laufende interne Trainings
 * Ein abwechslungsreicher Job in einem jungen Unternehmen und vielen neuen Herausforderungen
