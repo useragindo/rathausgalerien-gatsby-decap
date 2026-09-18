@@ -9,7 +9,10 @@ categories:
   - 5d022c40-ebe6-4ce1-9c01-f1d3fda8f2fa
   - a3375da3-e4fe-40ba-a57b-68658d3c8da7
 heading: ""
-intro: Hier finden Sie Informationen zu Appelt-Juwelen in den RathausGalerien.
+intro: |-
+  Hier finden Sie Informationen 
+  zu Appelt-Juwelen in den 
+  RathausGalerien.
 hours:
   - date: Mo - Fr
     time: 09.00 - 19.00

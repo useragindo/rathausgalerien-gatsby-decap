@@ -173,7 +173,7 @@
    Die Grid-Zeile der Marken-Kachel ist 33% der Kartenhöhe, das trägt diese Höhe. */
 .location-detail__info-card img {
 	width: auto;
-	max-width: min(14rem, 82%);
+	max-width: min(12rem, 82%);
 	max-height: clamp(3rem, 9vw, 4.7rem);
 	object-fit: contain;
 }

@@ -283,7 +283,6 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 		websiteUrl,
 	);
 	const bodyContent = location.body ?? locationIntro;
-	const infoTileExcerpt = getBodyExcerpt(bodyContent, 112);
 	const infoCategoryTitle = getLocationInfoCategoryTitle(
 		location,
 		categoryLabels,
@@ -336,7 +335,7 @@ const LocationTemplate: React.FC<LocationTemplateProps> = ({ pageContext }) => {
 							{infoCategoryTitle}
 						</p>
 						<div className="location-detail__info-copy">
-							{infoTileExcerpt ? <p>{infoTileExcerpt}</p> : null}
+							{renderMultiline(location.intro) ? <p>{renderMultiline(location.intro)}</p> : null}
 						</div>
 					</div>
 
